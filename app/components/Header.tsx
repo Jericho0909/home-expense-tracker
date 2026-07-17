@@ -22,7 +22,10 @@ const Header = () => {
                 <span className="mr-2">
                     <House size={40} color="#F8F4E9" />
                 </span>
-                <h1 className="text-2xl font-bold text-[#F5F5DC]">
+               <h1
+                    className="text-2xl text-[#F5F5DC]"
+                    style={{ fontFamily: "var(--font-cinzel)" }}
+                >
                     Zara Family Expenses
                 </h1>
             </div>

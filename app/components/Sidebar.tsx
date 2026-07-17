@@ -33,7 +33,11 @@ const Sidebar = () => {
             ref={sidebarRef}
             className="fixed top-0 left-0 h-full w-54 bg-[#8B5E3C] p-6"
         >
-            <h2 className="text-xl font-bold">Expenses</h2>
+            <h2 
+                className="text-xl"
+                style={{ fontFamily: "var(--font-playfair-display)" }}>
+                Expenses
+            </h2>
         </motion.aside>
     )
 }
