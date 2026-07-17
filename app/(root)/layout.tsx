@@ -1,14 +1,16 @@
 'use client'
 
+import { useEffect, useContext } from 'react';
+import SidebarContext from '@/app/context/sidebarContext';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import useSidebar from '../hooks/useSidebar';
-import { useEffect } from 'react'; 
+
+
 
 export default function RootLayout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
-    const { isSidebarOpen } = useSidebar()
+    const { isSidebarOpen } = useContext(SidebarContext)!
     useEffect(() => {
         console.log('Sidebar is now', isSidebarOpen ? 'open' : 'closed');
     }, [isSidebarOpen]);

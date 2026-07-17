@@ -1,13 +1,13 @@
 'use client'
 
+import { useContext } from 'react';
+import SidebarContext from '@/app/context/sidebarContext';
 import { House,  Menu  } from 'lucide-react';
-import useSidebar from '@/app/hooks/useSidebar';
+
 
 
 const Header = () => {
-    const { toggleSidebar } = useSidebar();
-
-
+    const { toggleSidebar } = useContext(SidebarContext)!
     return (
         <header
             className="fixed flex items-center top-0 w-full bg-[#5C4033] text-[#F8F4E9] py-4 px-2"
