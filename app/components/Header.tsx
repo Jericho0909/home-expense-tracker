@@ -15,9 +15,13 @@ const Header = () => {
             <div className="flex items-center p-1">
                 <button 
                     onClick={toggleSidebar} 
-                    className="mr-5 cursor-pointer"
+                    className="menu-button mr-5 cursor-pointer p-2 rounded-full bg-[#F8F4E9]/10 border border-[#F8F4E9]/30 transition-all duration-300"
                 >
-                    <Menu size={30} color="#F8F4E9" />
+                    <Menu 
+                        size={30} 
+                        color="#F8F4E9"
+                        className="transition-transform duration-300"
+                    />
                 </button>
                 <span className="mr-2">
                     <House size={40} color="#F8F4E9" />

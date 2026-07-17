@@ -17,7 +17,7 @@ export default function RootLayout({ children }: Readonly<{
     return (
         <>
             <Header/>
-            <div className="flex">
+            <div className="mt-20 p-4 min-h-screen w-full bg-[#F5E6C8]">
                 <AnimatePresence>
                     {isSidebarOpen && <Sidebar />}
                 </AnimatePresence>

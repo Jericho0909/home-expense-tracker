@@ -31,13 +31,105 @@ const Sidebar = () => {
             exit={{ x: -300, opacity: 0 }}
             transition={{ duration: 0.3 }}
             ref={sidebarRef}
-            className="fixed top-0 left-0 h-full w-54 bg-[#8B5E3C] p-6"
+            className="fixed top-0 left-0 h-full w-60 bg-[#8B5E3C] py-10 px-6"
         >
             <h2 
-                className="text-xl"
-                style={{ fontFamily: "var(--font-playfair-display)" }}>
+                className="text-2xl text-[#F5F5DC]"
+                style={{ fontFamily: "var(--font-cinzel)" }}
+            >
                 Expenses
             </h2>
+            <ul className="mt-4 space-y-2">
+                <li
+                    className="mb-4"
+                >
+                    <a 
+                        href="#" 
+                        className="text-xl text-[#F8F4E9]"
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        Dashboard
+                    </a>
+                </li>
+                <li
+                    className="mb-4"
+                >
+                    <a 
+                        href="#" 
+                        className="text-xl text-[#F8F4E9]"
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        Utilities
+                    </a>
+                </li>
+                <li
+                    className="mb-4"
+                >
+                    <a 
+                        href="#" 
+                        className="text-xl text-[#F8F4E9]"
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        Food & Household
+                    </a>
+                </li>
+                <li
+                    className="mb-4"
+                >
+                    <a 
+                        href="#" 
+                        className="text-xl text-[#F8F4E9]"
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        Transportation
+                    </a>
+                </li>
+                <li
+                    className="mb-4"
+                >
+                    <a 
+                        href="#" 
+                        className="text-xl text-[#F8F4E9]"
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        Health
+                    </a>
+                </li>
+                <li
+                    className="mb-4"
+                >
+                    <a 
+                        href="#" 
+                        className="text-xl text-[#F8F4E9]"
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        House Maintenance
+                    </a>
+                </li>
+                <li
+                    className="mb-4"
+                >
+                    <a 
+                        href="#" 
+                        className="text-xl text-[#F8F4E9]"
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        Family Expenses
+                    </a>
+                </li>
+                <li
+                    className="mb-4"
+                >
+                    <a 
+                        href="#" 
+                        className="text-xl text-[#F8F4E9]"
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        Other Expenses
+                    </a>
+                </li>
+                
+            </ul>
         </motion.aside>
     )
 }
