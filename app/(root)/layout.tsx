@@ -4,7 +4,7 @@ import { useEffect, useContext } from 'react';
 import SidebarContext from '@/app/context/sidebarContext';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-
+import { AnimatePresence } from "framer-motion";
 
 
 export default function RootLayout({ children }: Readonly<{
@@ -18,7 +18,9 @@ export default function RootLayout({ children }: Readonly<{
         <>
             <Header/>
             <div className="flex">
-                {isSidebarOpen && <Sidebar />}
+                <AnimatePresence>
+                    {isSidebarOpen && <Sidebar />}
+                </AnimatePresence>
                 {children}
             </div>
         </>
