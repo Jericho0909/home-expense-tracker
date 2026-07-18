@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useContext } from "react";
+import Link from "next/link";
 import SidebarContext from '@/app/context/sidebarContext';
 import { motion } from "framer-motion";
 
@@ -43,90 +44,90 @@ const Sidebar = () => {
                 <li
                     className="mb-4"
                 >
-                    <a 
+                    <Link
                         href="#" 
                         className="text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Dashboard
-                    </a>
+                    </Link>
                 </li>
                 <li
                     className="mb-4"
                 >
-                    <a 
-                        href="#" 
+                    <Link
+                        href="/expenses/utilities"
                         className="text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Utilities
-                    </a>
+                    </Link>
                 </li>
                 <li
                     className="mb-4"
                 >
-                    <a 
-                        href="#" 
+                    <Link
+                        href="/expenses/foodandhouse"
                         className="text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Food & Household
-                    </a>
+                    </Link>
                 </li>
                 <li
                     className="mb-4"
                 >
-                    <a 
+                    <Link
                         href="#" 
                         className="text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Transportation
-                    </a>
+                    </Link>
                 </li>
                 <li
                     className="mb-4"
                 >
-                    <a 
-                        href="#" 
+                    <Link
+                        href="#"
                         className="text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Health
-                    </a>
+                    </Link>
                 </li>
                 <li
                     className="mb-4"
                 >
-                    <a 
-                        href="#" 
+                    <Link
+                        href="#"
                         className="text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         House Maintenance
-                    </a>
+                    </Link>
                 </li>
                 <li
                     className="mb-4"
                 >
-                    <a 
-                        href="#" 
+                    <Link
+                        href="#"
                         className="text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Family Expenses
-                    </a>
+                    </Link>
                 </li>
                 <li
                     className="mb-4"
                 >
-                    <a 
-                        href="#" 
+                    <Link
+                        href="#"
                         className="text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Other Expenses
-                    </a>
+                    </Link>
                 </li>
                 
             </ul>
