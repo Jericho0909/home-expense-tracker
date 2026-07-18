@@ -45,8 +45,9 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="#" 
-                        className="text-xl text-[#F8F4E9]"
+                        href="/dashboard" 
+                        onClick={toggleSidebar}
+                        className="block text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Dashboard
@@ -57,7 +58,8 @@ const Sidebar = () => {
                 >
                     <Link
                         href="/expenses/utilities"
-                        className="text-xl text-[#F8F4E9]"
+                        onClick={toggleSidebar}
+                        className="block text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Utilities
@@ -68,7 +70,8 @@ const Sidebar = () => {
                 >
                     <Link
                         href="/expenses/foodandhouse"
-                        className="text-xl text-[#F8F4E9]"
+                        onClick={toggleSidebar}
+                        className="block text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Food & Household
@@ -79,7 +82,8 @@ const Sidebar = () => {
                 >
                     <Link
                         href="#" 
-                        className="text-xl text-[#F8F4E9]"
+                        onClick={toggleSidebar}
+                        className="block text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Transportation
@@ -90,7 +94,8 @@ const Sidebar = () => {
                 >
                     <Link
                         href="#"
-                        className="text-xl text-[#F8F4E9]"
+                        onClick={toggleSidebar}
+                        className="block text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Health
@@ -101,7 +106,8 @@ const Sidebar = () => {
                 >
                     <Link
                         href="#"
-                        className="text-xl text-[#F8F4E9]"
+                        onClick={toggleSidebar}
+                        className="block text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         House Maintenance
@@ -112,7 +118,8 @@ const Sidebar = () => {
                 >
                     <Link
                         href="#"
-                        className="text-xl text-[#F8F4E9]"
+                        onClick={toggleSidebar}
+                        className="block text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Family Expenses
@@ -123,7 +130,8 @@ const Sidebar = () => {
                 >
                     <Link
                         href="#"
-                        className="text-xl text-[#F8F4E9]"
+                        onClick={toggleSidebar}
+                        className="block text-xl text-[#F8F4E9]"
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         Other Expenses
