@@ -3,11 +3,14 @@
 import { useRef, useEffect, useContext } from "react";
 import Link from "next/link";
 import SidebarContext from '@/app/context/sidebarContext';
+import ExpensesSectionContext from "@/app/context/expensesSectionContext";
 import { motion } from "framer-motion";
 
 const Sidebar = () => {
     const sidebarRef = useRef<HTMLDivElement | null>(null)
     const { toggleSidebar } = useContext(SidebarContext)!
+    const { activeSection } = useContext(ExpensesSectionContext)!
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -23,7 +26,7 @@ const Sidebar = () => {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, []);
+    }, [])
 
     return (
         <motion.aside

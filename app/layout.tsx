@@ -6,6 +6,7 @@ import {
 } from "next/font/google"
 import "./globals.css";
 import { SidebarProvider } from "./context/sidebarContext";
+import { ExpensesSectionProvider }  from "./context/expensesSectionContext";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -38,9 +39,14 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${playfairDisplay.variable} ${libreBaskerville.variable} h-full antialiased`}
     >
-      <SidebarProvider>
-        <body className="min-h-full flex flex-col">{children}</body>
-      </SidebarProvider>
+      
+      <body className="min-h-full flex flex-col">
+        <SidebarProvider>
+          <ExpensesSectionProvider>
+            {children}
+          </ExpensesSectionProvider>
+        </SidebarProvider>
+      </body>
     </html>
   );
 }
