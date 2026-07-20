@@ -3,18 +3,18 @@
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 
-const FoodAndHousePage = () => {
+const Transportation = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
 
     useEffect(() => {
-        setActiveSection("Food&Household")
+        setActiveSection("Transportation")
     }, [])
 
     return (
         <section>
-            Food and House Page
+            Transportation
         </section>
     )
 }
 
-export default FoodAndHousePage
+export default Transportation

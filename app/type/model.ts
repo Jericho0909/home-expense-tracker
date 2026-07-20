@@ -1,9 +1,9 @@
 export type ExpenseSection = 
     | "Dashboard"
     | "Utilities"
-    | "Food & Household"
+    | "Food&Household"
     | "Transportation"
     | "Health"
-    | "House Maintenance"
-    | "Family Expenses"
-    | "Other Expenses"
+    | "HouseMaintenance"
+    | "FamilyExpenses"
+    | "OtherExpenses"

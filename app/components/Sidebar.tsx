@@ -7,7 +7,12 @@ import ExpensesSectionContext from "@/app/context/expensesSectionContext";
 import { motion } from "framer-motion";
 import { House,
     Lightbulb,
-    CookingPot
+    CookingPot,
+    Car,
+    Heart,
+    Hammer,
+    HouseHeart,
+    ReceiptText
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -98,13 +103,13 @@ const Sidebar = () => {
                         href="/expenses/foodandhouse"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
-                            ${activeSection === "Food & Household" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
+                            ${activeSection === "Food&Household" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
                         `}
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         <span className="mr-2">
                             <CookingPot size={24} className={
-                                    activeSection === "Food & Household"
+                                    activeSection === "Food&Household"
                                     ? "text-[#B87333]"
                                     : "text-[#F8F4E9]"
                                 } 
@@ -117,11 +122,21 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="#" 
+                        href="/expenses/transportation"
                         onClick={toggleSidebar}
-                        className="flex items-center text-lg text-[#F8F4E9]"
+                        className={`flex items-center text-lg px-2 transition-all duration-300
+                            ${activeSection === "Transportation" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
+                        `}
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
+                        <span className="mr-2">
+                            <Car size={24} className={
+                                    activeSection === "Transportation"
+                                    ? "text-[#CD7F32]"
+                                    : "text-[#F8F4E9]"
+                                } 
+                            />
+                        </span>
                         Transportation
                     </Link>
                 </li>
@@ -129,11 +144,21 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="#"
+                        href="/expenses/health"
                         onClick={toggleSidebar}
-                        className="flex items-center text-lg text-[#F8F4E9]"
+                        className={`flex items-center text-lg px-2 transition-all duration-300
+                            ${activeSection === "Health" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
+                        `}
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
+                        <span className="mr-2">
+                            <Heart size={24} className={
+                                    activeSection === "Health"
+                                    ? "text-[#D8A7A7]"
+                                    : "text-[#F8F4E9]"
+                                } 
+                            />
+                        </span>
                         Health
                     </Link>
                 </li>
@@ -141,11 +166,21 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="#"
+                        href="/expenses/housemaintenance"
                         onClick={toggleSidebar}
-                        className="flex items-center text-lg text-[#F8F4E9]"
+                        className={`flex items-center text-lg px-2 transition-all duration-300
+                            ${activeSection === "HouseMaintenance" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
+                        `}
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
+                        <span className="mr-2">
+                            <Hammer size={24} className={
+                                    activeSection === "HouseMaintenance"
+                                    ? "text-[#B8B0A5]"
+                                    : "text-[#F8F4E9]"
+                                } 
+                            />
+                        </span>
                         House Maintenance
                     </Link>
                 </li>
@@ -153,11 +188,21 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="#"
+                        href="/expenses/familyexpenses"
                         onClick={toggleSidebar}
-                        className="flex items-center text-lg text-[#F8F4E9]"
+                        className={`flex items-center text-lg px-2 transition-all duration-300
+                            ${activeSection === "FamilyExpenses" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
+                        `}
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
+                        <span className="mr-2">
+                            <HouseHeart size={24} className={
+                                    activeSection === "FamilyExpenses"
+                                    ? "text-[#E3B778]"
+                                    : "text-[#F8F4E9]"
+                                } 
+                            />
+                        </span>
                         Family Expenses
                     </Link>
                 </li>
@@ -165,11 +210,21 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="#"
+                        href="/expenses/otherexpenses"
                         onClick={toggleSidebar}
-                        className="flex items-center text-lg text-[#F8F4E9]"
+                        className={`flex items-center text-lg px-2 transition-all duration-300
+                            ${activeSection === "OtherExpenses" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
+                        `}
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
+                        <span className="mr-2">
+                            <ReceiptText size={24} className={
+                                    activeSection === "OtherExpenses"
+                                    ? "text-[#A89F91]"
+                                    : "text-[#F8F4E9]"
+                                } 
+                            />
+                        </span>
                         Other Expenses
                     </Link>
                 </li>
