@@ -9,4 +9,8 @@
   .menu-button:hover svg {
     transform: scale(1.1);
   }
+
+  .notActiveSection:hover {
+    transform: translateX(0.40rem);
+}
 }

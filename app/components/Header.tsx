@@ -2,7 +2,7 @@
 
 import { useContext } from 'react';
 import SidebarContext from '@/app/context/sidebarContext';
-import { House,  Menu  } from 'lucide-react';
+import { House, Menu  } from 'lucide-react';
 
 
 
