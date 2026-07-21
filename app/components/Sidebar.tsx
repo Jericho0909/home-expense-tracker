@@ -5,7 +5,8 @@ import Link from "next/link";
 import SidebarContext from '@/app/context/sidebarContext';
 import ExpensesSectionContext from "@/app/context/expensesSectionContext";
 import { motion } from "framer-motion";
-import { House,
+import {  Wallet,
+    House,
     Lightbulb,
     CookingPot,
     Car,
@@ -47,9 +48,13 @@ const Sidebar = () => {
             className="fixed top-0 left-0 h-full w-70 bg-[#8B5E3C] py-10 px-6"
         >
             <h2 
-                className="text-2xl text-[#F5F5DC]"
+                className="flex items-center text-2xl text-[#F5F5DC]"
                 style={{ fontFamily: "var(--font-cinzel)" }}
             >
+                <span className="mr-2">
+                    <Wallet size={30} className="text-[#E3B778]"
+                    />
+                </span>
                 Expenses
             </h2>
             <ul className="mt-10 space-y-2">
