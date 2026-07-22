@@ -7,3 +7,15 @@ export type ExpenseSection =
     | "HouseMaintenance"
     | "FamilyExpenses"
     | "OtherExpenses"
+
+type StatusType =
+    | "Paid"
+    | "Pending"
+    | "Overdue"
+    | "Unpaid"
+
+export interface UtilitySummaryDataType {
+    title: string;
+    bill: number;
+    status: StatusType
+}
