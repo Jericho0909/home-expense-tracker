@@ -2,6 +2,7 @@
 
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
+import ButtonModal from "@/app/components/ButtonModal"
 import MainSummaryCards from "@/app/components/MainSummaryCard"
 const DashboardPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -31,11 +32,7 @@ const DashboardPage = () => {
                     </span>
                 </div>
                 <div className="flex items-center justify-end flex-1">
-                    <button 
-                        className="bg-[#8B5E3C] text-[#F8F4E9] px-5 py-2 rounded-md hover:bg-[#70482F] cursor-pointer"
-                    >
-                        + Add Expense
-                    </button>
+                    <ButtonModal/>
                 </div>
             </div>
 
