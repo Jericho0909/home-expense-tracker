@@ -5,11 +5,14 @@ interface MainSummaryCardsProps {
 
 const MainSummaryCards = ({ title, content }: MainSummaryCardsProps) => {
     return (
-        <div className="border border-[#B38B59] bg-[#F5E6D3] w-full h-20">
-            <span>
+        <div className="flex justify-center flex-col p-1 border border-[#B38B59] w-full h-22">
+            <span
+                className="font-bold"
+                style={{ fontFamily: "var(--font-cinzel)"}}
+            >
                 {title}
             </span>
-            <span className="flex items-center justify-center h-full">
+            <span className="h-auto">
                 {content}
             </span>
         </div>

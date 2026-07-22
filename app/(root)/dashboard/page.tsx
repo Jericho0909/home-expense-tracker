@@ -15,16 +15,16 @@ const DashboardPage = () => {
     }, [])
     return (
         <section className="flex items-start flex-col w-full min-h-screen p-1">
-            <div className="flex w-full p-3 mb-14">
+            <div className="flex w-full p-3 mb-8">
                 <div className="flex-2 ">
                     <h3 
-                        className="text-lg"
+                        className="text-lg font-bold"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
                         Zara Family Household Ledger 
                     </h3>
                     <span
-                        className="text-lg"
+                        className="text-md italic"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
                         {currentDate}
@@ -39,7 +39,7 @@ const DashboardPage = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 w-[50%] h-auto">
+            <div className="grid grid-cols-3 gap-2 w-[40%] h-auto mb-8">
                 <div className="flex items-center justify-center h-auto">
                     <MainSummaryCards
                         title="TOTAL EXPENSES"
@@ -48,16 +48,44 @@ const DashboardPage = () => {
                 </div>
                 <div className="flex items-center justify-center h-auto">
                     <MainSummaryCards
-                        title="TOTAL EXPENSES"
+                        title="THIS MONTH"
                         content="45,250"
                     />
                 </div>
                 <div className="flex items-center justify-center h-auto">
                     <MainSummaryCards
-                        title="TOTAL EXPENSES"
+                        title="REMAINING"
                         content="45,250"
                     />
                 </div>
+            </div>
+
+            <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
+                <div className="flex-2">
+                    <span
+                        className="font-bold"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Expense Overview
+                    </span>
+                </div>
+                <div className="flex-1">
+                    <span
+                        className="font-bold"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Expense Categories 
+                    </span>
+                </div>
+            </div>
+
+            <div className="block w-full h-64 p-1 border border-[#B38B59] ">
+                <span
+                        className="font-bold"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Recent Expenses
+                    </span>
             </div>
         </section>
     )

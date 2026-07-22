@@ -49,7 +49,7 @@ const Sidebar = () => {
         >
             <h2 
                 className="flex items-center text-2xl text-[#F5F5DC]"
-                style={{ fontFamily: "var(--font-cinzel)" }}
+                style={{ fontFamily: "var(--font-cinzel)"}}
             >
                 <span className="mr-2">
                     <Wallet size={30} className="text-[#E3B778]"
