@@ -42,10 +42,13 @@ const DashboardPage = () => {
                     <SummaryCards
                         title="TOTAL EXPENSES"
                         content={
-                            <>
+                            <span 
+                                className="flex items-center gap-1 text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                            >
                                 <PhilippinePeso size={16} />
                                 5,000
-                            </>
+                            </span>
                         }
                     />
                 </div>
@@ -53,10 +56,13 @@ const DashboardPage = () => {
                     <SummaryCards
                         title="THIS MONTH"
                         content={
-                            <>
+                            <span 
+                                className="flex items-center gap-1 text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                            >
                                 <PhilippinePeso size={16} />
                                 5,000
-                            </>
+                            </span>
                         }
                     />
                 </div>
@@ -64,10 +70,13 @@ const DashboardPage = () => {
                     <SummaryCards
                         title="REMAINING"
                         content={
-                            <>
+                            <span 
+                                className="flex items-center gap-1 text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                            >
                                 <PhilippinePeso size={16} />
                                 5,000
-                            </>
+                            </span>
                         }
                     />
                 </div>

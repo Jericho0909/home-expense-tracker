@@ -43,13 +43,13 @@ const UtilitiesPage = () => {
                         Utilities 
                     </h3>
                     <span
-                        className="text-md italic text-[#8B5E3C]"
+                        className="text-base italic text-[#8B5E3C]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
                         {currentDate}
                     </span>
                     <span
-                        className="text-md italic text-[#8B5E3C]"
+                        className="text-base italic text-[#8B5E3C]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
                         Track and manage your household utility bills
@@ -66,14 +66,20 @@ const UtilitiesPage = () => {
                         key={index}
                         title={item.title}
                         content={
-                            <div className="block">
+                            <div 
+                                className="block text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                            >
                                 <span className="flex items-center">
                                     <PhilippinePeso
                                         size={16}
                                     />
                                     {item.bill}
                                 </span>
-                                <span className="flex items-center gap-1">
+                                <span 
+                                    className="flex items-center gap-1 text-sm"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                                >
                                     <Circle
                                         size={10}
                                         color={StatusColor[item.status]}
@@ -102,6 +108,28 @@ const UtilitiesPage = () => {
                             </div>
                         }
                     />
+            </div>
+
+            <div
+                className="w-xl h-auto py-1 px-2 border border-[#B38B59]"
+            >
+                <div className="flex flex-col p-1 w-">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Bill Status
+                    </span>
+                    <span
+                        className="text-sm italic text-[#8B5E3C]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        {currentDate} Bills
+                    </span>
+                </div>
+                <div className="block w-auto min-h-48 p-1">
+                    asd
+                </div>
             </div>
         </section>
     )
