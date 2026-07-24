@@ -12,7 +12,7 @@ const SummaryCards = ({ title, content }: SummaryCardsProps) => {
             >
                 {title}
             </span> 
-            <div className="flex items-center h-auto text-[#8B5E3C] ">
+            <div className="flex items-center h-auto text-[#8B5E3C]">
                 {content}
             </div>
         </div>

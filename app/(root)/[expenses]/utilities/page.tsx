@@ -6,6 +6,10 @@ import ButtonModal from "@/app/components/ButtonModal"
 import { Lightbulb } from 'lucide-react';
 import SummaryCards from "@/app/components/SummaryCard";
 import { UtilitySummary } from "@/app/constant/summaryCards";
+import type { StatusType, 
+    ExpensesNames,
+    BillIconType
+} from "@/app/type/model";
 import { PhilippinePeso, 
     Circle,
     Zap,
@@ -15,8 +19,7 @@ import { PhilippinePeso,
     Flame,
     GlassWater,
 } from "lucide-react";
-
-type StatusType = "Paid" | "Pending" | "Overdue" | "Unpaid";
+import BillStatusTable from "@/app/components/BillStatusTable";
 
 const UtilitiesPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -24,6 +27,8 @@ const UtilitiesPage = () => {
         month: "long",
         year: "numeric",
     })
+
+    const utilitiesExpenses = UtilitySummary.filter(key => key.expense === "Utilities")
    
     const StatusColor: Record<StatusType, string> = {
         Paid: "#6B8E6B",
@@ -32,8 +37,25 @@ const UtilitiesPage = () => {
         Unpaid: "#8B6F47",
     }
 
-    const UtilityBillIcons = {
-
+    const UtilityBillIcons: Record<ExpensesNames, BillIconType> = {
+        Electricity: {
+            icon: <Zap size={16} color="black" fill="yellow"/>
+        },
+        Water: {
+            icon: <Droplet size={16} color="black" fill="blue"/>
+        },
+        Internet: {
+            icon: <Wifi size={16} color="black" fill="white"/>
+        },
+        MobileLoad: {
+            icon: <Smartphone size={16} color="black" fill="gray"/>
+        },
+        MineralWater: {
+            icon: <GlassWater size={16} color="black" fill="blue"/>
+        },
+        CookingGas: {
+            icon: <Flame size={16} color="black" fill="red"/>
+        }
     }
 
 
@@ -72,7 +94,7 @@ const UtilitiesPage = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-5 gap-2 w-full h-auto mb-8">
+            <div className="grid grid-cols-6 gap-2 w-full h-auto mb-8">
                 {UtilitySummary.map((item, index) => (
                     <SummaryCards
                         key={index}
@@ -138,7 +160,10 @@ const UtilitiesPage = () => {
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
-                    asd
+                    <BillStatusTable
+                        data={utilitiesExpenses}
+                        icon={UtilityBillIcons}
+                    />
                 </div>
             </div>
 

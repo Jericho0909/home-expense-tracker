@@ -1,6 +1,6 @@
-import type { UtilitySummaryDataType } from "../type/model"
+import type { ExpensesDataType } from "../type/model"
 
-export const UtilitySummary: UtilitySummaryDataType[] = [
+export const UtilitySummary: ExpensesDataType[] = [
     {
         id: 1,
         expense: "Utilities",
@@ -28,7 +28,7 @@ export const UtilitySummary: UtilitySummaryDataType[] = [
     {
         id: 4,
         expense: "Utilities",
-        name: "Mobile Load",
+        name: "MobileLoad",
         amount: 300,
         dueDate: "2026-07-22",
         status: "Paid",
@@ -36,9 +36,18 @@ export const UtilitySummary: UtilitySummaryDataType[] = [
     {
         id: 5,
         expense: "Utilities",
-        name: "Mineral Water",
+        name: "MineralWater",
         amount: 240,
         dueDate: "2026-07-25",
         status: "Pending",
     },
+    {
+        id: 6,
+        expense: "Utilities",
+        name: "CookingGas",
+        amount: 1120,
+        dueDate: "2026-07-25",
+        status: "Paid",
+    },
+
 ];

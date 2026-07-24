@@ -8,16 +8,28 @@ export type ExpenseSection =
     | "FamilyExpenses"
     | "OtherExpenses"
 
-type StatusType =
+export type ExpensesNames = 
+    | "Electricity"
+    | "Water"
+    | "Internet"
+    | "MobileLoad"
+    | "MineralWater"
+    | "CookingGas"
+
+export type StatusType =
     | "Paid"
     | "Pending"
     | "Overdue"
     | "Unpaid"
 
-export interface UtilitySummaryDataType {
+export type BillIconType = {
+    icon: React.ReactNode;
+};
+
+export interface ExpensesDataType {
     id: string | number;
     expense: ExpenseSection;
-    name: string;
+    name: ExpensesNames;
     amount: number;
     dueDate: string
     status: StatusType
