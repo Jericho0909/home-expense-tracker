@@ -15,7 +15,10 @@ type StatusType =
     | "Unpaid"
 
 export interface UtilitySummaryDataType {
-    title: string;
-    bill: number;
+    id: string | number;
+    expense: ExpenseSection;
+    name: string;
+    amount: number;
+    dueDate: string
     status: StatusType
 }

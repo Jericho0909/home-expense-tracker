@@ -6,7 +6,15 @@ import ButtonModal from "@/app/components/ButtonModal"
 import { Lightbulb } from 'lucide-react';
 import SummaryCards from "@/app/components/SummaryCard";
 import { UtilitySummary } from "@/app/constant/summaryCards";
-import { PhilippinePeso, Circle } from "lucide-react";
+import { PhilippinePeso, 
+    Circle,
+    Zap,
+    Droplet,
+    Wifi,
+    Smartphone,
+    Flame,
+    GlassWater,
+} from "lucide-react";
 
 type StatusType = "Paid" | "Pending" | "Overdue" | "Unpaid";
 
@@ -22,6 +30,10 @@ const UtilitiesPage = () => {
         Pending: "#C49A5A",
         Overdue: "#A65D57",
         Unpaid: "#8B6F47",
+    }
+
+    const UtilityBillIcons = {
+
     }
 
 
@@ -64,7 +76,7 @@ const UtilitiesPage = () => {
                 {UtilitySummary.map((item, index) => (
                     <SummaryCards
                         key={index}
-                        title={item.title}
+                        title={item.name}
                         content={
                             <div 
                                 className="block text-sm"
@@ -74,7 +86,7 @@ const UtilitiesPage = () => {
                                     <PhilippinePeso
                                         size={16}
                                     />
-                                    {item.bill}
+                                    {item.amount}
                                 </span>
                                 <span 
                                     className="flex items-center gap-1 text-sm"
@@ -110,9 +122,7 @@ const UtilitiesPage = () => {
                     />
             </div>
 
-            <div
-                className="w-xl h-auto py-1 px-2 border border-[#B38B59]"
-            >
+            <div className="w-xl h-auto py-1 px-2 border border-[#B38B59]  mb-8">
                 <div className="flex flex-col p-1 w-">
                     <span
                         className="font-bold text-[#3B2416]"
@@ -131,6 +141,32 @@ const UtilitiesPage = () => {
                     asd
                 </div>
             </div>
+
+            <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
+                <div className="flex-2">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Monthly Utility Expenses
+                    </span>
+                </div>
+            </div>
+
+            <div className="w-3xl h-auto py-1 px-2 border border-[#B38B59]  mb-8">
+                <div className="flex flex-col p-1 w-">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Utility Bills  
+                    </span>
+                </div>
+                <div className="block w-auto min-h-48 p-1">
+                    asd
+                </div>
+            </div>
+            
         </section>
     )
 }
