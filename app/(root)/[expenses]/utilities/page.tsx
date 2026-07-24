@@ -8,7 +8,7 @@ import SummaryCards from "@/app/components/SummaryCard";
 import { UtilitySummary } from "@/app/constant/summaryCards";
 import type { StatusType, 
     ExpensesNames,
-    BillIconType
+    IconType
 } from "@/app/type/model";
 import { PhilippinePeso, 
     Circle,
@@ -18,6 +18,9 @@ import { PhilippinePeso,
     Smartphone,
     Flame,
     GlassWater,
+    CircleCheck,
+    CircleAlert,
+    CircleX,
 } from "lucide-react";
 import BillStatusTable from "@/app/components/BillStatusTable";
 
@@ -37,7 +40,7 @@ const UtilitiesPage = () => {
         Unpaid: "#8B6F47",
     }
 
-    const UtilityBillIcons: Record<ExpensesNames, BillIconType> = {
+    const UtilityBillIcons: Record<ExpensesNames, IconType> = {
         Electricity: {
             icon: <Zap size={16} color="black" fill="yellow"/>
         },
@@ -58,6 +61,20 @@ const UtilitiesPage = () => {
         }
     }
 
+    const StatusIcons: Record<StatusType, IconType> = {
+        Paid: {
+            icon: <CircleCheck size={16} color="black" fill="#6B8E6B"/>
+        },
+        Pending: {
+            icon: <CircleAlert size={16} color="black" fill="#C49A5A"/>
+        },
+        Overdue: {
+            icon: <CircleX size={16} color="black" fill="#A65D57"/>
+        },
+        Unpaid: {
+            icon: <CircleAlert size={16} color="black" fill="#8B6F47"/>
+        },
+    }
 
     useEffect(() => {
         setActiveSection("Utilities")
@@ -162,7 +179,8 @@ const UtilitiesPage = () => {
                 <div className="block w-auto min-h-48 p-1">
                     <BillStatusTable
                         data={utilitiesExpenses}
-                        icon={UtilityBillIcons}
+                        icons={UtilityBillIcons}
+                        statusIcons={StatusIcons}
                     />
                 </div>
             </div>

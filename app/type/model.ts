@@ -22,7 +22,7 @@ export type StatusType =
     | "Overdue"
     | "Unpaid"
 
-export type BillIconType = {
+export type IconType = {
     icon: React.ReactNode;
 };
 

@@ -1,16 +1,18 @@
 import type { ExpensesDataType,
     ExpensesNames,
-    BillIconType
+    IconType,
+    StatusType
 } from "../type/model"
 
 interface BillStatusTableProps {
     data: ExpensesDataType[]
-    icon: Record<ExpensesNames, BillIconType>
+    icons: Record<ExpensesNames, IconType>
+    statusIcons: Record<StatusType, IconType>
 }
 
 import { PhilippinePeso } from "lucide-react";
 
-const BillStatusTable = ({data, icon}: BillStatusTableProps) => {
+const BillStatusTable = ({data, icons, statusIcons}: BillStatusTableProps) => {
     return (
         <table className="w-full">
             <thead>
@@ -28,19 +30,24 @@ const BillStatusTable = ({data, icon}: BillStatusTableProps) => {
                 {data.map((item) => (
                     <tr key={item.id}>
                         <td>
-                            <span className="flex items-center gap-2">
-                                {icon[item.name].icon}
+                            <span className="flex items-center gap-1">
+                                {icons[item.name].icon}
                                 {item.name}
                             </span>
                         </td>
                         <td className="flex items-center">
-                            <PhilippinePeso
-                                size={16}
-                            />
-                            {item.amount}
+                            <span className="flex items-center gap-1">
+                                <PhilippinePeso
+                                    size={16}
+                                />
+                                {item.amount}
+                            </span>
                         </td>
                         <td>
-                            {item.status}
+                            <span className="flex items-center gap-1">
+                                {statusIcons[item.status].icon}
+                                {item.status}
+                            </span>
                         </td>
                     </tr>
                 ))}

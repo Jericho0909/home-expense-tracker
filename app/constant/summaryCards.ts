@@ -23,7 +23,7 @@ export const UtilitySummary: ExpensesDataType[] = [
         name: "Internet",
         amount: 1699,
         dueDate: "2026-07-20",
-        status: "Paid",
+        status: "Overdue",
     },
     {
         id: 4,
