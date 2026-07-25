@@ -23,6 +23,7 @@ import { PhilippinePeso,
     CircleX,
 } from "lucide-react";
 import BillStatusTable from "@/app/components/BillStatusTable";
+import BillsTable from "@/app/components/BillsTable";
 
 const UtilitiesPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -196,7 +197,7 @@ const UtilitiesPage = () => {
                 </div>
             </div>
 
-            <div className="w-3xl h-auto py-1 px-2 border border-[#B38B59]  mb-8">
+            <div className="w-5xl h-auto py-1 px-2 border border-[#B38B59]  mb-8">
                 <div className="flex flex-col p-1 w-">
                     <span
                         className="font-bold text-[#3B2416]"
@@ -206,7 +207,11 @@ const UtilitiesPage = () => {
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
-                    asd
+                    <BillsTable
+                        data={utilitiesExpenses}
+                        icons={UtilityBillIcons}
+                        statusIcons={StatusIcons}
+                    />
                 </div>
             </div>
             

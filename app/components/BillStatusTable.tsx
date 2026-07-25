@@ -14,7 +14,7 @@ import { PhilippinePeso } from "lucide-react";
 
 const BillStatusTable = ({data, icons, statusIcons}: BillStatusTableProps) => {
     return (
-        <table className="w-full">
+        <table className="w-full border-separate">
             <thead>
                 <tr className="font-bold text-[#3B2416] text-base text-left"
                 style={{ fontFamily: "var(--font-cinzel)"}}>
