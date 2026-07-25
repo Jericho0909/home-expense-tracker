@@ -26,11 +26,13 @@ export type IconType = {
     icon: React.ReactNode;
 };
 
-export interface ExpensesDataType {
-    id: string | number;
+export type ExpensesDataType = {
+    id: number;
     expense: ExpenseSection;
     name: ExpensesNames;
     amount: number;
-    dueDate: string
-    status: StatusType
-}
+    billingStart: string;
+    billingEnd: string;
+    dueDate: string;
+    status: StatusType;
+};
