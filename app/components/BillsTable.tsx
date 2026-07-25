@@ -3,6 +3,8 @@ import type { ExpensesDataType,
     IconType,
     StatusType
 } from "../type/model"
+import formatBillingPeriod from "../utils/formatBillingPeriod"
+
 
 interface BillStatusTableProps {
     data: ExpensesDataType[]
@@ -42,7 +44,7 @@ const BillsTable = ({data, icons, statusIcons}: BillStatusTableProps) => {
                                 <PhilippinePeso
                                     size={16}
                                 />
-                                {item.dueDate}
+                                {formatBillingPeriod(item.billingStart, item.billingEnd)}
                             </span>
                         </td>
                         <td>

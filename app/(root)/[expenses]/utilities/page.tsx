@@ -5,7 +5,7 @@ import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import { Lightbulb } from 'lucide-react';
 import SummaryCards from "@/app/components/SummaryCard";
-import { UtilitySummary } from "@/app/constant/summaryCards";
+import { DummyData } from "@/app/constant/expensesData";
 import type { StatusType, 
     ExpensesNames,
     IconType
@@ -31,7 +31,7 @@ const UtilitiesPage = () => {
         year: "numeric",
     })
 
-    const utilitiesExpenses = UtilitySummary.filter(key => key.expense === "Utilities")
+    const utilitiesExpenses = DummyData.filter(key => key.expense === "Utilities")
    
     const StatusColor: Record<StatusType, string> = {
         Paid: "#6B8E6B",
@@ -112,7 +112,7 @@ const UtilitiesPage = () => {
             </div>
 
             <div className="grid grid-cols-6 gap-2 w-full h-auto mb-8">
-                {UtilitySummary.map((item, index) => (
+                {DummyData.map((item, index) => (
                     <SummaryCards
                         key={index}
                         title={item.name}

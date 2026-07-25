@@ -1,6 +1,6 @@
 import type { ExpensesDataType } from "../type/model"
 
-export const UtilitySummary: ExpensesDataType[] = [
+export const DummyData: ExpensesDataType[] = [
     {
         id: 1,
         expense: "Utilities",
