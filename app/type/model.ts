@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type ExpenseSection = 
     | "Dashboard"
     | "Utilities"
@@ -24,15 +26,42 @@ export type StatusType =
 
 export type IconType = {
     icon: React.ReactNode;
+}
+
+export type TableColumn<T> = {
+    label: string;
+    render: (item: T) => ReactNode;
 };
 
-export type ExpensesDataType = {
+export type Expense = {
     id: number;
     expense: ExpenseSection;
     name: ExpensesNames;
     amount: number;
+    createdAt: string;
+}
+
+export type UtilityExpense = Expense & {
     billingStart: string;
     billingEnd: string;
     dueDate: string;
     status: StatusType;
+}
+
+export type FoodHouseholdExpense = Expense & {
+    purchaseDate: string;
+}
+
+export type TransportationExpense = Expense & {
+    purchaseDate: string;
 };
+
+export type HealthExpense = Expense & {
+    purchaseDate: string;
+}
+
+export type ExpenseData =
+    | UtilityExpense
+    | FoodHouseholdExpense
+    | TransportationExpense
+    | HealthExpense;

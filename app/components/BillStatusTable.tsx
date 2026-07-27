@@ -1,11 +1,11 @@
-import type { ExpensesDataType,
+import type { UtilityExpense,
     ExpensesNames,
     IconType,
     StatusType
 } from "../type/model"
 
 interface BillStatusTableProps {
-    data: ExpensesDataType[]
+    data: UtilityExpense[]
     icons: Record<ExpensesNames, IconType>
     statusIcons: Record<StatusType, IconType>
 }

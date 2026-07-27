@@ -1,12 +1,15 @@
 'use client'
 
+import type { ReactNode } from "react";
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import { Lightbulb } from 'lucide-react';
 import SummaryCards from "@/app/components/SummaryCard";
 import { DummyData } from "@/app/constant/expensesData";
-import type { StatusType, 
+import type { TableColumn,
+    UtilityExpense,
+    StatusType, 
     ExpensesNames,
     IconType
 } from "@/app/type/model";
@@ -24,6 +27,8 @@ import { PhilippinePeso,
 } from "lucide-react";
 import BillStatusTable from "@/app/components/BillStatusTable";
 import BillsTable from "@/app/components/BillsTable";
+import formatBillingPeriod from "@/app/utils/formatBillingPeriod";
+
 
 const UtilitiesPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -31,15 +36,6 @@ const UtilitiesPage = () => {
         month: "long",
         year: "numeric",
     })
-
-    const utilitiesExpenses = DummyData.filter(key => key.expense === "Utilities")
-   
-    const StatusColor: Record<StatusType, string> = {
-        Paid: "#6B8E6B",
-        Pending: "#C49A5A",
-        Overdue: "#A65D57",
-        Unpaid: "#8B6F47",
-    }
 
     const UtilityBillIcons: Record<ExpensesNames, IconType> = {
         Electricity: {
@@ -62,6 +58,13 @@ const UtilitiesPage = () => {
         }
     }
 
+    const StatusColor: Record<StatusType, string> = {
+        Paid: "#6B8E6B",
+        Pending: "#C49A5A",
+        Overdue: "#A65D57",
+        Unpaid: "#8B6F47",
+    }
+
     const StatusIcons: Record<StatusType, IconType> = {
         Paid: {
             icon: <CircleCheck size={16} color="black" fill="#6B8E6B"/>
@@ -77,6 +80,49 @@ const UtilitiesPage = () => {
         },
     }
 
+    const utilitiesExpenses = DummyData.filter((item) => item.expense === "Utilities")
+
+    const utilitiesColumn: TableColumn<UtilityExpense>[] = [
+        {
+            label: "Utility",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    {UtilityBillIcons[item.name].icon}
+                    {item.name}
+                </span>
+        },
+        {
+            label: "Billing Period",
+            render: (item) =>
+                formatBillingPeriod(
+                    item.billingStart,
+                    item.billingEnd
+                ),
+        },
+        {
+            label: "Due Date",
+            render: (item) => item.dueDate,
+        },
+        {
+            label: "Amount",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    <PhilippinePeso
+                        size={16}
+                    />
+                    {item.amount}
+                </span>,
+        },
+        {
+            label: "Status",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    {StatusIcons[item.status].icon}
+                    {item.status}
+                </span>
+        },
+    ]
+   
     useEffect(() => {
         setActiveSection("Utilities")
     }, [])
@@ -162,29 +208,7 @@ const UtilitiesPage = () => {
                     />
             </div>
 
-            <div className="w-xl h-auto py-1 px-2 border border-[#B38B59]  mb-8">
-                <div className="flex flex-col p-1 w-">
-                    <span
-                        className="font-bold text-[#3B2416]"
-                        style={{ fontFamily: "var(--font-cinzel)"}}
-                    >
-                        Bill Status
-                    </span>
-                    <span
-                        className="text-sm italic text-[#8B5E3C]"
-                        style={{ fontFamily: "var(--font-cinzel)"}}
-                    >
-                        {currentDate} Bills
-                    </span>
-                </div>
-                <div className="block w-auto min-h-48 p-1">
-                    <BillStatusTable
-                        data={utilitiesExpenses}
-                        icons={UtilityBillIcons}
-                        statusIcons={StatusIcons}
-                    />
-                </div>
-            </div>
+            
 
             <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
                 <div className="flex-2">
@@ -209,8 +233,7 @@ const UtilitiesPage = () => {
                 <div className="block w-auto min-h-48 p-1">
                     <BillsTable
                         data={utilitiesExpenses}
-                        icons={UtilityBillIcons}
-                        statusIcons={StatusIcons}
+                        columns={utilitiesColumn}
                     />
                 </div>
             </div>

@@ -1,71 +1,44 @@
-import { color } from "framer-motion";
-import type { ExpensesDataType,
-    ExpensesNames,
-    IconType,
-    StatusType
-} from "../type/model"
-import formatBillingPeriod from "../utils/formatBillingPeriod"
+import type { TableColumn } from "../type/model"
 
-
-interface BillStatusTableProps {
-    data: ExpensesDataType[]
-    icons: Record<ExpensesNames, IconType>
-    statusIcons: Record<StatusType, IconType>
+interface ExpensesTableProps<T extends { id: number }> {
+    data: T[];
+    columns: TableColumn<T>[];
 }
 
-import { PhilippinePeso } from "lucide-react";
-
-const BillsTable = ({data, icons, statusIcons}: BillStatusTableProps) => {
+const BillsTable = <T extends { id: number }>({
+    data,
+    columns,
+}: ExpensesTableProps<T>) => {
     return (
         <table className="w-full border-separate border-spacing-y-2">
             <thead>
-                <tr className="font-bold text-[#3B2416] text-base text-left"
-                style={{ fontFamily: "var(--font-cinzel)"}}>
-                    <th>Utility</th>
-                    <th>Billing Period</th>
-                    <th>Due Date</th>
-                    <th>Amount</th>
-                    <th>Status</th>
+                <tr
+                    className="text-left text-base font-bold text-[#3B2416]"
+                    style={{
+                        fontFamily: "var(--font-cinzel)",
+                    }}
+                >
+                    {columns.map((column) => (
+                        <th key={column.label}>
+                            {column.label}
+                        </th>
+                    ))}
                 </tr>
             </thead>
-            <tbody 
+
+            <tbody
                 className="text-sm text-[#8B5E3C]"
-                style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                style={{
+                    fontFamily: "var(--font-libre-baskerville)",
+                }}
             >
                 {data.map((item) => (
                     <tr key={item.id}>
-                        <td>
-                            <span className="flex items-center gap-2">
-                                {icons[item.name].icon}
-                                {item.name}
-                            </span>
-                        </td>
-
-                        <td>
-                            {formatBillingPeriod(
-                                item.billingStart,
-                                item.billingEnd
-                            )}
-                        </td>
-
-                        <td>
-                            {item.dueDate}
-                        </td>
-
-                        <td>
-                            <span className="flex items-center gap-1">
-                                <PhilippinePeso size={16} />
-                                {item.amount}
-                            </span>
-                        </td>
-
-                        <td>
-                            <span className="flex items-center gap-1">
-                                {statusIcons[item.status].icon}
-                                {item.status}
-                            </span>
-                        </td>
-
+                        {columns.map((column) => (
+                            <td key={column.label}>
+                                {column.render(item)}
+                            </td>
+                        ))}
                         <td>
                             <select
                                 defaultValue=""
@@ -98,8 +71,7 @@ const BillsTable = ({data, icons, statusIcons}: BillStatusTableProps) => {
                 ))}
             </tbody>
         </table>
-
-    )
-}
+    );
+};
 
 export default BillsTable

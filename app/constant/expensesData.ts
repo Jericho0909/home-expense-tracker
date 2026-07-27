@@ -1,11 +1,12 @@
-import type { ExpensesDataType } from "../type/model"
+import type { UtilityExpense } from "../type/model"
 
-export const DummyData: ExpensesDataType[] = [
+export const DummyData: UtilityExpense[] = [
     {
         id: 1,
         expense: "Utilities",
         name: "Electricity",
         amount: 3250,
+        createdAt: "2026-07-01",
         billingStart: "2026-07-01",
         billingEnd: "2026-07-31",
         dueDate: "2026-07-15",
@@ -16,6 +17,7 @@ export const DummyData: ExpensesDataType[] = [
         expense: "Utilities",
         name: "Water",
         amount: 650,
+        createdAt: "2026-07-01",
         billingStart: "2026-07-01",
         billingEnd: "2026-07-31",
         dueDate: "2026-07-18",
@@ -26,6 +28,7 @@ export const DummyData: ExpensesDataType[] = [
         expense: "Utilities",
         name: "Internet",
         amount: 1699,
+        createdAt: "2026-07-01",
         billingStart: "2026-06-25",
         billingEnd: "2026-07-24",
         dueDate: "2026-07-20",
@@ -36,6 +39,7 @@ export const DummyData: ExpensesDataType[] = [
         expense: "Utilities",
         name: "MobileLoad",
         amount: 300,
+        createdAt: "2026-07-01",
         billingStart: "2026-07-01",
         billingEnd: "2026-07-31",
         dueDate: "2026-07-22",
@@ -46,6 +50,7 @@ export const DummyData: ExpensesDataType[] = [
         expense: "Utilities",
         name: "MineralWater",
         amount: 240,
+        createdAt: "2026-07-01",
         billingStart: "2026-07-01",
         billingEnd: "2026-07-31",
         dueDate: "2026-07-25",
@@ -56,6 +61,7 @@ export const DummyData: ExpensesDataType[] = [
         expense: "Utilities",
         name: "CookingGas",
         amount: 1120,
+        createdAt: "2026-07-01",
         billingStart: "2026-07-01",
         billingEnd: "2026-07-31",
         dueDate: "2026-07-25",
