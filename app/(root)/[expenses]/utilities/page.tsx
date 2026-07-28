@@ -116,7 +116,7 @@ const UtilitiesPage = () => {
                                     <PhilippinePeso
                                         size={16}
                                     />
-                                    {item.amount}
+                                    {item.amount?.toLocaleString("en-US")}
                                 </span>
                                 <span 
                                     className="flex items-center gap-1 text-sm"

@@ -125,7 +125,7 @@ const FoodAndHousePage = () => {
                                             <PhilippinePeso
                                                 size={16}
                                             />
-                                            {item.totalAmount}
+                                            {item.totalAmount?.toLocaleString("en-US")}
                                         </span>
                                         <span>
                                             {item.totalItems} Items
@@ -137,7 +137,7 @@ const FoodAndHousePage = () => {
                                         <PhilippinePeso
                                             size={16}
                                         />
-                                        {item.monthTotalAmount}
+                                        {item.monthTotalAmount?.toLocaleString("en-US")}
                                     </span>
                                 )}
                                 {item.month && (
@@ -154,7 +154,7 @@ const FoodAndHousePage = () => {
                                             <PhilippinePeso
                                                 size={16}
                                             /> 
-                                            {item.budgetLeft}
+                                            {item.budgetLeft?.toLocaleString("en-US")}
                                         </span> 
                                         of 
                                         <span
@@ -163,7 +163,7 @@ const FoodAndHousePage = () => {
                                             <PhilippinePeso
                                                 size={16}
                                             /> 
-                                            {item.budget}
+                                            {item.budget?.toLocaleString("en-US")}
                                         </span> 
                                 </p>
                                 )}
