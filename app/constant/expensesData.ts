@@ -1,4 +1,6 @@
-import type { UtilityExpense } from "../type/model"
+import type { UtilityExpense,
+    FoodHouseholdExpense
+} from "../type/model"
 
 export const DummyData: UtilityExpense[] = [
     {
@@ -66,5 +68,88 @@ export const DummyData: UtilityExpense[] = [
         billingEnd: "2026-07-31",
         dueDate: "2026-07-25",
         status: "Paid",
+    },
+];
+
+export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
+    {
+        id: 7,
+        expense: "Food&Household",
+        name: "Grocery",
+        amount: 2500,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-26",
+    },
+    {
+        id: 8,
+        expense: "Food&Household",
+        name: "CleaningSupplies",
+        amount: 850,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-24",
+    },
+    {
+        id: 9,
+        expense: "Food&Household",
+        name: "Rice",
+        amount: 1200,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-22",
+    },
+    {
+        id: 10,
+        expense: "Food&Household",
+        name: "Meat",
+        amount: 950,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-20",
+    },
+    {
+        id: 11,
+        expense: "Food&Household",
+        name: "Vegetables",
+        amount: 450,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-18",
+    },
+    {
+        id: 12,
+        expense: "Food&Household",
+        name: "Snacks",
+        amount: 350,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-15",
+    },
+    {
+        id: 13,
+        expense: "Food&Household",
+        name: "Beverages",
+        amount: 500,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-12",
+    },
+    {
+        id: 14,
+        expense: "Food&Household",
+        name: "LaundrySupplies",
+        amount: 700,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-10",
+    },
+    {
+        id: 15,
+        expense: "Food&Household",
+        name: "Toiletries",
+        amount: 650,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-08",
+    },
+    {
+        id: 16,
+        expense: "Food&Household",
+        name: "KitchenSupplies",
+        amount: 400,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-05",
     },
 ];

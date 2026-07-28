@@ -17,6 +17,17 @@ export type ExpensesNames =
     | "MobileLoad"
     | "MineralWater"
     | "CookingGas"
+    | "Grocery"
+    | "Rice"
+    | "Meat"
+    | "Vegetables"
+    | "Fruits"
+    | "Snacks"
+    | "Beverages"
+    | "CleaningSupplies"
+    | "LaundrySupplies"
+    | "Toiletries"
+    | "KitchenSupplies"
 
 export type StatusType =
     | "Paid"
