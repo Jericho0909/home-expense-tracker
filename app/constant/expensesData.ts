@@ -2,7 +2,7 @@ import type { UtilityExpense,
     FoodHouseholdExpense
 } from "../type/model"
 
-export const DummyData: UtilityExpense[] = [
+export const UtilitiesData: UtilityExpense[] = [
     {
         id: 1,
         expense: "Utilities",
@@ -75,6 +75,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 7,
         expense: "Food&Household",
+        type: "Food",
         name: "Grocery",
         amount: 2500,
         createdAt: "2026-07-01",
@@ -83,6 +84,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 8,
         expense: "Food&Household",
+        type: "Household",
         name: "CleaningSupplies",
         amount: 850,
         createdAt: "2026-07-01",
@@ -91,6 +93,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 9,
         expense: "Food&Household",
+        type: "Food",
         name: "Rice",
         amount: 1200,
         createdAt: "2026-07-01",
@@ -99,6 +102,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 10,
         expense: "Food&Household",
+        type: "Food",
         name: "Meat",
         amount: 950,
         createdAt: "2026-07-01",
@@ -107,6 +111,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 11,
         expense: "Food&Household",
+        type: "Food",
         name: "Vegetables",
         amount: 450,
         createdAt: "2026-07-01",
@@ -115,6 +120,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 12,
         expense: "Food&Household",
+        type: "Food",
         name: "Snacks",
         amount: 350,
         createdAt: "2026-07-01",
@@ -123,6 +129,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 13,
         expense: "Food&Household",
+        type: "Food",
         name: "Beverages",
         amount: 500,
         createdAt: "2026-07-01",
@@ -131,6 +138,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 14,
         expense: "Food&Household",
+        type: "Household",
         name: "LaundrySupplies",
         amount: 700,
         createdAt: "2026-07-01",
@@ -139,6 +147,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 15,
         expense: "Food&Household",
+        type: "Household",
         name: "Toiletries",
         amount: 650,
         createdAt: "2026-07-01",
@@ -147,6 +156,7 @@ export const FoodHouseholdDummyData: FoodHouseholdExpense[] = [
     {
         id: 16,
         expense: "Food&Household",
+        type: "Household",
         name: "KitchenSupplies",
         amount: 400,
         createdAt: "2026-07-01",

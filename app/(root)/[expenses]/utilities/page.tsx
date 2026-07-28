@@ -3,11 +3,14 @@
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
-import { Lightbulb } from 'lucide-react';
 import SummaryCards from "@/app/components/SummaryCard";
-import { DummyData } from "@/app/constant/expensesData";
+import { UtilitiesData } from "@/app/constant/expensesData";
 import type { TableColumn, UtilityExpense } from "@/app/type/model";
-import { PhilippinePeso, Circle} from "lucide-react";
+import { 
+    Lightbulb,
+    PhilippinePeso, 
+    Circle
+} from "lucide-react";
 import BillsTable from "@/app/components/BillsTable";
 import formatBillingPeriod from "@/app/utils/formatBillingPeriod";
 import { UtilityBillIcons, StatusIcons, StatusColor } from "@/app/constant/billIcons";
@@ -21,7 +24,7 @@ const UtilitiesPage = () => {
     })
 
 
-    const utilitiesExpenses = DummyData.filter((item) => item.expense === "Utilities")
+    const utilitiesExpenses = UtilitiesData.filter((item) => item.expense === "Utilities")
 
     const utilitiesColumn: TableColumn<UtilityExpense>[] = [
         {
@@ -100,7 +103,7 @@ const UtilitiesPage = () => {
             </div>
 
             <div className="grid grid-cols-6 gap-2 w-full h-auto mb-8">
-                {DummyData.map((item, index) => (
+                {UtilitiesData.map((item, index) => (
                     <SummaryCards
                         key={index}
                         title={item.name}
@@ -148,8 +151,6 @@ const UtilitiesPage = () => {
                         }
                     />
             </div>
-
-            
 
             <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
                 <div className="flex-2">

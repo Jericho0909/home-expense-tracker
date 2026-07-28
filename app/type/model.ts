@@ -60,6 +60,7 @@ export type UtilityExpense = Expense & {
 }
 
 export type FoodHouseholdExpense = Expense & {
+    type: "Food" | "Household";
     purchaseDate: string;
 }
 
