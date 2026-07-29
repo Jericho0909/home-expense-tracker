@@ -97,7 +97,7 @@ export type UtilityExpense = Expense & {
 }
 
 export type FoodHouseholdExpense = Expense & {
-    name: FoodAndHouseHoldNames ;
+    name: string;
     type: "Food" | "Household";
     category: FoodAndHouseHoldCategory 
     purchaseDate: string;

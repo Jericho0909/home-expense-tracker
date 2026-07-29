@@ -91,11 +91,11 @@ const FoodAndHousePage = () => {
         {
             label: "category",
             render: (item) =>
-               {item.category},
+               item.category,
         },
         {
             label: "Date",
-            render: (item) => item.purchaseDate,
+            render: (item) => formatPurchaseDate(item.purchaseDate),
         },
         {
             label: "Amount",
@@ -104,7 +104,7 @@ const FoodAndHousePage = () => {
                     <PhilippinePeso
                         size={16}
                     />
-                    {item.amount}
+                    {item.amount.toLocaleString("en-US")}
                 </span>,
         }
     ]
@@ -247,7 +247,7 @@ const FoodAndHousePage = () => {
                 </div>
             </div>
 
-            <div className="w-5xl h-auto py-1 px-2 border border-[#B38B59]  mb-8">
+            <div className="w-5xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
                 <div className="flex flex-col p-1 w-">
                     <span
                         className="font-bold text-[#3B2416]"

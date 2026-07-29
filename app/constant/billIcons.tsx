@@ -10,13 +10,13 @@ import {
     Fish,
     LeafyGreen,
     Apple,
-    Popcorn,
+    Cookie,
     CupSoda,
     BrushCleaning,
     CookingPot,
     Bubbles,
     House,
-    User,
+    Bath,
     CircleCheck,
     CircleAlert,
     CircleX,
@@ -55,7 +55,7 @@ export const FoodAndHousholdBillIcons: Record<FoodAndHouseHoldCategory, IconType
         icon: <ShoppingCart size={16} color="black" fill="gray" />,
     },
     Meat: {
-        icon: <Beef size={16} color="black" fill="red" />,
+        icon: <Beef size={16} color="black" fill="#A65D57" />,
     },
     Seafood: {
         icon: <Fish size={16} color="black" fill="white" />,
@@ -67,22 +67,22 @@ export const FoodAndHousholdBillIcons: Record<FoodAndHouseHoldCategory, IconType
         icon: <LeafyGreen size={16} color="black" fill="green" />,
     },
     Snacks: {
-        icon: <Popcorn size={16} color="black" fill="yellow" />,
+        icon: <Cookie size={16} color="black" fill="#A67C52" />,
     },
     Beverages: {
-        icon: <CupSoda size={16} color="black" fill="blue" />,
+        icon: <CupSoda size={16} color="black" fill="#5F8C8C" />,
     },
     Cleaning: {
-        icon: <BrushCleaning size={16} color="black" fill="brown" />,
+        icon: <BrushCleaning size={16} color="black" fill="#6B8E6B" />,
     },
     Laundry: {
         icon: <Bubbles size={16} color="black" fill="blue" />,
     },
     PersonalCare: {
-        icon: <User size={16} color="black" fill="gray" />,
+        icon: <Bath size={16} color="black" fill="#B98282" />,
     },
     Kitchen: {
-        icon: <CookingPot size={16} color="black" fill="gray" />,
+        icon: <CookingPot size={16} color="black" fill="#B86F52" />,
     },
     HomeSupplies: {
         icon: <House size={16} color="black" fill="brown" />,
