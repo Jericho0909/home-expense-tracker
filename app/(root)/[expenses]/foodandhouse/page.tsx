@@ -4,12 +4,16 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCards from "@/app/components/SummaryCard"
-import { FoodHouseholdDummyData } from "@/app/constant/expensesData"
+import BillsTable from "@/app/components/BillsTable"
+import { FoodHouseholdData } from "@/app/constant/expensesData"
+import type { TableColumn, FoodHouseholdExpense } from "@/app/type/model"
 import { CookingPot,
     PhilippinePeso, 
     Circle
 } from 'lucide-react';
-import { UtilityBillIcons, StatusIcons, StatusColor } from "@/app/constant/billIcons";
+import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
+import { FoodAndHousholdBillIcons } from "@/app/constant/billIcons";
+
 
 type SummaryType = {
     id: string | number;
@@ -29,16 +33,16 @@ const FoodAndHousePage = () => {
         year: "numeric",
     })
 
-    const foodItems = FoodHouseholdDummyData.filter(
+    const foodItems = FoodHouseholdData.filter(
         (item) => item.type === "Food"
     )
-    const householdItems = FoodHouseholdDummyData.filter(
+    const householdItems = FoodHouseholdData.filter(
         (item) => item.type === "Household"
     )
-    const totalFood = FoodHouseholdDummyData
+    const totalFood = FoodHouseholdData
         .filter((item) => item.type === "Food")
         .reduce((total, item) => total + item.amount, 0)
-    const totalHousehold = FoodHouseholdDummyData
+    const totalHousehold = FoodHouseholdData
         .filter((item) => item.type === "Household")
         .reduce((total, item) => total + item.amount, 0)
     
@@ -71,6 +75,38 @@ const FoodAndHousePage = () => {
             budgetLeft: budgetLeft,
             budget: budget
         },
+    ]
+
+    const FoodAndHouseExpenses = FoodHouseholdData.filter((item) => item.expense === "Food&Household")
+
+    const FoodAndHouseColumn: TableColumn<FoodHouseholdExpense>[] = [
+        {
+            label: "FoodAndHousehold",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    {FoodAndHousholdBillIcons[item.category].icon}
+                    {item.name}
+                </span>
+        },
+        {
+            label: "category",
+            render: (item) =>
+               {item.category},
+        },
+        {
+            label: "Date",
+            render: (item) => item.purchaseDate,
+        },
+        {
+            label: "Amount",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    <PhilippinePeso
+                        size={16}
+                    />
+                    {item.amount}
+                </span>,
+        }
     ]
 
     useEffect(() => {
@@ -172,6 +208,62 @@ const FoodAndHousePage = () => {
                     />
                 ))}
             </div>
+
+            <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
+                <div className="flex flex-col flex-2">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Spending Breakdown 
+                    </span>
+                    <span 
+                        className="w-full h-full"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Donut Chart
+                    </span>
+                    <div className="flex flex-col justify-center w-full h-full">
+                        <span
+                            style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                        >
+                            Food 70% 
+                        </span>
+                        <span
+                            style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                        >
+                            Household 30%
+                        </span>
+                    </div>
+                </div>
+                <div className="flex flex-col flex-3 ">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Spending by Category
+                    </span>
+
+                </div>
+            </div>
+
+            <div className="w-5xl h-auto py-1 px-2 border border-[#B38B59]  mb-8">
+                <div className="flex flex-col p-1 w-">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Utility Bills  
+                    </span>
+                </div>
+                <div className="block w-auto min-h-48 p-1">
+                    <BillsTable
+                        data={FoodAndHouseExpenses}
+                        columns={FoodAndHouseColumn}
+                    />
+                </div>
+            </div>
+
         </section>
     )
 }

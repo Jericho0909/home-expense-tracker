@@ -29,6 +29,43 @@ export type ExpensesNames =
     | "Toiletries"
     | "KitchenSupplies"
 
+export type UtilitiesNames = 
+    | "Electricity"
+    | "Water"
+    | "Internet"
+    | "MobileLoad"
+    | "MineralWater"
+    | "CookingGas"
+
+export type FoodAndHouseHoldNames = 
+    | "Grocery"
+    | "Rice"
+    | "Meat"
+    | "SeaFood"
+    | "Vegetables"
+    | "Fruits"
+    | "Snacks"
+    | "Beverages"
+    | "CleaningSupplies"
+    | "LaundrySupplies"
+    | "Toiletries"
+    | "KitchenSupplies"
+    
+export type FoodAndHouseHoldCategory = 
+    | "Groceries"
+    | "Meat"
+    | "Seafood"
+    | "Fruits"
+    | "Vegetables"
+    | "Snacks"
+    | "Beverages"
+    | "Cleaning"
+    | "Laundry"
+    | "PersonalCare"
+    | "Kitchen"
+    | "HomeSupplies"
+
+
 export type StatusType =
     | "Paid"
     | "Pending"
@@ -47,12 +84,12 @@ export type TableColumn<T> = {
 export type Expense = {
     id: number;
     expense: ExpenseSection;
-    name: ExpensesNames;
     amount: number;
     createdAt: string;
 }
 
 export type UtilityExpense = Expense & {
+    name: UtilitiesNames;
     billingStart: string;
     billingEnd: string;
     dueDate: string;
@@ -60,7 +97,9 @@ export type UtilityExpense = Expense & {
 }
 
 export type FoodHouseholdExpense = Expense & {
+    name: FoodAndHouseHoldNames ;
     type: "Food" | "Household";
+    category: FoodAndHouseHoldCategory 
     purchaseDate: string;
 }
 
