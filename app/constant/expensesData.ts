@@ -1,5 +1,6 @@
 import type { UtilityExpense,
-    FoodHouseholdExpense
+    FoodHouseholdExpense,
+    TransportationExpense
 } from "../type/model"
 
 export const UtilitiesData: UtilityExpense[] = [
@@ -171,5 +172,98 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 400,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-05",
+    },
+];
+
+export const TransportationData: TransportationExpense[] = [
+    {
+        id: 17,
+        expense: "Transportation",
+        category: "Fuel",
+        name: "Gasoline",
+        amount: 1500,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-26",
+    },
+    {
+        id: 18,
+        expense: "Transportation",
+        category: "PublicTransport",
+        name: "Jeepney Fare",
+        amount: 250,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-24",
+    },
+    {
+        id: 19,
+        expense: "Transportation",
+        category: "Fuel",
+        name: "Diesel",
+        amount: 1200,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-22",
+    },
+    {
+        id: 20,
+        expense: "Transportation",
+        category: "PublicTransport",
+        name: "Bus Fare",
+        amount: 450,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-20",
+    },
+    {
+        id: 21,
+        expense: "Transportation",
+        category: "RideHailing",
+        name: "Grab Ride",
+        amount: 380,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-18",
+    },
+    {
+        id: 22,
+        expense: "Transportation",
+        category: "Parking",
+        name: "Parking Fee",
+        amount: 100,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-16",
+    },
+    {
+        id: 23,
+        expense: "Transportation",
+        category: "Toll",
+        name: "Toll Fee",
+        amount: 300,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-14",
+    },
+    {
+        id: 24,
+        expense: "Transportation",
+        category: "VehicleMaintenance",
+        name: "Change Oil",
+        amount: 1800,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-12",
+    },
+    {
+        id: 25,
+        expense: "Transportation",
+        category: "VehicleMaintenance",
+        name: "Car Wash",
+        amount: 250,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-10",
+    },
+    {
+        id: 26,
+        expense: "Transportation",
+        category: "PublicTransport",
+        name: "Tricycle Fare",
+        amount: 150,
+        createdAt: "2026-07-01",
+        purchaseDate: "2026-07-08",
     },
 ];

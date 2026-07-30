@@ -9,7 +9,6 @@ import { FoodHouseholdData } from "@/app/constant/expensesData"
 import type { TableColumn, FoodHouseholdExpense } from "@/app/type/model"
 import { CookingPot,
     PhilippinePeso, 
-    Circle
 } from 'lucide-react';
 import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
 import { FoodAndHousholdBillIcons } from "@/app/constant/billIcons";
@@ -81,7 +80,7 @@ const FoodAndHousePage = () => {
 
     const FoodAndHouseColumn: TableColumn<FoodHouseholdExpense>[] = [
         {
-            label: "FoodAndHousehold",
+            label: "Name",
             render: (item) => 
                 <span className="flex items-center gap-1">
                     {FoodAndHousholdBillIcons[item.category].icon}
@@ -133,19 +132,19 @@ const FoodAndHousePage = () => {
                     >
                         {currentDate}
                     </span>
-                    <span
+                    <p
                         className="text-base italic text-[#8B5E3C]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
                         Track your family's food and household spending
-                    </span>
+                    </p>
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal/>
                 </div>
             </div>
 
-            <div className="grid grid-cols-6 gap-2 w-full h-auto mb-8">
+            <div className="grid grid-cols-4 gap-2 w-2xl h-auto mb-8">
                 {SummaryDataArr.map((item, index) => (
                     <SummaryCards
                         key={index}
@@ -181,7 +180,7 @@ const FoodAndHousePage = () => {
                                 )}
                                 {item.budgetLeft !== undefined && item.budget !== undefined && (
                                     <p 
-                                        className="flex text-sm"
+                                        className="flex text-sm flex-wrap"
                                         style={{ fontFamily: "var(--font-libre-baskerville)"}}
                                     >
                                         <span
@@ -247,13 +246,13 @@ const FoodAndHousePage = () => {
                 </div>
             </div>
 
-            <div className="w-5xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
+            <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
                 <div className="flex flex-col p-1 w-">
                     <span
                         className="font-bold text-[#3B2416]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
-                        Utility Bills  
+                        Food and Household Bills  
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">

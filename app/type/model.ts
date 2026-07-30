@@ -65,6 +65,15 @@ export type FoodAndHouseHoldCategory =
     | "Kitchen"
     | "HomeSupplies"
 
+export type TransportationCategory =
+    | "Fuel"
+    | "PublicTransport"
+    | "RideHailing"
+    | "Parking"
+    | "Toll"
+    | "VehicleMaintenance";
+
+
 
 export type StatusType =
     | "Paid"
@@ -104,6 +113,8 @@ export type FoodHouseholdExpense = Expense & {
 }
 
 export type TransportationExpense = Expense & {
+    category: TransportationCategory;
+    name: string
     purchaseDate: string;
 };
 
