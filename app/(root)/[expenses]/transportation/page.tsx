@@ -13,6 +13,7 @@ type SummaryType = {
     id: string | number;
     name: string;
     amount?: number,
+    itemLength?: string,
     total?: number,
     budget?: number
 
@@ -34,35 +35,44 @@ const Transportation = () => {
         "Toll"
     ]
 
-    const totalFuel = transportationExpenses.filter((item) => item.category === "Fuel").reduce((total, item) => total + item.amount, 0)
+    const fuelItems = transportationExpenses.filter((item) => item.category === "Fuel")
+    const transportItems = transportationExpenses.filter((item) => transportationCategories.includes(item.category))
+    const vehicleMaintenanceItems = transportationExpenses.filter((item) => item.category === "VehicleMaintenance")
 
+    const totalFuel = transportationExpenses.filter((item) => item.category === "Fuel").reduce((total, item) => total + item.amount, 0)
     const totalTransport = transportationExpenses
     .filter((item) => transportationCategories.includes(item.category))
     .reduce((total, item) => total + item.amount, 0)
-
     const totalVehicleMaintenance = transportationExpenses.filter((item) => item.category === "VehicleMaintenance").reduce((total, item) => total + item.amount, 0)
 
     const total = totalFuel + totalTransport + totalVehicleMaintenance
-    const budget = total - 10000
+    const budgetLeft = 10000 - total
 
     const SummaryDataArr:SummaryType[] = [
         {
             id: 1,
             name: "FUEL",
-            amount: totalFuel
+            amount: totalFuel,
+            itemLength: `${fuelItems.length} ${
+                fuelItems.length === 1 ? "purchase" : "purchases"
+            }`
             
         },
         {
             id: 2,
             name: "TRANSPORT",
-            amount: totalTransport
-            
+            amount: totalTransport,
+            itemLength: `${transportItems.length} ${
+                transportItems.length === 1 ? "trip" : "trips"
+            }`
         },
         {
             id: 3,
             name: "MAINTENANCE",
-            amount: totalVehicleMaintenance
-            
+            amount: totalVehicleMaintenance,
+            itemLength: `${vehicleMaintenanceItems.length} ${
+                vehicleMaintenanceItems.length === 1 ? "purchase" : "purchases"
+            }`
         },
         {
             id: 4,
@@ -73,7 +83,7 @@ const Transportation = () => {
         {
             id: 5,
             name: "BUDGET LEFT",
-            budget: budget
+            budget: budgetLeft
         },
     ]
 
@@ -113,7 +123,7 @@ const Transportation = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-2 w-2xl h-auto mb-8">
+            <div className="grid grid-cols-5 gap-2 w-4xl h-auto mb-8">
                 {SummaryDataArr.map((item, index) => (
                     <SummaryCards
                         key={index}
@@ -123,28 +133,44 @@ const Transportation = () => {
                                 className="block text-sm"
                                 style={{ fontFamily: "var(--font-libre-baskerville)"}}
                             >
-                                <p 
-                                        className="flex text-sm flex-wrap"
+                                {item.amount !== undefined && (
+                                    <div className="flex justify-center flex-col">
+                                        <span 
+                                            className="flex gap-1"
+                                        >
+                                            <PhilippinePeso
+                                                size={16}
+                                            />
+                                            {item.amount?.toLocaleString("en-US")}
+                                        </span>
+                                        <span>
+                                            {item.itemLength} 
+                                        </span>
+                                    </div>
+                                )}
+                                {item.total !== undefined && (
+                                    <p className="flex items-center flex-wrap">
+                                        
+                                        <PhilippinePeso
+                                            size={16}
+                                        />
+                                        {item.total?.toLocaleString("en-US")}
+                                        {" "}
+                                        {currentDate}
+                                    </p>
+                                )}
+                                {item.budget !== undefined && (
+                                    <p 
+                                        className="flex items-center flex-wrap gap-1"
                                         style={{ fontFamily: "var(--font-libre-baskerville)"}}
                                     >
-                                        <span
-                                            className="flex items-center gap-1 mr-1"
-                                        >
-                                            <PhilippinePeso
-                                                size={16}
-                                            /> 
-                                            
-                                        </span> 
-                                        of 
-                                        <span
-                                            className="flex items-center gap-1 ml-1"
-                                        >
-                                            <PhilippinePeso
-                                                size={16}
-                                            /> 
-                                            
-                                        </span> 
-                                </p>
+                                        <PhilippinePeso size={16} />
+                                        {budgetLeft?.toLocaleString("en-US")}
+                                        {" "}of{" "}
+                                        <PhilippinePeso size={16} />
+                                        10,000
+                                    </p>
+                                )}
                             </div>
                         }
                     />

@@ -155,8 +155,8 @@ const FoodAndHousePage = () => {
                                 style={{ fontFamily: "var(--font-libre-baskerville)"}}
                             >
                                 {item.totalItems !== undefined && (
-                                    <div className="flex flex-col">
-                                        <span className="flex items-center">
+                                    <div className="flex justify-center flex-col">
+                                        <span className="flex gap-1">
                                             <PhilippinePeso
                                                 size={16}
                                             />
@@ -180,26 +180,18 @@ const FoodAndHousePage = () => {
                                 )}
                                 {item.budgetLeft !== undefined && item.budget !== undefined && (
                                     <p 
-                                        className="flex text-sm flex-wrap"
-                                        style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                                        className="flex items-center flex-wrap gap-1"
                                     >
-                                        <span
-                                            className="flex items-center gap-1 mr-1"
-                                        >
-                                            <PhilippinePeso
-                                                size={16}
-                                            /> 
-                                            {item.budgetLeft?.toLocaleString("en-US")}
-                                        </span> 
-                                        of 
-                                        <span
-                                            className="flex items-center gap-1 ml-1"
-                                        >
-                                            <PhilippinePeso
-                                                size={16}
-                                            /> 
-                                            {item.budget?.toLocaleString("en-US")}
-                                        </span> 
+                                        <PhilippinePeso
+                                            size={16}
+                                        /> 
+                                        {item.budgetLeft?.toLocaleString("en-US")}
+                                    
+                                        {" "}of{" "}
+                                        <PhilippinePeso
+                                            size={16}
+                                        /> 
+                                        {item.budget?.toLocaleString("en-US")}
                                 </p>
                                 )}
                             </div>
