@@ -88,7 +88,7 @@ const FoodAndHousePage = () => {
                 </span>
         },
         {
-            label: "category",
+            label: "Category",
             render: (item) =>
                item.category,
         },

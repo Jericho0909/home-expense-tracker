@@ -17,6 +17,12 @@ import {
     Bubbles,
     House,
     Bath,
+    Fuel,
+    Bus,
+    Car,
+    CircleParking,
+    PhilippinePeso,
+    Wrench,
     CircleCheck,
     CircleAlert,
     CircleX,
@@ -25,6 +31,7 @@ import {
 import type {
     UtilitiesNames,
     FoodAndHouseHoldCategory,
+    TransportationCategory,
     StatusType,
     IconType,
 } from "@/app/type/model";
@@ -48,7 +55,7 @@ export const UtilityBillIcons: Record<UtilitiesNames, IconType> = {
     CookingGas: {
         icon: <Flame size={16} color="black" fill="red" />,
     }
-};
+}
 
 export const FoodAndHousholdBillIcons: Record<FoodAndHouseHoldCategory, IconType> = {
     Groceries: {
@@ -86,6 +93,27 @@ export const FoodAndHousholdBillIcons: Record<FoodAndHouseHoldCategory, IconType
     },
     HomeSupplies: {
         icon: <House size={16} color="black" fill="brown" />,
+    },
+}
+
+export const TransportationBillIcons: Record<TransportationCategory, IconType> = {
+    Fuel: {
+        icon: <Fuel size={16} color="black" fill="#D97706" />,
+    },
+    PublicTransport: {
+        icon: <Bus size={16} color="black" fill="#2563EB" />,
+    },
+    RideHailing: {
+        icon: <Car size={16} color="black" fill="red" />,
+    },
+    Parking: {
+        icon: <CircleParking size={16} color="black" fill="yellow" />,
+    },
+    Toll: {
+        icon: <PhilippinePeso  size={16} color="black" fill="#16A34A" />,
+    },
+    VehicleMaintenance: {
+        icon: <Wrench size={16} color="black" fill="#78716C" />,
     },
 }
 

@@ -4,10 +4,14 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCards from "@/app/components/SummaryCard"
+import BillsTable from "@/app/components/BillsTable"
 import { Car,
     PhilippinePeso, 
 } from 'lucide-react';
 import { TransportationData } from "@/app/constant/expensesData"
+import type { TableColumn, TransportationExpense } from "@/app/type/model"
+import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
+import { TransportationBillIcons } from "@/app/constant/billIcons"
 
 type SummaryType = {
     id: string | number;
@@ -85,6 +89,36 @@ const Transportation = () => {
             name: "BUDGET LEFT",
             budget: budgetLeft
         },
+    ]
+
+    const TransportationColumn: TableColumn<TransportationExpense>[] = [
+        {
+            label: "Description",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    {TransportationBillIcons[item.category].icon}
+                    {item.name}
+                </span>
+        },
+        {
+            label: "Category",
+            render: (item) =>
+               item.category,
+        },
+        {
+            label: "Date",
+            render: (item) => formatPurchaseDate(item.purchaseDate),
+        },
+        {
+            label: "Amount",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    <PhilippinePeso
+                        size={16}
+                    />
+                    {item.amount.toLocaleString("en-US")}
+                </span>,
+        }
     ]
 
     useEffect(() => {
@@ -175,6 +209,32 @@ const Transportation = () => {
                         }
                     />
                 ))}
+            </div>
+            
+            <div className="flex w-xl h-72 p-1 border border-[#B38B59] mb-8">
+                <span
+                    className="font-bold text-[#3B2416]"
+                    style={{ fontFamily: "var(--font-cinzel)"}}
+                >
+                    Transportation Breakdown 
+                </span>
+            </div>
+            
+            <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
+                <div className="flex flex-col p-1 w-">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Transportation Bills  
+                    </span>
+                </div>
+                <div className="block w-auto min-h-48 p-1">
+                    <BillsTable
+                        data={transportationExpenses}
+                        columns={TransportationColumn}
+                    />
+                </div>
             </div>
 
         </section>
