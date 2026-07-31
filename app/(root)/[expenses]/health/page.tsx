@@ -6,6 +6,9 @@ import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCards from "@/app/components/SummaryCard"
 import { HealthData } from "@/app/constant/expensesData"
 import { Heart, PhilippinePeso } from 'lucide-react';
+import type { TableColumn, HealthExpense } from "@/app/type/model"
+import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
+import { HealthBillIcons } from "@/app/constant/billIcons"
 
 type SummaryType = {
     id: string | number;
@@ -80,6 +83,36 @@ const Health = () => {
             name: "BUDGET LEFT",
             budget: budgetLeft
         },
+    ]
+
+    const TransportationColumn: TableColumn<HealthExpense>[] = [
+        {
+            label: "Description",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    {HealthBillIcons[item.category].icon}
+                    {item.name}
+                </span>
+        },
+        {
+            label: "Category",
+            render: (item) =>
+               item.category,
+        },
+        {
+            label: "Date",
+            render: (item) => formatPurchaseDate(item.purchaseDate),
+        },
+        {
+            label: "Amount",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    <PhilippinePeso
+                        size={16}
+                    />
+                    {item.amount.toLocaleString("en-US")}
+                </span>,
+        }
     ]
 
     useEffect(() => {
@@ -170,6 +203,32 @@ const Health = () => {
                         }
                     />
                 ))}
+            </div>
+
+            <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
+                <div className="flex flex-col flex-2">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Health Expenses
+                    </span>
+                    <span 
+                        className="w-full h-full"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        bar chart
+                    </span>
+                </div>
+                <div className="flex flex-col flex-3 ">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Health Spending 
+                    </span>
+
+                </div>
             </div>
         </section>
     )

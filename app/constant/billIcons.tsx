@@ -23,6 +23,11 @@ import {
     CircleParking,
     PhilippinePeso,
     Wrench,
+    Pill,
+    Stethoscope,
+    Smile,
+    FlaskConical,
+    HeartPulse,
     CircleCheck,
     CircleAlert,
     CircleX,
@@ -32,6 +37,7 @@ import type {
     UtilitiesNames,
     FoodAndHouseHoldCategory,
     TransportationCategory,
+    HealthCategory,
     StatusType,
     IconType,
 } from "@/app/type/model";
@@ -115,6 +121,25 @@ export const TransportationBillIcons: Record<TransportationCategory, IconType> =
     VehicleMaintenance: {
         icon: <Wrench size={16} color="black" fill="#78716C" />,
     },
+}
+
+export const HealthBillIcons: Record<HealthCategory, IconType> = {
+    Medicine: {
+        icon: <Pill size={16} color="black" fill="#7C3AED" />,
+    },
+    Consultation: {
+        icon: <Stethoscope size={16} color="black" fill="#2563EB" />,
+    },
+    Dental: {
+        icon: <Smile size={16} color="black" fill="#0891B2" />,
+    },
+    Laboratory: {
+        icon: <FlaskConical size={16} color="black" fill="#16A34A" />,
+    },
+    Other: {
+        icon: <HeartPulse  size={16} color="black" fill="#DC2626" />,
+    },
+
 }
 
 export const StatusColor: Record<StatusType, string> = {
