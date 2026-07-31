@@ -125,13 +125,13 @@ export const TransportationBillIcons: Record<TransportationCategory, IconType> =
 
 export const HealthBillIcons: Record<HealthCategory, IconType> = {
     Medicine: {
-        icon: <Pill size={16} color="black" fill="#7C3AED" />,
+        icon: <Pill size={16} color="black" fill="pink" />,
     },
     Consultation: {
-        icon: <Stethoscope size={16} color="black" fill="#2563EB" />,
+        icon: <Stethoscope size={16} color="black" fill="gray" />,
     },
     Dental: {
-        icon: <Smile size={16} color="black" fill="#0891B2" />,
+        icon: <Smile size={16} color="black" fill="white" />,
     },
     Laboratory: {
         icon: <FlaskConical size={16} color="black" fill="#16A34A" />,

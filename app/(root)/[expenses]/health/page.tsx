@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCards from "@/app/components/SummaryCard"
+import BillsTable from "@/app/components/BillsTable"
 import { HealthData } from "@/app/constant/expensesData"
 import { Heart, PhilippinePeso } from 'lucide-react';
 import type { TableColumn, HealthExpense } from "@/app/type/model"
@@ -85,7 +86,7 @@ const Health = () => {
         },
     ]
 
-    const TransportationColumn: TableColumn<HealthExpense>[] = [
+    const HealthColumn: TableColumn<HealthExpense>[] = [
         {
             label: "Description",
             render: (item) => 
@@ -229,6 +230,23 @@ const Health = () => {
                     </span>
 
                 </div>
+            </div>
+            
+            <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
+                <div className="flex flex-col p-1 w-">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Health Bills  
+                    </span>
+                </div>
+                <div className="block w-auto min-h-48 p-1">
+                    <BillsTable
+                        data={HealthExpenses}
+                        columns={HealthColumn}
+                    />
+            </div>
             </div>
         </section>
     )
