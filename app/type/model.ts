@@ -73,7 +73,12 @@ export type TransportationCategory =
     | "Toll"
     | "VehicleMaintenance";
 
-
+export type HealthCategory =
+    | "Medicine"
+    | "Consultation"
+    | "Dental"
+    | "Laboratory"
+    | "Other";
 
 export type StatusType =
     | "Paid"
@@ -119,6 +124,8 @@ export type TransportationExpense = Expense & {
 };
 
 export type HealthExpense = Expense & {
+    name: string;
+    category: HealthCategory
     purchaseDate: string;
 }
 
