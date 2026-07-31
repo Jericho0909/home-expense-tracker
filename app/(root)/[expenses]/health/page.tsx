@@ -3,7 +3,19 @@
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
-import { Heart } from 'lucide-react';
+import SummaryCards from "@/app/components/SummaryCard"
+import { HealthData } from "@/app/constant/expensesData"
+import { Heart, PhilippinePeso } from 'lucide-react';
+
+type SummaryType = {
+    id: string | number;
+    name: string;
+    amount?: number,
+    itemLength?: string,
+    total?: number,
+    budget?: number
+
+}
 
 const Health = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -11,6 +23,64 @@ const Health = () => {
         month: "long",
         year: "numeric",
     })
+
+    const HealthExpenses = HealthData.filter((item) => item.expense === "Health")
+
+    const consultationCategories: string[] = [
+       "Consultation",
+       "Dental",
+       "Laboratory"
+    ]
+
+    const medicineItems = HealthExpenses.filter((item) => item.category === "Medicine")
+    const consultationItems = HealthExpenses.filter((item) => consultationCategories.includes(item.category))
+    const otherItems = HealthExpenses.filter((item) => item.category === "Other")
+
+    const totalMedicine = HealthExpenses.filter((item) => item.category === "Medicine").reduce((total, item) => total + item.amount, 0)
+    const totalConsultation = HealthExpenses.filter((item) => consultationCategories.includes(item.category)).reduce((total, item) => total + item.amount, 0)
+    const totalOther = HealthExpenses.filter((item) => item.category === "Other").reduce((total, item) => total + item.amount, 0)
+
+    const total = totalMedicine + totalConsultation + totalOther
+    const budgetLeft = 10000 - total
+
+    const SummaryDataArr:SummaryType[] = [
+        {
+            id: 1,
+            name: "MEDICINE ",
+            amount: totalMedicine,
+            itemLength: `${medicineItems.length} ${
+                medicineItems.length === 1 ? "purchase" : "purchases"
+            }`
+            
+        },
+        {
+            id: 2,
+            name: "CONSULTATION",
+            amount: totalConsultation,
+            itemLength: `${consultationItems.length} ${
+                consultationItems.length === 1 ? "vist" : "vits"
+            }`
+        },
+        {
+            id: 3,
+            name: "OTHER",
+            amount: totalOther,
+            itemLength: `${otherItems.length} ${
+                otherItems.length === 1 ? "purchase" : "purchases"
+            }`
+        },
+        {
+            id: 4,
+            name: "THIS MONTH",
+            total: total
+            
+        },
+        {
+            id: 5,
+            name: "BUDGET LEFT",
+            budget: budgetLeft
+        },
+    ]
 
     useEffect(() => {
         setActiveSection("Health")
@@ -46,6 +116,60 @@ const Health = () => {
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal/>
                 </div>
+            </div>
+
+            <div className="grid grid-cols-5 gap-2 w-4xl h-auto mb-8">
+                {SummaryDataArr.map((item, index) => (
+                    <SummaryCards
+                        key={index}
+                        title={item.name}
+                        content={
+                            <div 
+                                className="block text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                            >
+                                {item.amount !== undefined && (
+                                    <div className="flex justify-center flex-col">
+                                        <span 
+                                            className="flex gap-1"
+                                        >
+                                            <PhilippinePeso
+                                                size={16}
+                                            />
+                                            {item.amount?.toLocaleString("en-US")}
+                                        </span>
+                                        <span>
+                                            {item.itemLength} 
+                                        </span>
+                                    </div>
+                                )}
+                                {item.total !== undefined && (
+                                    <p className="flex items-center flex-wrap">
+                                        
+                                        <PhilippinePeso
+                                            size={16}
+                                        />
+                                        {item.total?.toLocaleString("en-US")}
+                                        {" "}
+                                        {currentDate}
+                                    </p>
+                                )}
+                                {item.budget !== undefined && (
+                                    <p 
+                                        className="flex items-center flex-wrap gap-1"
+                                        style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                                    >
+                                        <PhilippinePeso size={16} />
+                                        {budgetLeft?.toLocaleString("en-US")}
+                                        {" "}of{" "}
+                                        <PhilippinePeso size={16} />
+                                        10,000
+                                    </p>
+                                )}
+                            </div>
+                        }
+                    />
+                ))}
             </div>
         </section>
     )

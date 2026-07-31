@@ -32,7 +32,7 @@ const Transportation = () => {
 
     const transportationExpenses = TransportationData.filter((item) => item.expense === "Transportation")
 
-    const transportationCategories: string[] = [
+    const transportCategories: string[] = [
         "PublicTransport",
         "RideHailing",
         "Parking",
@@ -40,12 +40,12 @@ const Transportation = () => {
     ]
 
     const fuelItems = transportationExpenses.filter((item) => item.category === "Fuel")
-    const transportItems = transportationExpenses.filter((item) => transportationCategories.includes(item.category))
+    const transportItems = transportationExpenses.filter((item) => transportCategories.includes(item.category))
     const vehicleMaintenanceItems = transportationExpenses.filter((item) => item.category === "VehicleMaintenance")
 
     const totalFuel = transportationExpenses.filter((item) => item.category === "Fuel").reduce((total, item) => total + item.amount, 0)
     const totalTransport = transportationExpenses
-    .filter((item) => transportationCategories.includes(item.category))
+    .filter((item) => transportCategories.includes(item.category))
     .reduce((total, item) => total + item.amount, 0)
     const totalVehicleMaintenance = transportationExpenses.filter((item) => item.category === "VehicleMaintenance").reduce((total, item) => total + item.amount, 0)
 
