@@ -50,7 +50,7 @@ const Health = () => {
     const SummaryDataArr:SummaryType[] = [
         {
             id: 1,
-            name: "MEDICINE ",
+            name: "MEDICINE",
             amount: totalMedicine,
             itemLength: `${medicineItems.length} ${
                 medicineItems.length === 1 ? "purchase" : "purchases"

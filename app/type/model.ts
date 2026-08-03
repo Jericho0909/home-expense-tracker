@@ -80,6 +80,13 @@ export type HealthCategory =
     | "Laboratory"
     | "Other";
 
+export type HouseMaintenanceCategory =
+    | "Repairs"
+    | "Maintenance"
+    | "Cleaning"
+    | "PestControl"
+    | "Other";
+
 export type StatusType =
     | "Paid"
     | "Pending"
@@ -126,6 +133,12 @@ export type TransportationExpense = Expense & {
 export type HealthExpense = Expense & {
     name: string;
     category: HealthCategory
+    purchaseDate: string;
+}
+
+export type HouseMaintenanceExpense = Expense & {
+    name: string;
+    category: HouseMaintenanceCategory
     purchaseDate: string;
 }
 

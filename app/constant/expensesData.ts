@@ -1,7 +1,8 @@
 import type { UtilityExpense,
     FoodHouseholdExpense,
     TransportationExpense,
-    HealthExpense
+    HealthExpense,
+    HouseMaintenanceExpense
 } from "../type/model"
 
 export const UtilitiesData: UtilityExpense[] = [
@@ -350,5 +351,89 @@ export const HealthData: HealthExpense[] = [
         amount: 450,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-08",
+    },
+];
+
+export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
+    {
+        id: 36,
+        expense: "HouseMaintenance",
+        category: "Repairs",
+        name: "Faucet Repair",
+        amount: 500,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-28",
+    },
+    {
+        id: 37,
+        expense: "HouseMaintenance",
+        category: "Repairs",
+        name: "Light Bulb Replacement",
+        amount: 350,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-26",
+    },
+    {
+        id: 38,
+        expense: "HouseMaintenance",
+        category: "Repairs",
+        name: "Door Lock Repair",
+        amount: 800,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-24",
+    },
+    {
+        id: 39,
+        expense: "HouseMaintenance",
+        category: "Cleaning",
+        name: "Roof Cleaning",
+        amount: 1200,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-22",
+    },
+    {
+        id: 40,
+        expense: "HouseMaintenance",
+        category: "PestControl",
+        name: "Pest Control Service",
+        amount: 1500,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-20",
+    },
+    {
+        id: 41,
+        expense: "HouseMaintenance",
+        category: "Maintenance",
+        name: "Air Conditioner Service",
+        amount: 900,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-18",
+    },
+    {
+        id: 42,
+        expense: "HouseMaintenance",
+        category: "Repairs",
+        name: "Clogged Drain Repair",
+        amount: 650,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-15",
+    },
+    {
+        id: 43,
+        expense: "HouseMaintenance",
+        category: "Repairs",
+        name: "Electrical Outlet Repair",
+        amount: 750,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-12",
+    },
+    {
+        id: 44,
+        expense: "HouseMaintenance",
+        category: "Other",
+        name: "Curtain Rod Replacement",
+        amount: 450,
+        createdAt: "2026-08-01",
+        purchaseDate: "2026-07-10",
     },
 ];
