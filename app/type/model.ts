@@ -97,6 +97,15 @@ export type IconType = {
     icon: React.ReactNode;
 }
 
+export type SummaryType = {
+    id: string | number;
+    name: string;
+    amount?: number,
+    itemLength?: string,
+    total?: number,
+    budget?: number
+}
+
 export type TableColumn<T> = {
     label: string;
     render: (item: T) => ReactNode;
