@@ -3,27 +3,19 @@
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
-import SummaryCards from "@/app/components/SummaryCard"
+import SummaryCardContent from "@/app/components/SummaryCardContent"
 import BillsTable from "@/app/components/BillsTable"
 import { FoodHouseholdData } from "@/app/constant/expensesData"
-import type { TableColumn, FoodHouseholdExpense } from "@/app/type/model"
+import type { TableColumn, 
+    FoodHouseholdExpense,
+    SummaryType
+} from "@/app/type/model"
 import { CookingPot,
     PhilippinePeso, 
 } from 'lucide-react';
 import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
 import { FoodAndHousholdBillIcons } from "@/app/constant/billIcons";
 
-
-type SummaryType = {
-    id: string | number;
-    name: string;
-    totalAmount?: number;
-    totalItems?: number;
-    monthTotalAmount?: number;
-    month?: string;
-    budgetLeft?: number;
-    budget?: number;
-}
 
 const FoodAndHousePage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -52,27 +44,31 @@ const FoodAndHousePage = () => {
     const SummaryDataArr:SummaryType[] = [
         {
             id: 1,
-            name: "FOOD",
-            totalAmount: totalFood,
-            totalItems: foodItems.length
+            name: " FOOD ",
+            amount: totalFood,
+            itemLength: `${foodItems.length} ${
+                foodItems.length === 1 ? "purchase" : "purchases"
+            }`
+            
         },
         {
             id: 2,
             name: "HOUSEHOLD",
-            totalAmount: totalHousehold,
-            totalItems: householdItems.length
+            amount: totalHousehold,
+            itemLength: `${householdItems.length} ${
+                householdItems.length === 1 ? "purchase" : "purchases"
+            }`
         },
         {
             id: 3,
             name: "THIS MONTH",
-            monthTotalAmount: total,
-            month: currentDate
+            total: total
+            
         },
         {
             id: 4,
             name: "BUDGET LEFT",
-            budgetLeft: budgetLeft,
-            budget: budget
+            budget: budgetLeft
         },
     ]
 
@@ -145,59 +141,10 @@ const FoodAndHousePage = () => {
             </div>
 
             <div className="grid grid-cols-4 gap-2 w-2xl h-auto mb-8">
-                {SummaryDataArr.map((item, index) => (
-                    <SummaryCards
-                        key={index}
-                        title={item.name}
-                        content={
-                            <div 
-                                className="block text-sm"
-                                style={{ fontFamily: "var(--font-libre-baskerville)"}}
-                            >
-                                {item.totalItems !== undefined && (
-                                    <div className="flex justify-center flex-col">
-                                        <span className="flex gap-1">
-                                            <PhilippinePeso
-                                                size={16}
-                                            />
-                                            {item.totalAmount?.toLocaleString("en-US")}
-                                        </span>
-                                        <span>
-                                            {item.totalItems} Items
-                                        </span>
-                                    </div>
-                                )}
-                                {item.monthTotalAmount !== undefined && (
-                                    <span className="flex items-center">
-                                        <PhilippinePeso
-                                            size={16}
-                                        />
-                                        {item.monthTotalAmount?.toLocaleString("en-US")}
-                                    </span>
-                                )}
-                                {item.month && (
-                                    <p>{item.month}</p>
-                                )}
-                                {item.budgetLeft !== undefined && item.budget !== undefined && (
-                                    <p 
-                                        className="flex items-center flex-wrap gap-1"
-                                    >
-                                        <PhilippinePeso
-                                            size={16}
-                                        /> 
-                                        {item.budgetLeft?.toLocaleString("en-US")}
-                                    
-                                        {" "}of{" "}
-                                        <PhilippinePeso
-                                            size={16}
-                                        /> 
-                                        {item.budget?.toLocaleString("en-US")}
-                                </p>
-                                )}
-                            </div>
-                        }
-                    />
-                ))}
+                <SummaryCardContent
+                    summaryDataArr={SummaryDataArr}
+                    budgetLeft={budgetLeft}
+                />
             </div>
 
             <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
