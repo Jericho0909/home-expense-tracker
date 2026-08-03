@@ -18,7 +18,6 @@ type SummaryType = {
     itemLength?: string,
     total?: number,
     budget?: number
-
 }
 
 const Health = () => {

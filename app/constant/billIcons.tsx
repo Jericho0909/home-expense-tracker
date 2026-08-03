@@ -28,9 +28,14 @@ import {
     Smile,
     FlaskConical,
     HeartPulse,
+    Settings,
+
     CircleCheck,
     CircleAlert,
     CircleX,
+    Sparkles,
+    Bug,
+    MoreHorizontal,
 } from "lucide-react";
 
 import type {
@@ -38,6 +43,7 @@ import type {
     FoodAndHouseHoldCategory,
     TransportationCategory,
     HealthCategory,
+    HouseMaintenanceCategory,
     StatusType,
     IconType,
 } from "@/app/type/model";
@@ -139,7 +145,25 @@ export const HealthBillIcons: Record<HealthCategory, IconType> = {
     Other: {
         icon: <HeartPulse  size={16} color="black" fill="#DC2626" />,
     },
+}
 
+export const HouseMaintenanceBillIcons: Record<HouseMaintenanceCategory, IconType> = {
+    Repairs: {
+        icon: <Wrench size={16} color="black" fill="#6B7280" />,
+    },
+    Maintenance: {
+        icon: <Settings size={16} color="black" fill="#6B7280" />,
+    },
+    Cleaning: {
+        icon: <Sparkles size={16} color="#0891B2" />,
+    },
+    PestControl: {
+        icon: <Bug size={16} color="#16A34A" />,
+    },
+    Other: {
+        icon: <MoreHorizontal size={16} color="#78716C" />,
+    },
+    
 }
 
 export const StatusColor: Record<StatusType, string> = {
