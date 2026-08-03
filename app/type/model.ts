@@ -87,6 +87,13 @@ export type HouseMaintenanceCategory =
     | "PestControl"
     | "Other";
 
+export type FamilyExpensesCategory =
+    | "Education"
+    | "Allowance"
+    | "Entertainment"
+    | "Celebrations"
+    | "Other";
+
 export type StatusType =
     | "Paid"
     | "Pending"
@@ -148,6 +155,12 @@ export type HealthExpense = Expense & {
 export type HouseMaintenanceExpense = Expense & {
     name: string;
     category: HouseMaintenanceCategory
+    purchaseDate: string;
+}
+
+export type FamilyExpense = Expense & {
+    name: string;
+    category: FamilyExpensesCategory;
     purchaseDate: string;
 }
 

@@ -144,6 +144,7 @@ const FoodAndHousePage = () => {
                 <SummaryCardContent
                     summaryDataArr={SummaryDataArr}
                     budgetLeft={budgetLeft}
+                    budget={budget}
                 />
             </div>
 

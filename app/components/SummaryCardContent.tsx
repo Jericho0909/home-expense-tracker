@@ -5,9 +5,10 @@ import { PhilippinePeso } from 'lucide-react';
 interface SummaryCardContentProps {
     summaryDataArr: SummaryType[];
     budgetLeft?: number;
+    budget?: number;
 }
 
-const SummaryCardContent = ({ summaryDataArr, budgetLeft }: SummaryCardContentProps) => {
+const SummaryCardContent = ({ summaryDataArr, budgetLeft, budget }: SummaryCardContentProps) => {
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
@@ -57,7 +58,7 @@ const SummaryCardContent = ({ summaryDataArr, budgetLeft }: SummaryCardContentPr
                                 {budgetLeft?.toLocaleString("en-US")}
                                 {" "}of{" "}
                                 <PhilippinePeso size={16} />
-                                10,000
+                                {budget?.toLocaleString("en-US")}
                             </p>
                         )}
                     </div>

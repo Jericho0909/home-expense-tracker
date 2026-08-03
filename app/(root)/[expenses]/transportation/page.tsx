@@ -43,7 +43,8 @@ const Transportation = () => {
     const totalVehicleMaintenance = transportationExpenses.filter((item) => item.category === "VehicleMaintenance").reduce((total, item) => total + item.amount, 0)
 
     const total = totalFuel + totalTransport + totalVehicleMaintenance
-    const budgetLeft = 10000 - total
+    const budget = 10000
+    const budgetLeft = budget - total
 
     const SummaryDataArr:SummaryType[] = [
         {
@@ -154,6 +155,7 @@ const Transportation = () => {
                 <SummaryCardContent
                     summaryDataArr={SummaryDataArr}
                     budgetLeft={budgetLeft}
+                    budget={budget}
                 />
             </div>
             

@@ -39,7 +39,8 @@ const Health = () => {
     const totalOther = HealthExpenses.filter((item) => item.category === "Other").reduce((total, item) => total + item.amount, 0)
 
     const total = totalMedicine + totalConsultation + totalOther
-    const budgetLeft = 10000 - total
+    const budget = 10000
+    const budgetLeft = budget - total
 
     const SummaryDataArr:SummaryType[] = [
         {
@@ -150,6 +151,7 @@ const Health = () => {
                 <SummaryCardContent 
                     summaryDataArr={SummaryDataArr}
                     budgetLeft={budgetLeft}
+                    budget={budget}
                  />
             </div>
 

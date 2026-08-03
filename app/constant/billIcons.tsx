@@ -29,7 +29,10 @@ import {
     FlaskConical,
     HeartPulse,
     Settings,
-
+    GraduationCap,
+    Wallet,
+    Clapperboard,
+    PartyPopper,
     CircleCheck,
     CircleAlert,
     CircleX,
@@ -44,6 +47,7 @@ import type {
     TransportationCategory,
     HealthCategory,
     HouseMaintenanceCategory,
+    FamilyExpensesCategory,
     StatusType,
     IconType,
 } from "@/app/type/model";
@@ -164,6 +168,24 @@ export const HouseMaintenanceBillIcons: Record<HouseMaintenanceCategory, IconTyp
         icon: <MoreHorizontal size={16} color="#78716C" />,
     },
     
+}
+
+export const FamilyExpensesBillIcons: Record<FamilyExpensesCategory, IconType> = {
+   Education: {
+        icon: <GraduationCap size={16} color="#333" />,
+    },
+    Allowance: {
+        icon: <Wallet size={16} color="#8A6A3D" />,
+    },
+    Entertainment: {
+        icon: <Clapperboard size={16} color="#6B5B73" />,
+    },
+    Celebrations: {
+        icon: <PartyPopper size={16} color="#A65D57" />,
+    },
+    Other: {
+        icon: <MoreHorizontal size={16} color="#78716C" />,
+    },
 }
 
 export const StatusColor: Record<StatusType, string> = {

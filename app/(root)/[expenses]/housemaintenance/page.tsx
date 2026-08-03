@@ -37,7 +37,8 @@ const HouseMaintenance = () => {
     const totalOther = otherItems.reduce((total, item) => total + item.amount, 0)
 
     const total = totalRepairs + totalMaintenance + totalCleaning + totalPestControl + totalOther
-    const budgetLeft = 10000 - total
+    const budget = 10000
+    const budgetLeft = budget - total
 
     const SummaryDataArr:SummaryType[] = [
         {
@@ -164,6 +165,7 @@ const HouseMaintenance = () => {
                 <SummaryCardContent
                     summaryDataArr={SummaryDataArr}
                     budgetLeft={budgetLeft}
+                    budget={budget}
                 />
             </div>
 
