@@ -92,7 +92,17 @@ export type FamilyExpensesCategory =
     | "Allowance"
     | "Entertainment"
     | "Celebrations"
-    | "Other";
+    | "Other"
+
+export type OtherExpenseCategory =
+    | "Personal"
+    | "Donations"
+    | "Subscriptions"
+    | "Government"
+    | "Miscellaneous"
+    | "Tickets"
+    | "Fees"
+    | "Services"
 
 export type StatusType =
     | "Paid"
@@ -161,6 +171,12 @@ export type HouseMaintenanceExpense = Expense & {
 export type FamilyExpense = Expense & {
     name: string;
     category: FamilyExpensesCategory;
+    purchaseDate: string;
+}
+
+export type OtherExpense = Expense & {
+    name: string;
+    category: OtherExpenseCategory;
     purchaseDate: string;
 }
 
