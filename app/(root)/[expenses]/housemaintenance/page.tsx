@@ -201,7 +201,7 @@ const HouseMaintenance = () => {
                         className="font-bold text-[#3B2416]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
-                        Health Bills  
+                        House Maintenance Bills  
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">

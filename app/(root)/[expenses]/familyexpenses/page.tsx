@@ -126,7 +126,7 @@ const FamilyExpenses = () => {
                         {item.amount.toLocaleString("en-US")}
                     </span>,
             }
-        ]
+    ]
 
     return (
         <section>

@@ -3,8 +3,23 @@
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal";
-import { ReceiptText } from 'lucide-react';
+import SummaryCards from "@/app/components/SummaryCard";
+import BillsTable from "@/app/components/BillsTable";
+import { OtherExpensesData } from "@/app/constant/expensesData"
+import { ReceiptText, PhilippinePeso } from 'lucide-react';
+import type { TableColumn, OtherExpense} from "@/app/type/model"
+import formatPurchaseDate from "@/app/utils/formatPurchaseDate";
+import { OtherExpensesBillIcons } from "@/app/constant/billIcons";
 
+type SummaryType = {
+    id: string | number;
+    name: string;
+    amount?: number,
+    month?: string,
+    itemLength?: string,
+    highestAmount?: number,
+    averageExpense?: number
+}
 
 const OtherExpenses = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -13,13 +28,76 @@ const OtherExpenses = () => {
         year: "numeric",
     })
 
+    const OtherExpenses = OtherExpensesData.filter((item) => item.expense === "OtherExpenses")
+
+    const totalItems = OtherExpenses.length
+    const totalExpenses = OtherExpenses.reduce((total, item) => total + item.amount, 0)
+    const highestAmount = OtherExpensesData.reduce((max, item) => Math.max(max, item.amount),0)
+    const averageExpense =OtherExpensesData.reduce((total, item) => total + item.amount, 0) / OtherExpensesData.length;
+
+    const SummaryDataArr: SummaryType[] = [
+            {
+                id: 1,
+                name: "TOTAL OTHER EXPENSES",
+                amount: totalExpenses,
+                month: currentDate,
+                
+            },
+            {
+                id: 2,
+                name: "TOTAL TRANSACTIONS",
+                itemLength: `${totalItems} Expenses recorded`
+            },
+            {
+                id: 3,
+                name: "LARGEST EXPENSE",
+                highestAmount: highestAmount,
+            },
+    
+            {
+                id: 4,
+                name: "AVERAGE",
+                averageExpense: averageExpense,
+            }
+    ]
+
+    const OtherExpensesColumn: TableColumn<OtherExpense>[] = [
+            {
+                label: "Description",
+                render: (item) => 
+                    <span className="flex items-center gap-1">
+                        {OtherExpensesBillIcons[item.category].icon}
+                        {item.name}
+                    </span>
+            },
+            {
+                label: "Category",
+                render: (item) =>
+                   item.category,
+            },
+            {
+                label: "Date",
+                render: (item) => formatPurchaseDate(item.purchaseDate),
+            },
+            {
+                label: "Amount",
+                render: (item) => 
+                    <span className="flex items-center gap-1">
+                        <PhilippinePeso
+                            size={16}
+                        />
+                        {item.amount.toLocaleString("en-US")}
+                    </span>,
+            }
+    ]
+
     useEffect(() => {
         setActiveSection("OtherExpenses")
     }, [])
 
     return (
         <section>
-             <div className="flex w-full p-3 mb-8 border-b-2 border-black">
+            <div className="flex w-full p-3 mb-8 border-b-2 border-black">
                 <div className="flex flex-col flex-2 ">
                     <h3 
                         className="flex text-lg font-bold mb-3 text-[#3B2416]"
@@ -46,6 +124,110 @@ const OtherExpenses = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal/>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-5 gap-2 w-full h-auto mb-8">
+                {SummaryDataArr.map((item, index) => (
+                        <SummaryCards
+                            key={index}
+                            title={item.name}
+                            content={
+                                <div 
+                                    className="block text-sm"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                                >
+                                    {item.amount !== undefined && (
+                                        <div className="flex justify-center flex-col">
+                                            <span 
+                                                className="flex gap-1"
+                                            >
+                                                <PhilippinePeso
+                                                    size={16}
+                                                />
+                                                {item.amount?.toLocaleString("en-US")}
+                                            </span>
+                                            <span>
+                                                {item.month}
+                                            </span>
+                                        </div>
+                                    )}
+                                    {item.itemLength !== undefined && (
+                                        <p className="flex items-center flex-wrap">
+                                            {item.itemLength}
+                                        </p>
+                                    )}
+                                    {item.highestAmount !== undefined && (
+                                        <p 
+                                            className="flex items-center flex-wrap gap-1"
+                                            style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                                        >
+                                            <span className="flex gap-1">
+                                                <PhilippinePeso size={16} />
+                                                {item.highestAmount?.toLocaleString("en-US")}
+                                            </span>
+                
+                                            Highest expense recorded
+                                        </p>
+                                    )}
+                                    {item.averageExpense !== undefined && (
+                                        <p 
+                                            className="flex items-center flex-wrap gap-1"
+                                            style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                                        >
+                                            <span className="flex gap-1">
+                                                <PhilippinePeso size={16} />
+                                                {item.averageExpense?.toLocaleString("en-US")}
+                                            </span>
+                                            average expense recorded
+                                        </p>
+                                    )}
+                                </div>
+                            }
+                        />
+                    ))}
+            </div>
+
+            <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
+                <div className="flex flex-col flex-2">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Other Expenses Spending
+                    </span>
+                    <span 
+                        className="w-full h-full"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        bar chart
+                    </span>
+                </div>
+                <div className="flex flex-col flex-3 ">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Expense Categories
+                    </span>
+
+                </div>
+            </div>
+
+            <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
+                <div className="flex flex-col p-1 w-">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Other Bills
+                    </span>
+                </div>
+                <div className="block w-auto min-h-48 p-1">
+                    <BillsTable
+                        data={OtherExpenses}
+                        columns={OtherExpensesColumn}
+                    />
                 </div>
             </div>
         </section>

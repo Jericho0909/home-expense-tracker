@@ -33,6 +33,13 @@ import {
     Wallet,
     Clapperboard,
     PartyPopper,
+    UserRound,
+    HandHeart,
+    CreditCard,
+    Landmark,
+    Ticket,
+    Receipt,
+    BriefcaseBusiness,
     CircleCheck,
     CircleAlert,
     CircleX,
@@ -48,6 +55,7 @@ import type {
     HealthCategory,
     HouseMaintenanceCategory,
     FamilyExpensesCategory,
+    OtherExpenseCategory,
     StatusType,
     IconType,
 } from "@/app/type/model";
@@ -187,6 +195,33 @@ export const FamilyExpensesBillIcons: Record<FamilyExpensesCategory, IconType> =
         icon: <MoreHorizontal size={16} color="#78716C" />,
     },
 }
+
+export const OtherExpensesBillIcons: Record<OtherExpenseCategory, IconType> = {
+    Personal: {
+        icon: <UserRound size={16} color="#8B6F47" />,
+    },
+    Donations: {
+        icon: <HandHeart size={16} color="#A65D57" />,
+    },
+    Subscriptions: {
+        icon: <CreditCard size={16} color="#5F6B73" />,
+    },
+    Government: {
+        icon: <Landmark size={16} color="#4F5D4F" />,
+    },
+    Miscellaneous: {
+        icon: <MoreHorizontal size={16} color="#78716C" />,
+    },
+    Tickets: {
+        icon: <Ticket size={16} color="#7A5C61" />,
+    },
+    Fees: {
+        icon: <Receipt size={16} color="#806A4A" />,
+    },
+    Services: {
+        icon: <BriefcaseBusiness size={16} color="#5E6B62" />,
+    },
+};
 
 export const StatusColor: Record<StatusType, string> = {
     Paid: "#6B8E6B",
