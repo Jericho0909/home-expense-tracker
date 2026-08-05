@@ -9,6 +9,7 @@ export type ExpenseSection =
     | "HouseMaintenance"
     | "FamilyExpenses"
     | "OtherExpenses"
+    | "BudgetSetting"
 
 export type ExpensesNames = 
     | "Electricity"

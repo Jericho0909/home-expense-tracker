@@ -13,7 +13,8 @@ import {  Wallet,
     Heart,
     Hammer,
     HouseHeart,
-    ReceiptText
+    ReceiptText,
+    Settings
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -235,6 +236,26 @@ const Sidebar = () => {
                 </li>
                 
             </ul>
+            <div className="absolute bottom-13 left-4">
+                <Link
+                        href="/budgetSetting" 
+                        onClick={toggleSidebar}
+                        className={`flex items-center text-lg px-2 transition-all duration-300
+                            ${activeSection === "BudgetSetting" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
+                        `}
+                        style={{ fontFamily: "var(--font-playfair-display)" }}
+                    >
+                        <span className="mr-2">
+                            <Settings size={24} className={
+                                    activeSection === "BudgetSetting"
+                                    ? "text-[#6B7280]"
+                                    : "text-[#F8F4E9]"
+                                } 
+                            />
+                        </span>
+                        Budget Setting
+                    </Link>
+            </div>
         </motion.aside>
     )
 }
