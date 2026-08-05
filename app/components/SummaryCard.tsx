@@ -12,7 +12,10 @@ const SummaryCards = ({ title, content }: SummaryCardsProps) => {
             >
                 {title}
             </span> 
-            <div className="flex items-center h-full text-[#8B5E3C]">
+            <div 
+                className="flex items-center h-full text-[#8B5E3C]"
+                style={{ fontFamily: "var(--font-libre-baskerville)"}}
+            >
                 {content}
             </div>
         </div>

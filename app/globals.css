@@ -22,4 +22,18 @@
   .billsTableBtn:active {
       transform: scale(0.95);
   }
+
+  .add-button {
+    background-color: #964B00;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .add-button:hover {
+    background-color: #8B5E3C;
+    transform: translateY(-1px);
+  }
+
+  .add-button:active {
+    transform: translateY(0);
+  }
 }
