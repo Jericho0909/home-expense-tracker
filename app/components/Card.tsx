@@ -7,7 +7,7 @@ import { PhilippinePeso, Plus } from "lucide-react";
 
 const Card = ({ name, money }: CardProps) => {
     return (
-        <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full h-24">
+        <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full ">
             <span
                 className="font-bold text-[#3B2416] text-base"
                 style={{ fontFamily: "var(--font-cinzel)"}}
@@ -15,7 +15,7 @@ const Card = ({ name, money }: CardProps) => {
                 {name}
             </span>
             <span
-                className="flex items-center gap-1 text-[#964B00] text-lg"
+                className="flex items-center gap-1 text-[#8B5E3C] text-sm"
                 style={{ fontFamily: "var(--font-libre-baskerville)"}}
             >
                 <PhilippinePeso size={16}/>
@@ -23,7 +23,7 @@ const Card = ({ name, money }: CardProps) => {
             </span>
             <button
                 type="button"
-                className="add-button flex items-center justify-center gap-1 px-2 py-1 mt-2 text-sm font-semibold text-white rounded"
+                className="add-button flex items-center justify-center gap-1 px-2 py-1 mt-2 text-sm font-semibold  rounded cursor-pointer"
                 style={{ fontFamily: "var(--font-libre-baskerville)"}}
             >
                 <Plus size={16}/>

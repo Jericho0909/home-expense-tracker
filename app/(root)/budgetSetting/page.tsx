@@ -2,6 +2,8 @@
 
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext";
+import Card from "@/app/components/Card";
+import { MembersData } from "@/app/constant/expensesData";
 import { HandCoins } from 'lucide-react';
 
 const BudgerSettingPage = () => {
@@ -10,6 +12,7 @@ const BudgerSettingPage = () => {
         month: "long",
         year: "numeric",
     })
+    
 
     useEffect(() => {
         setActiveSection("BudgetSetting")
@@ -41,6 +44,16 @@ const BudgerSettingPage = () => {
                         Manage family contributions and expenses
                     </p>
                 </div>
+            </div>
+
+            <div className="grid grid-cols-5 gap-2 w-4xl h-auto mb-8">
+                {MembersData.map((member) => (
+                    <Card
+                        key={member.id}
+                        name={member.name}
+                        money={member.money}
+                    />
+                ))}
             </div>
         </section>
     )

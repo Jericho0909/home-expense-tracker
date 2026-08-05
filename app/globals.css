@@ -24,12 +24,13 @@
   }
 
   .add-button {
-    background-color: #964B00;
+    background-color: #F1E3D0;
+    color: #5C4033;
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
 
   .add-button:hover {
-    background-color: #8B5E3C;
+    background-color: #D8C3A5;
     transform: translateY(-1px);
   }
 

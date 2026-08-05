@@ -186,3 +186,10 @@ export type ExpenseData =
     | FoodHouseholdExpense
     | TransportationExpense
     | HealthExpense;
+
+export type Member = {
+    id: number;
+    name: string;
+    money: number;
+    createdAt: string;
+}

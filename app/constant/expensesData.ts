@@ -4,7 +4,8 @@ import type { UtilityExpense,
     HealthExpense,
     HouseMaintenanceExpense,
     FamilyExpense,
-    OtherExpense
+    OtherExpense,
+    Member
 } from "../type/model"
 
 export const UtilitiesData: UtilityExpense[] = [
@@ -643,3 +644,37 @@ export const OtherExpensesData: OtherExpense[] = [
         purchaseDate: "2026-07-03",
     },
 ];
+
+export const MembersData: Member[] = [
+    {
+        id: 1,
+        name: "Jericho Zara",
+        money: 25000,
+        createdAt: "2026-07-01",
+    },
+    {
+        id: 2,
+        name: "Lorae Singueo",
+        money: 10000,
+        createdAt: "2026-07-01",
+    },
+    {
+        id: 3,
+        name: "Gojo Zara",
+        money: 10000,
+        createdAt: "2026-07-01",
+    },
+    {
+        id: 4,
+        name: "Lucy Zara",
+        money: 5000,
+        createdAt: "2026-07-01",
+    },
+    {
+        id: 5,
+        name: "Yuji Zara",
+        money: 0,
+        createdAt: "2026-07-01",
+    },
+
+]
