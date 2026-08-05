@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal";
 import SummaryCards from "@/app/components/SummaryCard";
-import BillsTable from "@/app/components/BillsTable";
+import Table from "@/app/components/Table";
 import { OtherExpensesData } from "@/app/constant/expensesData"
 import { ReceiptText, PhilippinePeso } from 'lucide-react';
 import type { TableColumn, OtherExpense} from "@/app/type/model"
@@ -224,7 +224,7 @@ const OtherExpenses = () => {
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
-                    <BillsTable
+                    <Table
                         data={OtherExpenses}
                         columns={OtherExpensesColumn}
                     />

@@ -5,7 +5,7 @@ import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import { Hammer } from 'lucide-react';
 import ButtonModal from "@/app/components/ButtonModal";
 import SummaryCardContent from "@/app/components/SummaryCardContent"
-import BillsTable from "@/app/components/BillsTable";
+import Table from "@/app/components/Table";
 import { HouseMaintenanceData } from "@/app/constant/expensesData"
 import { PhilippinePeso } from 'lucide-react';
 import type { TableColumn, 
@@ -205,7 +205,7 @@ const HouseMaintenance = () => {
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
-                    <BillsTable
+                    <Table
                         data={HouseMaintenanceExpenses}
                         columns={HouseMaintenanceColumn}
                     />

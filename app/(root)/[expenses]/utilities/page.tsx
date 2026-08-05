@@ -11,7 +11,7 @@ import {
     PhilippinePeso, 
     Circle
 } from "lucide-react";
-import BillsTable from "@/app/components/BillsTable";
+import Table from "@/app/components/Table";
 import formatBillingPeriod from "@/app/utils/formatBillingPeriod";
 import { UtilityBillIcons, StatusIcons, StatusColor } from "@/app/constant/billIcons";
 
@@ -173,7 +173,7 @@ const UtilitiesPage = () => {
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
-                    <BillsTable
+                    <Table
                         data={utilitiesExpenses}
                         columns={utilitiesColumn}
                     />

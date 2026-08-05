@@ -105,6 +105,17 @@ export type OtherExpenseCategory =
     | "Fees"
     | "Services"
 
+export type FamilyRole =
+  | "Father"
+  | "Mother"
+  | "Son"
+  | "Daughter"
+  | "Grandfather"
+  | "Grandmother"
+  | "Uncle"
+  | "Aunt"
+  | "Other";
+
 export type StatusType =
     | "Paid"
     | "Pending"
@@ -190,6 +201,7 @@ export type ExpenseData =
 export type Member = {
     id: number;
     name: string;
+    familyRole: FamilyRole;
     money: number;
     createdAt: string;
 }

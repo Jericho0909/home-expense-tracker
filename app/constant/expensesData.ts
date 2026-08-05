@@ -649,32 +649,36 @@ export const MembersData: Member[] = [
     {
         id: 1,
         name: "Jericho Zara",
+        familyRole: "Father",
         money: 25000,
         createdAt: "2026-07-01",
     },
     {
         id: 2,
         name: "Lorae Singueo",
+        familyRole: "Mother",
         money: 10000,
         createdAt: "2026-07-01",
     },
     {
         id: 3,
         name: "Gojo Zara",
+        familyRole: "Son",
         money: 10000,
         createdAt: "2026-07-01",
     },
     {
         id: 4,
         name: "Lucy Zara",
+        familyRole: "Daughter",
         money: 5000,
         createdAt: "2026-07-01",
     },
     {
         id: 5,
         name: "Yuji Zara",
+        familyRole: "Son",
         money: 0,
         createdAt: "2026-07-01",
     },
-
-]
+];

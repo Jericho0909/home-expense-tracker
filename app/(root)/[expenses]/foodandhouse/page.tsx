@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
-import BillsTable from "@/app/components/BillsTable"
+import Table from "@/app/components/Table"
 import { FoodHouseholdData } from "@/app/constant/expensesData"
 import type { TableColumn, 
     FoodHouseholdExpense,
@@ -196,7 +196,7 @@ const FoodAndHousePage = () => {
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
-                    <BillsTable
+                    <Table
                         data={FoodAndHouseExpenses}
                         columns={FoodAndHouseColumn}
                     />

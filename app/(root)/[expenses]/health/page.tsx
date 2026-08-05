@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
-import BillsTable from "@/app/components/BillsTable"
+import Table from "@/app/components/Table"
 import { HealthData } from "@/app/constant/expensesData"
 import { Heart, PhilippinePeso } from 'lucide-react';
 import type { TableColumn, 
@@ -191,7 +191,7 @@ const Health = () => {
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
-                    <BillsTable
+                    <Table
                         data={HealthExpenses}
                         columns={HealthColumn}
                     />

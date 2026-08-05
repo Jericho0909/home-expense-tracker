@@ -3,8 +3,16 @@
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext";
 import Card from "@/app/components/Card";
+import Table from "@/app/components/Table";
 import { MembersData } from "@/app/constant/expensesData";
-import { HandCoins } from 'lucide-react';
+import type { TableColumn, 
+    Member, 
+    FamilyRole 
+} from "@/app/type/model";
+import { HandCoins, 
+    PhilippinePeso, 
+    User
+} from 'lucide-react';
 
 const BudgerSettingPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -12,7 +20,39 @@ const BudgerSettingPage = () => {
         month: "long",
         year: "numeric",
     })
-    
+
+    const FamilyRoleColor: Record<FamilyRole, string> = {
+        Father: "#2563EB",
+        Mother: "#DB2777",
+        Son: "#0284C7",
+        Daughter: "#E11D48",
+        Grandfather: "#D97706",
+        Grandmother: "#7E22CE",
+        Uncle: "#16A34A",
+        Aunt: "#C026D3",
+        Other: "#6B7280",
+    };
+
+    const totalBudget = MembersData.reduce((total, member) => total + member.money, 0)
+
+    const MemberColumn: TableColumn<Member>[] = [
+        {
+            label: "Name",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    <User size={16} color="black" fill={`${FamilyRoleColor[item.familyRole]}`}/>
+                    {item.name}
+                </span>
+        },
+        {
+            label: "Family Role",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    {item.familyRole}
+                </span>
+        }
+
+    ]
 
     useEffect(() => {
         setActiveSection("BudgetSetting")
@@ -54,6 +94,38 @@ const BudgerSettingPage = () => {
                         money={member.money}
                     />
                 ))}
+                <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full ">
+                    <span
+                        className="font-bold text-[#3B2416] text-base"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        TOTAL FAMILY BUDGET
+                    </span>
+                    <span
+                        className="flex items-center gap-1 text-[#8B5E3C] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                    >
+                        <PhilippinePeso size={16}/>
+                        {totalBudget.toLocaleString("en-US")}
+                    </span>
+                </div>
+            </div>
+
+            <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
+                <div className="flex flex-col p-1 w-">
+                    <span
+                        className="font-bold text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Family Members  
+                    </span>
+                </div>
+                <div className="block w-auto min-h-48 p-1">
+                    <Table
+                        data={MembersData}
+                        columns={MemberColumn}
+                    />
+                </div>
             </div>
         </section>
     )

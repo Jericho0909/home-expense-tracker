@@ -1,14 +1,14 @@
 import type { TableColumn } from "../type/model"
 
-interface ExpensesTableProps<T extends { id: number }> {
+interface TableProps<T extends { id: number }> {
     data: T[];
     columns: TableColumn<T>[];
 }
 
-const BillsTable = <T extends { id: number }>({
+const Table = <T extends { id: number }>({
     data,
     columns,
-}: ExpensesTableProps<T>) => {
+}: TableProps<T>) => {
     return (
         <table className="w-full border-separate border-spacing-y-2">
             <thead>
@@ -74,4 +74,4 @@ const BillsTable = <T extends { id: number }>({
     );
 };
 
-export default BillsTable
+export default Table
