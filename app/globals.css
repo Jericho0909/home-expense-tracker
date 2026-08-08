@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* Hide number input arrows */
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    margin: 0 !important;
+}
+
+.no-spinner {
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+
 @media (hover: hover) {
   .menu-button:hover {
     background-color: rgba(248, 244, 233, 0.15);
@@ -36,5 +50,15 @@
 
   .add-button:active {
     transform: translateY(0);
+  }
+
+  .form-btn:hover {
+    background-color: #7A3A00;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .form-btn:active {
+      transform: translateY(0);
   }
 }

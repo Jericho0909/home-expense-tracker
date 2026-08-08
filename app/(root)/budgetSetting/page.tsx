@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext";
 import Card from "@/app/components/Card";
 import Table from "@/app/components/Table";
+import BudgetForm from "@/app/components/BudgetForm";
 import { MembersData } from "@/app/constant/expensesData";
 import type { TableColumn, 
     Member, 
@@ -127,6 +128,7 @@ const BudgerSettingPage = () => {
                     />
                 </div>
             </div>
+            <BudgetForm />
         </section>
     )
 }
