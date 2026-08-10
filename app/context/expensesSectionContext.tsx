@@ -5,12 +5,12 @@ import type { ExpenseSection } from "@/app/type/model";
 import useExpensesSection from "@/app/hooks/useExpensesSection";
 
 
-interface ExpensesSectionContextProps {
+interface ExpensesSectionContextTypes {
     activeSection: ExpenseSection | null;
     setActiveSection: (section: ExpenseSection | null) => void;
 }
 
-const ExpensesSectionContext = createContext<ExpensesSectionContextProps | null>(null)
+const ExpensesSectionContext = createContext<ExpensesSectionContextTypes | null>(null)
 
 export const ExpensesSectionProvider = ({ children }: { children: ReactNode }) => {
     const { activeSection, setActiveSection } = useExpensesSection()
