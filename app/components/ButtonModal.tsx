@@ -1,6 +1,21 @@
-const ButtonModal = () => {
+'use client'
+
+import { useContext } from "react"
+import ModalContext from "../context/modalContext"
+import type { ExpenseSection } from "../type/model"
+
+interface ButtonModalProps {
+    modalTitle: string
+    modalContent: ExpenseSection
+}
+
+const ButtonModal = ({ modalTitle, modalContent }: ButtonModalProps) => {
+    const { setIsOpen, setModalTitle, setActiveModal } = useContext(ModalContext)!
+
     const openModal = () => {
-        console.log("Open Modal")
+        setIsOpen(true)
+        setModalTitle(modalTitle)
+        setActiveModal(modalContent)
     }
     return (
         <button

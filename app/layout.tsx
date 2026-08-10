@@ -7,6 +7,7 @@ import {
 import "./globals.css";
 import { SidebarProvider } from "./context/sidebarContext";
 import { ExpensesSectionProvider }  from "./context/expensesSectionContext";
+import { ModalProvider } from "./context/modalContext";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -43,7 +44,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <SidebarProvider>
           <ExpensesSectionProvider>
-            {children}
+            <ModalProvider>
+              {children}
+            </ModalProvider>
           </ExpensesSectionProvider>
         </SidebarProvider>
       </body>
