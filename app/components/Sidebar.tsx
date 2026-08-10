@@ -109,13 +109,13 @@ const Sidebar = () => {
                         href="/expenses/foodandhouse"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
-                            ${activeSection === "Food&Household" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
+                            ${activeSection === "FoodAndHousehold" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
                         `}
                         style={{ fontFamily: "var(--font-playfair-display)" }}
                     >
                         <span className="mr-2">
                             <CookingPot size={24} className={
-                                    activeSection === "Food&Household"
+                                    activeSection === "FoodAndHousehold"
                                     ? "text-[#B87333]"
                                     : "text-[#F8F4E9]"
                                 } 

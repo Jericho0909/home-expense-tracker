@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 export type ExpenseSection = 
     | "Dashboard"
     | "Utilities"
-    | "Food&Household"
+    | "FoodAndHousehold"
     | "Transportation"
     | "Health"
     | "HouseMaintenance"

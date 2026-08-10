@@ -72,7 +72,7 @@ const FoodAndHousePage = () => {
         },
     ]
 
-    const FoodAndHouseExpenses = FoodHouseholdData.filter((item) => item.expense === "Food&Household")
+    const FoodAndHouseExpenses = FoodHouseholdData.filter((item) => item.expense === "FoodAndHousehold")
 
     const FoodAndHouseColumn: TableColumn<FoodHouseholdExpense>[] = [
         {
@@ -105,7 +105,7 @@ const FoodAndHousePage = () => {
     ]
 
     useEffect(() => {
-        setActiveSection("Food&Household")
+        setActiveSection("FoodAndHousehold")
     }, [])
 
     return (
