@@ -99,7 +99,18 @@ const UtilitiesPage = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        
+                        modalTitle={
+                            <>
+                                <span className="mr-2">
+                                    <Lightbulb 
+                                        size={24} 
+                                        className="text-[#F4C430]"
+                                    />
+                                </span>
+                                Utilities Bills
+                            </>
+                        }
+                        modalContent={"Utilities"}
                     />
                 </div>
             </div>

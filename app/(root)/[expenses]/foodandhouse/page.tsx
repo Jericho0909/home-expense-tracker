@@ -136,7 +136,18 @@ const FoodAndHousePage = () => {
                     </p>
                 </div>
                 <div className="flex items-center justify-end flex-1">
-                    <ButtonModal/>
+                    <ButtonModal
+                        modalTitle = {
+                            <>
+                                <span className="mr-2">
+                                    <CookingPot size={24} className="text-[#B87333]"
+                                    />
+                                </span>
+                                Food & Household Bills
+                            </>
+                        }
+                        modalContent={"FoodAndHousehold"}
+                    />
                 </div>
             </div>
 

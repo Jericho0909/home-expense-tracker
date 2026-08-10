@@ -143,7 +143,18 @@ const Health = () => {
                     </p>
                 </div>
                 <div className="flex items-center justify-end flex-1">
-                    <ButtonModal/>
+                    <ButtonModal
+                        modalTitle = {
+                            <>
+                                <span className="mr-2">
+                                    <Heart size={24} className="text-[#D8A7A7]"
+                                    />
+                                </span>
+                                Health Bills
+                            </>
+                        }
+                        modalContent={"Health"}
+                    />
                 </div>
             </div>
 

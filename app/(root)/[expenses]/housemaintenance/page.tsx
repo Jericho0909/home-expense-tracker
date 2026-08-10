@@ -157,7 +157,18 @@ const HouseMaintenance = () => {
                     </p>
                 </div>
                 <div className="flex items-center justify-end flex-1">
-                    <ButtonModal/>
+                    <ButtonModal
+                        modalTitle = {
+                            <>
+                                <span className="mr-2">
+                                    <Hammer size={24} className="text-[#B8B0A5]"
+                                    />
+                                </span>
+                                House Maintenance Bills
+                            </>
+                        }
+                        modalContent={"HouseMaintenance"}
+                    />
                 </div>
             </div>
 

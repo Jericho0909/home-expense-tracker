@@ -7,8 +7,8 @@ import type { ExpenseSection } from "../type/model";
 interface ModalTypes {
     isOpen: boolean;
     setIsOpen: (value: boolean) => void;
-    modalTitle: string;
-    setModalTitle: Dispatch<SetStateAction<string>>;
+    modalTitle: ReactNode
+    setModalTitle: Dispatch<SetStateAction<ReactNode>>;
     activeModal: ExpenseSection | null;
     setActiveModal:  Dispatch<SetStateAction<ExpenseSection | null>>;
     closeModal: () => void;
@@ -18,7 +18,7 @@ const ModalContext = createContext<ModalTypes | null>(null)
 
 export const ModalProvider = ({children}: { children: ReactNode }) => {
     const [ isOpen, setIsOpen ] = useState<boolean>(false)
-    const [ modalTitle, setModalTitle ] = useState<string>("")
+    const [ modalTitle, setModalTitle ] = useState<ReactNode>(null);
     const [ activeModal, setActiveModal ] = useState<ExpenseSection | null>(null);
 
     const closeModal = () => {

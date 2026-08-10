@@ -156,7 +156,18 @@ const FamilyExpenses = () => {
                     </p>
                 </div>
                 <div className="flex items-center justify-end flex-1">
-                    <ButtonModal/>
+                    <ButtonModal
+                        modalTitle={
+                            <>
+                                <span className="mr-2">
+                                    <HouseHeart size={24} className="text-[#E3B778]"
+                                    />
+                                </span>
+                                Family Expenses Bills
+                            </>
+                        }
+                        modalContent={"FamilyExpenses"}
+                    />
                 </div>
             </div>
 

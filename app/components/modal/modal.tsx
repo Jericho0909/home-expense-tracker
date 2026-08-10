@@ -4,7 +4,7 @@ import { useEffect, useRef, useContext, type ReactNode } from "react";
 import ModalContext from "@/app/context/modalContext";
 
 interface ModalProps {
-    title: string;
+    title: ReactNode;
     children: ReactNode
 }
 
@@ -38,7 +38,7 @@ const Modal = ({title, children}: ModalProps) => {
 
                 <div className="flex items-center justify-between mb-4">
                     <h2
-                        className="text-xl font-semibold text-[#3B2416]"
+                        className="flex text-xl font-semibold text-[#3B2416]"
                         style={{
                             fontFamily: "var(--font-libre-baskerville)"
                         }}
@@ -49,7 +49,7 @@ const Modal = ({title, children}: ModalProps) => {
                     <button
                         type="button"
                         onClick={closeModal}
-                        className="text-[#3B2416] hover:text-red-700"
+                        className="cursor-pointer text-[#3B2416] hover:text-red-700"
                     >
                         ✕
                     </button>

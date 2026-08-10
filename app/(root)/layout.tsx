@@ -14,14 +14,16 @@ export default function RootLayout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
     const { isSidebarOpen } = useContext(SidebarContext)!
-    const { modalTitle, activeModal } = useContext(ModalContext)!
+    const { isOpen, modalTitle, activeModal } = useContext(ModalContext)!
     return (
         <>
-            <Modal
-                title={modalTitle}
-            >
-                {modalContents[activeModal!]}
-            </Modal>
+            {isOpen && (
+                <Modal
+                    title={modalTitle}
+                >
+                    {modalContents[activeModal!]}
+                </Modal>
+            )}
             <Header/>
             <div className="mt-20 p-4 min-h-screen w-full bg-[#F1E3D0]">
                 <AnimatePresence>

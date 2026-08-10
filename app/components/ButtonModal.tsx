@@ -1,11 +1,11 @@
 'use client'
 
-import { useContext } from "react"
+import { useContext, type ReactNode } from "react"
 import ModalContext from "../context/modalContext"
 import type { ExpenseSection } from "../type/model"
 
 interface ButtonModalProps {
-    modalTitle: string
+    modalTitle: ReactNode
     modalContent: ExpenseSection
 }
 

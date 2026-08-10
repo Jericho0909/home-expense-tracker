@@ -147,7 +147,18 @@ const Transportation = () => {
                     </p>
                 </div>
                 <div className="flex items-center justify-end flex-1">
-                    <ButtonModal/>
+                    <ButtonModal
+                        modalTitle = {
+                            <>
+                                <span className="mr-2">
+                                    <Car size={24} className="text-[#CD7F32]"
+                                    />
+                                </span>
+                                Transportation Bills
+                            </>
+                        }
+                        modalContent={"Transportation"}
+                    />
                 </div>
             </div>
 
