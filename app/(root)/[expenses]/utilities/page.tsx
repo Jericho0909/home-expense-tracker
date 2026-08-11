@@ -100,7 +100,7 @@ const UtilitiesPage = () => {
                     <ButtonModal
                         modalTitle={
                             <div className="flex flex-col">
-                                <h3 
+                                <h4 
                                     className="flex text-lg font-bold mb-3 text-[#3B2416]"
                                     style={{ fontFamily: "var(--font-cinzel)"}}
                                 >
@@ -109,7 +109,7 @@ const UtilitiesPage = () => {
                                         />
                                     </span>
                                     Add Utility Bill 
-                                </h3>
+                                </h4>
                                 <span
                                     className="text-base italic text-[#8B5E3C]"
                                     style={{ fontFamily: "var(--font-cinzel)"}}

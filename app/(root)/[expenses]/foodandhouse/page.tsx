@@ -138,13 +138,24 @@ const FoodAndHousePage = () => {
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
                         modalTitle = {
-                            <>
-                                <span className="mr-2">
-                                    <CookingPot size={24} className="text-[#B87333]"
-                                    />
+                            <div className="flex flex-col">
+                                <h4
+                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
+                                    style={{ fontFamily: "var(--font-cinzel)"}}
+                                >
+                                    <span className="mr-2">
+                                        <CookingPot size={24} className="text-[#B87333]"
+                                        />
+                                    </span>
+                                    Food & Household Bills
+                                </h4>
+                                <span
+                                    className="text-base italic text-[#8B5E3C]"
+                                    style={{ fontFamily: "var(--font-cinzel)"}}
+                                >
+                                    Record a food or household expense
                                 </span>
-                                Food & Household Bills
-                            </>
+                            </div>
                         }
                         modalContent={"FoodAndHousehold"}
                     />

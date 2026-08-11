@@ -25,8 +25,7 @@ const UtilitiesModal = () => {
         status: ""
     }
 
-   const [utilityExpense, setUtilityExpense] =
-    useState<UtilityExpenseForm>(defaultData);
+   const [ utilityExpense, setUtilityExpense ] = useState<UtilityExpenseForm>(defaultData);
 
     const UtilitiesSelection: UtilitiesNames[] = [
         "Electricity",
