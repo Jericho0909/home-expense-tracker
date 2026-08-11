@@ -6,18 +6,26 @@ import type { UtilitiesNames,
     StatusType 
 } from "@/app/type/model"
 
+type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status"> & {
+    name: UtilitiesNames | "";
+    status: StatusType | "";
+};
+
 const UtilitiesModal = () => {
-    const [ utilityExpense, setUtilityExpense ] = useState<UtilityExpense>({
+    const defaultData: UtilityExpenseForm = {
         id: 0,
         expense: "Utilities",
         amount: 0,
         createdAt: "",
-        name: "Electricity",
+        name: "",
         billingStart: "",
         billingEnd: "",
         dueDate: "",
-        status: "Pending"
-    })
+        status: ""
+    }
+
+   const [utilityExpense, setUtilityExpense] =
+    useState<UtilityExpenseForm>(defaultData);
 
     const UtilitiesSelection: UtilitiesNames[] = [
         "Electricity",
@@ -35,12 +43,14 @@ const UtilitiesModal = () => {
         "Unpaid"
     ]
 
-    const handleCancel = () => {
-        console.log("Cancle")
+    const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        setUtilityExpense(defaultData)
+        console.log(utilityExpense)
     }
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault()
         console.log(utilityExpense)
     }
     return (
@@ -60,22 +70,24 @@ const UtilitiesModal = () => {
                 </label>
                 <select
                     id="utility"
-                    defaultValue=""
-                    onChange={(e) => setUtilityExpense((item) => ({
-                        ...item,
-                        name: e.target.value as UtilitiesNames
-                    }))}
+                    value={utilityExpense.name}
+                    onChange={(e) =>
+                        setUtilityExpense((item) => ({
+                            ...item,
+                            name: e.target.value as UtilitiesNames
+                        }))
+                    }
                     className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
-                    style={{fontFamily: "var(--font-libre-baskerville)"}}
+                    style={{
+                        fontFamily: "var(--font-libre-baskerville)"
+                    }}
                 >
-                    <option value="" disabled className="cursor-pointer">
+                    <option value="" disabled>
                         Select utility
                     </option>
+
                     {UtilitiesSelection.map((names) => (
-                        <option 
-                            key={names}
-                            value={names}
-                        >
+                        <option key={names} value={names}>
                             {names}
                         </option>
                     ))}
@@ -199,7 +211,7 @@ const UtilitiesModal = () => {
 
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
-                    htmlFor="utility"
+                    htmlFor="status"
                     className="text-base"
                     style={{
                         fontFamily: "var(--font-libre-baskerville)"
@@ -208,8 +220,8 @@ const UtilitiesModal = () => {
                     Status:
                 </label>
                 <select
-                    id="utility"
-                    defaultValue=""
+                    id="status"
+                    value={utilityExpense.status}
                     onChange={(e) => setUtilityExpense((item) => ({
                         ...item,
                         status: e.target.value as StatusType
@@ -239,6 +251,7 @@ const UtilitiesModal = () => {
             >
                 <button
                     type="button"
+                    onClick={handleCancel}
                     className="cancel-btn rounded-md border border-[#8B5E3C] bg-[#E6D2B5] px-4 py-2 text-sm font-semibold text-[#5C4033] cursor-pointer transition-all duration-150 ease-in-out"
                 >
                     Cancel

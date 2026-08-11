@@ -30,7 +30,7 @@ const UtilitiesPage = () => {
             label: "Utility",
             render: (item) => 
                 <span className="flex items-center gap-1">
-                    {UtilityBillIcons[item.name]?.icon}
+                    {item.name && UtilityBillIcons[item.name]?.icon}
                     {item.name}
                 </span>
         },
