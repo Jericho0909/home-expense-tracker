@@ -73,6 +73,22 @@
   }
 
   .form-btn:active {
-      transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  .cancel-btn:hover {
+    background-color: #D8BE9A;
+  }
+
+  .cancel-btn:active {
+    transform: translateY(1);
+  }
+
+  .savebill-btn:hover {
+    background-color: #5C4033;
+  }
+
+  .savebill-btn:active {
+    transform: translateY(1);
   }
 }

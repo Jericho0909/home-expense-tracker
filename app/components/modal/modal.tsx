@@ -32,11 +32,10 @@ const Modal = ({title, children}: ModalProps) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div 
-                ref={modalRef}
-                className="w-full max-w-md rounded-lg bg-[#F5F5DC] p-6 shadow-xl"
+                className="w-full max-w-md rounded-lg bg-[#F1E3D0] p-6 shadow-xl"
             >
 
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4 border-b-2 border-black">
                     <h2
                         className="flex text-xl font-semibold text-[#3B2416]"
                         style={{

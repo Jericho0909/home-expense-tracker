@@ -80,7 +80,7 @@ export const UtilitiesData: UtilityExpense[] = [
 export const FoodHouseholdData: FoodHouseholdExpense[] = [
     {
         id: 7,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Food",
         category: "Groceries",
         name: "Assorted Groceries",
@@ -90,7 +90,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 8,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Household",
         category: "Cleaning",
         name: "Dishwashing Liquid",
@@ -100,7 +100,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 9,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Food",
         category: "Groceries",
         name: "Rice",
@@ -110,7 +110,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 10,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Food",
         category: "Meat",
         name: "Pork",
@@ -120,7 +120,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 11,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Food",
         category: "Fruits",
         name: "Banana",
@@ -130,7 +130,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 12,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Food",
         category: "Snacks",
         name: "Biscuits",
@@ -140,7 +140,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 13,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Food",
         category: "Beverages",
         name: "Soft Drinks",
@@ -150,7 +150,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 14,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Household",
         category: "Laundry",
         name: "Laundry Detergent",
@@ -160,7 +160,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 15,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Household",
         category: "PersonalCare",
         name: "Shampoo",
@@ -170,7 +170,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
     },
     {
         id: 16,
-        expense: "Food&Household",
+        expense: "FoodAndHousehold",
         type: "Household",
         category: "Kitchen",
         name: "Pan",

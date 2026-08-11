@@ -23,7 +23,6 @@ const UtilitiesPage = () => {
         year: "numeric",
     })
 
-
     const utilitiesExpenses = UtilitiesData.filter((item) => item.expense === "Utilities")
 
     const utilitiesColumn: TableColumn<UtilityExpense>[] = [
@@ -66,6 +65,7 @@ const UtilitiesPage = () => {
                 </span>
         },
     ]
+
    
     useEffect(() => {
         setActiveSection("Utilities")
@@ -100,15 +100,24 @@ const UtilitiesPage = () => {
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
                         modalTitle={
-                            <>
-                                <span className="mr-2">
-                                    <Lightbulb 
-                                        size={24} 
-                                        className="text-[#F4C430]"
-                                    />
+                            <div className="flex flex-col">
+                                <h3 
+                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
+                                    style={{ fontFamily: "var(--font-cinzel)"}}
+                                >
+                                    <span className="mr-2">
+                                        <Lightbulb size={24} className="text-[#F4C430]"
+                                        />
+                                    </span>
+                                    Add Utility Bill 
+                                </h3>
+                                <span
+                                    className="text-base italic text-[#8B5E3C]"
+                                    style={{ fontFamily: "var(--font-cinzel)"}}
+                                >
+                                    Add a new household utility bill 
                                 </span>
-                                Utilities Bills
-                            </>
+                            </div>
                         }
                         modalContent={"Utilities"}
                     />
