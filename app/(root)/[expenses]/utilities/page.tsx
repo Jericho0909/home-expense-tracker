@@ -65,7 +65,6 @@ const UtilitiesPage = () => {
                 </span>
         },
     ]
-
    
     useEffect(() => {
         setActiveSection("Utilities")

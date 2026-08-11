@@ -34,8 +34,20 @@ const UtilitiesModal = () => {
         "Overdue",
         "Unpaid"
     ]
+
+    const handleCancel = () => {
+        console.log("Cancle")
+    }
+
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(utilityExpense)
+    }
     return (
-        <form className="flex flex-col">
+        <form 
+            className="flex flex-col"
+            onSubmit={handleSubmit}
+        >
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
                     htmlFor="utility"
@@ -84,12 +96,19 @@ const UtilitiesModal = () => {
                     id="amount"
                     type="number"
                     name="amount"
-                    value={utilityExpense.amount}
+                    min="0"
+                    step="0.01"
+                    value={utilityExpense.amount || ""}
                     onChange={(e) => setUtilityExpense((item) => ({
                         ...item,
                         [e.target.name]: Number(e.target.value)
 
                     }))}
+                    onKeyDown={(e) => {
+                        if (["e", "E", "+", "-"].includes(e.key)) {
+                            e.preventDefault();
+                        }
+                    }}
                     className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                     style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     placeholder=""
@@ -114,7 +133,7 @@ const UtilitiesModal = () => {
                     value={utilityExpense.billingStart}
                     onChange={(e) => setUtilityExpense((item) => ({
                         ...item,
-                        [e.target.name]: Number(e.target.value)
+                        [e.target.name]: e.target.value
 
                     }))}
                     className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
@@ -141,7 +160,7 @@ const UtilitiesModal = () => {
                     value={utilityExpense.billingEnd}
                     onChange={(e) => setUtilityExpense((item) => ({
                         ...item,
-                        [e.target.name]: Number(e.target.value)
+                        [e.target.name]: e.target.value
 
                     }))}
                     className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
@@ -168,7 +187,7 @@ const UtilitiesModal = () => {
                     value={utilityExpense.dueDate}
                     onChange={(e) => setUtilityExpense((item) => ({
                         ...item,
-                        [e.target.name]: Number(e.target.value)
+                        [e.target.name]: e.target.value
 
                     }))}
                     className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
