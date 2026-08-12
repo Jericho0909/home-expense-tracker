@@ -72,7 +72,7 @@ export type TransportationCategory =
     | "RideHailing"
     | "Parking"
     | "Toll"
-    | "VehicleMaintenance";
+    | "VehicleMaintenance"
 
 export type HealthCategory =
     | "Medicine"
@@ -165,7 +165,7 @@ export type FoodHouseholdExpense = Expense & {
 export type TransportationExpense = Expense & {
     category: TransportationCategory;
     name: string
-    purchaseDate: string;
+    date: string;
 }
 
 export type HealthExpense = Expense & {

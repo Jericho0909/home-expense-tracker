@@ -208,9 +208,9 @@ const FoodAndHouseholdModal = () => {
                         Select Category
                     </option>
 
-                    {[...FoodHouseholdCategory].sort((a, b) => a.localeCompare(b)).map((type) => (
-                        <option key={type} value={type}>
-                            {type}
+                    {[...FoodHouseholdCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
+                        <option key={category} value={category}>
+                            {category}
                         </option>
                     ))}
                 </select>

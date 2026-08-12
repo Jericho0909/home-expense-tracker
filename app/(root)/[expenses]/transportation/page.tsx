@@ -101,7 +101,7 @@ const Transportation = () => {
         },
         {
             label: "Date",
-            render: (item) => formatPurchaseDate(item.purchaseDate),
+            render: (item) => formatPurchaseDate(item.date),
         },
         {
             label: "Amount",

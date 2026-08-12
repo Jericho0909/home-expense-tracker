@@ -188,7 +188,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Gasoline",
         amount: 1500,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-26",
+        date: "2026-07-26",
     },
     {
         id: 18,
@@ -197,7 +197,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Jeepney Fare",
         amount: 250,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-24",
+        date: "2026-07-24",
     },
     {
         id: 19,
@@ -206,7 +206,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Diesel",
         amount: 1200,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-22",
+        date: "2026-07-22",
     },
     {
         id: 20,
@@ -215,7 +215,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Bus Fare",
         amount: 450,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-20",
+        date: "2026-07-20",
     },
     {
         id: 21,
@@ -224,7 +224,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Grab Ride",
         amount: 380,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-18",
+        date: "2026-07-18",
     },
     {
         id: 22,
@@ -233,7 +233,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Parking Fee",
         amount: 100,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-16",
+        date: "2026-07-16",
     },
     {
         id: 23,
@@ -242,7 +242,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Toll Fee",
         amount: 300,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-14",
+        date: "2026-07-14",
     },
     {
         id: 24,
@@ -251,7 +251,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Change Oil",
         amount: 1800,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-12",
+        date: "2026-07-12",
     },
     {
         id: 25,
@@ -260,7 +260,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Car Wash",
         amount: 250,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-10",
+        date: "2026-07-10",
     },
     {
         id: 26,
@@ -269,7 +269,7 @@ export const TransportationData: TransportationExpense[] = [
         name: "Tricycle Fare",
         amount: 150,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-08",
+        date: "2026-07-08",
     },
 ];
 
