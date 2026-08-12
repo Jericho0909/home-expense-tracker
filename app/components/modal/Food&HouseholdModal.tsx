@@ -48,7 +48,7 @@ const FoodAndHouseholdModal = () => {
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(foodHouseholdExpenses)
+        
     }
 
     return (
@@ -208,7 +208,7 @@ const FoodAndHouseholdModal = () => {
                         Select Category
                     </option>
 
-                    {FoodHouseholdCategory.map((type) => (
+                    {[...FoodHouseholdCategory].sort((a, b) => a.localeCompare(b)).map((type) => (
                         <option key={type} value={type}>
                             {type}
                         </option>

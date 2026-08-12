@@ -10,7 +10,7 @@ import type { UtilitiesNames,
 type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status"> & {
     name: UtilitiesNames | "";
     status: StatusType | "";
-};
+}
 
 const UtilitiesModal = () => {
     const defaultData: UtilityExpenseForm = {
