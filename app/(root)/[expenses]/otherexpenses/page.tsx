@@ -67,7 +67,7 @@ const OtherExpenses = () => {
                 render: (item) => 
                     <span className="flex items-center gap-1">
                         {OtherExpensesBillIcons[item.category].icon}
-                        {item.name}
+                        {item.description}
                     </span>
             },
             {
@@ -77,7 +77,7 @@ const OtherExpenses = () => {
             },
             {
                 label: "Date",
-                render: (item) => formatPurchaseDate(item.purchaseDate),
+                render: (item) => formatPurchaseDate(item.date),
             },
             {
                 label: "Amount",
@@ -125,13 +125,24 @@ const OtherExpenses = () => {
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
                         modalTitle = {
-                            <>
-                                <span className="mr-2">
-                                    <ReceiptText size={24} className="text-[#A89F91]"
-                                    />
+                            <div className="flex flex-col">
+                                <h4 
+                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
+                                    style={{ fontFamily: "var(--font-cinzel)"}}
+                                >
+                                    <span className="mr-2">
+                                        <ReceiptText size={24} className="text-[#A89F91]"
+                                        />
+                                    </span>
+                                    Add Other Expense
+                                </h4>
+                                <span
+                                    className="text-base italic text-[#8B5E3C]"
+                                    style={{ fontFamily: "var(--font-cinzel)"}}
+                                >
+                                    Record a miscellaneous expense  
                                 </span>
-                                Other Expenses Bills
-                            </>
+                            </div>
                         }
                         modalContent={"OtherExpenses"}
                     />

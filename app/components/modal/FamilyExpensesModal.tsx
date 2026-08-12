@@ -12,7 +12,7 @@ type FamilyExpenseForm = Omit<FamilyExpense, "category"> & {
 const FamilyExpensesModal = () => {
     const defaultData: FamilyExpenseForm = {
         id: 0,
-        expense: "Health",
+        expense: "FamilyExpenses",
         amount: 0,
         createdAt: "",
         description: "",

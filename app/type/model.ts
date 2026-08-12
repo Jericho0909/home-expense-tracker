@@ -187,9 +187,9 @@ export type FamilyExpense = Expense & {
 }
 
 export type OtherExpense = Expense & {
-    name: string;
+    description: string;
     category: OtherExpenseCategory;
-    purchaseDate: string;
+    date: string;
 }
 
 export type ExpenseData =
