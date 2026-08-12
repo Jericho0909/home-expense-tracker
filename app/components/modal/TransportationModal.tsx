@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import ModalFormButton from "../ModalFormButton";
 import type { TransportationExpense, TransportationCategory } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
 
@@ -30,10 +31,19 @@ const TransportationModal = () => {
         "VehicleMaintenance",
     ]
 
+    const handleCancel = () => {
+        setTransportationExpenses(defaultData)
+    }
+
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        
+    }
+
     return (
         <form 
             className="flex flex-col"
-            
+            onSubmit={handleSubmit}
         >
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
@@ -131,6 +141,37 @@ const TransportationModal = () => {
                     required
                 />
             </div>
+
+            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                <label
+                    htmlFor="date"
+                    className="text-base"
+                    style={{
+                        fontFamily: "var(--font-libre-baskerville)"
+                    }}
+                >
+                    Date:
+                </label>
+                <input
+                    id="date"
+                    type="date"
+                    name="date"
+                    value={transportationExpenses.date}
+                    onChange={(e) => setTransportationExpenses((item) => ({
+                        ...item,
+                        [e.target.name]: e.target.value
+
+                    }))}
+                    className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    placeholder=""
+                    required
+                />
+            </div>
+
+            <ModalFormButton
+                handleCancel={handleCancel}
+            />
         </form>
     )
 }
