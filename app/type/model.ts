@@ -171,7 +171,7 @@ export type TransportationExpense = Expense & {
 export type HealthExpense = Expense & {
     name: string;
     category: HealthCategory
-    purchaseDate: string;
+    date: string;
 }
 
 export type HouseMaintenanceExpense = Expense & {

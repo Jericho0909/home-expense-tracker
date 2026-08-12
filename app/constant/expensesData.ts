@@ -281,7 +281,7 @@ export const HealthData: HealthExpense[] = [
         name: "Maintenance Medicine",
         amount: 850,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-26",
+        date: "2026-07-26",
     },
     {
         id: 28,
@@ -290,7 +290,7 @@ export const HealthData: HealthExpense[] = [
         name: "Doctor Consultation",
         amount: 800,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-24",
+        date: "2026-07-24",
     },
     {
         id: 29,
@@ -299,7 +299,7 @@ export const HealthData: HealthExpense[] = [
         name: "Dental Cleaning",
         amount: 1200,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-22",
+        date: "2026-07-22",
     },
     {
         id: 30,
@@ -308,7 +308,7 @@ export const HealthData: HealthExpense[] = [
         name: "Blood Test",
         amount: 650,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-20",
+        date: "2026-07-20",
     },
     {
         id: 31,
@@ -317,7 +317,7 @@ export const HealthData: HealthExpense[] = [
         name: "Pain Reliever",
         amount: 250,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-18",
+        date: "2026-07-18",
     },
     {
         id: 32,
@@ -326,7 +326,7 @@ export const HealthData: HealthExpense[] = [
         name: "Follow-up Consultation",
         amount: 500,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-15",
+        date: "2026-07-15",
     },
     {
         id: 33,
@@ -335,7 +335,7 @@ export const HealthData: HealthExpense[] = [
         name: "Tooth Extraction",
         amount: 1800,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-12",
+        date: "2026-07-12",
     },
     {
         id: 34,
@@ -344,7 +344,7 @@ export const HealthData: HealthExpense[] = [
         name: "Urinalysis",
         amount: 200,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-10",
+        date: "2026-07-10",
     },
     {
         id: 35,
@@ -353,7 +353,7 @@ export const HealthData: HealthExpense[] = [
         name: "First Aid Supplies",
         amount: 450,
         createdAt: "2026-07-01",
-        purchaseDate: "2026-07-08",
+        date: "2026-07-08",
     },
 ];
 
