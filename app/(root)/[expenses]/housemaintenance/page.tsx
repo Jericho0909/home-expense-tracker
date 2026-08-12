@@ -101,7 +101,7 @@ const HouseMaintenance = () => {
             render: (item) => 
                 <span className="flex items-center gap-1">
                     {HouseMaintenanceBillIcons[item.category].icon}
-                    {item.name}
+                    {item.description}
                 </span>
         },
         {
@@ -111,7 +111,7 @@ const HouseMaintenance = () => {
         },
         {
             label: "Date",
-            render: (item) => formatPurchaseDate(item.purchaseDate),
+            render: (item) => formatPurchaseDate(item.date),
         },
         {
             label: "Amount",
@@ -159,13 +159,24 @@ const HouseMaintenance = () => {
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
                         modalTitle = {
-                            <>
-                                <span className="mr-2">
-                                    <Hammer size={24} className="text-[#B8B0A5]"
-                                    />
+                            <div className="flex flex-col">
+                                <h4 
+                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
+                                    style={{ fontFamily: "var(--font-cinzel)"}}
+                                >
+                                    <span className="mr-2">
+                                        <Hammer size={24} className="text-[#B8B0A5]"
+                                        />
+                                    </span>
+                                    Add Maintenance Expense
+                                </h4>
+                                <span
+                                    className="text-base italic text-[#8B5E3C]"
+                                    style={{ fontFamily: "var(--font-cinzel)"}}
+                                >
+                                    Record a house maintenance expense
                                 </span>
-                                House Maintenance Bills
-                            </>
+                            </div>
                         }
                         modalContent={"HouseMaintenance"}
                     />

@@ -106,15 +106,15 @@ export type OtherExpenseCategory =
     | "Services"
 
 export type FamilyRole =
-  | "Father"
-  | "Mother"
-  | "Son"
-  | "Daughter"
-  | "Grandfather"
-  | "Grandmother"
-  | "Uncle"
-  | "Aunt"
-  | "Other";
+    | "Father"
+    | "Mother"
+    | "Son"
+    | "Daughter"
+    | "Grandfather"
+    | "Grandmother"
+    | "Uncle"
+    | "Aunt"
+    | "Other";
 
 export type StatusType =
     | "Paid"
@@ -163,27 +163,27 @@ export type FoodHouseholdExpense = Expense & {
 }
 
 export type TransportationExpense = Expense & {
+    description: string
     category: TransportationCategory;
-    name: string
     date: string;
 }
 
 export type HealthExpense = Expense & {
-    name: string;
+    description: string;
     category: HealthCategory
     date: string;
 }
 
 export type HouseMaintenanceExpense = Expense & {
-    name: string;
+    description: string;
     category: HouseMaintenanceCategory
-    purchaseDate: string;
+    date: string;
 }
 
 export type FamilyExpense = Expense & {
-    name: string;
+    description: string;
     category: FamilyExpensesCategory;
-    purchaseDate: string;
+    date: string;
 }
 
 export type OtherExpense = Expense & {

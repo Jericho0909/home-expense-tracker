@@ -87,7 +87,7 @@ const Health = () => {
             render: (item) => 
                 <span className="flex items-center gap-1">
                     {HealthBillIcons[item.category].icon}
-                    {item.name}
+                    {item.description}
                 </span>
         },
         {

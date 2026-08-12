@@ -91,7 +91,7 @@ const Transportation = () => {
             render: (item) => 
                 <span className="flex items-center gap-1">
                     {TransportationBillIcons[item.category].icon}
-                    {item.name}
+                    {item.description}
                 </span>
         },
         {

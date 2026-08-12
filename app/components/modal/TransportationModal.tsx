@@ -15,8 +15,8 @@ const TransportationModal = () => {
         expense: "Transportation",
         amount: 0,
         createdAt: "",
+        description: "",
         category: "",
-        name: "",
         date: ""
     }
 
@@ -83,19 +83,19 @@ const TransportationModal = () => {
 
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
-                    htmlFor="name"
+                    htmlFor="description"
                     className="text-base"
                     style={{
                         fontFamily: "var(--font-libre-baskerville)"
                     }}
                 >
-                    Name:
+                    Description:
                 </label>
                 <input
-                    id="name"
+                    id="description"
                     type="text"
-                    name="name"
-                    value={transportationExpenses.name}
+                    name="description"
+                    value={transportationExpenses.description}
                     onChange={(e) => setTransportationExpenses((item) => ({
                         ...item,
                         [e.target.name]: capitalizeFirstLetter(e.target.value)

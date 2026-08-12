@@ -15,7 +15,7 @@ const HealthModal = () => {
         expense: "Health",
         amount: 0,
         createdAt: "",
-        name: "",
+        description: "",
         category: "",
         date: ""
     }
@@ -30,7 +30,7 @@ const HealthModal = () => {
         "Other",
     ]
 
-     const handleCancel = () => {
+    const handleCancel = () => {
         setHealthExpenses(defaultData)
     }
 
@@ -82,19 +82,19 @@ const HealthModal = () => {
 
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
-                    htmlFor="name"
+                    htmlFor="description"
                     className="text-base"
                     style={{
                         fontFamily: "var(--font-libre-baskerville)"
                     }}
                 >
-                    Name:
+                    Description:
                 </label>
                 <input
-                    id="name"
+                    id="description"
                     type="text"
-                    name="name"
-                    value={healthExpenses.name}
+                    name="description"
+                    value={healthExpenses.description}
                     onChange={(e) => setHealthExpenses((item) => ({
                         ...item,
                         [e.target.name]: capitalizeFirstLetter(e.target.value)
@@ -149,7 +149,7 @@ const HealthModal = () => {
                         fontFamily: "var(--font-libre-baskerville)"
                     }}
                 >
-                    Purchase Date:
+                    Date:
                 </label>
                 <input
                     id="date"
