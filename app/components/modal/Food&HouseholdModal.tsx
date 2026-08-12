@@ -58,6 +58,42 @@ const FoodAndHouseholdModal = () => {
         >
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
+                    htmlFor="category"
+                    className="text-base"
+                    style={{
+                        fontFamily: "var(--font-libre-baskerville)"
+                    }}
+                >
+                    Category:
+                </label>
+                <select
+                    id="category"
+                    value={foodHouseholdExpenses.category}
+                    onChange={(e) =>
+                        setFoodHouseholdExpenses((item) => ({
+                            ...item,
+                            category: e.target.value as FoodAndHouseHoldCategory
+                        }))
+                    }
+                    className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
+                    style={{
+                        fontFamily: "var(--font-libre-baskerville)"
+                    }}
+                >
+                    <option value="" disabled>
+                        Select Category
+                    </option>
+
+                    {[...FoodHouseholdCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
+                        <option key={category} value={category}>
+                            {category}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                <label
                     htmlFor="name"
                     className="text-base"
                     style={{
@@ -178,42 +214,6 @@ const FoodAndHouseholdModal = () => {
                     placeholder=""
                     required
                 />
-            </div>
-
-            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                <label
-                    htmlFor="category"
-                    className="text-base"
-                    style={{
-                        fontFamily: "var(--font-libre-baskerville)"
-                    }}
-                >
-                    Category:
-                </label>
-                <select
-                    id="category"
-                    value={foodHouseholdExpenses.category}
-                    onChange={(e) =>
-                        setFoodHouseholdExpenses((item) => ({
-                            ...item,
-                            category: e.target.value as FoodAndHouseHoldCategory
-                        }))
-                    }
-                    className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
-                    style={{
-                        fontFamily: "var(--font-libre-baskerville)"
-                    }}
-                >
-                    <option value="" disabled>
-                        Select Category
-                    </option>
-
-                    {[...FoodHouseholdCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
-                        <option key={category} value={category}>
-                            {category}
-                        </option>
-                    ))}
-                </select>
             </div>
 
             <ModalFormButton

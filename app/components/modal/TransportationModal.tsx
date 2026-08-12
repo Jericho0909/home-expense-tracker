@@ -47,33 +47,6 @@ const TransportationModal = () => {
         >
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
-                    htmlFor="name"
-                    className="text-base"
-                    style={{
-                        fontFamily: "var(--font-libre-baskerville)"
-                    }}
-                >
-                    Name:
-                </label>
-                <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    value={transportationExpenses.name}
-                    onChange={(e) => setTransportationExpenses((item) => ({
-                        ...item,
-                        [e.target.name]: capitalizeFirstLetter(e.target.value)
-
-                    }))}
-                    className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                    placeholder=""
-                    required
-                />
-            </div>
-
-            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                <label
                     htmlFor="category"
                     className="text-base"
                     style={{
@@ -106,6 +79,33 @@ const TransportationModal = () => {
                         </option>
                     ))}
                 </select>
+            </div>
+
+            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                <label
+                    htmlFor="name"
+                    className="text-base"
+                    style={{
+                        fontFamily: "var(--font-libre-baskerville)"
+                    }}
+                >
+                    Name:
+                </label>
+                <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={transportationExpenses.name}
+                    onChange={(e) => setTransportationExpenses((item) => ({
+                        ...item,
+                        [e.target.name]: capitalizeFirstLetter(e.target.value)
+
+                    }))}
+                    className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    placeholder=""
+                    required
+                />
             </div>
 
              <div className="flex justify-center flex-col gap-2 mb-2 p-1">

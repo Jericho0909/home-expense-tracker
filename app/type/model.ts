@@ -79,14 +79,14 @@ export type HealthCategory =
     | "Consultation"
     | "Dental"
     | "Laboratory"
-    | "Other";
+    | "Other"
 
 export type HouseMaintenanceCategory =
     | "Repairs"
     | "Maintenance"
     | "Cleaning"
     | "PestControl"
-    | "Other";
+    | "Other"
 
 export type FamilyExpensesCategory =
     | "Education"
