@@ -91,8 +91,7 @@ const BudgerSettingPage = () => {
                 {MembersData.map((member) => (
                     <Card
                         key={member.id}
-                        name={member.name}
-                        money={member.money}
+                        member={member}
                     />
                 ))}
                 <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full ">

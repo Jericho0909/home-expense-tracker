@@ -1,16 +1,22 @@
 'use client'
 
+import Link from "next/link";
 import { useContext } from "react";
 import ModalContext from "../context/modalContext";
 import { HandCoins, PhilippinePeso, Plus } from "lucide-react";
 
-interface CardProps {
+interface MemberType {
+    id: number;
     name: string;
-    money: number;
+    money: number
+}
+
+interface CardProps {
+    member: MemberType
 }
 
 
-const Card = ({ name, money }: CardProps) => {
+const Card = ({ member }: CardProps) => {
     const { setIsOpen, setModalTitle, setActiveModal } = useContext(ModalContext)!
 
     const openModal = () => {
@@ -32,24 +38,23 @@ const Card = ({ name, money }: CardProps) => {
                 className="font-bold text-[#3B2416] text-base"
                 style={{ fontFamily: "var(--font-cinzel)"}}
             >
-                {name}
+                {member.name}
             </span>
             <span
                 className="flex items-center gap-1 text-[#8B5E3C] text-sm"
                 style={{ fontFamily: "var(--font-libre-baskerville)"}}
             >
                 <PhilippinePeso size={16}/>
-                {money.toLocaleString("en-US")}
+                {member.money.toLocaleString("en-US")}
             </span>
-            <button
-                type="button"
-                onClick={openModal}
+            <Link
+                href={`/budgetSetting/Add/`}
                 className="add-button flex items-center justify-center gap-1 px-2 py-1 mt-2 text-sm font-semibold  rounded cursor-pointer"
                 style={{ fontFamily: "var(--font-libre-baskerville)"}}
             >
                 <Plus size={16}/>
                 Add
-            </button>
+            </Link>
         </div>
     )
 }
