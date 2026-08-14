@@ -1,4 +1,4 @@
-import Modal from "@/app/components/modal/Modal";
+import Modal from "@/app/components/modalForm/Modal";
 import { modalContents } from "@/app/constant/modalContents";
 
 const Add = async ({params}: {params: Promise<{action: string; id: number }>}) => {

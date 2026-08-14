@@ -1,24 +1,42 @@
 import type { ReactNode } from "react";
-import UtilitiesModal from "../components/modal/UtilitiesModal";
-import FoodAndHouseholdModal from "../components/modal/Food&HouseholdModal";
-import TransportationModal from "../components/modal/TransportationModal";
-import HealthModal from "../components/modal/HealthModal";
-import HouseMaintenanceModal from "../components/modal/HouseMaintenanceModal";
-import FamilyExpensesModal from "../components/modal/FamilyExpensesModal";
-import OtherExepensesModal from "../components/modal/OtherExpensesModal";
-import BudgetSettingModal from "../components/modal/BudgetSettingModal";
-import AddMemberModalForm from "../components/modal/AddMemberModalForm";
+import UtilitiesModalForm from "../components/modalForm/UtilitiesModalForm";
+import FoodAndHouseholdModalForm from "../components/modalForm/Food&HouseholdModalForm";
+import TransportationModal from "../components/modalForm/TransportationModalForm";
+import HealthModalForm from "../components/modalForm/HealthModalForm";
+import HouseMaintenanceModalForm from "../components/modalForm/HouseMaintenanceModalForm";
+import FamilyExpensesModalForm from "../components/modalForm/FamilyExpensesModalForm";
+import OtherExepensesModalForm from "../components/modalForm/OtherExpensesModalForm";
+import BudgetSettingModalForm from "../components/modalForm/BudgetSettingModalForm";
+import AddMemberModalForm from "../components/modalForm/AddMemberModalForm";
 import type { ModalContents } from "../type/model"
 
 export const modalContents: Record<ModalContents, ReactNode> = {
     Dashboard: null,
-    Utilities: <UtilitiesModal/>,
-    FoodAndHousehold: <FoodAndHouseholdModal/>,
-    Transportation: <TransportationModal/>,
-    Health: <HealthModal/>,
-    HouseMaintenance: <HouseMaintenanceModal/>,
-    FamilyExpenses: <FamilyExpensesModal/>,
-    OtherExpenses: <OtherExepensesModal/>,
-    BudgetSetting: <BudgetSettingModal/>,
-    AddMember: <AddMemberModalForm/>
+    Utilities: <UtilitiesModalForm
+        id={null}
+    />,
+    FoodAndHousehold: <FoodAndHouseholdModalForm
+        id={null}
+    />,
+    Transportation: <TransportationModal
+        id={null}
+    />,
+    Health: <HealthModalForm
+        id={null}
+    />,
+    HouseMaintenance: <HouseMaintenanceModalForm
+        id={null}
+    />,
+    FamilyExpenses: <FamilyExpensesModalForm
+        id={null}
+    />,
+    OtherExpenses: <OtherExepensesModalForm
+        id={null}
+    />,
+    BudgetSetting: <BudgetSettingModalForm
+        id={null}
+    />,
+    AddMember: <AddMemberModalForm
+        id={null}
+    />
 }

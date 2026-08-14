@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import ModalFormButton from "../ModalFormButton";
-import type { OtherExpense, OtherExpenseCategory } from "@/app/type/model";
+import type { HealthExpense, HealthCategory } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
 
-type OtherExpenseForm = Omit<OtherExpense, "category"> & {
-    category: OtherExpenseCategory | "";
+type HealthExpenseForm = Omit<HealthExpense, "category"> & {
+    category: HealthCategory | "";
 }
 
-const OtherExepensesModal = () => {
-    const defaultData: OtherExpenseForm = {
+const HealthModalForm = ({id}: {id?: string | null}) => {
+    const defaultData: HealthExpenseForm = {
         id: 0,
-        expense: "OtherExpenses",
+        expense: "Health",
         amount: 0,
         createdAt: "",
         description: "",
@@ -20,21 +20,18 @@ const OtherExepensesModal = () => {
         date: ""
     }
 
-    const [ otherExpenses, setOtherExpenses ] = useState<OtherExpenseForm>(defaultData)
+    const [ healthExpenses, setHealthExpenses ] = useState<HealthExpenseForm>(defaultData)
 
-    const OtherCategory: OtherExpenseCategory[] = [
-        "Personal",
-        "Donations",
-        "Subscriptions",
-        "Government",
-        "Miscellaneous",
-        "Tickets",
-        "Fees",
-        "Services",
+    const HealthCategory: HealthCategory[] = [
+        "Medicine",
+        "Consultation",
+        "Dental",
+        "Laboratory",
+        "Other",
     ]
 
     const handleCancel = () => {
-        setOtherExpenses(defaultData)
+        setHealthExpenses(defaultData)
     }
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -59,11 +56,11 @@ const OtherExepensesModal = () => {
                 </label>
                 <select
                     id="category"
-                    value={otherExpenses.category}
+                    value={healthExpenses.category}
                     onChange={(e) =>
-                        setOtherExpenses((item) => ({
+                        setHealthExpenses((item) => ({
                             ...item,
-                            category: e.target.value as OtherExpenseCategory
+                            category: e.target.value as HealthCategory
                         }))
                     }
                     className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
@@ -75,7 +72,7 @@ const OtherExepensesModal = () => {
                         Select Category
                     </option>
 
-                    {[...OtherCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
+                    {[...HealthCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
                         <option key={category} value={category}>
                             {category}
                         </option>
@@ -97,8 +94,8 @@ const OtherExepensesModal = () => {
                     id="description"
                     type="text"
                     name="description"
-                    value={otherExpenses.description}
-                    onChange={(e) => setOtherExpenses((item) => ({
+                    value={healthExpenses.description}
+                    onChange={(e) => setHealthExpenses((item) => ({
                         ...item,
                         [e.target.name]: capitalizeFirstLetter(e.target.value)
 
@@ -126,8 +123,8 @@ const OtherExepensesModal = () => {
                     name="amount"
                     min="0"
                     step="0.01"
-                    value={otherExpenses.amount || ""}
-                    onChange={(e) => setOtherExpenses((item) => ({
+                    value={healthExpenses.amount || ""}
+                    onChange={(e) => setHealthExpenses((item) => ({
                         ...item,
                         [e.target.name]: Number(e.target.value)
 
@@ -158,8 +155,8 @@ const OtherExepensesModal = () => {
                     id="date"
                     type="date"
                     name="date"
-                    value={otherExpenses.date}
-                    onChange={(e) => setOtherExpenses((item) => ({
+                    value={healthExpenses.date}
+                    onChange={(e) => setHealthExpenses((item) => ({
                         ...item,
                         [e.target.name]: e.target.value
 
@@ -178,4 +175,4 @@ const OtherExepensesModal = () => {
     )
 }
 
-export default OtherExepensesModal
+export default HealthModalForm

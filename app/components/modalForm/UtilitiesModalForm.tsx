@@ -12,7 +12,7 @@ type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status"> & {
     status: StatusType | "";
 }
 
-const UtilitiesModal = () => {
+const UtilitiesModalForm = ({id}: {id?: string | null}) => {
     const defaultData: UtilityExpenseForm = {
         id: 0,
         expense: "Utilities",
@@ -248,4 +248,4 @@ const UtilitiesModal = () => {
     )
 }
 
-export default UtilitiesModal
+export default UtilitiesModalForm

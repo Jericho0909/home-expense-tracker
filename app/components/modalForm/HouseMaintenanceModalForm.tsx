@@ -1,49 +1,37 @@
 'use client'
 
-import { useState } from "react";
-import ModalFormButton from "../ModalFormButton";
-import type { FoodHouseholdExpense, 
-    FoodAndHouseHoldCategory,
-} from "@/app/type/model"
-import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
+import { useState } from "react"
+import ModalFormButton from "../ModalFormButton"
+import type { HouseMaintenanceExpense, HouseMaintenanceCategory } from "@/app/type/model"
+import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter"
 
-
-type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category"> & {
-    category: FoodAndHouseHoldCategory | "";
+type HouseMaintenanceExpenseForm = Omit<HouseMaintenanceExpense, "category"> & {
+    category: HouseMaintenanceCategory | "";
 }
 
-type FoodHouseholdType = "" | "Food" | "Household"
-const FoodAndHouseholdModal = () => {
-    const defaultData: FoodHouseholdExpenseForm = {
+const HouseMaintenanceModalForm = ({id}: {id?: string | null}) => {
+    const defaultData: HouseMaintenanceExpenseForm = {
         id: 0,
-        expense: "FoodAndHousehold",
+        expense: "HouseMaintenance",
         amount: 0,
         createdAt: "",
-        name: "",
-        type: "",
+        description: "",
         category: "",
-        purchaseDate: ""
+        date: ""
     }
 
-    const [ foodHouseholdExpenses, setFoodHouseholdExpenses ] = useState<FoodHouseholdExpenseForm>(defaultData)
+    const [ houseMaintenanceExpense, setHouseMaintenanceExpense ] = useState<HouseMaintenanceExpenseForm>(defaultData)
 
-    const FoodHouseholdCategory: FoodAndHouseHoldCategory[] = [
-        "Groceries",
-        "Meat",
-        "Seafood",
-        "Fruits",
-        "Vegetables",
-        "Snacks",
-        "Beverages",
+    const HouseMaintenanceCategory: HouseMaintenanceCategory[] = [
+        "Repairs",
+        "Maintenance",
         "Cleaning",
-        "Laundry",
-        "PersonalCare",
-        "Kitchen",
-        "HomeSupplies",
+        "PestControl",
+        "Other",
     ]
 
     const handleCancel = () => {
-        setFoodHouseholdExpenses(defaultData)
+        setHouseMaintenanceExpense(defaultData)
     }
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -68,11 +56,11 @@ const FoodAndHouseholdModal = () => {
                 </label>
                 <select
                     id="category"
-                    value={foodHouseholdExpenses.category}
+                    value={houseMaintenanceExpense.category}
                     onChange={(e) =>
-                        setFoodHouseholdExpenses((item) => ({
+                        setHouseMaintenanceExpense((item) => ({
                             ...item,
-                            category: e.target.value as FoodAndHouseHoldCategory
+                            category: e.target.value as HouseMaintenanceCategory
                         }))
                     }
                     className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
@@ -84,7 +72,7 @@ const FoodAndHouseholdModal = () => {
                         Select Category
                     </option>
 
-                    {[...FoodHouseholdCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
+                    {[...HouseMaintenanceCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
                         <option key={category} value={category}>
                             {category}
                         </option>
@@ -94,20 +82,20 @@ const FoodAndHouseholdModal = () => {
 
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
-                    htmlFor="name"
+                    htmlFor="description"
                     className="text-base"
                     style={{
                         fontFamily: "var(--font-libre-baskerville)"
                     }}
                 >
-                    Name:
+                    Description:
                 </label>
                 <input
-                    id="name"
+                    id="description"
                     type="text"
-                    name="name"
-                    value={foodHouseholdExpenses.name}
-                    onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                    name="description"
+                    value={houseMaintenanceExpense.description}
+                    onChange={(e) => setHouseMaintenanceExpense((item) => ({
                         ...item,
                         [e.target.name]: capitalizeFirstLetter(e.target.value)
 
@@ -117,42 +105,6 @@ const FoodAndHouseholdModal = () => {
                     placeholder=""
                     required
                 />
-            </div>
-
-            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                <label
-                    htmlFor="type"
-                    className="text-base"
-                    style={{
-                        fontFamily: "var(--font-libre-baskerville)"
-                    }}
-                >
-                    Type:
-                </label>
-                <select
-                    id="type"
-                    value={foodHouseholdExpenses.type}
-                    onChange={(e) =>
-                        setFoodHouseholdExpenses((item) => ({
-                            ...item,
-                            type: e.target.value as FoodHouseholdType
-                        }))
-                    }
-                    className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
-                    style={{
-                        fontFamily: "var(--font-libre-baskerville)"
-                    }}
-                >
-                    <option value="" disabled>
-                        Select Type
-                    </option>
-
-                    {["Food", "Household" ].map((type) => (
-                        <option key={type} value={type}>
-                            {type}
-                        </option>
-                    ))}
-                </select>
             </div>
 
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
@@ -171,8 +123,8 @@ const FoodAndHouseholdModal = () => {
                     name="amount"
                     min="0"
                     step="0.01"
-                    value={foodHouseholdExpenses.amount || ""}
-                    onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                    value={houseMaintenanceExpense.amount || ""}
+                    onChange={(e) => setHouseMaintenanceExpense((item) => ({
                         ...item,
                         [e.target.name]: Number(e.target.value)
 
@@ -191,20 +143,20 @@ const FoodAndHouseholdModal = () => {
 
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
-                    htmlFor="purchaseDate"
+                    htmlFor="date"
                     className="text-base"
                     style={{
                         fontFamily: "var(--font-libre-baskerville)"
                     }}
                 >
-                    Purchase Date:
+                    Date:
                 </label>
                 <input
-                    id="purchaseDate"
+                    id="date"
                     type="date"
-                    name="purchaseDate"
-                    value={foodHouseholdExpenses.purchaseDate}
-                    onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                    name="date"
+                    value={houseMaintenanceExpense.date}
+                    onChange={(e) => setHouseMaintenanceExpense((item) => ({
                         ...item,
                         [e.target.name]: e.target.value
 
@@ -220,8 +172,7 @@ const FoodAndHouseholdModal = () => {
                 handleCancel={handleCancel}
             />
         </form>
-        
     )
 }
 
-export default FoodAndHouseholdModal
+export default HouseMaintenanceModalForm

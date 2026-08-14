@@ -9,7 +9,7 @@ type TransportationExpenseForm = Omit<TransportationExpense, "category" > & {
     category: TransportationCategory | "";
 }
 
-const TransportationModal = () => {
+const TransportationModalForm = ({id}: {id?: string | null}) => {
     const defaultData: TransportationExpenseForm = {
         id: 0,
         expense: "Transportation",
@@ -176,4 +176,4 @@ const TransportationModal = () => {
     )
 }
 
-export default TransportationModal
+export default TransportationModalForm

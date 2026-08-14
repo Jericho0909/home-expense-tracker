@@ -9,7 +9,7 @@ type MemberForm = Omit<Member, "familyRole" > & {
     familyRole: FamilyRole | ""
 }
 
-const AddMemberModalForm = () => {
+const AddMemberModalForm = ({id}: {id?: string | null}) => {
     const defaultData: MemberForm = {
         id: "",
         name: "",

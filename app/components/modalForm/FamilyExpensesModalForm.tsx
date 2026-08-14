@@ -9,7 +9,7 @@ type FamilyExpenseForm = Omit<FamilyExpense, "category"> & {
     category: FamilyExpensesCategory | "";
 }
 
-const FamilyExpensesModal = () => {
+const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
     const defaultData: FamilyExpenseForm = {
         id: 0,
         expense: "FamilyExpenses",
@@ -175,4 +175,4 @@ const FamilyExpensesModal = () => {
     )
 }
 
-export default FamilyExpensesModal
+export default FamilyExpensesModalForm
