@@ -7,9 +7,9 @@ import HouseMaintenanceModal from "../components/modal/HouseMaintenanceModal";
 import FamilyExpensesModal from "../components/modal/FamilyExpensesModal";
 import OtherExepensesModal from "../components/modal/OtherExpensesModal";
 import BudgetSettingModal from "../components/modal/BudgetSettingModal";
-import type { ExpenseSection } from "../type/model"
+import type { ModalContents } from "../type/model"
 
-export const modalContents: Record<ExpenseSection, ReactNode> = {
+export const modalContents: Record<ModalContents, ReactNode> = {
     Dashboard: null,
     Utilities: <UtilitiesModal/>,
     FoodAndHousehold: <FoodAndHouseholdModal/>,
@@ -18,5 +18,6 @@ export const modalContents: Record<ExpenseSection, ReactNode> = {
     HouseMaintenance: <HouseMaintenanceModal/>,
     FamilyExpenses: <FamilyExpensesModal/>,
     OtherExpenses: <OtherExepensesModal/>,
-    BudgetSetting: <BudgetSettingModal/>
+    BudgetSetting: <BudgetSettingModal/>,
+    AddMember: null
 }

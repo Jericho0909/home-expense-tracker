@@ -205,3 +205,7 @@ export type Member = {
     money: number;
     createdAt: string;
 }
+
+export type ModalContents =
+    | ExpenseSection
+    | "AddMember"
