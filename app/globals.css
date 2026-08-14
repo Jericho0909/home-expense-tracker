@@ -104,6 +104,14 @@
   }
 
   .add-member-btn:hover svg {
-      transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+
+  .save-member-btn:hover {
+    background-color: #5C4033;
+  }
+
+  .save-member-btn:active {
+    transform: translateY(1);
   }
 }
