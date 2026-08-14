@@ -48,7 +48,7 @@ const Card = ({ member }: CardProps) => {
                 {member.money.toLocaleString("en-US")}
             </span>
             <Link
-                href={`/budgetSetting/Add/`}
+                href={`/budgetSetting/editContribution/${member.id}`}
                 className="add-button flex items-center justify-center gap-1 px-2 py-1 mt-2 text-sm font-semibold  rounded cursor-pointer"
                 style={{ fontFamily: "var(--font-libre-baskerville)"}}
             >

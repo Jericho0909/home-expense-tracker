@@ -1,4 +1,4 @@
-import Modal from "@/app/components/modal/modal";
+import Modal from "@/app/components/modal/Modal";
 import { modalContents } from "@/app/constant/modalContents";
 
 const Add = async ({params}: {params: Promise<{action: string; id: number }>}) => {
@@ -12,7 +12,7 @@ const Add = async ({params}: {params: Promise<{action: string; id: number }>}) =
                 title = "testing"
                 children = {
                     <>
-                        {modalContents["BudgetSetting"]}
+                        
                     </>
                 }
             />

@@ -27,6 +27,9 @@
 }
 @keyframes l4 {to{clip-path: inset(0 -1ch 0 0)}}
 
+.add-member-btn svg {
+  transition: transform 0.2s ease;
+}
 
 @media (hover: hover) {
   .menu-button:hover {
@@ -90,5 +93,17 @@
 
   .savebill-btn:active {
     transform: translateY(1);
+  }
+
+  .add-member-btn:hover {
+    transform: translateY(-3px);
+  }
+
+  .add-member-btn:active {
+    transform: translateY(1)
+  }
+
+  .add-member-btn:hover svg {
+      transform: rotate(90deg);
   }
 }
