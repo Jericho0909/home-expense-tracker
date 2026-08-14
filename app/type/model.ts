@@ -199,7 +199,7 @@ export type ExpenseData =
     | HealthExpense;
 
 export type Member = {
-    id: number;
+    id: string | number;
     name: string;
     familyRole: FamilyRole;
     money: number;
