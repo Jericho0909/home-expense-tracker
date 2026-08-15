@@ -1,4 +1,4 @@
-const BudgetSettingModalForm = ({id}: {id?: string | null}) => {
+const BudgetSettingModalForm = ({id}: {id?: number | string | null}) => {
     return (
         <div>
             BudgetSettingModal

@@ -1,18 +1,19 @@
 'use client'
 
-import { useState } from "react"
-import ModalFormButton from "../ModalFormButton"
-import type { FamilyExpense, FamilyExpensesCategory } from "@/app/type/model"
-import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter"
+import { useState } from "react";
+import ModalFormButton from "../ModalFormButton";
+import type { TransportationExpense, TransportationCategory } from "@/app/type/model"
+import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
+import { Car } from 'lucide-react';
 
-type FamilyExpenseForm = Omit<FamilyExpense, "category"> & {
-    category: FamilyExpensesCategory | "";
+type TransportationExpenseForm = Omit<TransportationExpense, "category" > & {
+    category: TransportationCategory | "";
 }
 
-const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
-    const defaultData: FamilyExpenseForm = {
+const TransportationModal = ({id}: {id?: string | null}) => {
+    const defaultData: TransportationExpenseForm = {
         id: 0,
-        expense: "FamilyExpenses",
+        expense: "Transportation",
         amount: 0,
         createdAt: "",
         description: "",
@@ -20,18 +21,19 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
         date: ""
     }
 
-    const [ familyExpensesData, setFamilyExpensesData ] = useState<FamilyExpenseForm>(defaultData)
+    const [ transportationExpenses, setTransportationExpenses ] = useState<TransportationExpenseForm>(defaultData)
 
-    const FamilyCategory: FamilyExpensesCategory[] = [
-        "Education",
-        "Allowance",
-        "Entertainment",
-        "Celebrations",
-        "Other",
+    const TransportationCategory: TransportationCategory[] = [
+        "Fuel",
+        "PublicTransport",
+        "RideHailing",
+        "Parking",
+        "Toll",
+        "VehicleMaintenance",
     ]
 
     const handleCancel = () => {
-        setFamilyExpensesData(defaultData)
+        setTransportationExpenses(defaultData)
     }
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -40,7 +42,26 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
     }
 
     return (
-        <form
+        <>
+            <div className="flex flex-col border-b-2 border-black mb-4">
+                <h4 
+                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
+                    style={{ fontFamily: "var(--font-cinzel)"}}
+                >
+                    <span className="mr-2">
+                        <Car size={24} className="text-[#CD7F32]"
+                    />
+                    </span>
+                    Add Transportation Expense
+                </h4>
+                <span
+                    className="text-base italic text-[#8B5E3C]"
+                    style={{ fontFamily: "var(--font-cinzel)"}}
+                >
+                    Record a transportation expense 
+                </span>
+            </div>
+             <form 
             className="flex flex-col"
             onSubmit={handleSubmit}
         >
@@ -56,11 +77,11 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
                 </label>
                 <select
                     id="category"
-                    value={familyExpensesData.category}
+                    value={transportationExpenses.category}
                     onChange={(e) =>
-                        setFamilyExpensesData((item) => ({
+                        setTransportationExpenses((item) => ({
                             ...item,
-                            category: e.target.value as FamilyExpensesCategory
+                            category: e.target.value as TransportationCategory
                         }))
                     }
                     className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
@@ -72,7 +93,7 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
                         Select Category
                     </option>
 
-                    {[...FamilyCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
+                    {[...TransportationCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
                         <option key={category} value={category}>
                             {category}
                         </option>
@@ -94,8 +115,8 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
                     id="description"
                     type="text"
                     name="description"
-                    value={familyExpensesData.description}
-                    onChange={(e) => setFamilyExpensesData((item) => ({
+                    value={transportationExpenses.description}
+                    onChange={(e) => setTransportationExpenses((item) => ({
                         ...item,
                         [e.target.name]: capitalizeFirstLetter(e.target.value)
 
@@ -107,7 +128,7 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
                 />
             </div>
 
-            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
                     htmlFor="amount"
                     className="text-base"
@@ -123,8 +144,8 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
                     name="amount"
                     min="0"
                     step="0.01"
-                    value={familyExpensesData.amount || ""}
-                    onChange={(e) => setFamilyExpensesData((item) => ({
+                    value={transportationExpenses.amount || ""}
+                    onChange={(e) => setTransportationExpenses((item) => ({
                         ...item,
                         [e.target.name]: Number(e.target.value)
 
@@ -155,8 +176,8 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
                     id="date"
                     type="date"
                     name="date"
-                    value={familyExpensesData.date}
-                    onChange={(e) => setFamilyExpensesData((item) => ({
+                    value={transportationExpenses.date}
+                    onChange={(e) => setTransportationExpenses((item) => ({
                         ...item,
                         [e.target.name]: e.target.value
 
@@ -172,7 +193,8 @@ const FamilyExpensesModalForm = ({id}: {id?: string | null}) => {
                 handleCancel={handleCancel}
             />
         </form>
+        </>
     )
 }
 
-export default FamilyExpensesModalForm
+export default TransportationModal

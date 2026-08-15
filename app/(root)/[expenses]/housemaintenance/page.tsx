@@ -2,12 +2,12 @@
 
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
-import { Hammer } from 'lucide-react';
 import ButtonModal from "@/app/components/ButtonModal";
 import SummaryCardContent from "@/app/components/SummaryCardContent"
+import HouseMaintenanceModal from "@/app/components/modal/HouseMaintenanceModal";
 import Table from "@/app/components/Table";
 import { HouseMaintenanceData } from "@/app/constant/expensesData"
-import { PhilippinePeso } from 'lucide-react';
+import { Hammer, PhilippinePeso  } from 'lucide-react';
 import type { TableColumn, 
     HouseMaintenanceExpense,
     SummaryType
@@ -158,27 +158,7 @@ const HouseMaintenance = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        modalTitle = {
-                            <div className="flex flex-col">
-                                <h4 
-                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    <span className="mr-2">
-                                        <Hammer size={24} className="text-[#B8B0A5]"
-                                        />
-                                    </span>
-                                    Add Maintenance Expense
-                                </h4>
-                                <span
-                                    className="text-base italic text-[#8B5E3C]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    Record a house maintenance expense
-                                </span>
-                            </div>
-                        }
-                        modalContent={"HouseMaintenance"}
+                        modalContent={<HouseMaintenanceModal id={null}/>}
                     />
                 </div>
             </div>

@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
+import FoodAndHouseholdModal from "@/app/components/modal/Food&HouseholdModal"
 import Table from "@/app/components/Table"
 import { FoodHouseholdData } from "@/app/constant/expensesData"
 import type { TableColumn, 
@@ -137,27 +138,7 @@ const FoodAndHousePage = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        modalTitle = {
-                            <div className="flex flex-col">
-                                <h4
-                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    <span className="mr-2">
-                                        <CookingPot size={24} className="text-[#B87333]"
-                                        />
-                                    </span>
-                                    Food & Household Bills
-                                </h4>
-                                <span
-                                    className="text-base italic text-[#8B5E3C]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    Record a food or household expense
-                                </span>
-                            </div>
-                        }
-                        modalContent={"FoodAndHousehold"}
+                        modalContent={<FoodAndHouseholdModal id={null}/>}
                     />
                 </div>
             </div>

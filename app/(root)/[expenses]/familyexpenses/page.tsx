@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
+import FamilyExpensesModal from "@/app/components/modal/FamilyExpensesModal"
 import Table from "@/app/components/Table"
 import { FamilyExpensesData } from "@/app/constant/expensesData"
 import { HouseHeart, PhilippinePeso } from 'lucide-react';
@@ -157,27 +158,8 @@ const FamilyExpenses = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        modalTitle={
-                            <div className="flex flex-col">
-                                <h4 
-                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    <span className="mr-2">
-                                        <HouseHeart size={24} className="text-[#E3B778]"
-                                        />
-                                    </span>
-                                    Family Expenses
-                                </h4>
-                                <span
-                                    className="text-base italic text-[#8B5E3C]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    Record a family-related expense
-                                </span>
-                            </div>
-                        }
-                        modalContent={"FamilyExpenses"}
+                       
+                        modalContent={<FamilyExpensesModal id={null}/>}
                     />
                 </div>
             </div>

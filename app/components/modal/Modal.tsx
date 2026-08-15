@@ -4,12 +4,11 @@ import { useEffect, useRef, useContext, type ReactNode } from "react";
 import ModalContext from "@/app/context/modalContext";
 
 interface ModalProps {
-    title: ReactNode;
-    children: ReactNode
+    children: ReactNode;
 }
 
-const Modal = ({title, children}: ModalProps) => {
-    const { closeModal } = useContext(ModalContext)!
+const Modal = ({children}: ModalProps) => {
+    const { isOpen, closeModal } = useContext(ModalContext)!
     const modalRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -29,22 +28,15 @@ const Modal = ({title, children}: ModalProps) => {
         };
     }, [])
 
+    if(!isOpen) return
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div 
-                className="w-full max-w-md rounded-lg bg-[#F1E3D0] p-6 shadow-xl"
+                className="relative w-full max-w-md rounded-lg bg-[#F1E3D0] p-6 shadow-xl"
             >
 
-                <div className="flex items-center justify-between mb-4 border-b-2 border-black">
-                    <h2
-                        className="flex text-xl font-semibold text-[#3B2416]"
-                        style={{
-                            fontFamily: "var(--font-libre-baskerville)"
-                        }}
-                    >
-                        {title}
-                    </h2>
-
+                <div className="absolute top-3 right-5 flex items-center justify-end mb-4">
                     <button
                         type="button"
                         onClick={closeModal}

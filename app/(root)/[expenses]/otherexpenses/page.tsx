@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal";
 import SummaryCards from "@/app/components/SummaryCard";
+import OtherExepensesModal from "@/app/components/modal/OtherExpensesModal";
 import Table from "@/app/components/Table";
 import { OtherExpensesData } from "@/app/constant/expensesData"
 import { ReceiptText, PhilippinePeso } from 'lucide-react';
@@ -124,27 +125,8 @@ const OtherExpenses = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        modalTitle = {
-                            <div className="flex flex-col">
-                                <h4 
-                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    <span className="mr-2">
-                                        <ReceiptText size={24} className="text-[#A89F91]"
-                                        />
-                                    </span>
-                                    Add Other Expense
-                                </h4>
-                                <span
-                                    className="text-base italic text-[#8B5E3C]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    Record a miscellaneous expense  
-                                </span>
-                            </div>
-                        }
-                        modalContent={"OtherExpenses"}
+                        
+                        modalContent={<OtherExepensesModal id={null}/>}
                     />
                 </div>
             </div>

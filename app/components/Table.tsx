@@ -1,11 +1,11 @@
 import type { TableColumn } from "../type/model"
 
-interface TableProps<T extends { id: number }> {
+interface TableProps<T extends { id: number | string }> {
     data: T[];
     columns: TableColumn<T>[];
 }
 
-const Table = <T extends { id: number }>({
+const Table = <T extends { id: number | string }>({
     data,
     columns,
 }: TableProps<T>) => {

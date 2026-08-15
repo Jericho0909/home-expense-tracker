@@ -141,7 +141,7 @@ export type TableColumn<T> = {
 };
 
 export type Expense = {
-    id: number;
+    id: number | string;
     expense: ExpenseSection;
     amount: number;
     createdAt: string;

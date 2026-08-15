@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext";
 import ModalContext from "@/app/context/modalContext";
 import Card from "@/app/components/Card";
+import AddMemberModal from "@/app/components/modal/AddMemberModal";
 import Table from "@/app/components/Table";
 import BudgetForm from "@/app/components/BudgetForm";
 import { MembersData } from "@/app/constant/expensesData";
@@ -19,7 +20,7 @@ import { HandCoins,
 
 const BudgerSettingPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
-    const { setIsOpen, setModalTitle, setActiveModal } = useContext(ModalContext)!
+    const { setIsOpen, setActiveModal } = useContext(ModalContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
@@ -60,27 +61,7 @@ const BudgerSettingPage = () => {
 
     const OpenModal = () => {
         setIsOpen(true)
-        setModalTitle(
-            <div className="flex flex-col">
-                <h4 
-                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
-                    style={{ fontFamily: "var(--font-cinzel)"}}
-                >
-                    <span className="mr-2">
-                        <User size={24} color="black" fill="black"
-                        />
-                    </span>
-                    Add Family Member    
-                </h4>
-                <span
-                    className="text-base italic text-[#8B5E3C]"
-                    style={{ fontFamily: "var(--font-cinzel)"}}
-                >
-                    Add a member to your household 
-                </span>
-            </div>
-        )
-        setActiveModal("AddMember")
+        setActiveModal(<AddMemberModal id={null}/>)
     }
 
     useEffect(() => {

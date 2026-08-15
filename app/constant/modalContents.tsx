@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
-import UtilitiesModalForm from "../components/modalForm/UtilitiesModalForm";
-import FoodAndHouseholdModalForm from "../components/modalForm/Food&HouseholdModalForm";
-import TransportationModal from "../components/modalForm/TransportationModalForm";
-import HealthModalForm from "../components/modalForm/HealthModalForm";
-import HouseMaintenanceModalForm from "../components/modalForm/HouseMaintenanceModalForm";
-import FamilyExpensesModalForm from "../components/modalForm/FamilyExpensesModalForm";
-import OtherExepensesModalForm from "../components/modalForm/OtherExpensesModalForm";
-import BudgetSettingModalForm from "../components/modalForm/BudgetSettingModalForm";
-import AddMemberModalForm from "../components/modalForm/AddMemberModalForm";
+import UtilitiesModalForm from "../components/modal/UtilitiesModal";
+import FoodAndHouseholdModalForm from "../components/modal/Food&HouseholdModal";
+import TransportationModal from "../components/modal/TransportationModal";
+import HealthModalForm from "../components/modal/HealthModal";
+import HouseMaintenanceModalForm from "../components/modal/HouseMaintenanceModal";
+import FamilyExpensesModalForm from "../components/modal/FamilyExpensesModal";
+import OtherExepensesModalForm from "../components/modal/OtherExpensesModal";
+import BudgetSettingModalForm from "../components/modal/BudgetSettingModalForm";
+import AddMemberModalForm from "../components/modal/AddMemberModal";
 import type { ModalContents } from "../type/model"
 
 export const modalContents: Record<ModalContents, ReactNode> = {

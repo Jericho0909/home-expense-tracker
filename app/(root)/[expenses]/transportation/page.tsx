@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
+import TransportationModal from "@/app/components/modal/TransportationModal"
 import Table from "@/app/components/Table"
 import { Car,
     PhilippinePeso, 
@@ -148,27 +149,7 @@ const Transportation = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        modalTitle = {
-                            <div className="flex flex-col">
-                                <h4 
-                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    <span className="mr-2">
-                                        <Car size={24} className="text-[#CD7F32]"
-                                    />
-                                    </span>
-                                    Add Transportation Expense
-                                </h4>
-                                <span
-                                    className="text-base italic text-[#8B5E3C]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    Record a transportation expense 
-                                </span>
-                            </div>
-                        }
-                        modalContent={"Transportation"}
+                        modalContent={<TransportationModal id={null}/>}
                     />
                 </div>
             </div>

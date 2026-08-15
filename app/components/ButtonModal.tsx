@@ -2,19 +2,16 @@
 
 import { useContext, type ReactNode } from "react"
 import ModalContext from "../context/modalContext"
-import type { ExpenseSection } from "../type/model"
 
 interface ButtonModalProps {
-    modalTitle: ReactNode
-    modalContent: ExpenseSection
+    modalContent: ReactNode
 }
 
-const ButtonModal = ({ modalTitle, modalContent }: ButtonModalProps) => {
-    const { setIsOpen, setModalTitle, setActiveModal } = useContext(ModalContext)!
+const ButtonModal = ({ modalContent }: ButtonModalProps) => {
+    const { setIsOpen,  setActiveModal } = useContext(ModalContext)!
 
     const openModal = () => {
         setIsOpen(true)
-        setModalTitle(modalTitle)
         setActiveModal(modalContent)
     }
     return (

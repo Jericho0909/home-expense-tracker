@@ -6,7 +6,7 @@ import ModalContext from "../context/modalContext";
 import { HandCoins, PhilippinePeso, Plus } from "lucide-react";
 
 interface MemberType {
-    id: number;
+    id: string | number;
     name: string;
     money: number
 }
@@ -17,20 +17,10 @@ interface CardProps {
 
 
 const Card = ({ member }: CardProps) => {
-    const { setIsOpen, setModalTitle, setActiveModal } = useContext(ModalContext)!
+    const { setIsOpen, setActiveModal } = useContext(ModalContext)!
 
-    const openModal = () => {
+    const handleOpenModal = () => {
         setIsOpen(true)
-        setModalTitle(
-            <>
-                <span className="mr-2">
-                    <HandCoins size={24} className="text-[#964B00]"
-                    />
-                </span>
-                Household contribution
-            </>
-        )
-        setActiveModal("BudgetSetting")
     }
     return (
         <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full ">
@@ -49,6 +39,7 @@ const Card = ({ member }: CardProps) => {
             </span>
             <Link
                 href={`/budgetSetting/editContribution/${member.id}`}
+                onClick={handleOpenModal}
                 className="add-button flex items-center justify-center gap-1 px-2 py-1 mt-2 text-sm font-semibold  rounded cursor-pointer"
                 style={{ fontFamily: "var(--font-libre-baskerville)"}}
             >

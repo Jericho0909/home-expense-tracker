@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
+import HealthModal from "@/app/components/modal/HealthModal"
 import Table from "@/app/components/Table"
 import { HealthData } from "@/app/constant/expensesData"
 import { Heart, PhilippinePeso } from 'lucide-react';
@@ -144,27 +145,7 @@ const Health = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        modalTitle = {
-                            <div className="flex flex-col">
-                                <h4 
-                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    <span className="mr-2">
-                                        <Heart size={24} className="text-[#D8A7A7]"
-                                        />
-                                    </span>
-                                    Add Health Expense  
-                                </h4>
-                                <span
-                                    className="text-base italic text-[#8B5E3C]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                     Record a healthcare expense
-                                </span>
-                            </div>
-                        }
-                        modalContent={"Health"}
+                        modalContent={<HealthModal id={null}/>}
                     />
                 </div>
             </div>

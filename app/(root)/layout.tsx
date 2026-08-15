@@ -5,7 +5,7 @@ import SidebarContext from '@/app/context/sidebarContext';
 import ModalContext from '../context/modalContext';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import Modal from '../components/modalForm/Modal';
+import Modal from '../components/modal/Modal';
 import { modalContents } from '../constant/modalContents';
 import { AnimatePresence } from "framer-motion";
 
@@ -14,14 +14,12 @@ export default function RootLayout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
     const { isSidebarOpen } = useContext(SidebarContext)!
-    const { isOpen, modalTitle, activeModal } = useContext(ModalContext)!
+    const { isOpen, activeModal } = useContext(ModalContext)!
     return (
         <>
-            {isOpen && (
-                <Modal
-                    title={modalTitle}
-                >
-                    {modalContents[activeModal!]}
+            {isOpen &&  (
+                <Modal>
+                    {activeModal}
                 </Modal>
             )}
             <Header/>

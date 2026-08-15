@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCards from "@/app/components/SummaryCard";
+import UtilitiesModal from "@/app/components/modal/UtilitiesModal";
 import { UtilitiesData } from "@/app/constant/expensesData";
 import type { TableColumn, UtilityExpense } from "@/app/type/model";
 import { 
@@ -98,27 +99,7 @@ const UtilitiesPage = () => {
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        modalTitle={
-                            <div className="flex flex-col">
-                                <h4 
-                                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    <span className="mr-2">
-                                        <Lightbulb size={24} className="text-[#F4C430]"
-                                        />
-                                    </span>
-                                    Add Utility Bill 
-                                </h4>
-                                <span
-                                    className="text-base italic text-[#8B5E3C]"
-                                    style={{ fontFamily: "var(--font-cinzel)"}}
-                                >
-                                    Add a new household utility bill 
-                                </span>
-                            </div>
-                        }
-                        modalContent={"Utilities"}
+                        modalContent={<UtilitiesModal id={null}/>}
                     />
                 </div>
             </div>
