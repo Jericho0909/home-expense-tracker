@@ -1,5 +1,5 @@
 import EditForm from "@/app/components/EditForm"
-const AddContribution = async ({params}: {params: Promise<{ edit: string; id: number | string }>}) => {
+const Edit = async ({params}: {params: Promise<{ edit: string; id: number | string }>}) => {
     const { edit, id } = await params
     
     return (
@@ -10,4 +10,4 @@ const AddContribution = async ({params}: {params: Promise<{ edit: string; id: nu
     )
 }
 
-export default AddContribution
+export default Edit

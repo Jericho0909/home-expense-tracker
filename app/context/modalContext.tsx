@@ -6,7 +6,6 @@ import { createContext,
     Dispatch, 
     SetStateAction } from "react";
 import { useRouter } from "next/navigation";
-import type { ModalContents } from "../type/model";
 
 interface ModalTypes {
     isOpen: boolean;
