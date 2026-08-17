@@ -1,21 +1,22 @@
-'use client'
-
-import { useEffect, useContext } from "react"
-import ModalContext from "../context/modalContext"
-import BudgetSettingModalForm from "./modal/BudgetSettingModalForm"
-
-
-const EditForm = ({edit, id}: {edit: string; id: number | string}) => {
-    const { setIsOpen, setActiveModal } = useContext(ModalContext)!
+'use client' 
+ 
+import { useContext, useEffect } from "react" 
+import { type ReactNode, type SetStateAction } from "react";import ModalContext from "../context/modalContext" 
+import BudgetSettingModalForm from "./modal/BudgetSettingModalForm" 
+ 
+ 
+const EditForm = ({edit, id}: {edit: string; id: number | string}) => { 
+    const { setActiveModal } = useContext(ModalContext)! 
+ 
+    const EditForm = { 
+        editContribution: <BudgetSettingModalForm id={id} />, 
+    } 
 
     useEffect(() => {
-        setIsOpen(true)
-       
-    })
-
-    return (
-        null
-    )
-}
-
-export default EditForm
+        setActiveModal(EditForm["editContribution"])
+    }, [])
+ 
+    return null 
+} 
+ 
+export default EditForm 

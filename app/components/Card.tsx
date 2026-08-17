@@ -17,10 +17,12 @@ interface CardProps {
 
 
 const Card = ({ member }: CardProps) => {
-    const { setIsOpen, setActiveModal } = useContext(ModalContext)!
+    const { setIsOpen, setActiveModal, setIsEditing } = useContext(ModalContext)!
 
     const handleOpenModal = () => {
+        setActiveModal(null)
         setIsOpen(true)
+        setIsEditing(true)
     }
     return (
         <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full ">
