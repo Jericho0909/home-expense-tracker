@@ -1,5 +1,6 @@
 import EditForm from "@/app/components/EditForm"
-const Edit = async ({params}: {params: Promise<{ edit: string; id: number | string }>}) => {
+import type { EditType } from "@/app/type/model";
+const Edit = async ({params}: {params: Promise<{ edit: EditType; id: number | string }>}) => {
     const { edit, id } = await params
     
     return (

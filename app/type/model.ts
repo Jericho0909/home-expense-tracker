@@ -209,3 +209,6 @@ export type Member = {
 export type ModalContents =
     | ExpenseSection
     | "AddMember"
+
+export type EditType = 
+    |"editContribution" 

@@ -10,8 +10,9 @@ import { modalContents } from '../constant/modalContents';
 import { AnimatePresence } from "framer-motion";
 
 
-export default function RootLayout({ children }: Readonly<{
+export default function RootLayout({ children, modal }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
     const { isSidebarOpen } = useContext(SidebarContext)!
     const { isOpen, activeModal } = useContext(ModalContext)!
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{
                     {isSidebarOpen && <Sidebar />}
                 </AnimatePresence>
                 {children}
+                {modal}
             </div>
         </>
     )

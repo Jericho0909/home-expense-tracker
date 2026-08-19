@@ -6,7 +6,7 @@ import HealthModalForm from "../components/modal/HealthModal";
 import HouseMaintenanceModalForm from "../components/modal/HouseMaintenanceModal";
 import FamilyExpensesModalForm from "../components/modal/FamilyExpensesModal";
 import OtherExepensesModalForm from "../components/modal/OtherExpensesModal";
-import BudgetSettingModalForm from "../components/modal/BudgetSettingModalForm";
+import BudgetSettingModalForm from "../components/modal/ContributionBudgetModal";
 import AddMemberModalForm from "../components/modal/AddMemberModal";
 import type { ModalContents } from "../type/model"
 
