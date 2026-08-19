@@ -6,7 +6,6 @@ import ModalContext from '../context/modalContext';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import Modal from '../components/modal/Modal';
-import { modalContents } from '../constant/modalContents';
 import { AnimatePresence } from "framer-motion";
 
 

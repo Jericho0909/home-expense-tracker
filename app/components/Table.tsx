@@ -1,14 +1,23 @@
+"use client";
+
+import { useContext } from "react";
+import ModalContext from "../context/modalContext";
+import { useRouter } from "next/navigation";
 import type { TableColumn } from "../type/model"
 
 interface TableProps<T extends { id: number | string }> {
     data: T[];
     columns: TableColumn<T>[];
+    link: string
 }
 
 const Table = <T extends { id: number | string }>({
     data,
     columns,
+    link
 }: TableProps<T>) => {
+    const router = useRouter()
+    const { setIsOpen, setIsEditing, setActiveModal } = useContext(ModalContext)!
     return (
         <table className="w-full border-separate border-spacing-y-2">
             <thead>
@@ -43,26 +52,27 @@ const Table = <T extends { id: number | string }>({
                             <select
                                 defaultValue=""
                                 onChange={(e) => {
-                                    const action = e.target.value;
-
-                                    if (action === "view") {
-                                        // View action
-                                    }
+                                    const action = e.target.value
 
                                     if (action === "edit") {
-                                        // Edit action
+                                        const idString = String(item.id)
+                                        setActiveModal(null)
+                                        setIsOpen(true)
+                                        setIsEditing(true)
+                                        router.push(`${link}/${idString}`)
                                     }
 
                                     if (action === "delete") {
                                         // Delete action
                                     }
+
+                                    e.target.value = ""
                                 }}
                                 className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F5F5DC] px-3 py-2 text-sm text-[#5C4033] outline-none"
                             >
                                 <option value="" disabled>
                                     Actions
                                 </option>
-                                <option value="view">View</option>
                                 <option value="edit">Edit</option>
                                 <option value="delete">Delete</option>
                             </select>

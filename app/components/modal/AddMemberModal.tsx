@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import { MembersData } from "@/app/constant/expensesData"
 import type { Member, FamilyRole } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter"
 import { User } from 'lucide-react';
@@ -10,6 +11,8 @@ type MemberForm = Omit<Member, "familyRole" > & {
 }
 
 const AddMemberModal= ({id}: {id?: string | null}) => {
+    const findMember = MembersData.find((key) => key.id === id)
+
     const defaultData: MemberForm = {
         id: "",
         name: "",
@@ -18,7 +21,7 @@ const AddMemberModal= ({id}: {id?: string | null}) => {
         createdAt: ""
     }
 
-    const [ member, setMember ] = useState<MemberForm>(defaultData)
+    const [ member, setMember ] = useState<MemberForm>(findMember ? findMember : defaultData)
 
     const FamilyRoles: FamilyRole[] = [
         "Father",

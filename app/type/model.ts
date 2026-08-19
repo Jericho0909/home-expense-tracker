@@ -199,7 +199,7 @@ export type ExpenseData =
     | HealthExpense;
 
 export type Member = {
-    id: string | number;
+    id: string;
     name: string;
     familyRole: FamilyRole;
     money: number;
@@ -210,5 +210,6 @@ export type ModalContents =
     | ExpenseSection
     | "AddMember"
 
-export type EditType = 
-    |"editContribution" 
+export type ActionContent = 
+    | "editContribution" 
+    | "editMember"

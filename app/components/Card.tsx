@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useContext } from "react";
 import ModalContext from "../context/modalContext";
-import { HandCoins, PhilippinePeso, Plus } from "lucide-react";
+import { PhilippinePeso, Plus } from "lucide-react";
 
 interface MemberType {
     id: string | number;
