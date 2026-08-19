@@ -9,9 +9,9 @@ import Table from "@/app/components/Table";
 import BudgetForm from "@/app/components/BudgetForm";
 import { MembersData } from "@/app/constant/expensesData";
 import type { TableColumn, 
-    Member, 
-    FamilyRole 
+    Member 
 } from "@/app/type/model";
+import { FamilyRoleColor } from "@/app/constant/billIcons";
 import { HandCoins, 
     PhilippinePeso, 
     User,
@@ -26,17 +26,7 @@ const BudgerSettingPage = () => {
         year: "numeric",
     })
 
-    const FamilyRoleColor: Record<FamilyRole, string> = {
-        Father: "#2563EB",
-        Mother: "#DB2777",
-        Son: "#0284C7",
-        Daughter: "#E11D48",
-        Grandfather: "#D97706",
-        Grandmother: "#7E22CE",
-        Uncle: "#16A34A",
-        Aunt: "#C026D3",
-        Other: "#6B7280",
-    };
+    
 
     const totalBudget = MembersData.reduce((total, member) => total + member.money, 0)
 

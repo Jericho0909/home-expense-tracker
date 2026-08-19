@@ -58,6 +58,7 @@ import type {
     OtherExpenseCategory,
     StatusType,
     IconType,
+    FamilyRole
 } from "@/app/type/model";
 
 export const UtilityBillIcons: Record<UtilitiesNames, IconType> = {
@@ -244,3 +245,15 @@ export const StatusIcons: Record<StatusType, IconType> = {
         icon: <CircleAlert size={16} color="black" fill="#8B6F47" />,
     },
 };
+
+export const FamilyRoleColor: Record<FamilyRole, string> = {
+        Father: "#2563EB",
+        Mother: "#DB2777",
+        Son: "#0284C7",
+        Daughter: "#E11D48",
+        Grandfather: "#D97706",
+        Grandmother: "#7E22CE",
+        Uncle: "#16A34A",
+        Aunt: "#C026D3",
+        Other: "#6B7280",
+    };

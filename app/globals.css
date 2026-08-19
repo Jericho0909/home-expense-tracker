@@ -114,4 +114,12 @@
   .save-member-btn:active {
     transform: translateY(1);
   }
+
+  .add-money-btn:hover {
+    background-color: #5C4033;
+  }
+
+  .add-money-btn:active {
+    transform: translateY(1);
+  }
 }
