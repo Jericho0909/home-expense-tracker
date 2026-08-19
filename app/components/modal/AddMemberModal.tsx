@@ -10,8 +10,7 @@ type MemberForm = Omit<Member, "familyRole" > & {
     familyRole: FamilyRole | ""
 }
 
-const AddMemberModal= ({id}: {id?: string | null}) => {
-    const findMember = MembersData.find((key) => key.id === id)
+const AddMemberModal = ({id}: {id?: string | null}) => {
 
     const defaultData: MemberForm = {
         id: "",
@@ -21,7 +20,7 @@ const AddMemberModal= ({id}: {id?: string | null}) => {
         createdAt: ""
     }
 
-    const [ member, setMember ] = useState<MemberForm>(findMember ? findMember : defaultData)
+    const [ member, setMember ] = useState<MemberForm>(defaultData)
 
     const FamilyRoles: FamilyRole[] = [
         "Father",

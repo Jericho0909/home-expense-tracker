@@ -3,7 +3,7 @@
 import { useContext, useEffect } from "react" 
 import ModalContext from "../../context/modalContext" 
 import ContributionBudget from "./ContributionBudgetModal"
-import AddMemberModal from "./AddMemberModal"
+import EditMemberModal from "./EditMemberModal"
 import type { ActionContent } from "../../type/model"
  
 const ActionModal = ({action, id}: {action: ActionContent; id:string}) => { 
@@ -12,7 +12,7 @@ const ActionModal = ({action, id}: {action: ActionContent; id:string}) => {
  
     const ActionContents = { 
         editContribution: <ContributionBudget id={id} />,
-        editMember: <AddMemberModal id={id}/>
+        editMember: <EditMemberModal id={id}/>
     } 
 
     useEffect(() => {
