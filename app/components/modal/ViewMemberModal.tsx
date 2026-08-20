@@ -34,7 +34,7 @@ const ViewMemberModal = ({id}: {id?: string | null}) => {
                 <span 
                     className="text-base mb-5"
                     style={{
-                        fontFamily: "var(--font-libre-baskerville)"
+                        fontFamily: "var(--font-playfair-display)"
                     }}
                 >
                     Current Contribution 

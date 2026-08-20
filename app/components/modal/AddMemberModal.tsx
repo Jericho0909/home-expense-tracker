@@ -44,8 +44,8 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
     }
 
     return (
-        <>
-            <div className="flex flex-col">
+        <div className="flex flex-col">
+            <div className="flex flex-col border-b-2 border-black mb-3">
                 <h4 
                     className="flex text-lg font-bold mb-3 text-[#3B2416]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
@@ -70,9 +70,9 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="name"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Name:
@@ -97,9 +97,9 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="category"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Category:
@@ -151,7 +151,8 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
                     </button>
                 </div>
             </form>
-        </>
+        </div>
+            
     )
 }
 

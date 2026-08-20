@@ -6,7 +6,7 @@ import { FamilyRoleColor } from "@/app/constant/billIcons";
 import type { Member } from "@/app/type/model";
 import { User, PhilippinePeso } from 'lucide-react';
 
-const ContributionBudget = ({id}: {id?: number | string | null}) => {
+const ContributionBudgetModal = ({id}: {id?: number | string | null}) => {
     const findMember = MembersData.find((key) => key.id === id)
     if(!findMember) return
 
@@ -39,9 +39,9 @@ const ContributionBudget = ({id}: {id?: number | string | null}) => {
 
             <div className="flex justify-between flex-col px-1 py-5">
                 <span 
-                    className="text-base mb-5"
+                    className="text-base font-semibold mb-5"
                     style={{
-                        fontFamily: "var(--font-libre-baskerville)"
+                        fontFamily: "var(--font-playfair-display)"
                     }}
                 >
                     Current Contribution 
@@ -63,9 +63,9 @@ const ContributionBudget = ({id}: {id?: number | string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="money"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Add Money:
@@ -101,4 +101,4 @@ const ContributionBudget = ({id}: {id?: number | string | null}) => {
     )
 }
 
-export default ContributionBudget
+export default ContributionBudgetModal

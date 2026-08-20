@@ -51,9 +51,9 @@ const EditMemberModal = ({id}: {id?: string | null}) => {
 
             <div className="flex justify-between flex-col px-1 py-5">
                 <span 
-                    className="text-base mb-5"
+                    className="text-base font-semibold mb-5"
                     style={{
-                        fontFamily: "var(--font-libre-baskerville)"
+                        fontFamily: "var(--font-playfair-display)"
                     }}
                 >
                     Current Contribution 
@@ -76,9 +76,9 @@ const EditMemberModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="name"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Name:
@@ -103,9 +103,9 @@ const EditMemberModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="category"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Category:
