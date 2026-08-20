@@ -10,8 +10,9 @@ const ContributionBudget = ({id}: {id?: number | string | null}) => {
     const findMember = MembersData.find((key) => key.id === id)
     if(!findMember) return
 
-    const [ member, setMember ] = useState<Member>(findMember)
+    const [ member,  ] = useState<Member>(findMember)
     const [ addMoney, setAddMoney ] = useState<number>(0)
+
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         
@@ -35,6 +36,7 @@ const ContributionBudget = ({id}: {id?: number | string | null}) => {
                     Household contribution 
                 </span>
             </div>
+
             <div className="flex justify-between flex-col px-1 py-5">
                 <span 
                     className="text-base mb-5"
@@ -87,6 +89,7 @@ const ContributionBudget = ({id}: {id?: number | string | null}) => {
                         required
                     />
                 </div>
+
                 <button
                     type="submit"
                     className="add-money-btn rounded-md bg-[#6B4632] px-4 py-2 text-sm font-semibold text-[#F5F5DC] cursor-pointer transition-all duration-150 ease-in-out"
