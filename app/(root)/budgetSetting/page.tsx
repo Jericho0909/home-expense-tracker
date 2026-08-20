@@ -136,7 +136,8 @@ const BudgerSettingPage = () => {
                     <Table
                         data={MembersData}
                         columns={MemberColumn}
-                        link = "/budgetSetting/editMember"
+                        viewLink="/budgetSetting/viewMember"
+                        editLink = "/budgetSetting/editMember"
                     />
                 </div>
             </div>

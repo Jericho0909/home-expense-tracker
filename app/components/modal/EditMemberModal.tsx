@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react';
 import { MembersData } from '@/app/constant/expensesData';
 import type { Member, FamilyRole } from '@/app/type/model';

@@ -213,3 +213,4 @@ export type ModalContents =
 export type ActionContent = 
     | "editContribution" 
     | "editMember"
+    | "viewMember"

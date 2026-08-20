@@ -8,13 +8,15 @@ import type { TableColumn } from "../type/model"
 interface TableProps<T extends { id: number | string }> {
     data: T[];
     columns: TableColumn<T>[];
-    link: string
+    viewLink: string
+    editLink: string
 }
 
 const Table = <T extends { id: number | string }>({
     data,
     columns,
-    link
+    viewLink,
+    editLink
 }: TableProps<T>) => {
     const router = useRouter()
     const { setIsOpen, setIsEditing, setActiveModal } = useContext(ModalContext)!
@@ -53,13 +55,19 @@ const Table = <T extends { id: number | string }>({
                                 defaultValue=""
                                 onChange={(e) => {
                                     const action = e.target.value
-
-                                    if (action === "edit") {
-                                        const idString = String(item.id)
+                                    const idString = String(item.id)
+                                    if(action === "view"){
                                         setActiveModal(null)
                                         setIsOpen(true)
                                         setIsEditing(true)
-                                        router.push(`${link}/${idString}`)
+                                        router.push(`${viewLink}/${idString}`)
+                                    }
+
+                                    if (action === "edit") {
+                                        setActiveModal(null)
+                                        setIsOpen(true)
+                                        setIsEditing(true)
+                                        router.push(`${editLink}/${idString}`)
                                     }
 
                                     if (action === "delete") {
@@ -73,6 +81,7 @@ const Table = <T extends { id: number | string }>({
                                 <option value="" disabled>
                                     Actions
                                 </option>
+                                <option value="view">View</option>
                                 <option value="edit">Edit</option>
                                 <option value="delete">Delete</option>
                             </select>
