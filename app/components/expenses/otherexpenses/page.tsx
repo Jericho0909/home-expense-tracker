@@ -22,7 +22,7 @@ type SummaryType = {
     averageExpense?: number
 }
 
-const OtherExpenses = () => {
+const OtherExpensesPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -238,4 +238,4 @@ const OtherExpenses = () => {
     )
 }
 
-export default OtherExpenses
+export default OtherExpensesPage

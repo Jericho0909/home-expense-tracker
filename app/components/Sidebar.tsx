@@ -106,7 +106,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/foodandhouse"
+                        href="/expenses/foodAndHousehold"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "FoodAndHousehold" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -172,7 +172,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/housemaintenance"
+                        href="/expenses/houseMaintenance"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "HouseMaintenance" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -194,7 +194,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/familyexpenses"
+                        href="/expenses/familyExpenses"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "FamilyExpenses" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -216,7 +216,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/otherexpenses"
+                        href="/expenses/otherExpenses"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "OtherExpenses" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }

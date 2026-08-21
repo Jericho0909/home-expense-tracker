@@ -2,67 +2,80 @@
 
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
-import ButtonModal from "@/app/components/ButtonModal"
+import ButtonModal from "@/app/components/ButtonModal";
 import SummaryCardContent from "@/app/components/SummaryCardContent"
-import HealthModal from "@/app/components/modal/HealthModal"
-import Table from "@/app/components/Table"
-import { HealthData } from "@/app/constant/expensesData"
-import { Heart, PhilippinePeso } from 'lucide-react';
+import HouseMaintenanceModal from "@/app/components/modal/HouseMaintenanceModal";
+import Table from "@/app/components/Table";
+import { HouseMaintenanceData } from "@/app/constant/expensesData"
+import { Hammer, PhilippinePeso  } from 'lucide-react';
 import type { TableColumn, 
-    HealthExpense,
+    HouseMaintenanceExpense,
     SummaryType
-} from "@/app/type/model"
+ } from "@/app/type/model"
 import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
-import { HealthBillIcons } from "@/app/constant/billIcons"
+import { HouseMaintenanceBillIcons } from "@/app/constant/billIcons"
 
-
-const Health = () => {
+const HouseMaintenancePage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
     })
 
-    const HealthExpenses = HealthData.filter((item) => item.expense === "Health")
+    const HouseMaintenanceExpenses = HouseMaintenanceData.filter((item) => item.expense === "HouseMaintenance")
 
-    const consultationCategories: string[] = [
-       "Consultation",
-       "Dental",
-       "Laboratory"
-    ]
+    const repairsItems = HouseMaintenanceExpenses.filter((item) => item.category === "Repairs")
+    const maintenanceItems = HouseMaintenanceExpenses.filter((item) => item.category === "Maintenance")
+    const cleaningItems = HouseMaintenanceExpenses.filter((item) => item.category === "Cleaning")
+    const pestControlItems = HouseMaintenanceExpenses.filter((item) => item.category === "PestControl")
+    const otherItems = HouseMaintenanceExpenses.filter((item) => item.category === "Other")
+    
+    const totalRepairs = repairsItems.reduce((total, item) => total + item.amount, 0)
+    const totalMaintenance = maintenanceItems.reduce((total, item) => total + item.amount, 0)
+    const totalCleaning = cleaningItems.reduce((total, item) => total + item.amount, 0)
+    const totalPestControl = pestControlItems.reduce((total, item) => total + item.amount, 0)
+    const totalOther = otherItems.reduce((total, item) => total + item.amount, 0)
 
-    const medicineItems = HealthExpenses.filter((item) => item.category === "Medicine")
-    const consultationItems = HealthExpenses.filter((item) => consultationCategories.includes(item.category))
-    const otherItems = HealthExpenses.filter((item) => item.category === "Other")
-
-    const totalMedicine = HealthExpenses.filter((item) => item.category === "Medicine").reduce((total, item) => total + item.amount, 0)
-    const totalConsultation = HealthExpenses.filter((item) => consultationCategories.includes(item.category)).reduce((total, item) => total + item.amount, 0)
-    const totalOther = HealthExpenses.filter((item) => item.category === "Other").reduce((total, item) => total + item.amount, 0)
-
-    const total = totalMedicine + totalConsultation + totalOther
+    const total = totalRepairs + totalMaintenance + totalCleaning + totalPestControl + totalOther
     const budget = 10000
     const budgetLeft = budget - total
 
     const SummaryDataArr:SummaryType[] = [
         {
             id: 1,
-            name: "MEDICINE",
-            amount: totalMedicine,
-            itemLength: `${medicineItems.length} ${
-                medicineItems.length === 1 ? "purchase" : "purchases"
+            name: "REPAIRS",
+            amount: totalRepairs,
+            itemLength: `${repairsItems.length} ${
+                repairsItems.length === 1 ? "repair" : "repairs"
             }`
             
         },
         {
             id: 2,
-            name: "CONSULTATION",
-            amount: totalConsultation,
-            itemLength: `${consultationItems.length} ${
-                consultationItems.length === 1 ? "vist" : "vits"
+            name: "MAINTENANCE",
+            amount: totalMaintenance,
+            itemLength: `${maintenanceItems.length} ${
+                maintenanceItems.length === 1 ? "maintenance" : "maintenances"
             }`
         },
         {
             id: 3,
+            name: "CLEANING",
+            amount: totalCleaning,
+            itemLength: `${cleaningItems.length} ${
+                cleaningItems.length === 1 ? "cleaning" : "cleanings"
+            }`
+        },
+        {
+            id: 4,
+            name: "PEST CONTROL",
+            amount: totalPestControl,
+            itemLength: `${pestControlItems.length} ${
+                pestControlItems.length === 1 ? "treatment" : "treatments"
+            }`
+        },
+        {
+            id: 5,
             name: "OTHER",
             amount: totalOther,
             itemLength: `${otherItems.length} ${
@@ -70,24 +83,24 @@ const Health = () => {
             }`
         },
         {
-            id: 4,
+            id: 6,
             name: "THIS MONTH",
             total: total
             
         },
         {
-            id: 5,
+            id: 7,
             name: "BUDGET LEFT",
             budget: budgetLeft
         },
     ]
 
-    const HealthColumn: TableColumn<HealthExpense>[] = [
+    const HouseMaintenanceColumn: TableColumn<HouseMaintenanceExpense>[] = [
         {
             label: "Description",
             render: (item) => 
                 <span className="flex items-center gap-1">
-                    {HealthBillIcons[item.category].icon}
+                    {HouseMaintenanceBillIcons[item.category].icon}
                     {item.description}
                 </span>
         },
@@ -113,7 +126,7 @@ const Health = () => {
     ]
 
     useEffect(() => {
-        setActiveSection("Health")
+        setActiveSection("HouseMaintenance")
     }, [])
 
     return (
@@ -125,10 +138,10 @@ const Health = () => {
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
                         <span className="mr-2">
-                            <Heart size={24} className="text-[#D8A7A7]"
+                            <Hammer size={24} className="text-[#B8B0A5]"
                             />
                         </span>
-                        Health
+                        House Maintenance
                     </h3>
                     <span
                         className="text-base italic text-[#8B5E3C]"
@@ -140,22 +153,22 @@ const Health = () => {
                         className="text-base italic text-[#8B5E3C]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
-                        Keep track of your family's healthcare expenses 
+                        Keep track of repairs, improvements, and home maintenance expenses  
                     </p>
                 </div>
                 <div className="flex items-center justify-end flex-1">
                     <ButtonModal
-                        modalContent={<HealthModal id={null}/>}
+                        modalContent={<HouseMaintenanceModal id={null}/>}
                     />
                 </div>
             </div>
 
             <div className="grid grid-cols-5 gap-2 w-4xl h-auto mb-8">
-                <SummaryCardContent 
+                <SummaryCardContent
                     summaryDataArr={SummaryDataArr}
                     budgetLeft={budgetLeft}
                     budget={budget}
-                 />
+                />
             </div>
 
             <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
@@ -164,7 +177,7 @@ const Health = () => {
                         className="font-bold text-[#3B2416]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
-                        Health Expenses
+                        Maintenance Spending 
                     </span>
                     <span 
                         className="w-full h-full"
@@ -178,25 +191,25 @@ const Health = () => {
                         className="font-bold text-[#3B2416]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
-                        Health Spending 
+                        Maintenance Breakdown
                     </span>
 
                 </div>
             </div>
-            
+
             <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
                 <div className="flex flex-col p-1 w-">
                     <span
                         className="font-bold text-[#3B2416]"
                         style={{ fontFamily: "var(--font-cinzel)"}}
                     >
-                        Health Bills  
+                        House Maintenance Bills  
                     </span>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
                     <Table
-                        data={HealthExpenses}
-                        columns={HealthColumn}
+                        data={HouseMaintenanceExpenses}
+                        columns={HouseMaintenanceColumn}
                     />
             </div>
             </div>
@@ -204,4 +217,4 @@ const Health = () => {
     )
 }
 
-export default Health
+export default HouseMaintenancePage

@@ -15,7 +15,7 @@ import type { SummaryType,
 import { FamilyExpensesBillIcons } from "@/app/constant/billIcons"
 import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
 
-const FamilyExpenses = () => {
+const FamilyExpensesPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -218,4 +218,4 @@ const FamilyExpenses = () => {
     )
 }
 
-export default FamilyExpenses
+export default FamilyExpensesPage

@@ -17,7 +17,7 @@ import type { TableColumn,
 import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
 import { TransportationBillIcons } from "@/app/constant/billIcons"
 
-const Transportation = () => {
+const TransportationPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -192,4 +192,4 @@ const Transportation = () => {
     )
 }
 
-export default Transportation
+export default TransportationPage
