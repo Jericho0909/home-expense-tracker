@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import { FamilyExpensesData } from "@/app/constant/expensesData"
 import ModalFormButton from "../ModalFormButton"
 import type { FamilyExpense, FamilyExpensesCategory } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter"
@@ -11,8 +12,10 @@ type FamilyExpenseForm = Omit<FamilyExpense, "category"> & {
 }
 
 const FamilyExpensesModal = ({id}: {id?: string | null}) => {
+    const findExpenses = FamilyExpensesData.find((key) => key.id === id)
+
     const defaultData: FamilyExpenseForm = {
-        id: 0,
+        id: "0",
         expense: "FamilyExpenses",
         amount: 0,
         createdAt: "",
@@ -21,7 +24,7 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
         date: ""
     }
 
-    const [ familyExpensesData, setFamilyExpensesData ] = useState<FamilyExpenseForm>(defaultData)
+    const [ familyExpensesData, setFamilyExpensesData ] = useState<FamilyExpenseForm>(findExpenses ?? defaultData)
 
     const FamilyCategory: FamilyExpensesCategory[] = [
         "Education",
