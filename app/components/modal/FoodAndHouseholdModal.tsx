@@ -16,10 +16,8 @@ type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category"> & {
 
 type FoodHouseholdType = "" | "Food" | "Household"
 const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
-    const findExpenses = FoodHouseholdData.find((key) => key.id)
+    const findExpenses = FoodHouseholdData.find((key) => key.id === id)
     console.log(findExpenses)
-    console.log(id)
-
     const defaultData: FoodHouseholdExpenseForm = {
         id: "0",
         expense: "FoodAndHousehold",
