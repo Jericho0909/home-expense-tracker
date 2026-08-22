@@ -231,6 +231,8 @@ const OtherExpensesPage = () => {
                     <Table
                         data={OtherExpenses}
                         columns={OtherExpensesColumn}
+                        viewLink="/expenses/utilities/view"
+                        editLink = "/expenses/otherexpenses/editOtherExpenses"
                     />
                 </div>
             </div>

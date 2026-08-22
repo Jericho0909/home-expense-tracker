@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import { OtherExpensesData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { OtherExpense, OtherExpenseCategory } from "@/app/type/model";
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
@@ -11,8 +12,10 @@ type OtherExpenseForm = Omit<OtherExpense, "category"> & {
 }
 
 const OtherExepensesModal = ({id}: {id?: string | null}) => {
+    const findExpenses = OtherExpensesData.find((key) => key.id === id)
+
     const defaultData: OtherExpenseForm = {
-        id: 0,
+        id: "0",
         expense: "OtherExpenses",
         amount: 0,
         createdAt: "",
@@ -21,7 +24,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
         date: ""
     }
 
-    const [ otherExpenses, setOtherExpenses ] = useState<OtherExpenseForm>(defaultData)
+    const [ otherExpenses, setOtherExpenses ] = useState<OtherExpenseForm>(findExpenses ?? defaultData)
 
     const OtherCategory: OtherExpenseCategory[] = [
         "Personal",
