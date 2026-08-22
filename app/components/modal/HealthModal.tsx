@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import { HealthData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { HealthExpense, HealthCategory } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
@@ -11,8 +12,10 @@ type HealthExpenseForm = Omit<HealthExpense, "category"> & {
 }
 
 const HealthModal = ({id}: {id?: string | null}) => {
+    const findExpenses = HealthData.find((key) => key.id === id)
+
     const defaultData: HealthExpenseForm = {
-        id: 0,
+        id: "0",
         expense: "Health",
         amount: 0,
         createdAt: "",
@@ -21,7 +24,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
         date: ""
     }
 
-    const [ healthExpenses, setHealthExpenses ] = useState<HealthExpenseForm>(defaultData)
+    const [ healthExpenses, setHealthExpenses ] = useState<HealthExpenseForm>(findExpenses ?? defaultData)
 
     const HealthCategory: HealthCategory[] = [
         "Medicine",

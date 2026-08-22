@@ -17,7 +17,6 @@ type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status"> & {
 const UtilitiesModal = ({id}: {id?: string | null}) => {
     const findExpenses = UtilitiesData.find((key) => key.id === id)
     
-    
     const defaultData: UtilityExpenseForm = {
         id: "0",
         expense: "Utilities",
