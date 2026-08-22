@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import { FoodHouseholdData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { FoodHouseholdExpense, 
     FoodAndHouseHoldCategory,
@@ -15,8 +16,12 @@ type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category"> & {
 
 type FoodHouseholdType = "" | "Food" | "Household"
 const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
+    const findExpenses = FoodHouseholdData.find((key) => key.id)
+    console.log(findExpenses)
+    console.log(id)
+
     const defaultData: FoodHouseholdExpenseForm = {
-        id: 0,
+        id: "0",
         expense: "FoodAndHousehold",
         amount: 0,
         createdAt: "",
@@ -26,7 +31,7 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
         purchaseDate: ""
     }
 
-    const [ foodHouseholdExpenses, setFoodHouseholdExpenses ] = useState<FoodHouseholdExpenseForm>(defaultData)
+    const [ foodHouseholdExpenses, setFoodHouseholdExpenses ] = useState<FoodHouseholdExpenseForm>(findExpenses ?? defaultData)
 
     const FoodHouseholdCategory: FoodAndHouseHoldCategory[] = [
         "Groceries",

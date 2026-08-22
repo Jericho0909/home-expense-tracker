@@ -17,6 +17,7 @@ type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status"> & {
 const UtilitiesModal = ({id}: {id?: string | null}) => {
     const findExpenses = UtilitiesData.find((key) => key.id === id)
     
+    
     const defaultData: UtilityExpenseForm = {
         id: "0",
         expense: "Utilities",
@@ -29,7 +30,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
         status: ""
     }
 
-   const [ utilityExpense, setUtilityExpense ] = useState<UtilityExpenseForm>(defaultData);
+   const [ utilityExpense, setUtilityExpense ] = useState<UtilityExpenseForm>(findExpenses ?? defaultData)
 
     const UtilitiesSelection: UtilitiesNames[] = [
         "Electricity",

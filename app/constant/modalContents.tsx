@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import UtilitiesModalForm from "../components/modal/UtilitiesModal";
-import FoodAndHouseholdModalForm from "../components/modal/Food&HouseholdModal";
+import FoodAndHouseholdModalForm from "../components/modal/FoodAndHouseholdModal";
 import TransportationModal from "../components/modal/TransportationModal";
 import HealthModalForm from "../components/modal/HealthModal";
 import HouseMaintenanceModalForm from "../components/modal/HouseMaintenanceModal";

@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
-import FoodAndHouseholdModal from "@/app/components/modal/Food&HouseholdModal"
+import FoodAndHouseholdModal from "../../modal/FoodAndHouseholdModal"
 import Table from "@/app/components/Table"
 import { FoodHouseholdData } from "@/app/constant/expensesData"
 import type { TableColumn, 
@@ -202,6 +202,8 @@ const FoodAndHousePage = () => {
                     <Table
                         data={FoodAndHouseExpenses}
                         columns={FoodAndHouseColumn}
+                        viewLink="/expenses/foodandhouse/view"
+                        editLink = "/expenses/foodandhouse/editFoodAndHouse"
                     />
                 </div>
             </div>
