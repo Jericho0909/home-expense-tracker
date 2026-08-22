@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import { HouseMaintenanceData } from "@/app/constant/expensesData"
 import ModalFormButton from "../ModalFormButton"
 import type { HouseMaintenanceExpense, HouseMaintenanceCategory } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter"
@@ -11,8 +12,10 @@ type HouseMaintenanceExpenseForm = Omit<HouseMaintenanceExpense, "category"> & {
 }
 
 const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
+    const findExpenses = HouseMaintenanceData.find((key) => key.id === id)
+
     const defaultData: HouseMaintenanceExpenseForm = {
-        id: 0,
+        id: "0",
         expense: "HouseMaintenance",
         amount: 0,
         createdAt: "",
@@ -21,7 +24,7 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
         date: ""
     }
 
-    const [ houseMaintenanceExpense, setHouseMaintenanceExpense ] = useState<HouseMaintenanceExpenseForm>(defaultData)
+    const [ houseMaintenanceExpense, setHouseMaintenanceExpense ] = useState<HouseMaintenanceExpenseForm>(findExpenses ?? defaultData)
 
     const HouseMaintenanceCategory: HouseMaintenanceCategory[] = [
         "Repairs",
