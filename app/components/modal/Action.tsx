@@ -7,6 +7,12 @@ import ContributionBudgetModal from "./ContributionBudgetModal"
 import EditMemberModal from "./EditMemberModal"
 import ViewMemberModal from "./ViewMemberModal"
 import ViewUtilitiesModal from "./UtilitiesViewModal";
+import ViewFoodAndHouseholdModal from "./FoodAndHouseholdViewModal";
+import ViewTransportationModal from "./TransportationViewModal";
+import ViewHealthModal from "./HealthViewModal";
+import ViewHouseMaintenanceModal from "./HouseMaintenanceViewModal";
+import ViewFamilyExpensesModal from "./FamilyExpensesViewModal";
+import ViewOtherExpensesModal from "./OtherExpensesViewModal";
 import UtilitiesModal from "./UtilitiesModal"
 import FoodAndHouseholdModal from "./FoodAndHouseholdModal";
 import TransportationModal from "./TransportationModal";
@@ -24,7 +30,12 @@ const ActionModal = ({action, id}: {action: ActionContent; id:string}) => {
         editMember: <EditMemberModal id={id}/>,
         viewMember: <ViewMemberModal id={id}/>,
         viewUtilities: <ViewUtilitiesModal id={id}/>,
-        
+        viewFoodAndHousehold: <ViewFoodAndHouseholdModal id={id}/>,
+        viewTransportation: <ViewTransportationModal id={id}/>,
+        viewHealth: <ViewHealthModal id={id}/>,
+        viewHouseMaintenance: <ViewHouseMaintenanceModal id={id}/>,
+        viewFamilyExpenses: <ViewFamilyExpensesModal id={id}/>,
+        viewOtherExpenses: <ViewOtherExpensesModal id={id}/>,
         editUtilities: <UtilitiesModal id={id} />,
         editFoodAndHousehold: <FoodAndHouseholdModal id={id}/>,
         editTransportation: <TransportationModal id={id}/>,
