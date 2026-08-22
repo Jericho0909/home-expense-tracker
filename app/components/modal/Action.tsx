@@ -6,6 +6,7 @@ import ModalContext from "../../context/modalContext"
 import ContributionBudgetModal from "./ContributionBudgetModal"
 import EditMemberModal from "./EditMemberModal"
 import ViewMemberModal from "./ViewMemberModal"
+import ViewUtilitiesModal from "./UtilitiesViewModal";
 import UtilitiesModal from "./UtilitiesModal"
 import FoodAndHouseholdModal from "./FoodAndHouseholdModal";
 import TransportationModal from "./TransportationModal";
@@ -22,6 +23,8 @@ const ActionModal = ({action, id}: {action: ActionContent; id:string}) => {
         editContribution: <ContributionBudgetModal id={id}/>,
         editMember: <EditMemberModal id={id}/>,
         viewMember: <ViewMemberModal id={id}/>,
+        viewUtilities: <ViewUtilitiesModal id={id}/>,
+        
         editUtilities: <UtilitiesModal id={id} />,
         editFoodAndHousehold: <FoodAndHouseholdModal id={id}/>,
         editTransportation: <TransportationModal id={id}/>,
