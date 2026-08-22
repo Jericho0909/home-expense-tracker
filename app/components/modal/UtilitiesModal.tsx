@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import ModalFormButton from "../ModalFormButton";
+import { UtilitiesData } from "@/app/constant/expensesData";
 import type { UtilitiesNames, 
     UtilityExpense, 
     StatusType 
@@ -14,9 +15,10 @@ type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status"> & {
 }
 
 const UtilitiesModal = ({id}: {id?: string | null}) => {
+    const findExpenses = UtilitiesData.find((key) => key.id === id)
     
     const defaultData: UtilityExpenseForm = {
-        id: 0,
+        id: "0",
         expense: "Utilities",
         amount: 0,
         createdAt: "",

@@ -10,7 +10,7 @@ import type { UtilityExpense,
 
 export const UtilitiesData: UtilityExpense[] = [
     {
-        id: 1,
+        id: "1",
         expense: "Utilities",
         name: "Electricity",
         amount: 3250,
@@ -21,7 +21,7 @@ export const UtilitiesData: UtilityExpense[] = [
         status: "Paid",
     },
     {
-        id: 2,
+        id: "2",
         expense: "Utilities",
         name: "Water",
         amount: 650,
@@ -32,7 +32,7 @@ export const UtilitiesData: UtilityExpense[] = [
         status: "Paid",
     },
     {
-        id: 3,
+        id: "3",
         expense: "Utilities",
         name: "Internet",
         amount: 1699,
@@ -43,7 +43,7 @@ export const UtilitiesData: UtilityExpense[] = [
         status: "Overdue",
     },
     {
-        id: 4,
+        id: "4",
         expense: "Utilities",
         name: "MobileLoad",
         amount: 300,
@@ -54,7 +54,7 @@ export const UtilitiesData: UtilityExpense[] = [
         status: "Paid",
     },
     {
-        id: 5,
+        id: "5",
         expense: "Utilities",
         name: "MineralWater",
         amount: 240,
@@ -65,7 +65,7 @@ export const UtilitiesData: UtilityExpense[] = [
         status: "Pending",
     },
     {
-        id: 6,
+        id: "6",
         expense: "Utilities",
         name: "CookingGas",
         amount: 1120,
@@ -79,7 +79,7 @@ export const UtilitiesData: UtilityExpense[] = [
 
 export const FoodHouseholdData: FoodHouseholdExpense[] = [
     {
-        id: 7,
+        id: "7",
         expense: "FoodAndHousehold",
         type: "Food",
         category: "Groceries",
@@ -89,7 +89,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-26",
     },
     {
-        id: 8,
+        id: "8",
         expense: "FoodAndHousehold",
         type: "Household",
         category: "Cleaning",
@@ -99,7 +99,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-24",
     },
     {
-        id: 9,
+        id: "9",
         expense: "FoodAndHousehold",
         type: "Food",
         category: "Groceries",
@@ -109,7 +109,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-22",
     },
     {
-        id: 10,
+        id: "10",
         expense: "FoodAndHousehold",
         type: "Food",
         category: "Meat",
@@ -119,7 +119,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-20",
     },
     {
-        id: 11,
+        id: "11",
         expense: "FoodAndHousehold",
         type: "Food",
         category: "Fruits",
@@ -129,7 +129,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-18",
     },
     {
-        id: 12,
+        id: "12",
         expense: "FoodAndHousehold",
         type: "Food",
         category: "Snacks",
@@ -139,7 +139,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-15",
     },
     {
-        id: 13,
+        id: "13",
         expense: "FoodAndHousehold",
         type: "Food",
         category: "Beverages",
@@ -149,7 +149,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-12",
     },
     {
-        id: 14,
+        id: "14",
         expense: "FoodAndHousehold",
         type: "Household",
         category: "Laundry",
@@ -159,7 +159,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-10",
     },
     {
-        id: 15,
+        id: "15",
         expense: "FoodAndHousehold",
         type: "Household",
         category: "PersonalCare",
@@ -169,7 +169,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         purchaseDate: "2026-07-08",
     },
     {
-        id: 16,
+        id: "16",
         expense: "FoodAndHousehold",
         type: "Household",
         category: "Kitchen",
@@ -182,7 +182,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
 
 export const TransportationData: TransportationExpense[] = [
     {
-        id: 17,
+        id: "17",
         expense: "Transportation",
         category: "Fuel",
         description: "Gasoline",
@@ -191,7 +191,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-26",
     },
     {
-        id: 18,
+        id: "18",
         expense: "Transportation",
         category: "PublicTransport",
         description: "Jeepney Fare",
@@ -200,7 +200,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-24",
     },
     {
-        id: 19,
+        id: "19",
         expense: "Transportation",
         category: "Fuel",
         description: "Diesel",
@@ -209,7 +209,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-22",
     },
     {
-        id: 20,
+        id: "20",
         expense: "Transportation",
         category: "PublicTransport",
         description: "Bus Fare",
@@ -218,7 +218,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-20",
     },
     {
-        id: 21,
+        id: "21",
         expense: "Transportation",
         category: "RideHailing",
         description: "Grab Ride",
@@ -227,7 +227,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-18",
     },
     {
-        id: 22,
+        id: "22",
         expense: "Transportation",
         category: "Parking",
         description: "Parking Fee",
@@ -236,7 +236,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-16",
     },
     {
-        id: 23,
+        id: "23",
         expense: "Transportation",
         category: "Toll",
         description: "Toll Fee",
@@ -245,7 +245,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-14",
     },
     {
-        id: 24,
+        id: "24",
         expense: "Transportation",
         category: "VehicleMaintenance",
         description: "Change Oil",
@@ -254,7 +254,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-12",
     },
     {
-        id: 25,
+        id: "25",
         expense: "Transportation",
         category: "VehicleMaintenance",
         description: "Car Wash",
@@ -263,7 +263,7 @@ export const TransportationData: TransportationExpense[] = [
         date: "2026-07-10",
     },
     {
-        id: 26,
+        id: "26",
         expense: "Transportation",
         category: "PublicTransport",
         description: "Tricycle Fare",
@@ -275,7 +275,7 @@ export const TransportationData: TransportationExpense[] = [
 
 export const HealthData: HealthExpense[] = [
     {
-        id: 27,
+        id: "27",
         expense: "Health",
         category: "Medicine",
         description: "Maintenance Medicine",
@@ -284,7 +284,7 @@ export const HealthData: HealthExpense[] = [
         date: "2026-07-26",
     },
     {
-        id: 28,
+        id: "29",
         expense: "Health",
         category: "Consultation",
         description: "Doctor Consultation",
@@ -293,7 +293,7 @@ export const HealthData: HealthExpense[] = [
         date: "2026-07-24",
     },
     {
-        id: 29,
+        id: "30",
         expense: "Health",
         category: "Dental",
         description: "Dental Cleaning",
@@ -302,7 +302,7 @@ export const HealthData: HealthExpense[] = [
         date: "2026-07-22",
     },
     {
-        id: 30,
+        id: "31",
         expense: "Health",
         category: "Laboratory",
         description: "Blood Test",
@@ -311,7 +311,7 @@ export const HealthData: HealthExpense[] = [
         date: "2026-07-20",
     },
     {
-        id: 31,
+        id: "32",
         expense: "Health",
         category: "Medicine",
         description: "Pain Reliever",
@@ -320,7 +320,7 @@ export const HealthData: HealthExpense[] = [
         date: "2026-07-18",
     },
     {
-        id: 32,
+        id: "33",
         expense: "Health",
         category: "Consultation",
         description: "Follow-up Consultation",
@@ -329,7 +329,7 @@ export const HealthData: HealthExpense[] = [
         date: "2026-07-15",
     },
     {
-        id: 33,
+        id: "34",
         expense: "Health",
         category: "Dental",
         description: "Tooth Extraction",
@@ -338,7 +338,7 @@ export const HealthData: HealthExpense[] = [
         date: "2026-07-12",
     },
     {
-        id: 34,
+        id: "35",
         expense: "Health",
         category: "Laboratory",
         description: "Urinalysis",
@@ -347,7 +347,7 @@ export const HealthData: HealthExpense[] = [
         date: "2026-07-10",
     },
     {
-        id: 35,
+        id: "36",
         expense: "Health",
         category: "Other",
         description: "First Aid Supplies",
@@ -359,7 +359,7 @@ export const HealthData: HealthExpense[] = [
 
 export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
     {
-        id: 36,
+        id: "37",
         expense: "HouseMaintenance",
         category: "Repairs",
         description: "Faucet Repair",
@@ -368,7 +368,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         date: "2026-07-28",
     },
     {
-        id: 37,
+        id: "38",
         expense: "HouseMaintenance",
         category: "Repairs",
         description: "Light Bulb Replacement",
@@ -377,7 +377,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         date: "2026-07-26",
     },
     {
-        id: 38,
+        id: "39",
         expense: "HouseMaintenance",
         category: "Repairs",
         description: "Door Lock Repair",
@@ -386,7 +386,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         date: "2026-07-24",
     },
     {
-        id: 39,
+        id: "40",
         expense: "HouseMaintenance",
         category: "Cleaning",
         description: "Roof Cleaning",
@@ -395,7 +395,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         date: "2026-07-22",
     },
     {
-        id: 40,
+        id: "41",
         expense: "HouseMaintenance",
         category: "PestControl",
         description: "Pest Control Service",
@@ -404,7 +404,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         date: "2026-07-20",
     },
     {
-        id: 41,
+        id: "42",
         expense: "HouseMaintenance",
         category: "Maintenance",
         description: "Air Conditioner Service",
@@ -413,7 +413,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         date: "2026-07-18",
     },
     {
-        id: 42,
+        id: "43",
         expense: "HouseMaintenance",
         category: "Repairs",
         description: "Clogged Drain Repair",
@@ -422,7 +422,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         date: "2026-07-15",
     },
     {
-        id: 43,
+        id: "44",
         expense: "HouseMaintenance",
         category: "Repairs",
         description: "Electrical Outlet Repair",
@@ -431,7 +431,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         date: "2026-07-12",
     },
     {
-        id: 44,
+        id: "45",
         expense: "HouseMaintenance",
         category: "Other",
         description: "Curtain Rod Replacement",
@@ -443,7 +443,7 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
 
 export const FamilyExpensesData: FamilyExpense[] = [
     {
-        id: 45,
+        id: "46",
         expense: "FamilyExpenses",
         category: "Education",
         description: "School Supplies",
@@ -452,7 +452,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-28",
     },
     {
-        id: 46,
+        id: "47",
         expense: "FamilyExpenses",
         category: "Allowance",
         description: "Weekly Allowance",
@@ -461,7 +461,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-26",
     },
     {
-        id: 47,
+        id: "48",
         expense: "FamilyExpenses",
         category: "Entertainment",
         description: "Family Day Out",
@@ -470,7 +470,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-24",
     },
     {
-        id: 48,
+        id: "49",
         expense: "FamilyExpenses",
         category: "Entertainment",
         description: "Movie Tickets",
@@ -479,7 +479,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-22",
     },
     {
-        id: 49,
+        id: "50",
         expense: "FamilyExpenses",
         category: "Celebrations",
         description: "Birthday Celebration",
@@ -488,7 +488,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-20",
     },
     {
-        id: 50,
+        id: "51",
         expense: "FamilyExpenses",
         category: "Celebrations",
         description: "Fiesta Celebration",
@@ -497,7 +497,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-18",
     },
     {
-        id: 51,
+        id: "52",
         expense: "FamilyExpenses",
         category: "Celebrations",
         description: "Christmas Celebration",
@@ -506,7 +506,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-15",
     },
     {
-        id: 52,
+        id: "53",
         expense: "FamilyExpenses",
         category: "Celebrations",
         description: "New Year Celebration",
@@ -515,7 +515,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-12",
     },
     {
-        id: 53,
+        id: "54",
         expense: "FamilyExpenses",
         category: "Education",
         description: "School Project Materials",
@@ -524,7 +524,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         date: "2026-07-10",
     },
     {
-        id: 54,
+        id: "55",
         expense: "FamilyExpenses",
         category: "Other",
         description: "Family Miscellaneous Expense",
@@ -536,7 +536,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
 
 export const OtherExpensesData: OtherExpense[] = [
     {
-        id: 55,
+        id: "56",
         expense: "OtherExpenses",
         category: "Personal",
         description: "Haircut",
@@ -545,7 +545,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-28",
     },
     {
-        id: 56,
+        id: "57",
         expense: "OtherExpenses",
         category: "Donations",
         description: "Charity Donation",
@@ -554,7 +554,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-26",
     },
     {
-        id: 57,
+        id: "58",
         expense: "OtherExpenses",
         category: "Subscriptions",
         description: "Streaming Subscription",
@@ -563,7 +563,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-24",
     },
     {
-        id: 58,
+        id: "59",
         expense: "OtherExpenses",
         category: "Government",
         description: "Government Document Processing",
@@ -572,7 +572,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-22",
     },
     {
-        id: 59,
+        id: "60",
         expense: "OtherExpenses",
         category: "Miscellaneous",
         description: "Miscellaneous Expense",
@@ -581,7 +581,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-20",
     },
     {
-        id: 60,
+        id: "61",
         expense: "OtherExpenses",
         category: "Tickets",
         description: "Movie Tickets",
@@ -590,7 +590,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-18",
     },
     {
-        id: 61,
+        id: "62",
         expense: "OtherExpenses",
         category: "Fees",
         description: "Bank Transaction Fee",
@@ -599,7 +599,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-15",
     },
     {
-        id: 62,
+        id: "63",
         expense: "OtherExpenses",
         category: "Services",
         description: "Laundry Service",
@@ -608,7 +608,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-12",
     },
     {
-        id: 63,
+        id: "64",
         expense: "OtherExpenses",
         category: "Personal",
         description: "Personal Care Products",
@@ -617,7 +617,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-10",
     },
     {
-        id: 64,
+        id: "65",
         expense: "OtherExpenses",
         category: "Subscriptions",
         description: "Cloud Storage Subscription",
@@ -626,7 +626,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-08",
     },
     {
-        id: 65,
+        id: "66",
         expense: "OtherExpenses",
         category: "Donations",
         description: "Community Donation",
@@ -635,7 +635,7 @@ export const OtherExpensesData: OtherExpense[] = [
         date: "2026-07-05",
     },
     {
-        id: 66,
+        id: "67",
         expense: "OtherExpenses",
         category: "Tickets",
         description: "Event Ticket",
