@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import { TransportationData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { TransportationExpense, TransportationCategory } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
@@ -11,8 +12,9 @@ type TransportationExpenseForm = Omit<TransportationExpense, "category" > & {
 }
 
 const TransportationModal = ({id}: {id?: string | null}) => {
+    const findExpenses = TransportationData.find((key) => key.id === id)
     const defaultData: TransportationExpenseForm = {
-        id: 0,
+        id: "0",
         expense: "Transportation",
         amount: 0,
         createdAt: "",
@@ -21,7 +23,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
         date: ""
     }
 
-    const [ transportationExpenses, setTransportationExpenses ] = useState<TransportationExpenseForm>(defaultData)
+    const [ transportationExpenses, setTransportationExpenses ] = useState<TransportationExpenseForm>(findExpenses ?? defaultData)
 
     const TransportationCategory: TransportationCategory[] = [
         "Fuel",
