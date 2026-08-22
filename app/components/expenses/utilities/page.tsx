@@ -178,7 +178,7 @@ const UtilitiesPage = () => {
                     <Table
                         data={utilitiesExpenses}
                         columns={utilitiesColumn}
-                        viewLink="/expenses/utilities/view"
+                        viewLink="/expenses/utilities/viewUtilities"
                         editLink = "/expenses/utilitiesco/editUtilities"
                     />
                 </div>

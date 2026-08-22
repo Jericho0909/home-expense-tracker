@@ -82,9 +82,9 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="category"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Category:
@@ -118,9 +118,9 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="name"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Name:
@@ -145,9 +145,9 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="type"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Type:
@@ -181,9 +181,9 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="amount"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Amount:
@@ -215,9 +215,9 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="purchaseDate"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Purchase Date:

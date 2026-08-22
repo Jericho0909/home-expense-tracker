@@ -73,9 +73,9 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="category"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Category:
@@ -109,9 +109,9 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="description"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Description:
@@ -136,9 +136,9 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="amount"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Amount:
@@ -170,9 +170,9 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="date"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Date:

@@ -82,9 +82,9 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="utility"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Utility:
@@ -118,9 +118,9 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="amount"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Amount:
@@ -152,9 +152,9 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="billingStart"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Billing Start:
@@ -179,9 +179,9 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="billingEnd"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Billing End:
@@ -206,9 +206,9 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="dueDate"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Due Date:
@@ -233,9 +233,9 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="status"
-                        className="text-base"
+                        className="text-base font-semibold"
                         style={{
-                            fontFamily: "var(--font-libre-baskerville)"
+                            fontFamily: "var(--font-playfair-display)"
                         }}
                     >
                         Status:
