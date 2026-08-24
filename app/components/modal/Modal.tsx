@@ -33,7 +33,7 @@ const Modal = ({children}: ModalProps) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div 
-                className="relative w-full max-w-md rounded-lg bg-[#F1E3D0] p-6 shadow-xl"
+                className="relative w-full max-h-screen max-w-lg rounded-lg bg-[#F1E3D0] p-6 shadow-xl overflow-y-auto"
             >
 
                 <div className="absolute top-3 right-5 flex items-center justify-end mb-4">

@@ -2,22 +2,27 @@
 
 import { useState } from "react";
 import { UtilitiesData } from "@/app/constant/expensesData";
-import type { UtilityExpense } from "@/app/type/model";
+import type { UtilityExpense, PaymentMethod } from "@/app/type/model";
 import { StatusIcons } from "@/app/constant/billIcons";
 import formatBillingPeriod from "@/app/utils/formatBillingPeriod";
 import formattedDate from "@/app/utils/formattedDate";
 import { Lightbulb, PhilippinePeso } from "lucide-react";
 
+type UtilityExpenseItems = Omit<UtilityExpense, "paymentMethod"> & {
+    paymentMethod?: PaymentMethod | ""
+
+}
+
 const ViewUtilitiesModal = ({id}: {id: string}) => {
     const findExpenses = UtilitiesData.find((key) => key.id === id)
     if(!findExpenses) return
 
-    const [ expenses, ] = useState<UtilityExpense>(findExpenses)
+    const [ expenses, ] = useState<UtilityExpenseItems>(findExpenses)
     return (
         <div className="flex flex-col">
-            <div className="flex flex-col border-b-2 border-black mb-3">
+            <div className="flex flex-col border-b-2 border-black mb-2">
                 <h4 
-                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
+                    className="flex text-lg font-bold mb-2 text-[#3B2416]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
                     <span className="mr-2">
@@ -34,9 +39,33 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                 </span>
             </div>
 
-            <div className="flex flex-col mb-3">
+            <div className="flex flex-col p-1 mb-2">
                 <div
-                    className="flex flex-col p-4"
+                    className="flex flex-col p-2"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    <span
+                        className="text-base font-semibold mb-1.5"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Name
+                    </span>
+                    <span
+                        className="flex items-center gap-1 text-[#3B2416] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    >
+                        {expenses.name}
+                    </span>
+                </div>
+            </div>
+
+            <div className="flex flex-col p-1 mb-2">
+                <div
+                    className="flex flex-col p-2"
                     style={{
                         fontFamily: "var(--font-playfair-display)"
                     }}
@@ -59,7 +88,7 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                 </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center p-3 border-dashed border mb-3">
+            <div className="flex flex-col items-center justify-center p-3 border-dashed border mb-2">
                 <span
                     className="text-base font-semibold mb-1.5"
                     style={{
@@ -77,7 +106,7 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                 </span>
             </div>
 
-            <div className="flex justify-between p-3">
+            <div className="flex justify-between p-1 mb-2">
                 <div className="flex flex-col justify-center">
                     <span
                         className="text-base font-semibold mb-1.5"
@@ -110,15 +139,8 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                         {formattedDate(expenses.billingEnd)}
                     </span>
                 </div>
-            </div>
 
-            <div className="flex flex-col">
-                <div
-                    className="flex flex-col p-4"
-                    style={{
-                        fontFamily: "var(--font-playfair-display)"
-                    }}
-                >
+                <div className="flex flex-col justify-center">
                     <span
                         className="text-base font-semibold mb-1.5"
                         style={{
@@ -132,6 +154,82 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
                         {formattedDate(expenses.createdAt)}
+                    </span>
+                </div>
+            </div>
+
+            <div className="flex justify-between p-1 mb-2">
+                <div
+                    className="flex flex-col p-2"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    <span
+                        className="text-base font-semibold mb-1.5"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Payment Method
+                    </span>
+                    <span
+                        className="flex items-center gap-1 text-[#3B2416] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    >
+                        {expenses.paymentMethod !== "" 
+                            ? expenses.paymentMethod
+                            : "Pending"
+                        }
+                    </span>
+                </div>
+
+                <div
+                    className="flex flex-col p-2"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    <span
+                        className="text-base font-semibold mb-1.5"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Paid At
+                    </span>
+                    <span
+                        className="flex items-center gap-1 text-[#3B2416] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    >
+                        {expenses.paidAt !== "" 
+                            ? expenses.paymentMethod
+                            : "Pending"
+                        }
+                    </span>
+                </div>
+            </div>
+
+            <div className="flex flex-col p-1 mb-2">
+                <div
+                    className="flex flex-col p-2"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    <span
+                        className="text-base font-semibold mb-1.5"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Notes
+                    </span>
+                    <span
+                        className="flex items-center gap-1 text-[#3B2416] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    >
+                        {expenses.notes}
                     </span>
                 </div>
             </div>

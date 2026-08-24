@@ -122,6 +122,13 @@ export type StatusType =
     | "Overdue"
     | "Unpaid"
 
+export type PaymentMethod =
+    | "Cash"
+    | "GCash"
+    | "Bank Transfer"
+    | "Maya"
+    | "Other";
+
 export type IconType = {
     icon: React.ReactNode;
 }
@@ -153,6 +160,9 @@ export type UtilityExpense = Expense & {
     billingEnd: string;
     dueDate: string;
     status: StatusType;
+    paymentMethod?: PaymentMethod;
+    paidAt?: string;
+    notes : string;
 }
 
 export type FoodHouseholdExpense = Expense & {

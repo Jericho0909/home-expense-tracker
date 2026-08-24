@@ -19,7 +19,11 @@ export const UtilitiesData: UtilityExpense[] = [
         billingEnd: "2026-07-31",
         dueDate: "2026-07-15",
         status: "Paid",
+        paymentMethod: "GCash",
+        paidAt: "2026-07-12",
+        notes: "Paid before the due date.",
     },
+
     {
         id: "2",
         expense: "Utilities",
@@ -30,7 +34,11 @@ export const UtilitiesData: UtilityExpense[] = [
         billingEnd: "2026-07-31",
         dueDate: "2026-07-18",
         status: "Paid",
+        paymentMethod: "Cash",
+        paidAt: "2026-07-16",
+        notes: "Paid in full.",
     },
+
     {
         id: "3",
         expense: "Utilities",
@@ -41,7 +49,9 @@ export const UtilitiesData: UtilityExpense[] = [
         billingEnd: "2026-07-24",
         dueDate: "2026-07-20",
         status: "Overdue",
+        notes: "Payment is still pending.",
     },
+
     {
         id: "4",
         expense: "Utilities",
@@ -52,7 +62,11 @@ export const UtilitiesData: UtilityExpense[] = [
         billingEnd: "2026-07-31",
         dueDate: "2026-07-22",
         status: "Paid",
+        paymentMethod: "Maya",
+        paidAt: "2026-07-21",
+        notes: "Monthly mobile load.",
     },
+
     {
         id: "5",
         expense: "Utilities",
@@ -63,7 +77,9 @@ export const UtilitiesData: UtilityExpense[] = [
         billingEnd: "2026-07-31",
         dueDate: "2026-07-25",
         status: "Pending",
+        notes: "Scheduled for payment.",
     },
+
     {
         id: "6",
         expense: "Utilities",
@@ -74,6 +90,9 @@ export const UtilitiesData: UtilityExpense[] = [
         billingEnd: "2026-07-31",
         dueDate: "2026-07-25",
         status: "Paid",
+        paymentMethod: "Cash",
+        paidAt: "2026-07-24",
+        notes: "Gas cylinder refill.",
     },
 ];
 

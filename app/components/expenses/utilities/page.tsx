@@ -36,14 +36,6 @@ const UtilitiesPage = () => {
                 </span>
         },
         {
-            label: "Billing Period",
-            render: (item) =>
-                formatBillingPeriod(
-                    item.billingStart,
-                    item.billingEnd
-                ),
-        },
-        {
             label: "Due Date",
             render: (item) => item.dueDate,
         },
