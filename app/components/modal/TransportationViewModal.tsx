@@ -9,9 +9,9 @@ import { Car, PhilippinePeso } from 'lucide-react';
 
 const ViewTransportationModal = ({id}: {id: string}) => {
     const findExpenses = TransportationData.find((key) => key.id === id)
-        if(!findExpenses) return
-    
-        const [ expenses, setExpenses ] = useState<TransportationExpense>(findExpenses)
+    if(!findExpenses) return
+
+    const [ expenses, ] = useState<TransportationExpense>(findExpenses)
     return (
         <div className="flex flex-col">
             <div className="flex flex-col border-b-2 border-black mb-4">
