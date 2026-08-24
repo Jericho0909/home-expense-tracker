@@ -60,7 +60,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                        Record a healthcare expense
+                    Record a healthcare expense
                 </span>
             </div>
             <form

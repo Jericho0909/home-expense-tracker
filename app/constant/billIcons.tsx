@@ -247,13 +247,13 @@ export const StatusIcons: Record<StatusType, IconType> = {
 };
 
 export const FamilyRoleColor: Record<FamilyRole, string> = {
-        Father: "#2563EB",
-        Mother: "#DB2777",
-        Son: "#0284C7",
-        Daughter: "#E11D48",
-        Grandfather: "#D97706",
-        Grandmother: "#7E22CE",
-        Uncle: "#16A34A",
-        Aunt: "#C026D3",
-        Other: "#6B7280",
-    };
+    Father: "#2563EB",
+    Mother: "#DB2777",
+    Son: "#0284C7",
+    Daughter: "#E11D48",
+    Grandfather: "#D97706",
+    Grandmother: "#7E22CE",
+    Uncle: "#16A34A",
+    Aunt: "#C026D3",
+    Other: "#6B7280",
+};

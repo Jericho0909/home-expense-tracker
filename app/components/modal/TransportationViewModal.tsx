@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { TransportationData } from '@/app/constant/expensesData';
+import { TransportationBillIcons } from '@/app/constant/billIcons';
 import type { TransportationExpense } from '@/app/type/model';
 import formattedDate from '@/app/utils/formattedDate';
 import { Car, PhilippinePeso } from 'lucide-react';
@@ -15,12 +16,11 @@ const ViewTransportationModal = ({id}: {id: string}) => {
         <div className="flex flex-col">
             <div className="flex flex-col border-b-2 border-black mb-4">
                 <h4 
-                    className="flex text-lg font-bold mb-3 text-[#3B2416]"
+                    className="flex items-center text-lg font-bold mb-3 text-[#3B2416]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
                     <span className="mr-2">
-                        <Car size={24} className="text-[#CD7F32]"
-                    />
+                        {TransportationBillIcons[expenses.category].icon}
                     </span>
                     {expenses.category}
                 </h4>
