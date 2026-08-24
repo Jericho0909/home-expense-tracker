@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import { FoodHouseholdData } from '@/app/constant/expensesData';
 import type { FoodHouseholdExpense } from '@/app/type/model';
+import formattedDate from '@/app/utils/formattedDate';
 import { CookingPot, PhilippinePeso } from 'lucide-react';
 
 const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
     const findExpenses = FoodHouseholdData.find((key) => key.id === id)
     if(!findExpenses) return
 
-    const [ expenses, setExpenses ] = useState<FoodHouseholdExpense>(findExpenses)
+    const [ expenses, ] = useState<FoodHouseholdExpense>(findExpenses)
     return (
         <div className="flex flex-col">
             <div className="flex flex-col border-b-2 border-black mb-4">
@@ -50,38 +51,55 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
             </div>
 
             <div className="flex items-center gap-1">
-                    <span
-                        className="text-base font-semibold mb-1.5"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Category:
-                    </span>
-                    <span
-                        className="flex items-center gap-1 text-[#3B2416] text-sm"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                    >
-                        {expenses.category}
-                    </span>
-                </div>
+                <span
+                    className="text-base font-semibold mb-1.5"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    Name:
+                </span>
+                <span
+                    className="flex items-center gap-1 text-[#3B2416] text-sm"
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                >
+                    {expenses.name}
+                </span>
+            </div>
 
-                <div className="flex items-center gap-1">
-                    <span
-                        className="text-base font-semibold mb-1.5"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Date:
-                    </span>
-                    <span
-                        className="flex items-center gap-1 text-[#3B2416] text-sm"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                    >
-                        {expenses.purchaseDate}
-                    </span>
-                </div>
+            <div className="flex items-center gap-1">
+                <span
+                    className="text-base font-semibold mb-1.5"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    Category:
+                </span>
+                <span
+                    className="flex items-center gap-1 text-[#3B2416] text-sm"
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                >
+                    {expenses.category}
+                </span>
+            </div>
+
+            <div className="flex items-center gap-1">
+                <span
+                    className="text-base font-semibold mb-1.5"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    Purchase Date:
+                </span>
+                <span
+                    className="flex items-center gap-1 text-[#3B2416] text-sm"
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                >
+                    {formattedDate(expenses.purchaseDate)}
+                </span>
+            </div>
         </div>
     )
 }

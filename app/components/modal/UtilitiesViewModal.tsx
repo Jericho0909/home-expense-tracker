@@ -5,6 +5,7 @@ import { UtilitiesData } from "@/app/constant/expensesData";
 import type { UtilityExpense } from "@/app/type/model";
 import { StatusIcons } from "@/app/constant/billIcons";
 import formatBillingPeriod from "@/app/utils/formatBillingPeriod";
+import formattedDate from "@/app/utils/formattedDate";
 import { Lightbulb, PhilippinePeso } from "lucide-react";
 
 const ViewUtilitiesModal = ({id}: {id: string}) => {
@@ -106,7 +107,7 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expenses.billingEnd}
+                        {formattedDate(expenses.billingEnd)}
                     </span>
                 </div>
             </div>
@@ -130,7 +131,7 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expenses.createdAt}
+                        {formattedDate(expenses.createdAt)}
                     </span>
                 </div>
             </div>
