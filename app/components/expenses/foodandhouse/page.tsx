@@ -202,7 +202,7 @@ const FoodAndHousePage = () => {
                     <Table
                         data={FoodAndHouseExpenses}
                         columns={FoodAndHouseColumn}
-                        viewLink="/expenses/foodandhouse/view"
+                        viewLink="/expenses/foodandhouse/viewFoodAndHousehold"
                         editLink = "/expenses/foodandhouse/editFoodAndHousehold"
                     />
                 </div>
