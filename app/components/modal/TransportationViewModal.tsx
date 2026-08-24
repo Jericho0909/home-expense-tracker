@@ -28,7 +28,7 @@ const ViewTransportationModal = ({id}: {id: string}) => {
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Record a transportation expense 
+                    Transportation Expense 
                 </span>
             </div>
 

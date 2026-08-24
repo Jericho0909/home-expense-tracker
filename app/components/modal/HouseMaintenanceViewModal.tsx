@@ -9,9 +9,9 @@ import { PhilippinePeso } from 'lucide-react';
 
 const ViewHouseMaintenanceModal = ({id}: {id: string}) => {
     const findExpenses = HouseMaintenanceData.find((key) => key.id === id)
-        if(!findExpenses) return
-    
-        const [ expenses, ] = useState<HouseMaintenanceExpense>(findExpenses)
+    if(!findExpenses) return
+
+    const [ expenses, ] = useState<HouseMaintenanceExpense>(findExpenses)
     return (
         <div className="flex flex-col">
             <div className="flex flex-col border-b-2 border-black mb-4">
@@ -28,7 +28,7 @@ const ViewHouseMaintenanceModal = ({id}: {id: string}) => {
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Record a house maintenance expense
+                    Maintenance Expense
                 </span>
             </div>
 
