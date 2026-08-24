@@ -5,7 +5,7 @@ import { TransportationData } from '@/app/constant/expensesData';
 import { TransportationBillIcons } from '@/app/constant/billIcons';
 import type { TransportationExpense } from '@/app/type/model';
 import formattedDate from '@/app/utils/formattedDate';
-import { Car, PhilippinePeso } from 'lucide-react';
+import { PhilippinePeso } from 'lucide-react';
 
 const ViewTransportationModal = ({id}: {id: string}) => {
     const findExpenses = TransportationData.find((key) => key.id === id)
