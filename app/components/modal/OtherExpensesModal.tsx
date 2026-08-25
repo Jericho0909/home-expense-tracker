@@ -3,12 +3,16 @@
 import { useState } from "react";
 import { OtherExpensesData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
-import type { OtherExpense, OtherExpenseCategory } from "@/app/type/model";
+import type { OtherExpense, 
+    OtherExpenseCategory,
+    PaymentMethod
+} from "@/app/type/model";
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
 import { ReceiptText } from 'lucide-react';
 
-type OtherExpenseForm = Omit<OtherExpense, "category"> & {
+type OtherExpenseForm = Omit<OtherExpense, "category" | "paymentMethod"> & {
     category: OtherExpenseCategory | "";
+    paymentMethod: PaymentMethod | ""
 }
 
 const OtherExepensesModal = ({id}: {id?: string | null}) => {
@@ -21,7 +25,9 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
         createdAt: "",
         description: "",
         category: "",
-        date: ""
+        date: "",
+        paymentMethod: "",
+        notes: ""
     }
 
     const [ otherExpenses, setOtherExpenses ] = useState<OtherExpenseForm>(findExpenses ?? defaultData)
@@ -167,6 +173,116 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                     />
                 </div>
 
+                <div className="flex flex-col justify-between p-1 mb-3">
+                    <label
+                        className="text-base font-semibold"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Payment Method
+                    </label>
+
+                    <div className="flex flex-wrap gap-4">
+                        <label className="flex cursor-pointer items-center gap-2">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="Cash"
+                                checked={otherExpenses.paymentMethod === "Cash"}
+                                onChange={(e) => setOtherExpenses((item) => ({
+                                    ...item,
+                                    [e.target.name]: Number(e.target.value)
+                                }))}
+                            />
+                            <span
+                                className="text-[#3B2416] text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            >
+                                Cash
+                            </span>
+                        </label>
+
+                        <label className="flex cursor-pointer items-center gap-2">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="GCash"
+                                checked={otherExpenses.paymentMethod === "GCash"}
+                                onChange={(e) => setOtherExpenses((item) => ({
+                                    ...item,
+                                    [e.target.name]: Number(e.target.value)
+                                }))}
+                            />
+                            <span
+                                className="text-[#3B2416] text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            > 
+                                GCash
+                            </span>
+                        </label>
+
+                        <label className="flex cursor-pointer items-center gap-2">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="Bank Transfer"
+                                checked={otherExpenses.paymentMethod === "Bank Transfer"}
+                                onChange={(e) => setOtherExpenses((item) => ({
+                                    ...item,
+                                    [e.target.name]: Number(e.target.value)
+                                }))}
+                            />
+                            <span
+                                className="text-[#3B2416] text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            >
+                                Bank Transfer
+                            </span>
+                        </label>
+
+                        <label className="flex cursor-pointer items-center gap-2">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="Maya"
+                                checked={otherExpenses.paymentMethod === "Maya"}
+                                onChange={(e) => setOtherExpenses((item) => ({
+                                    ...item,
+                                    [e.target.name]: Number(e.target.value)
+                                }))}
+                                
+                            />
+                            <span
+                                className="text-[#3B2416] text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            >
+                                Maya
+                            </span>
+                        </label>
+
+                        <label className="flex cursor-pointer items-center gap-2">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="Other"
+                                checked={otherExpenses.paymentMethod === "Other"}
+                                onChange={(e) => setOtherExpenses((item) => ({
+                                    ...item,
+                                    [e.target.name]: Number(e.target.value)
+                                }))}
+                                
+                            />
+                            <span
+                                className="text-[#3B2416] text-sm"
+                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            >
+                                Other
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="date"
@@ -190,6 +306,31 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                         className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                         placeholder=""
+                        required
+                    />
+                </div>
+
+                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                    <label
+                        htmlFor="notes"
+                        className="text-base font-semibold"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Notes:
+                    </label>
+                    <textarea
+                        name="notes"
+                        value={otherExpenses.notes}
+                        onChange={(e) => setOtherExpenses((item) => ({
+                            ...item,
+                            [e.target.name]: e.target.value
+                        }))}
+                        className="resize-none bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        placeholder="Add notes..."
+                        rows={4}
                         required
                     />
                 </div>

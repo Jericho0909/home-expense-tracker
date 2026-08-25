@@ -688,7 +688,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 300,
         createdAt: "2026-08-01",
         date: "2026-07-28",
+        paymentMethod: "Cash",
+        notes: "Regular haircut.",
     },
+
     {
         id: "57",
         expense: "OtherExpenses",
@@ -697,7 +700,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 500,
         createdAt: "2026-08-01",
         date: "2026-07-26",
+        paymentMethod: "GCash",
+        notes: "Donation to a local charity.",
     },
+
     {
         id: "58",
         expense: "OtherExpenses",
@@ -706,7 +712,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 549,
         createdAt: "2026-08-01",
         date: "2026-07-24",
+        paymentMethod: "GCash",
+        notes: "Monthly streaming subscription.",
     },
+
     {
         id: "59",
         expense: "OtherExpenses",
@@ -715,7 +724,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 300,
         createdAt: "2026-08-01",
         date: "2026-07-22",
+        paymentMethod: "Cash",
+        notes: "Government document processing fee.",
     },
+
     {
         id: "60",
         expense: "OtherExpenses",
@@ -724,7 +736,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 650,
         createdAt: "2026-08-01",
         date: "2026-07-20",
+        paymentMethod: "Cash",
+        notes: "Miscellaneous household expense.",
     },
+
     {
         id: "61",
         expense: "OtherExpenses",
@@ -733,7 +748,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 800,
         createdAt: "2026-08-01",
         date: "2026-07-18",
+        paymentMethod: "GCash",
+        notes: "Movie tickets for the family.",
     },
+
     {
         id: "62",
         expense: "OtherExpenses",
@@ -742,7 +760,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 100,
         createdAt: "2026-08-01",
         date: "2026-07-15",
+        paymentMethod: "Bank Transfer",
+        notes: "Bank transaction processing fee.",
     },
+
     {
         id: "63",
         expense: "OtherExpenses",
@@ -751,7 +772,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 450,
         createdAt: "2026-08-01",
         date: "2026-07-12",
+        paymentMethod: "Cash",
+        notes: "Regular laundry service.",
     },
+
     {
         id: "64",
         expense: "OtherExpenses",
@@ -760,7 +784,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 750,
         createdAt: "2026-08-01",
         date: "2026-07-10",
+        paymentMethod: "Maya",
+        notes: "Personal care product purchase.",
     },
+
     {
         id: "65",
         expense: "OtherExpenses",
@@ -769,7 +796,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 149,
         createdAt: "2026-08-01",
         date: "2026-07-08",
+        paymentMethod: "GCash",
+        notes: "Monthly cloud storage subscription.",
     },
+
     {
         id: "66",
         expense: "OtherExpenses",
@@ -778,7 +808,10 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 1000,
         createdAt: "2026-08-01",
         date: "2026-07-05",
+        paymentMethod: "Cash",
+        notes: "Donation for a community activity.",
     },
+
     {
         id: "67",
         expense: "OtherExpenses",
@@ -787,6 +820,8 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 1200,
         createdAt: "2026-08-01",
         date: "2026-07-03",
+        paymentMethod: "GCash",
+        notes: "Ticket for a local event.",
     },
 ];
 

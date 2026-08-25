@@ -211,6 +211,8 @@ export type OtherExpense = Expense & {
     description: string;
     category: OtherExpenseCategory;
     date: string;
+    paymentMethod: PaymentMethod;
+    notes: string;
 }
 
 export type ExpenseData =
