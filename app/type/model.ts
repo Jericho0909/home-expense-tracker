@@ -186,6 +186,8 @@ export type HealthExpense = Expense & {
     description: string;
     category: HealthCategory
     date: string;
+    paymentMethod: PaymentMethod;
+    notes: string;
 }
 
 export type HouseMaintenanceExpense = Expense & {

@@ -346,7 +346,10 @@ export const HealthData: HealthExpense[] = [
         amount: 850,
         createdAt: "2026-07-01",
         date: "2026-07-26",
+        paymentMethod: "Cash",
+        notes: "Monthly maintenance medicine.",
     },
+
     {
         id: "29",
         expense: "Health",
@@ -355,7 +358,10 @@ export const HealthData: HealthExpense[] = [
         amount: 800,
         createdAt: "2026-07-01",
         date: "2026-07-24",
+        paymentMethod: "Cash",
+        notes: "General medical consultation.",
     },
+
     {
         id: "30",
         expense: "Health",
@@ -364,7 +370,10 @@ export const HealthData: HealthExpense[] = [
         amount: 1200,
         createdAt: "2026-07-01",
         date: "2026-07-22",
+        paymentMethod: "GCash",
+        notes: "Routine dental cleaning.",
     },
+
     {
         id: "31",
         expense: "Health",
@@ -373,7 +382,10 @@ export const HealthData: HealthExpense[] = [
         amount: 650,
         createdAt: "2026-07-01",
         date: "2026-07-20",
+        paymentMethod: "Cash",
+        notes: "Laboratory blood test.",
     },
+
     {
         id: "32",
         expense: "Health",
@@ -382,7 +394,10 @@ export const HealthData: HealthExpense[] = [
         amount: 250,
         createdAt: "2026-07-01",
         date: "2026-07-18",
+        paymentMethod: "Cash",
+        notes: "Over-the-counter medicine.",
     },
+
     {
         id: "33",
         expense: "Health",
@@ -391,7 +406,10 @@ export const HealthData: HealthExpense[] = [
         amount: 500,
         createdAt: "2026-07-01",
         date: "2026-07-15",
+        paymentMethod: "GCash",
+        notes: "Follow-up medical consultation.",
     },
+
     {
         id: "34",
         expense: "Health",
@@ -400,7 +418,10 @@ export const HealthData: HealthExpense[] = [
         amount: 1800,
         createdAt: "2026-07-01",
         date: "2026-07-12",
+        paymentMethod: "Cash",
+        notes: "Dental extraction procedure.",
     },
+
     {
         id: "35",
         expense: "Health",
@@ -409,7 +430,10 @@ export const HealthData: HealthExpense[] = [
         amount: 200,
         createdAt: "2026-07-01",
         date: "2026-07-10",
+        paymentMethod: "Cash",
+        notes: "Routine laboratory test.",
     },
+
     {
         id: "36",
         expense: "Health",
@@ -418,6 +442,8 @@ export const HealthData: HealthExpense[] = [
         amount: 450,
         createdAt: "2026-07-01",
         date: "2026-07-08",
+        paymentMethod: "Maya",
+        notes: "Basic first aid supplies.",
     },
 ];
 
