@@ -75,7 +75,8 @@ const Table = <T extends { id: number | string }>({
                                     {payLink && action === "pay" && (
                                         setActiveModal(null),
                                         setIsOpen(true),
-                                        setIsEditing(true)
+                                        setIsEditing(true),
+                                        router.push(`${payLink}/${idString}`)
                                     )}
 
                                     if (action === "delete"){

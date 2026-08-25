@@ -20,6 +20,8 @@ import HealthModal from "./HealthModal";
 import HouseMaintenanceModal from "./HouseMaintenanceModal";
 import FamilyExpensesModal from "./FamilyExpensesModal";
 import OtherExepensesModal from "./OtherExpensesModal";
+import UtilitiesPayModal from "./UtilitiesPayModal";
+import FoodAndHouseholdPayModal from "./FoodAndHouseholdPayModal";
 import type { ActionContent } from "../../type/model"
  
 const ActionModal = ({action, id}: {action: ActionContent; id:string}) => { 
@@ -42,7 +44,9 @@ const ActionModal = ({action, id}: {action: ActionContent; id:string}) => {
         editHealth: <HealthModal id={id}/>,
         editHouseMaintenance: <HouseMaintenanceModal id={id}/>,
         editFamilyExpenses: <FamilyExpensesModal id={id}/>,
-        editOtherExpenses: <OtherExepensesModal id={id}/>
+        editOtherExpenses: <OtherExepensesModal id={id}/>,
+        payUtilities: <UtilitiesPayModal id={id}/>,
+        payFoodAndHousehold: <FoodAndHouseholdPayModal id={id}/>
     } 
 
     useEffect(() => {

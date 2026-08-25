@@ -260,3 +260,5 @@ export type ActionContent =
     | "editHouseMaintenance"
     | "editFamilyExpenses"
     | "editOtherExpenses"
+    | "payUtilities"
+    | "payFoodAndHousehold"
