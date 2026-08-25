@@ -63,14 +63,18 @@ const Table = <T extends { id: number | string }>({
                                         router.push(`${viewLink}/${idString}`)
                                     }
 
-                                    if (action === "edit") {
+                                    if(action === "edit"){
                                         setActiveModal(null)
                                         setIsOpen(true)
                                         setIsEditing(true)
                                         router.push(`${editLink}/${idString}`)
                                     }
 
-                                    if (action === "delete") {
+                                    if(action === "pay"){
+
+                                    }
+
+                                    if (action === "delete"){
                                         // Delete action
                                     }
 
@@ -83,6 +87,7 @@ const Table = <T extends { id: number | string }>({
                                 </option>
                                 <option value="view">View</option>
                                 <option value="edit">Edit</option>
+                                <option value="pay">Pay</option>
                                 <option value="delete">Delete</option>
                             </select>
                         </td>

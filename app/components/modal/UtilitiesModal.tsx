@@ -30,8 +30,6 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
         billingEnd: "",
         dueDate: "",
         status: "",
-        paymentMethod: "",
-        paidAt: "",
         notes: ""
 
     }
@@ -188,111 +186,6 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                         placeholder=""
                         required
                     />
-                </div>
-
-                <div className="flex flex-col justify-between p-1 mb-3">
-                    <label
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Payment Method
-                    </label>
-
-                    <div className="flex flex-wrap gap-4">
-                        <label className="flex cursor-pointer items-center gap-2">
-                            <input
-                                type="radio"
-                                name="paymentMethod"
-                                value="Cash"
-                                checked={utilityExpense.paymentMethod === "Cash"}
-                                onChange={(e) => setUtilityExpense((item) => ({
-                                    ...item,
-                                    [e.target.name]: Number(e.target.value)
-                                }))}
-                            />
-                            <span
-                                className="text-[#3B2416] text-sm"
-                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                            >
-                                Cash
-                            </span>
-                        </label>
-
-                        <label className="flex cursor-pointer items-center gap-2">
-                            <input
-                                type="radio"
-                                name="paymentMethod"
-                                value="GCash"
-                                checked={utilityExpense.paymentMethod === "GCash"}
-                                onChange={(e) => setUtilityExpense((item) => ({
-                                    ...item,
-                                    [e.target.name]: Number(e.target.value)
-                                }))}
-                            />
-                            <span>GCash</span>
-                        </label>
-
-                        <label className="flex cursor-pointer items-center gap-2">
-                            <input
-                                type="radio"
-                                name="paymentMethod"
-                                value="Bank Transfer"
-                                checked={utilityExpense.paymentMethod === "Bank Transfer"}
-                                onChange={(e) => setUtilityExpense((item) => ({
-                                    ...item,
-                                    [e.target.name]: Number(e.target.value)
-                                }))}
-                            />
-                            <span
-                                className="text-[#3B2416] text-sm"
-                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                            >
-                                Bank Transfer
-                            </span>
-                        </label>
-
-                        <label className="flex cursor-pointer items-center gap-2">
-                            <input
-                                type="radio"
-                                name="paymentMethod"
-                                value="Maya"
-                                checked={utilityExpense.paymentMethod === "Maya"}
-                                onChange={(e) => setUtilityExpense((item) => ({
-                                    ...item,
-                                    [e.target.name]: Number(e.target.value)
-                                }))}
-                                
-                            />
-                            <span
-                                className="text-[#3B2416] text-sm"
-                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                            >
-                                Maya
-                            </span>
-                        </label>
-
-                        <label className="flex cursor-pointer items-center gap-2">
-                            <input
-                                type="radio"
-                                name="paymentMethod"
-                                value="Other"
-                                checked={utilityExpense.paymentMethod === "Other"}
-                                onChange={(e) => setUtilityExpense((item) => ({
-                                    ...item,
-                                    [e.target.name]: Number(e.target.value)
-                                }))}
-                                
-                            />
-                            <span
-                                className="text-[#3B2416] text-sm"
-                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                            >
-                                Other
-                            </span>
-                        </label>
-                    </div>
                 </div>
 
                 <div className="flex">

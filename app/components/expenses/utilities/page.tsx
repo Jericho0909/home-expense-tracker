@@ -13,7 +13,6 @@ import {
     Circle
 } from "lucide-react";
 import Table from "@/app/components/Table";
-import formatBillingPeriod from "@/app/utils/formatBillingPeriod";
 import { UtilityBillIcons, StatusIcons, StatusColor } from "@/app/constant/billIcons";
 
 
