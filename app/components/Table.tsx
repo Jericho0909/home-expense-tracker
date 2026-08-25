@@ -8,15 +8,17 @@ import type { TableColumn } from "../type/model"
 interface TableProps<T extends { id: number | string }> {
     data: T[];
     columns: TableColumn<T>[];
-    viewLink: string
-    editLink: string
+    viewLink: string;
+    editLink: string;
+    payLink?: string;
 }
 
 const Table = <T extends { id: number | string }>({
     data,
     columns,
     viewLink,
-    editLink
+    editLink,
+    payLink,
 }: TableProps<T>) => {
     const router = useRouter()
     const { setIsOpen, setIsEditing, setActiveModal } = useContext(ModalContext)!
@@ -70,9 +72,11 @@ const Table = <T extends { id: number | string }>({
                                         router.push(`${editLink}/${idString}`)
                                     }
 
-                                    if(action === "pay"){
-
-                                    }
+                                    {payLink && action === "pay" && (
+                                        setActiveModal(null),
+                                        setIsOpen(true),
+                                        setIsEditing(true)
+                                    )}
 
                                     if (action === "delete"){
                                         // Delete action
@@ -87,7 +91,9 @@ const Table = <T extends { id: number | string }>({
                                 </option>
                                 <option value="view">View</option>
                                 <option value="edit">Edit</option>
-                                <option value="pay">Pay</option>
+                                {payLink && (
+                                    <option value="pay">Pay</option>
+                                )}
                                 <option value="delete">Delete</option>
                             </select>
                         </td>

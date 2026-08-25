@@ -203,7 +203,8 @@ const FoodAndHousePage = () => {
                         data={FoodAndHouseExpenses}
                         columns={FoodAndHouseColumn}
                         viewLink="/expenses/foodandhouse/viewFoodAndHousehold"
-                        editLink = "/expenses/foodandhouse/editFoodAndHousehold"
+                        editLink="/expenses/foodandhouse/editFoodAndHousehold"
+                        payLink="/expenses/foodandhouse/editFoodAndHousehold"
                     />
                 </div>
             </div>
