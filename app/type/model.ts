@@ -202,6 +202,9 @@ export type FamilyExpense = Expense & {
     description: string;
     category: FamilyExpensesCategory;
     date: string;
+    paymentMethod: PaymentMethod;
+    notes: string;
+
 }
 
 export type OtherExpense = Expense & {

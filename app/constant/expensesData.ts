@@ -566,7 +566,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 1200,
         createdAt: "2026-08-01",
         date: "2026-07-28",
+        paymentMethod: "Cash",
+        notes: "School supplies for the new semester.",
     },
+
     {
         id: "47",
         expense: "FamilyExpenses",
@@ -575,7 +578,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 1500,
         createdAt: "2026-08-01",
         date: "2026-07-26",
+        paymentMethod: "Cash",
+        notes: "Weekly family allowance.",
     },
+
     {
         id: "48",
         expense: "FamilyExpenses",
@@ -584,7 +590,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 1800,
         createdAt: "2026-08-01",
         date: "2026-07-24",
+        paymentMethod: "Cash",
+        notes: "Family outing expenses.",
     },
+
     {
         id: "49",
         expense: "FamilyExpenses",
@@ -593,7 +602,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 1000,
         createdAt: "2026-08-01",
         date: "2026-07-22",
+        paymentMethod: "GCash",
+        notes: "Movie tickets for the family.",
     },
+
     {
         id: "50",
         expense: "FamilyExpenses",
@@ -602,7 +614,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 3000,
         createdAt: "2026-08-01",
         date: "2026-07-20",
+        paymentMethod: "Cash",
+        notes: "Food and decorations for the birthday celebration.",
     },
+
     {
         id: "51",
         expense: "FamilyExpenses",
@@ -611,7 +626,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 5000,
         createdAt: "2026-08-01",
         date: "2026-07-18",
+        paymentMethod: "Cash",
+        notes: "Food and other fiesta expenses.",
     },
+
     {
         id: "52",
         expense: "FamilyExpenses",
@@ -620,7 +638,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 8000,
         createdAt: "2026-08-01",
         date: "2026-07-15",
+        paymentMethod: "Bank Transfer",
+        notes: "Christmas food and celebration expenses.",
     },
+
     {
         id: "53",
         expense: "FamilyExpenses",
@@ -629,7 +650,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 4500,
         createdAt: "2026-08-01",
         date: "2026-07-12",
+        paymentMethod: "GCash",
+        notes: "Food and supplies for the New Year celebration.",
     },
+
     {
         id: "54",
         expense: "FamilyExpenses",
@@ -638,7 +662,10 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 650,
         createdAt: "2026-08-01",
         date: "2026-07-10",
+        paymentMethod: "Cash",
+        notes: "Materials for a school project.",
     },
+
     {
         id: "55",
         expense: "FamilyExpenses",
@@ -647,6 +674,8 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 500,
         createdAt: "2026-08-01",
         date: "2026-07-08",
+        paymentMethod: "Maya",
+        notes: "Miscellaneous family expense.",
     },
 ];
 

@@ -117,6 +117,7 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
                     {formattedDate(expenses.purchaseDate)}
                 </span>
             </div>
+            
             <div className="flex flex-col">
                 <div
                     className="flex flex-col"
