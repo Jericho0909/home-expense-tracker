@@ -100,6 +100,29 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
                     {formattedDate(expenses.purchaseDate)}
                 </span>
             </div>
+            <div className="flex flex-col p-1 mb-2">
+                <div
+                    className="flex flex-col p-2"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    <span
+                        className="text-base font-semibold mb-1.5"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Notes
+                    </span>
+                    <span
+                        className="flex items-center gap-1 text-[#3B2416] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    >
+                        {expenses.notes}
+                    </span>
+                </div>
+            </div>
         </div>
     )
 }

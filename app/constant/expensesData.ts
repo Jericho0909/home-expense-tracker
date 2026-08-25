@@ -106,6 +106,8 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 2500,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-26",
+        paymentMethod: "Cash",
+        notes: "Various grocery items for the household.",
     },
     {
         id: "8",
@@ -116,6 +118,8 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 850,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-24",
+        paymentMethod: "GCash",
+        notes: "For daily kitchen use.",
     },
     {
         id: "9",
@@ -126,6 +130,8 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 1200,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-22",
+        paymentMethod: "Cash",
+        notes: "Monthly rice supply.",
     },
     {
         id: "10",
@@ -136,6 +142,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 950,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-20",
+        notes: "Bought for family meals.",
     },
     {
         id: "11",
@@ -146,6 +153,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 450,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-18",
+        notes: "Fresh bananas from the market.",
     },
     {
         id: "12",
@@ -156,6 +164,8 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 350,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-15",
+        paymentMethod: "Cash",
+        notes: "Snacks for the household.",
     },
     {
         id: "13",
@@ -166,6 +176,8 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 500,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-12",
+        paymentMethod: "Maya",
+        notes: "For family meals and occasions.",
     },
     {
         id: "14",
@@ -176,6 +188,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 700,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-10",
+        notes: "Laundry supply for the household.",
     },
     {
         id: "15",
@@ -186,6 +199,8 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 650,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-08",
+        paymentMethod: "Bank Transfer",
+        notes: "Personal care supply.",
     },
     {
         id: "16",
@@ -196,6 +211,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         amount: 400,
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-05",
+        notes: "Replacement kitchen pan.",
     },
 ];
 

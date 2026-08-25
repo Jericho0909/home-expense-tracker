@@ -170,6 +170,8 @@ export type FoodHouseholdExpense = Expense & {
     type: "Food" | "Household" | "";
     category: FoodAndHouseHoldCategory 
     purchaseDate: string;
+    paymentMethod?: PaymentMethod;
+    notes : string;
 }
 
 export type TransportationExpense = Expense & {

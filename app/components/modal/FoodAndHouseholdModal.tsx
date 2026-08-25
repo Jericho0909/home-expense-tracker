@@ -17,7 +17,6 @@ type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category"> & {
 type FoodHouseholdType = "" | "Food" | "Household"
 const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
     const findExpenses = FoodHouseholdData.find((key) => key.id === id)
-    console.log(findExpenses)
     const defaultData: FoodHouseholdExpenseForm = {
         id: "0",
         expense: "FoodAndHousehold",
@@ -26,7 +25,8 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
         name: "",
         type: "",
         category: "",
-        purchaseDate: ""
+        purchaseDate: "",
+        notes: ""
     }
 
     const [ foodHouseholdExpenses, setFoodHouseholdExpenses ] = useState<FoodHouseholdExpenseForm>(findExpenses ?? defaultData)
@@ -235,6 +235,31 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                         className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                         placeholder=""
+                        required
+                    />
+                </div>
+
+                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                    <label
+                        htmlFor="notes"
+                        className="text-base font-semibold"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Notes:
+                    </label>
+                    <textarea
+                        name="notes"
+                        value={foodHouseholdExpenses.notes}
+                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                            ...item,
+                            [e.target.name]: e.target.value
+                        }))}
+                        className="resize-none bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        placeholder="Add notes..."
+                        rows={4}
                         required
                     />
                 </div>
