@@ -224,7 +224,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 1500,
         createdAt: "2026-07-01",
         date: "2026-07-26",
+        paymentMethod: "Cash",
+        notes: "Full tank refill.",
     },
+
     {
         id: "18",
         expense: "Transportation",
@@ -233,7 +236,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 250,
         createdAt: "2026-07-01",
         date: "2026-07-24",
+        paymentMethod: "Cash",
+        notes: "Daily transportation.",
     },
+
     {
         id: "19",
         expense: "Transportation",
@@ -242,7 +248,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 1200,
         createdAt: "2026-07-01",
         date: "2026-07-22",
+        paymentMethod: "GCash",
+        notes: "Diesel refill.",
     },
+
     {
         id: "20",
         expense: "Transportation",
@@ -251,7 +260,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 450,
         createdAt: "2026-07-01",
         date: "2026-07-20",
+        paymentMethod: "Cash",
+        notes: "Bus fare for travel.",
     },
+
     {
         id: "21",
         expense: "Transportation",
@@ -260,7 +272,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 380,
         createdAt: "2026-07-01",
         date: "2026-07-18",
+        paymentMethod: "GCash",
+        notes: "Ride-hailing fare.",
     },
+
     {
         id: "22",
         expense: "Transportation",
@@ -269,7 +284,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 100,
         createdAt: "2026-07-01",
         date: "2026-07-16",
+        paymentMethod: "Cash",
+        notes: "Parking fee.",
     },
+
     {
         id: "23",
         expense: "Transportation",
@@ -278,7 +296,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 300,
         createdAt: "2026-07-01",
         date: "2026-07-14",
+        paymentMethod: "Cash",
+        notes: "Toll road fee.",
     },
+
     {
         id: "24",
         expense: "Transportation",
@@ -287,7 +308,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 1800,
         createdAt: "2026-07-01",
         date: "2026-07-12",
+        paymentMethod: "Cash",
+        notes: "Regular vehicle maintenance.",
     },
+
     {
         id: "25",
         expense: "Transportation",
@@ -296,7 +320,10 @@ export const TransportationData: TransportationExpense[] = [
         amount: 250,
         createdAt: "2026-07-01",
         date: "2026-07-10",
+        paymentMethod: "Cash",
+        notes: "Regular car wash.",
     },
+
     {
         id: "26",
         expense: "Transportation",
@@ -305,6 +332,8 @@ export const TransportationData: TransportationExpense[] = [
         amount: 150,
         createdAt: "2026-07-01",
         date: "2026-07-08",
+        paymentMethod: "Cash",
+        notes: "Local transportation.",
     },
 ];
 

@@ -178,6 +178,8 @@ export type TransportationExpense = Expense & {
     description: string
     category: TransportationCategory;
     date: string;
+    paymentMethod: PaymentMethod;
+    notes: string;
 }
 
 export type HealthExpense = Expense & {

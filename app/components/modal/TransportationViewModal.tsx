@@ -74,6 +74,23 @@ const ViewTransportationModal = ({id}: {id: string}) => {
                         fontFamily: "var(--font-playfair-display)"
                     }}
                 >
+                    Payment Method:
+                </span>
+                <span
+                    className="flex items-center gap-1 text-[#3B2416] text-sm"
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                >
+                    {expenses.paymentMethod}
+                </span>
+            </div>
+
+            <div className="flex items-center gap-1">
+                <span
+                    className="text-base font-semibold mb-1.5"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
                     Date:
                 </span>
                 <span
@@ -82,6 +99,30 @@ const ViewTransportationModal = ({id}: {id: string}) => {
                 >
                     {formattedDate(expenses.date)}
                 </span>
+            </div>
+
+            <div className="flex flex-col">
+                <div
+                    className="flex flex-col"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    <span
+                        className="text-base font-semibold mb-1.5"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Notes:
+                    </span>
+                    <p
+                        className="flex items-center gap-1 xl:w-md wrap-break-word text-[#3B2416] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    >
+                        {expenses.notes}
+                    </p>
+                </div>
             </div>
         </div>
     )

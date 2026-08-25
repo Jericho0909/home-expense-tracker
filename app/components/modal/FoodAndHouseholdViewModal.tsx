@@ -100,9 +100,9 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
                     {formattedDate(expenses.purchaseDate)}
                 </span>
             </div>
-            <div className="flex flex-col p-1 mb-2">
+            <div className="flex flex-col">
                 <div
-                    className="flex flex-col p-2"
+                    className="flex flex-col"
                     style={{
                         fontFamily: "var(--font-playfair-display)"
                     }}
@@ -113,14 +113,14 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
                             fontFamily: "var(--font-playfair-display)"
                         }}
                     >
-                        Notes
+                        Notes:
                     </span>
-                    <span
-                        className="flex items-center gap-1 text-[#3B2416] text-sm"
+                    <p
+                        className="flex items-center gap-1 xl:w-md wrap-break-word text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
                         {expenses.notes}
-                    </span>
+                    </p>
                 </div>
             </div>
         </div>

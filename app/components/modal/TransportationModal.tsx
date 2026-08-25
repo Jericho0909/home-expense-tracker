@@ -3,12 +3,16 @@
 import { useState } from "react";
 import { TransportationData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
-import type { TransportationExpense, TransportationCategory } from "@/app/type/model"
+import type { TransportationExpense, 
+    TransportationCategory,
+    PaymentMethod
+} from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
 import { Car } from 'lucide-react';
 
-type TransportationExpenseForm = Omit<TransportationExpense, "category" > & {
+type TransportationExpenseForm = Omit<TransportationExpense, "category"| "paymentMethod" > & {
     category: TransportationCategory | "";
+    paymentMethod: PaymentMethod | ""
 }
 
 const TransportationModal = ({id}: {id?: string | null}) => {
@@ -20,7 +24,9 @@ const TransportationModal = ({id}: {id?: string | null}) => {
         createdAt: "",
         description: "",
         category: "",
-        date: ""
+        date: "",
+        paymentMethod: "",
+        notes: ""
     }
 
     const [ transportationExpenses, setTransportationExpenses ] = useState<TransportationExpenseForm>(findExpenses ?? defaultData)
@@ -164,6 +170,111 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                 />
             </div>
 
+            <div className="flex flex-col justify-between p-1 mb-3">
+                <label
+                    className="text-base font-semibold"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    Payment Method
+                </label>
+
+                <div className="flex flex-wrap gap-4">
+                    <label className="flex cursor-pointer items-center gap-2">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Cash"
+                            checked={transportationExpenses.paymentMethod === "Cash"}
+                            onChange={(e) => setTransportationExpenses((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+                            }))}
+                        />
+                        <span
+                            className="text-[#3B2416] text-sm"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            Cash
+                        </span>
+                    </label>
+
+                    <label className="flex cursor-pointer items-center gap-2">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="GCash"
+                            checked={transportationExpenses.paymentMethod === "GCash"}
+                            onChange={(e) => setTransportationExpenses((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+                            }))}
+                        />
+                        <span>GCash</span>
+                    </label>
+
+                    <label className="flex cursor-pointer items-center gap-2">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Bank Transfer"
+                            checked={transportationExpenses.paymentMethod === "Bank Transfer"}
+                            onChange={(e) => setTransportationExpenses((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+                            }))}
+                        />
+                        <span
+                            className="text-[#3B2416] text-sm"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            Bank Transfer
+                        </span>
+                    </label>
+
+                    <label className="flex cursor-pointer items-center gap-2">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Maya"
+                            checked={transportationExpenses.paymentMethod === "Maya"}
+                            onChange={(e) => setTransportationExpenses((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+                            }))}
+                            
+                        />
+                        <span
+                            className="text-[#3B2416] text-sm"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            Maya
+                        </span>
+                    </label>
+
+                    <label className="flex cursor-pointer items-center gap-2">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Other"
+                            checked={transportationExpenses.paymentMethod === "Other"}
+                            onChange={(e) => setTransportationExpenses((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+                            }))}
+                            
+                        />
+                        <span
+                            className="text-[#3B2416] text-sm"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            Other
+                        </span>
+                    </label>
+                </div>
+            </div>
+
             <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                 <label
                     htmlFor="date"
@@ -187,6 +298,31 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                     className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                     style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     placeholder=""
+                    required
+                />
+            </div>
+
+            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                <label
+                    htmlFor="notes"
+                    className="text-base font-semibold"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    Notes:
+                </label>
+                <textarea
+                    name="notes"
+                    value={transportationExpenses.notes}
+                    onChange={(e) => setTransportationExpenses((item) => ({
+                        ...item,
+                        [e.target.name]: e.target.value
+                    }))}
+                    className="resize-none bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    placeholder="Add notes..."
+                    rows={4}
                     required
                 />
             </div>

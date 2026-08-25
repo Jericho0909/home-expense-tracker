@@ -225,12 +225,12 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                     >
                         Notes
                     </span>
-                    <span
-                        className="flex items-center gap-1 text-[#3B2416] text-sm"
+                    <p
+                        className="flex items-center gap-1 xl:w-md wrap-break-word text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
                         {expenses.notes}
-                    </span>
+                    </p>
                 </div>
             </div>
         </div>
