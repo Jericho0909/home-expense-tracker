@@ -194,6 +194,8 @@ export type HouseMaintenanceExpense = Expense & {
     description: string;
     category: HouseMaintenanceCategory
     date: string;
+    paymentMethod: PaymentMethod;
+    notes: string;
 }
 
 export type FamilyExpense = Expense & {

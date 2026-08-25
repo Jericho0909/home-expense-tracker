@@ -456,7 +456,10 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 500,
         createdAt: "2026-08-01",
         date: "2026-07-28",
+        paymentMethod: "Cash",
+        notes: "Repair for leaking kitchen faucet.",
     },
+
     {
         id: "38",
         expense: "HouseMaintenance",
@@ -465,7 +468,10 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 350,
         createdAt: "2026-08-01",
         date: "2026-07-26",
+        paymentMethod: "Cash",
+        notes: "Replaced damaged light bulbs.",
     },
+
     {
         id: "39",
         expense: "HouseMaintenance",
@@ -474,7 +480,10 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 800,
         createdAt: "2026-08-01",
         date: "2026-07-24",
+        paymentMethod: "GCash",
+        notes: "Repair and adjustment of door lock.",
     },
+
     {
         id: "40",
         expense: "HouseMaintenance",
@@ -483,7 +492,10 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 1200,
         createdAt: "2026-08-01",
         date: "2026-07-22",
+        paymentMethod: "Cash",
+        notes: "Professional roof cleaning service.",
     },
+
     {
         id: "41",
         expense: "HouseMaintenance",
@@ -492,7 +504,10 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 1500,
         createdAt: "2026-08-01",
         date: "2026-07-20",
+        paymentMethod: "GCash",
+        notes: "Scheduled household pest control service.",
     },
+
     {
         id: "42",
         expense: "HouseMaintenance",
@@ -501,7 +516,10 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 900,
         createdAt: "2026-08-01",
         date: "2026-07-18",
+        paymentMethod: "Cash",
+        notes: "Routine air conditioner cleaning and maintenance.",
     },
+
     {
         id: "43",
         expense: "HouseMaintenance",
@@ -510,7 +528,10 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 650,
         createdAt: "2026-08-01",
         date: "2026-07-15",
+        paymentMethod: "Cash",
+        notes: "Cleared and repaired clogged drain.",
     },
+
     {
         id: "44",
         expense: "HouseMaintenance",
@@ -519,7 +540,10 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 750,
         createdAt: "2026-08-01",
         date: "2026-07-12",
+        paymentMethod: "GCash",
+        notes: "Repaired faulty electrical outlet.",
     },
+
     {
         id: "45",
         expense: "HouseMaintenance",
@@ -528,6 +552,8 @@ export const HouseMaintenanceData: HouseMaintenanceExpense[] = [
         amount: 450,
         createdAt: "2026-08-01",
         date: "2026-07-10",
+        paymentMethod: "Cash",
+        notes: "Replaced damaged curtain rod.",
     },
 ];
 

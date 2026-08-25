@@ -211,7 +211,12 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                                 [e.target.name]: Number(e.target.value)
                             }))}
                         />
-                        <span>GCash</span>
+                        <span
+                            className="text-[#3B2416] text-sm"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        > 
+                            GCash
+                        </span>
                     </label>
 
                     <label className="flex cursor-pointer items-center gap-2">
