@@ -2,24 +2,20 @@
 
 import { useState } from "react"
 import { UtilitiesData } from "@/app/constant/expensesData"
-import type { UtilityExpense, PaymentMethod } from "@/app/type/model"
+import type { UtilityExpense } from "@/app/type/model"
 import { PhilippinePeso } from "lucide-react"
 
-type ExpenseType = Omit<UtilityExpense, "paymentMethod"> & {
-    paymentMethod?: PaymentMethod | ""
-
-}
 
 const UtilitiesPayModal = ({id}: {id: string}) => {
     const findExpenses = UtilitiesData.find((key) => key.id === id)
     if(!findExpenses) return
 
+    const [ expense, setExpense ] = useState<UtilityExpense>(findExpenses)
+
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
 
     }
-
-    const [ expense, setExpense ] = useState<ExpenseType>(findExpenses)
 
     return (
         <div className="flex flex-col">
@@ -40,7 +36,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
 
             <div className="flex flex-col  p-3 border mb-3">
                 <span
-                    className="flex items-center gap-1 text-[#3B2416] text-sm"
+                    className="flex items-center gap-1 text-[#3B2416] text-base font-semibold"
                     style={{ fontFamily: "var(--font-libre-baskerville)" }}
                 >
                     {expense.name}
