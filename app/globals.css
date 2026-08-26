@@ -130,4 +130,12 @@
   .edit-btn:active {
     transform: translateY(1);
   }
+
+  .paid-btn:hover {
+    background-color: #5C4033;
+  }
+
+  .paid-btn:active {
+    transform: translateY(1);
+  }
 }

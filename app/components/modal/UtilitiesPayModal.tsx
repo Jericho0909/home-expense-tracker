@@ -2,14 +2,24 @@
 
 import { useState } from "react"
 import { UtilitiesData } from "@/app/constant/expensesData"
-import type { UtilityExpense } from "@/app/type/model"
+import type { UtilityExpense, PaymentMethod } from "@/app/type/model"
 import { PhilippinePeso } from "lucide-react"
+
+type ExpenseType = Omit<UtilityExpense, "paymentMethod"> & {
+    paymentMethod?: PaymentMethod | ""
+
+}
 
 const UtilitiesPayModal = ({id}: {id: string}) => {
     const findExpenses = UtilitiesData.find((key) => key.id === id)
     if(!findExpenses) return
 
-    const [ expenses, setExpenses ] = useState<UtilityExpense>(findExpenses)
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+    }
+
+    const [ expense, setExpense ] = useState<ExpenseType>(findExpenses)
 
     return (
         <div className="flex flex-col">
@@ -18,7 +28,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                     className="flex text-lg font-bold mb-3 text-[#3B2416]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Pay {expenses.name}
+                    Pay {expense.name}
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
@@ -28,17 +38,17 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                 </span>
             </div>
 
-            <div className="flex flex-col p-3 border mb-3">
+            <div className="flex flex-col  p-3 border mb-3">
                 <span
                     className="flex items-center gap-1 text-[#3B2416] text-sm"
                     style={{ fontFamily: "var(--font-libre-baskerville)" }}
                 >
-                    {expenses.name}
+                    {expense.name}
                 </span>
 
                 <div className="flex items-center gap-2">
                     <span
-                        className="text-base font-semibold"
+                        className="text-base font-semibold "
                         style={{
                             fontFamily: "var(--font-playfair-display)"
                         }}
@@ -49,7 +59,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expenses.billingStart} - {expenses.billingEnd}
+                        {expense.billingStart} - {expense.billingEnd}
                     </span>
 
                 </div>
@@ -67,7 +77,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expenses.dueDate}
+                        {expense.dueDate}
                     </span>
 
                 </div>
@@ -82,15 +92,203 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                         Amout Due:
                     </span>
                     <span
-                    className="flex gap-1 text-[#3B2416] text-sm"
+                    className="flex gap-1 text-[#3B2416] text-sm mt-1"
                     style={{ fontFamily: "var(--font-libre-baskerville)" }}
                 >
                     <PhilippinePeso size={16}/>
-                    {expenses.amount.toLocaleString("en-US")}
+                    {expense.amount.toLocaleString("en-US")}
                 </span>
 
                 </div>
             </div>
+
+            <form
+                className="flex flex-col"
+                onSubmit={handleSubmit}
+            >
+                {expense.paymentMethod !== undefined
+                ? (
+                   <div className="flex items-center gap-2">
+                        <span
+                            className="text-base font-semibold "
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            PaymentMethod:
+                        </span>
+                        <span
+                            className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            {expense.paymentMethod}
+                        </span>
+                    </div>
+                )
+                : (
+                    <div className="flex flex-col justify-between p-1 mb-3">
+                        <label
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Payment Method
+                        </label>
+
+                        <div className="flex flex-wrap gap-4">
+                            <label className="flex cursor-pointer items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="paymentMethod"
+                                    value="Cash"
+                                    checked={expense.paymentMethod === "Cash"}
+                                    onChange={(e) => setExpense((item) => ({
+                                        ...item,
+                                        [e.target.name]: e.target.value
+                                    }))}
+                                    required
+                                />
+                                <span
+                                    className="text-[#3B2416] text-sm"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                >
+                                    Cash
+                                </span>
+                            </label>
+
+                            <label className="flex cursor-pointer items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="paymentMethod"
+                                    value="GCash"
+                                    checked={expense.paymentMethod === "GCash"}
+                                    onChange={(e) => setExpense((item) => ({
+                                        ...item,
+                                        [e.target.name]: e.target.value
+                                    }))}
+                                />
+                                <span>GCash</span>
+                            </label>
+
+                            <label className="flex cursor-pointer items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="paymentMethod"
+                                    value="Bank Transfer"
+                                    checked={expense.paymentMethod === "Bank Transfer"}
+                                    onChange={(e) => setExpense((item) => ({
+                                        ...item,
+                                        [e.target.name]: e.target.value
+                                    }))}
+                                />
+                                <span
+                                    className="text-[#3B2416] text-sm"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                >
+                                    Bank Transfer
+                                </span>
+                            </label>
+
+                            <label className="flex cursor-pointer items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="paymentMethod"
+                                    value="Maya"
+                                    checked={expense.paymentMethod === "Maya"}
+                                    onChange={(e) => setExpense((item) => ({
+                                        ...item,
+                                        [e.target.name]: e.target.value
+                                    }))}
+                                    
+                                />
+                                <span
+                                    className="text-[#3B2416] text-sm"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                >
+                                    Maya
+                                </span>
+                            </label>
+
+                            <label className="flex cursor-pointer items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="paymentMethod"
+                                    value="Other"
+                                    checked={expense.paymentMethod === "Other"}
+                                    onChange={(e) => setExpense((item) => ({
+                                        ...item,
+                                        [e.target.name]: e.target.value
+                                    }))}
+                                    
+                                />
+                                <span
+                                    className="text-[#3B2416] text-sm"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                >
+                                    Other
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                )}
+
+                {expense.paymentMethod !== undefined
+                ? (
+                    <div className="flex items-center gap-2">
+                        <span
+                            className="text-base font-semibold "
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Paid At:
+                        </span>
+                        <span
+                            className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            {expense.paidAt}
+                        </span>
+                    </div>
+                )
+                : (
+                        <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="paidAt"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Paid At:
+                        </label>
+                        <input
+                            id="paidAt"
+                            type="date"
+                            name="paidAt"
+                            value={expense.paidAt}
+                            onChange={(e) => setExpense((item) => ({
+                                ...item,
+                                [e.target.name]: e.target.value
+                            }))}
+                            className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            placeholder=""
+                            required
+                        />
+                    </div>
+                )}
+
+                {expense.paymentMethod === undefined && (
+                    <button
+                        type="submit"
+                        className="paid-btn rounded-md bg-[#6B4632] px-4 py-2 text-sm font-semibold text-[#F5F5DC] cursor-pointer transition-all duration-150 ease-in-out"
+                    >
+                        Mark as Paid
+                    </button>
+                )}
+            </form>
         </div>
     )
 }
