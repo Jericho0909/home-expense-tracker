@@ -1,11 +1,12 @@
 'use client'
 
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal";
 import SummaryCards from "@/app/components/SummaryCard";
 import OtherExepensesModal from "@/app/components/modal/OtherExpensesModal";
 import Table from "@/app/components/Table";
+import Loading from "../../Loading";
 import { OtherExpensesData } from "@/app/constant/expensesData"
 import { ReceiptText, PhilippinePeso } from 'lucide-react';
 import type { TableColumn, OtherExpense} from "@/app/type/model"
@@ -23,6 +24,7 @@ type SummaryType = {
 }
 
 const OtherExpensesPage = () => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -93,8 +95,23 @@ const OtherExpensesPage = () => {
     ]
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         setActiveSection("OtherExpenses")
     }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2000)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <Loading/>
+        )
+    }
 
     return (
         <section>

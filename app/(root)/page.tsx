@@ -18,7 +18,7 @@ const ZaraFamilyExpenses = () => {
 
     if(isLoading) {
         return (
-            <section className="flex flex-col items-center justify-center h-screen w-full">
+            <section className="flex flex-col items-center justify-center h-svh w-full">
                 <div className="loader">
                     
                 </div>

@@ -1,11 +1,12 @@
 'use client'
 
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
 import HealthModal from "@/app/components/modal/HealthModal"
 import Table from "@/app/components/Table"
+import Loading from "../../Loading"
 import { HealthData } from "@/app/constant/expensesData"
 import { Heart, PhilippinePeso } from 'lucide-react';
 import type { TableColumn, 
@@ -17,6 +18,7 @@ import { HealthBillIcons } from "@/app/constant/billIcons"
 
 
 const HealthPage = () => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -113,8 +115,23 @@ const HealthPage = () => {
     ]
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         setActiveSection("Health")
     }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2000)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <Loading/>
+        )
+    }
 
     return (
         <section>

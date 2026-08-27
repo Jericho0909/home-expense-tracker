@@ -1,11 +1,12 @@
 'use client'
 
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
 import FoodAndHouseholdModal from "../../modal/FoodAndHouseholdModal"
 import Table from "@/app/components/Table"
+import Loading from "../../Loading"
 import { FoodHouseholdData } from "@/app/constant/expensesData"
 import type { TableColumn, 
     FoodHouseholdExpense,
@@ -19,6 +20,7 @@ import { FoodAndHousholdBillIcons } from "@/app/constant/billIcons";
 
 
 const FoodAndHousePage = () => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -106,8 +108,23 @@ const FoodAndHousePage = () => {
     ]
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         setActiveSection("FoodAndHousehold")
     }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2000)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <Loading/>
+        )
+    }
 
     return (
         <section>

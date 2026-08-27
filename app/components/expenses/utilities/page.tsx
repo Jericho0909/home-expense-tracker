@@ -1,10 +1,12 @@
 'use client'
 
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCards from "@/app/components/SummaryCard";
 import UtilitiesModal from "@/app/components/modal/UtilitiesModal";
+import Table from "@/app/components/Table";
+import Loading from "../../Loading";
 import { UtilitiesData } from "@/app/constant/expensesData";
 import type { TableColumn, UtilityExpense } from "@/app/type/model";
 import { 
@@ -12,11 +14,11 @@ import {
     PhilippinePeso, 
     Circle
 } from "lucide-react";
-import Table from "@/app/components/Table";
 import { UtilityBillIcons, StatusIcons, StatusColor } from "@/app/constant/billIcons";
 
 
 const UtilitiesPage = () => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -59,8 +61,24 @@ const UtilitiesPage = () => {
     ]
    
     useEffect(() => {
+        window.scrollTo(0, 0)
         setActiveSection("Utilities")
     }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2000)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <Loading/>
+        )
+    }
+
     return (
         <section>
             <div className="flex w-full p-3 mb-8 border-b-2 border-black">

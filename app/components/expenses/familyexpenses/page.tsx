@@ -1,11 +1,12 @@
 'use client'
 
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/app/context/expensesSectionContext"
 import ButtonModal from "@/app/components/ButtonModal"
 import SummaryCardContent from "@/app/components/SummaryCardContent"
 import FamilyExpensesModal from "@/app/components/modal/FamilyExpensesModal"
 import Table from "@/app/components/Table"
+import Loading from "../../Loading"
 import { FamilyExpensesData } from "@/app/constant/expensesData"
 import { HouseHeart, PhilippinePeso } from 'lucide-react';
 import type { SummaryType, 
@@ -16,14 +17,12 @@ import { FamilyExpensesBillIcons } from "@/app/constant/billIcons"
 import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
 
 const FamilyExpensesPage = () => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
     })
-    useEffect(() => {
-        setActiveSection("FamilyExpenses")
-    }, [])
 
     const FamilyExpenses = FamilyExpensesData.filter((item) => item.expense === "FamilyExpenses")
 
@@ -128,6 +127,25 @@ const FamilyExpensesPage = () => {
                     </span>,
             }
     ]
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        setActiveSection("FamilyExpenses")
+    }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2000)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <Loading/>
+        )
+    }
 
     return (
         <section>
