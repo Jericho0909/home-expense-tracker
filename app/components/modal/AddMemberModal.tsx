@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import type { Member, FamilyRole } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter"
 import { User } from 'lucide-react';
@@ -10,6 +10,7 @@ type MemberForm = Omit<Member, "familyRole" > & {
 }
 
 const AddMemberModal = ({id}: {id?: string | null}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
 
     const defaultData: MemberForm = {
         id: "",
@@ -40,6 +41,24 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
     }
 
     return (

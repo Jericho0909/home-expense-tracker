@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ModalFormButton from "../ModalFormButton";
 import { UtilitiesData } from "@/app/constant/expensesData";
 import type { UtilitiesNames, 
@@ -18,6 +18,7 @@ type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status" | "paymentMetho
 }
 
 const UtilitiesModal = ({id}: {id?: string | null}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const findExpenses = UtilitiesData.find((key) => key.id === id)
     
     const defaultData: UtilityExpenseForm = {
@@ -60,6 +61,25 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
         e.preventDefault()
 
     }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
+    }
+
     return (
         <>
             <div className="flex flex-col border-b-2 border-black mb-4">

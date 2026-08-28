@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { UtilitiesData } from "@/app/constant/expensesData"
 import type { UtilityExpense } from "@/app/type/model"
 import { PhilippinePeso } from "lucide-react"
 
 
 const UtilitiesPayModal = ({id}: {id: string}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const findExpenses = UtilitiesData.find((key) => key.id === id)
     if(!findExpenses) return
 
@@ -15,6 +16,24 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
 
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
     }
 
     return (

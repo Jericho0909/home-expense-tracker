@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TransportationData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { TransportationExpense, 
@@ -16,6 +16,7 @@ type TransportationExpenseForm = Omit<TransportationExpense, "category"| "paymen
 }
 
 const TransportationModal = ({id}: {id?: string | null}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const findExpenses = TransportationData.find((key) => key.id === id)
     const defaultData: TransportationExpenseForm = {
         id: "0",
@@ -47,6 +48,24 @@ const TransportationModal = ({id}: {id?: string | null}) => {
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
     }
 
     return (

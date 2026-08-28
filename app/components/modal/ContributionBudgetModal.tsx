@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MembersData } from "@/app/constant/expensesData"
 import { FamilyRoleColor } from "@/app/constant/billIcons";
 import type { Member } from "@/app/type/model";
 import { User, PhilippinePeso } from 'lucide-react';
 
 const ContributionBudgetModal = ({id}: {id?: number | string | null}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const findMember = MembersData.find((key) => key.id === id)
     if(!findMember) return
 
@@ -17,6 +18,25 @@ const ContributionBudgetModal = ({id}: {id?: number | string | null}) => {
         e.preventDefault()
         
     }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="flex flex-col">
             <div className="flex flex-col border-b-2 border-black mb-3">

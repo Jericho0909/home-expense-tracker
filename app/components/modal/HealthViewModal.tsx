@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { HealthData } from '@/app/constant/expensesData';
 import type { HealthExpense } from '@/app/type/model';
 import { HealthBillIcons } from '@/app/constant/billIcons';
@@ -8,10 +8,29 @@ import formattedDate from '@/app/utils/formattedDate';
 import { PhilippinePeso } from 'lucide-react';
 
 const ViewHealthModal = ({id}: {id: string}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const findExpenses = HealthData.find((key) => key.id === id)
     if(!findExpenses) return
 
     const [ expenses, ] = useState<HealthExpense>(findExpenses)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="flex flex-col">
@@ -100,6 +119,30 @@ const ViewHealthModal = ({id}: {id: string}) => {
                 >
                     {formattedDate(expenses.date)}
                 </span>
+            </div>
+
+            <div className="flex flex-col">
+                <div
+                    className="flex flex-col"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    <span
+                        className="text-base font-semibold mb-1.5"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Notes:
+                    </span>
+                    <p
+                        className="flex items-center gap-1 xl:w-md wrap-break-word text-[#3B2416] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    >
+                        {expenses.notes}
+                    </p>
+                </div>
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FoodHouseholdData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { FoodHouseholdExpense, 
@@ -16,6 +16,7 @@ type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category"> & {
 
 type FoodHouseholdType = "" | "Food" | "Household"
 const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const findExpenses = FoodHouseholdData.find((key) => key.id === id)
     const defaultData: FoodHouseholdExpenseForm = {
         id: "0",
@@ -53,6 +54,24 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
     }
 
     return (

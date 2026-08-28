@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TransportationData } from '@/app/constant/expensesData';
 import { TransportationBillIcons } from '@/app/constant/billIcons';
 import type { TransportationExpense } from '@/app/type/model';
@@ -8,10 +8,30 @@ import formattedDate from '@/app/utils/formattedDate';
 import { PhilippinePeso } from 'lucide-react';
 
 const ViewTransportationModal = ({id}: {id: string}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const findExpenses = TransportationData.find((key) => key.id === id)
     if(!findExpenses) return
 
     const [ expenses, ] = useState<TransportationExpense>(findExpenses)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="flex flex-col">
             <div className="flex flex-col border-b-2 border-black mb-4">

@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MembersData } from '@/app/constant/expensesData';
 import type { Member, FamilyRole } from '@/app/type/model';
 import { capitalizeFirstLetter } from '@/app/utils/capitalizeFirstLetter';
 import { Pencil, PhilippinePeso } from 'lucide-react';
 
 const EditMemberModal = ({id}: {id?: string | null}) => {
+    const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const findMember = MembersData.find((key) => key.id === id)
     if(!findMember) return
 
@@ -27,6 +28,24 @@ const EditMemberModal = ({id}: {id?: string | null}) => {
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    if(isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center w-auto h-20">
+                <div className="loader2">
+
+                </div>
+            </div>
+        )
     }
 
     return (
