@@ -81,6 +81,54 @@ describe("Table", () => {
 
         expect(mockPush).toHaveBeenCalledWith(
             "/expenses/utilities/viewUtilities/1"
-        );
+        )
+    })
+
+    test("Should navigate to edit page", () => {
+        render(
+            <ModalProvider>
+                <Table
+                    data={dummyDataArr}
+                    columns={DummyDataColumn}
+                    viewLink="/expenses/utilities/viewUtilities"
+                    editLink="/expenses/utilities/editUtilities"
+                    payLink="/expenses/utilities/payUtilities"
+                />
+            </ModalProvider>
+        )
+
+        const actionSelect = screen.getByRole("combobox");
+
+        fireEvent.change(actionSelect, {
+            target: { value: "edit" },
+        });
+
+        expect(mockPush).toHaveBeenCalledWith(
+            "/expenses/utilities/editUtilities/1"
+        )
+    })
+
+    test("Should navigate to pay page", () => {
+        render(
+            <ModalProvider>
+                <Table
+                    data={dummyDataArr}
+                    columns={DummyDataColumn}
+                    viewLink="/expenses/utilities/viewUtilities"
+                    editLink="/expenses/utilities/editUtilities"
+                    payLink="/expenses/utilities/payUtilities"
+                />
+            </ModalProvider>
+        )
+
+        const actionSelect = screen.getByRole("combobox");
+
+        fireEvent.change(actionSelect, {
+            target: { value: "pay" },
+        });
+
+        expect(mockPush).toHaveBeenCalledWith(
+            "/expenses/utilities/payUtilities/1"
+        )
     })
 })
