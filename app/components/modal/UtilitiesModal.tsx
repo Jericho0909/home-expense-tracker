@@ -57,9 +57,15 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
         setUtilityExpense(defaultData)
     }
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const response = await fetch("/api/expenses", {
+            method: "POST",
+            body: JSON.stringify(utilityExpense),
+        });
 
+
+        return response
     }
 
     useEffect(() => {
