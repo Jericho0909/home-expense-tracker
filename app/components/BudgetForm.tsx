@@ -1,3 +1,7 @@
+'use client'
+
+import { useState } from 'react';
+
 import { Lightbulb,
     CookingPot,
     Car,
@@ -7,7 +11,29 @@ import { Lightbulb,
     ReceiptText,
 } from 'lucide-react';
 
+type BudgetFormTypes = {
+    utilitiesBudget: number;
+    foodAndHouseBudget: number;
+    transportationBudget: number;
+    healthBudget: number;
+    houseMaintenanceBudget: number;
+    familyExpenses: number;
+    otherExpenses: number;
+}
+
 const BudgetForm = () => {
+    const defaultData = {
+        utilitiesBudget: 0,
+        foodAndHouseBudget: 0,
+        transportationBudget: 0,
+        healthBudget: 0,
+        houseMaintenanceBudget: 0,
+        familyExpenses: 0,
+        otherExpenses: 0
+    }
+
+    const [ budgetForm, setBudgetForm ] = useState<BudgetFormTypes>(defaultData)
+
     const hanldeSubmit = () => {
         console.log("testing")
     }
@@ -43,6 +69,20 @@ const BudgetForm = () => {
                         <input
                             id="Utilities-Budget"
                             type="number"
+                            name="utilitiesBudget"
+                            min="0"
+                            step="0.01"
+                            value={budgetForm.utilitiesBudget || ""}
+                            onChange={(e) => setBudgetForm((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
                             className="no-spinner bg-[#F5F5DC] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder=""
@@ -68,6 +108,20 @@ const BudgetForm = () => {
                         <input
                             id="Food-and-House"
                             type="number"
+                            name="foodAndHouseBudget"
+                            min="0"
+                            step="0.01"
+                            value={budgetForm.foodAndHouseBudget || ""}
+                            onChange={(e) => setBudgetForm((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
                             className="no-spinner bg-[#F5F5DC] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder=""
@@ -93,6 +147,20 @@ const BudgetForm = () => {
                         <input
                             id="Transportation"
                             type="number"
+                            name="transportationBudget"
+                            min="0"
+                            step="0.01"
+                            value={budgetForm.transportationBudget || ""}
+                            onChange={(e) => setBudgetForm((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
                             className="no-spinner bg-[#F5F5DC] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder=""
@@ -118,6 +186,20 @@ const BudgetForm = () => {
                         <input
                             id="Health"
                             type="number"
+                            name="healthBudget"
+                            min="0"
+                            step="0.01"
+                            value={budgetForm.healthBudget || ""}
+                            onChange={(e) => setBudgetForm((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                            if (["e", "E", "+", "-"].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                             className="no-spinner bg-[#F5F5DC] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder=""
@@ -137,12 +219,26 @@ const BudgetForm = () => {
                                     className="text-[#B8B0A5]"
                                 />
                             </span>
-                            House-Maintenance:
+                            House Maintenance:
                         </label>
 
                         <input
                             id="House-Maintenance"
                             type="number"
+                            name="houseMaintenanceBudget"
+                            min="0"
+                            step="0.01"
+                            value={budgetForm.houseMaintenanceBudget || ""}
+                            onChange={(e) => setBudgetForm((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
                             className="no-spinner bg-[#F5F5DC] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder=""
@@ -168,6 +264,20 @@ const BudgetForm = () => {
                         <input
                             id="Family-Expenses"
                             type="number"
+                            name="familyExpenses"
+                            min="0"
+                            step="0.01"
+                            value={budgetForm.familyExpenses || ""}
+                            onChange={(e) => setBudgetForm((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
                             className="no-spinner bg-[#F5F5DC] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder=""
@@ -187,12 +297,26 @@ const BudgetForm = () => {
                                     className="text-[#A89F91]"
                                 />
                             </span>
-                            Other-Expenses:
+                            Other Expenses:
                         </label>
 
                         <input
                             id="Other-Expenses"
                             type="number"
+                            name="otherExpenses"
+                            min="0"
+                            step="0.01"
+                            value={budgetForm.otherExpenses || ""}
+                            onChange={(e) => setBudgetForm((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
                             className="no-spinner bg-[#F5F5DC] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder=""

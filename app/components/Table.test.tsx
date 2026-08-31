@@ -131,4 +131,21 @@ describe("Table", () => {
             "/expenses/utilities/payUtilities/1"
         )
     })
+
+    test("Should not render Pay option when payLink is not provided", () => {
+        render(
+            <ModalProvider>
+                <Table
+                    data={dummyDataArr}
+                    columns={DummyDataColumn}
+                    viewLink="/expenses/utilities/viewUtilities"
+                    editLink="/expenses/utilities/editUtilities"
+                />
+            </ModalProvider>
+        );
+
+        expect(
+            screen.queryByRole("option", { name: "Pay" })
+        ).not.toBeInTheDocument()
+    })
 })
