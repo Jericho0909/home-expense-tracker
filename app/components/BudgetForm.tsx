@@ -258,7 +258,7 @@ const BudgetForm = () => {
                                     className="text-[#E3B778]"
                                 />
                             </span>
-                            Family-Expenses:
+                            Family Expenses:
                         </label>
 
                         <input
