@@ -34,14 +34,22 @@ const BudgetForm = () => {
 
     const [ budgetForm, setBudgetForm ] = useState<BudgetFormTypes>(defaultData)
 
-    const hanldeSubmit = () => {
-        console.log("testing")
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const response = await fetch("/api/budget", {
+            method: "POST",
+            body: JSON.stringify(budgetForm),
+        });
+
+
+        return response
     }
 
     return (
         <form 
             className="flex justify-center w-full p-4"
-            onSubmit={hanldeSubmit}
+            onSubmit={handleSubmit}
         >
             <div className="flex flex-col items-center border border-[#B38B59] rounded-lg p-4">
                 <h3 

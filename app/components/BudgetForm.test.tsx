@@ -1,5 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event"
 import BudgetForm from "./BudgetForm";
+
 
 describe("Budget Form", () => {
     test("Should render the Title", () => {
@@ -71,5 +73,49 @@ describe("Budget Form", () => {
 
         expect(screen.getByLabelText("Other Expenses:")).toBeInTheDocument()
         expect(screen.getByLabelText("Other Expenses:")).toHaveValue(null)
+    })
+
+    test("Test handle handleSubmit", async () => {
+        global.fetch = jest.fn();
+
+        (fetch as jest.Mock).mockResolvedValue({
+            ok: true,
+            json: async () => ({
+                success: true,
+            }),
+        });
+
+        const user = userEvent.setup()
+
+        render(
+            <BudgetForm/>
+        )
+
+        const submitButton = screen.getByRole("button", {
+            name: "Save Budget",
+        });
+
+        const utilitiesBudget = screen.getByLabelText("Utilities:")
+        const foodAndHouseBudget = screen.getByLabelText("Food and House:")
+        const transportationBudget = screen.getByLabelText("Transportation:")
+        const healthBudget = screen.getByLabelText("Health:")
+        const houseMaintenance = screen.getByLabelText("House Maintenance:")
+        const familyExpenses = screen.getByLabelText("Family Expenses:")
+        const otherExpenses = screen.getByLabelText("Other Expenses:")
+        await user.type(utilitiesBudget, "1500")
+        await user.type(foodAndHouseBudget, "1500")
+        await user.type(transportationBudget, "1500")
+        await user.type(healthBudget, "1500")
+        await user.type(houseMaintenance, "1500")
+        await user.type(familyExpenses, "1500")
+        await user.type(otherExpenses, "1500");
+        await user.click(submitButton)
+
+        expect(fetch).toHaveBeenCalledWith(
+            "/api/budget",
+            expect.objectContaining({
+                method: "POST",
+            })
+        );
     })
 })
