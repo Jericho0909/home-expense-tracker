@@ -45,9 +45,15 @@ const HealthModal = ({id}: {id?: string | null}) => {
         setHealthExpenses(defaultData)
     }
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
+
+        const response = await fetch("/api/expenses", {
+            method: "POST",
+            body: JSON.stringify(healthExpenses),
+        });
+
+        return response
     }
 
     useEffect(() => {
