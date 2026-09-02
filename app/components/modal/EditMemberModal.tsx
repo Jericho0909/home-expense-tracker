@@ -25,9 +25,16 @@ const EditMemberModal = ({id}: {id?: string | null}) => {
         "Other",
     ]
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         
+       const response = await fetch(`/api/members/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(member),
+        })
+
+        return response
+
     }
 
     useEffect(() => {
