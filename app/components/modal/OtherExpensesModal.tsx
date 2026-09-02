@@ -218,7 +218,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                 checked={otherExpenses.paymentMethod === "Cash"}
                                 onChange={(e) => setOtherExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                             />
                             <span
@@ -237,7 +237,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                 checked={otherExpenses.paymentMethod === "GCash"}
                                 onChange={(e) => setOtherExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                             />
                             <span
@@ -256,7 +256,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                 checked={otherExpenses.paymentMethod === "Bank Transfer"}
                                 onChange={(e) => setOtherExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                             />
                             <span
@@ -275,7 +275,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                 checked={otherExpenses.paymentMethod === "Maya"}
                                 onChange={(e) => setOtherExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                                 
                             />
@@ -295,7 +295,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                 checked={otherExpenses.paymentMethod === "Other"}
                                 onChange={(e) => setOtherExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                                 
                             />

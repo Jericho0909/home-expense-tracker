@@ -214,7 +214,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                 checked={healthExpenses.paymentMethod === "Cash"}
                                 onChange={(e) => setHealthExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                             />
                             <span
@@ -233,7 +233,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                 checked={healthExpenses.paymentMethod === "GCash"}
                                 onChange={(e) => setHealthExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                             />
                             <span
@@ -252,7 +252,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                 checked={healthExpenses.paymentMethod === "Bank Transfer"}
                                 onChange={(e) => setHealthExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                             />
                             <span
@@ -271,7 +271,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                 checked={healthExpenses.paymentMethod === "Maya"}
                                 onChange={(e) => setHealthExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                                 
                             />
@@ -291,7 +291,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                 checked={healthExpenses.paymentMethod === "Other"}
                                 onChange={(e) => setHealthExpenses((item) => ({
                                     ...item,
-                                    [e.target.name]: Number(e.target.value)
+                                    [e.target.name]: e.target.value
                                 }))}
                                 
                             />

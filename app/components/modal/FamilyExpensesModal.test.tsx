@@ -1,7 +1,7 @@
 import { render, screen, act } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 import userEvent from "@testing-library/user-event";
-import TransportationModal from "./TransportationModal";
+import FamilyExpensesModal from "./FamilyExpensesModal";
 import { ModalProvider } from "@/app/context/modalContext";
 
 jest.mock("next/navigation", () => ({
@@ -25,8 +25,8 @@ afterEach(() => {
     jest.useRealTimers()
 })
 
-describe("TransportationModal", () => {
-    test("Should submit transportation bill", async () => {
+describe("FamilyExpensesModal", () => {
+    test("Should submit family expenses bill", async () => {
         global.fetch = jest.fn();
 
         (fetch as jest.Mock).mockResolvedValue({
@@ -42,7 +42,7 @@ describe("TransportationModal", () => {
 
         render(
             <ModalProvider>
-                <TransportationModal />
+                <FamilyExpensesModal />
             </ModalProvider>
         )
 
@@ -54,19 +54,19 @@ describe("TransportationModal", () => {
             name: "Save Bill",
         });
 
-        const transportationCategory = screen.getByLabelText("Category:")
-        const transportationDescription = screen.getByLabelText("Description:")
-        const transportationAmount = screen.getByLabelText("Amount:")
-        const transportationPaymentMethod = screen.getByRole("radio", { name: "Cash" })
-        const transportationDate = screen.getByLabelText("Date:")
-        const transportationNote = screen.getByPlaceholderText("Add notes...")
+        const familyExpensesCategory = screen.getByLabelText("Category:")
+        const familyExpensesDescription = screen.getByLabelText("Description:")
+        const familyExpensesAmount = screen.getByLabelText("Amount:")
+        const familyExpensesPaymentMethod = screen.getByRole("radio", { name: "Cash" })
+        const familyExpensesDate = screen.getByLabelText("Date:")
+        const familyExpensesNotes = screen.getByPlaceholderText("Add notes...")
 
-        await user.selectOptions(transportationCategory, "Fuel")
-        await user.type(transportationDescription, "Gasoline")
-        await user.type(transportationAmount, "250")
-        await user.click(transportationPaymentMethod)
-        await user.type(transportationDate, "2023-08-15")
-        await user.type(transportationNote, "Full tank refill.")
+        await user.type(familyExpensesCategory, "Education")
+        await user.type(familyExpensesDescription, "School Fees")
+        await user.type(familyExpensesAmount, "5000")
+        await user.click(familyExpensesPaymentMethod)
+        await user.type(familyExpensesDate, "2023-06-01")
+        await user.type(familyExpensesNotes, "Paid in full")
 
         await user.click(submitButton)
 
