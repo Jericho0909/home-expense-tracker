@@ -45,9 +45,15 @@ const TransportationModal = ({id}: {id?: string | null}) => {
         setTransportationExpenses(defaultData)
     }
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
+        const response = await fetch("/api/expenses", {
+            method: "POST",
+            body: JSON.stringify(transportationExpenses),
+        });
+
+
+        return response
     }
 
     useEffect(() => {
@@ -196,7 +202,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                         fontFamily: "var(--font-playfair-display)"
                     }}
                 >
-                    Payment Method
+                    Payment Method:
                 </label>
 
                 <div className="flex flex-wrap gap-4">
@@ -208,7 +214,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             checked={transportationExpenses.paymentMethod === "Cash"}
                             onChange={(e) => setTransportationExpenses((item) => ({
                                 ...item,
-                                [e.target.name]: Number(e.target.value)
+                                [e.target.name]: e.target.value
                             }))}
                         />
                         <span
@@ -227,7 +233,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             checked={transportationExpenses.paymentMethod === "GCash"}
                             onChange={(e) => setTransportationExpenses((item) => ({
                                 ...item,
-                                [e.target.name]: Number(e.target.value)
+                                [e.target.name]: e.target.value
                             }))}
                         />
                         <span
@@ -246,7 +252,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             checked={transportationExpenses.paymentMethod === "Bank Transfer"}
                             onChange={(e) => setTransportationExpenses((item) => ({
                                 ...item,
-                                [e.target.name]: Number(e.target.value)
+                                [e.target.name]: e.target.value
                             }))}
                         />
                         <span
@@ -265,7 +271,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             checked={transportationExpenses.paymentMethod === "Maya"}
                             onChange={(e) => setTransportationExpenses((item) => ({
                                 ...item,
-                                [e.target.name]: Number(e.target.value)
+                                [e.target.name]: e.target.value
                             }))}
                             
                         />
@@ -285,7 +291,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             checked={transportationExpenses.paymentMethod === "Other"}
                             onChange={(e) => setTransportationExpenses((item) => ({
                                 ...item,
-                                [e.target.name]: Number(e.target.value)
+                                [e.target.name]: e.target.value
                             }))}
                             
                         />

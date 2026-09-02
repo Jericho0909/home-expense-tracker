@@ -1,13 +1,12 @@
-
 import { render, screen, act } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 import userEvent from "@testing-library/user-event";
-import UtilitiesModal from "./UtilitiesModal";
+import TransportationModal from "./TransportationModal";
 import { ModalProvider } from "@/app/context/modalContext";
 
 jest.mock("next/navigation", () => ({
     useRouter: jest.fn(),
-}));
+}))
 
 const mockPush = jest.fn()
 const mockBack = jest.fn()
@@ -26,8 +25,8 @@ afterEach(() => {
     jest.useRealTimers()
 })
 
-describe("UtilitiesModal", () => {
-    test("Should submit utility bill", async () => {
+describe("TransportationModal", () => {
+    test("Should submit transportation bill", async () => {
         global.fetch = jest.fn();
 
         (fetch as jest.Mock).mockResolvedValue({
@@ -43,7 +42,7 @@ describe("UtilitiesModal", () => {
 
         render(
             <ModalProvider>
-                <UtilitiesModal />
+                <TransportationModal />
             </ModalProvider>
         )
 
@@ -55,24 +54,19 @@ describe("UtilitiesModal", () => {
             name: "Save Bill",
         });
 
-        const utilitiesName = screen.getByLabelText("Utility:");
-        const utilitiesStatus = screen.getByLabelText("Status:");
-        const utilitiesAmount = screen.getByLabelText("Amount:");
-        const utilitiesBillingStart = screen.getByLabelText("Billing Start:");
-        const utilitiesBillingEnd = screen.getByLabelText("Billing End:");
-        const utilitiesDueDate = screen.getByLabelText("Due Date:");
-        const utilitiesNotes = screen.getByPlaceholderText("Add notes...");
+        const transportationCategory = screen.getByLabelText("Category:")
+        const transportationDescription = screen.getByLabelText("Description:")
+        const transportationAmount = screen.getByLabelText("Amount:")
+        const transportationPaymentMethod = screen.getByRole("radio", { name: "Cash" })
+        const transportationDate = screen.getByLabelText("Date:")
+        const transportationNote = screen.getByPlaceholderText("Add notes...");
 
-        await user.selectOptions(utilitiesName, "Electricity");
-        await user.selectOptions(utilitiesStatus, "Paid");
-        await user.type(utilitiesAmount, "3250");
-        await user.type(utilitiesBillingStart, "2026-07-01");
-        await user.type(utilitiesBillingEnd, "2026-07-31");
-        await user.type(utilitiesDueDate, "2026-07-15");
-        await user.type(
-            utilitiesNotes,
-            "Paid before the due date."
-        );
+        await user.selectOptions(transportationCategory, "Fuel")
+        await user.type(transportationDescription, "Gasoline")
+        await user.type(transportationAmount, "250")
+        await user.click(transportationPaymentMethod)
+        await user.type(transportationDate, "2023-08-15")
+        await user.type(transportationNote, "Full tank refill.")
 
         await user.click(submitButton)
 
@@ -81,6 +75,6 @@ describe("UtilitiesModal", () => {
             expect.objectContaining({
                 method: "POST",
             })
-        )
-    });
-});
+        );
+    })
+})
