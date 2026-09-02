@@ -14,9 +14,15 @@ const ContributionBudgetModal = ({id}: {id?: number | string | null}) => {
     const [ member,  ] = useState<Member>(findMember)
     const [ addMoney, setAddMoney ] = useState<number>(0)
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         
+        const response = await fetch(`/api/members/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(member),
+        })
+
+        return response
     }
 
     useEffect(() => {
