@@ -48,8 +48,15 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
         setOtherExpenses(defaultData)
     }
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const response = await fetch("/api/expenses", {
+            method: "POST",
+            body: JSON.stringify(otherExpenses),
+        });
+
+
+        return response
         
     }
 
