@@ -12,9 +12,18 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
     if(!findExpenses) return
 
     const [ expense, setExpense ] = useState<UtilityExpense>(findExpenses)
+    const [paymentMethod, setPaymentMethod] =
+    useState<UtilityExpense["paymentMethod"]>(undefined)
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        const response = await fetch(`/api/utilities/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(expense),
+        })
+
+        return response
 
     }
 
@@ -157,11 +166,8 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Cash"
-                                    checked={expense.paymentMethod === "Cash"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "Cash"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as UtilityExpense["paymentMethod"])}
                                     required
                                 />
                                 <span
@@ -177,13 +183,15 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="GCash"
-                                    checked={expense.paymentMethod === "GCash"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "GCash"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as UtilityExpense["paymentMethod"])}
                                 />
-                                <span>GCash</span>
+                                <span
+                                    className="text-[#3B2416] text-sm"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                >
+                                    GCash
+                                </span>
                             </label>
 
                             <label className="flex cursor-pointer items-center gap-2">
@@ -191,11 +199,8 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Bank Transfer"
-                                    checked={expense.paymentMethod === "Bank Transfer"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "Bank Transfer"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as UtilityExpense["paymentMethod"])}
                                 />
                                 <span
                                     className="text-[#3B2416] text-sm"
@@ -210,11 +215,8 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Maya"
-                                    checked={expense.paymentMethod === "Maya"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "Maya"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as UtilityExpense["paymentMethod"])}
                                     
                                 />
                                 <span
@@ -230,11 +232,8 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Other"
-                                    checked={expense.paymentMethod === "Other"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "Other"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as UtilityExpense["paymentMethod"])}
                                     
                                 />
                                 <span
@@ -249,7 +248,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                 )}
 
                 {expense.paymentMethod !== undefined
-                ? (
+                && (
                     <div className="flex items-center gap-2">
                         <span
                             className="text-base font-semibold "
@@ -265,33 +264,6 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                         >
                             {expense.paidAt}
                         </span>
-                    </div>
-                )
-                : (
-                        <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                        <label
-                            htmlFor="paidAt"
-                            className="text-base font-semibold"
-                            style={{
-                                fontFamily: "var(--font-playfair-display)"
-                            }}
-                        >
-                            Paid At:
-                        </label>
-                        <input
-                            id="paidAt"
-                            type="date"
-                            name="paidAt"
-                            value={expense.paidAt}
-                            onChange={(e) => setExpense((item) => ({
-                                ...item,
-                                [e.target.name]: e.target.value
-                            }))}
-                            className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                            placeholder=""
-                            required
-                        />
                     </div>
                 )}
 

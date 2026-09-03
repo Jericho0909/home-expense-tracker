@@ -16,7 +16,7 @@ import { CookingPot,
     PhilippinePeso, 
 } from 'lucide-react';
 import formatPurchaseDate from "@/app/utils/formatPurchaseDate"
-import { FoodAndHousholdBillIcons } from "@/app/constant/billIcons";
+import { FoodAndHousholdBillIcons, StatusIcons } from "@/app/constant/billIcons";
 
 
 const FoodAndHousePage = () => {
@@ -104,7 +104,15 @@ const FoodAndHousePage = () => {
                     />
                     {item.amount.toLocaleString("en-US")}
                 </span>,
-        }
+        },
+        {
+            label: "Status",
+            render: (item) => 
+                <span className="flex items-center gap-1">
+                    {StatusIcons[item.status].icon}
+                    {item.status}
+                </span>
+        },
     ]
 
     useEffect(() => {

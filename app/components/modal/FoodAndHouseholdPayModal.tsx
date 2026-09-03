@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { FoodHouseholdData } from "@/app/constant/expensesData"
 import type { FoodHouseholdExpense } from "@/app/type/model"
+import { StatusIcons, } from "@/app/constant/billIcons"
 
 const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
@@ -10,10 +11,17 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
     if(!findExpenses) return
 
     const [ expense, setExpense ] = useState<FoodHouseholdExpense>(findExpenses)
+    const [paymentMethod, setPaymentMethod] = useState<FoodHouseholdExpense["paymentMethod"]>(undefined)
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
 
+        const response = await fetch(`/api/foodandhousehold/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(expense),
+        })
+
+        return response
     }
 
     useEffect(() => {
@@ -59,8 +67,7 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                     {expense.name}
                 </span>
 
-
-                <div className="flex items-center gap-1">
+                <div className="flex items-end gap-1">
                     <span
                         className="text-base font-semibold"
                         style={{
@@ -70,14 +77,14 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                         Purchase Date:
                     </span>
                     <span
-                        className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
+                        className="text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
                         {expense.purchaseDate}
                     </span>
                 </div>
 
-                <div className="flex items-center gap-1">
+                <div className="flex items-end gap-1">
                     <span
                         className="text-base font-semibold"
                         style={{
@@ -87,10 +94,28 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                         Amount:
                     </span>
                     <span
-                        className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
+                        className="text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
                         {expense.amount}
+                    </span>
+                </div>
+
+                <div className="flex items-end gap-1">
+                    <span
+                        className="text-base font-semibold"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Status:
+                    </span>
+                    <span
+                        className="flex items-center gap-1 text-[#3B2416] text-sm"
+                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    >
+                        {StatusIcons[expense.status].icon}
+                        {expense.status}
                     </span>
                 </div>
 
@@ -102,7 +127,7 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
             >
                 {expense.paymentMethod !== undefined
                 ? (
-                   <div className="flex items-center gap-2">
+                   <div className="flex items-end gap-1">
                         <span
                             className="text-base font-semibold "
                             style={{
@@ -112,7 +137,7 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                             PaymentMethod:
                         </span>
                         <span
-                            className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
+                            className="text-[#3B2416] text-sm"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                         >
                             {expense.paymentMethod}
@@ -136,11 +161,8 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Cash"
-                                    checked={expense.paymentMethod === "Cash"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "Cash"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as FoodHouseholdExpense["paymentMethod"])}
                                     required
                                 />
                                 <span
@@ -156,13 +178,15 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="GCash"
-                                    checked={expense.paymentMethod === "GCash"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "GCash"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as FoodHouseholdExpense["paymentMethod"])}
                                 />
-                                <span>GCash</span>
+                                <span
+                                    className="text-[#3B2416] text-sm"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                >
+                                    GCash
+                                </span>
                             </label>
 
                             <label className="flex cursor-pointer items-center gap-2">
@@ -170,11 +194,8 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Bank Transfer"
-                                    checked={expense.paymentMethod === "Bank Transfer"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "Bank Transfer"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as FoodHouseholdExpense["paymentMethod"])}
                                 />
                                 <span
                                     className="text-[#3B2416] text-sm"
@@ -189,11 +210,8 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Maya"
-                                    checked={expense.paymentMethod === "Maya"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "Maya"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as FoodHouseholdExpense["paymentMethod"])}
                                     
                                 />
                                 <span
@@ -209,11 +227,8 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Other"
-                                    checked={expense.paymentMethod === "Other"}
-                                    onChange={(e) => setExpense((item) => ({
-                                        ...item,
-                                        [e.target.name]: e.target.value
-                                    }))}
+                                    checked={paymentMethod === "Other"}
+                                    onChange={(e) => setPaymentMethod(e.target.value as FoodHouseholdExpense["paymentMethod"])}
                                     
                                 />
                                 <span

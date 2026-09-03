@@ -5,13 +5,15 @@ import { FoodHouseholdData } from "@/app/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { FoodHouseholdExpense, 
     FoodAndHouseHoldCategory,
+    StatusType,
 } from "@/app/type/model"
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
 import { CookingPot } from 'lucide-react';
 
 
-type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category"> & {
+type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category" | "status"> & {
     category: FoodAndHouseHoldCategory | "";
+    status: StatusType | "";
 }
 
 type FoodHouseholdType = "" | "Food" | "Household"
@@ -26,6 +28,7 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
         name: "",
         type: "",
         category: "",
+        status: "",
         purchaseDate: "",
         notes: ""
     }
@@ -45,6 +48,13 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
         "PersonalCare",
         "Kitchen",
         "HomeSupplies",
+    ]
+
+    const FoodHouseholdStatus: StatusType[] = [
+        "Paid",
+        "Pending",
+        "Overdue",
+        "Unpaid"
     ]
 
     const handleCancel = () => {
@@ -136,6 +146,40 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                         {[...FoodHouseholdCategory].sort((a, b) => a.localeCompare(b)).map((category) => (
                             <option key={category} value={category}>
                                 {category}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                    <label
+                        htmlFor="status"
+                        className="text-base font-semibold"
+                        style={{
+                            fontFamily: "var(--font-playfair-display)"
+                        }}
+                    >
+                        Status:
+                    </label>
+                    <select
+                        id="status"
+                        value={foodHouseholdExpenses.status}
+                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                            ...item,
+                            status: e.target.value as StatusType
+                        }))}
+                        className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
+                        style={{fontFamily: "var(--font-libre-baskerville)"}}
+                    >
+                        <option value="" disabled className="cursor-pointer">
+                            Select status
+                        </option>
+                        {FoodHouseholdStatus.map((status) => (
+                            <option 
+                                key={status}
+                                value={status}
+                            >
+                                {status}
                             </option>
                         ))}
                     </select>
@@ -238,32 +282,33 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                     />
                 </div>
 
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="purchaseDate"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Purchase Date:
-                    </label>
-                    <input
-                        id="purchaseDate"
-                        type="date"
-                        name="purchaseDate"
-                        value={foodHouseholdExpenses.purchaseDate}
-                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
-                            ...item,
-                            [e.target.name]: e.target.value
+                {foodHouseholdExpenses.status === "Paid" && (
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="purchaseDate"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Purchase Date:
+                        </label>
+                        <input
+                            id="purchaseDate"
+                            type="date"
+                            name="purchaseDate"
+                            value={foodHouseholdExpenses.purchaseDate}
+                            onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                ...item,
+                                [e.target.name]: e.target.value
 
-                        }))}
-                        className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        placeholder=""
-                        required
-                    />
-                </div>
+                            }))}
+                            className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            placeholder=""
+                        />
+                    </div>
+                )}
 
                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label

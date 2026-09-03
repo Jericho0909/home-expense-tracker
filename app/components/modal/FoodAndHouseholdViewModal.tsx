@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { FoodHouseholdData } from '@/app/constant/expensesData';
 import type { FoodHouseholdExpense } from '@/app/type/model';
+import { StatusIcons } from "@/app/constant/billIcons";
 import formattedDate from '@/app/utils/formattedDate';
 import { CookingPot, PhilippinePeso } from 'lucide-react';
 
@@ -72,7 +73,7 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
 
             <div className="flex items-center gap-1">
                 <span
-                    className="text-base font-semibold mb-1.5"
+                    className="text-base font-semibold mb-1"
                     style={{
                         fontFamily: "var(--font-playfair-display)"
                     }}
@@ -89,7 +90,7 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
 
             <div className="flex items-center gap-1">
                 <span
-                    className="text-base font-semibold mb-1.5"
+                    className="text-base font-semibold mb-1"
                     style={{
                         fontFamily: "var(--font-playfair-display)"
                     }}
@@ -106,7 +107,25 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
 
             <div className="flex items-center gap-1">
                 <span
-                    className="text-base font-semibold mb-1.5"
+                    className="text-base font-semibold mb-1"
+                    style={{
+                        fontFamily: "var(--font-playfair-display)"
+                    }}
+                >
+                    Status
+                </span>
+                <span
+                    className="flex items-center gap-1 text-[#3B2416] text-sm"
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                >
+                    {StatusIcons[expenses.status].icon}
+                    {expenses.status}
+                </span>
+            </div>
+
+            <div className="flex items-center gap-1">
+                <span
+                    className="text-base font-semibold mb-1"
                     style={{
                         fontFamily: "var(--font-playfair-display)"
                     }}
@@ -123,7 +142,7 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
 
             <div className="flex items-center gap-1">
                 <span
-                    className="text-base font-semibold mb-1.5"
+                    className="text-base font-semibold mb-1"
                     style={{
                         fontFamily: "var(--font-playfair-display)"
                     }}
@@ -146,7 +165,7 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
                     }}
                 >
                     <span
-                        className="text-base font-semibold mb-1.5"
+                        className="text-base font-semibold mb-1"
                         style={{
                             fontFamily: "var(--font-playfair-display)"
                         }}

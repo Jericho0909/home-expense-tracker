@@ -169,6 +169,7 @@ export type FoodHouseholdExpense = Expense & {
     name: string;
     type: "Food" | "Household" | "";
     category: FoodAndHouseHoldCategory 
+    status: StatusType;
     purchaseDate: string;
     paymentMethod?: PaymentMethod;
     notes : string;

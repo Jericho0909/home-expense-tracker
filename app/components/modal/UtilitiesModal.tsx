@@ -146,7 +146,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                     </select>
                 </div>
 
-                 <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                     <label
                         htmlFor="status"
                         className="text-base font-semibold"
@@ -169,12 +169,12 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                         <option value="" disabled className="cursor-pointer">
                             Select status
                         </option>
-                        {UtilitiesStatus.map((names) => (
+                        {UtilitiesStatus.map((status) => (
                             <option 
-                                key={names}
-                                value={names}
+                                key={status}
+                                value={status}
                             >
-                                {names}
+                                {status}
                             </option>
                         ))}
                     </select>
