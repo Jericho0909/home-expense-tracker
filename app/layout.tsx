@@ -5,9 +5,9 @@ import {
   Libre_Baskerville
 } from "next/font/google"
 import "./globals.css";
-import { SidebarProvider } from "./context/sidebarContext";
-import { ExpensesSectionProvider }  from "./context/expensesSectionContext";
-import { ModalProvider } from "./context/modalContext";
+import { SidebarProvider } from "../context/sidebarContext";
+import { ExpensesSectionProvider }  from "../context/expensesSectionContext";
+import { ModalProvider } from "../context/modalContext";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",

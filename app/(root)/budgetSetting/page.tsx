@@ -1,17 +1,17 @@
 'use client'
 
 import { useContext, useEffect } from "react"
-import ExpensesSectionContext from "@/app/context/expensesSectionContext";
-import ModalContext from "@/app/context/modalContext";
-import Card from "@/app/components/Card";
-import AddMemberModal from "@/app/components/modal/AddMemberModal";
-import Table from "@/app/components/Table";
-import BudgetForm from "@/app/components/BudgetForm";
-import { MembersData } from "@/app/constant/expensesData";
+import ExpensesSectionContext from "@/context/expensesSectionContext";
+import ModalContext from "@/context/modalContext";
+import Card from "@/components/Card";
+import AddMemberModal from "@/components/modal/AddMemberModal";
+import Table from "@/components/Table";
+import BudgetForm from "@/components/BudgetForm";
+import { MembersData } from "@/constant/expensesData";
 import type { TableColumn, 
     Member 
-} from "@/app/type/model";
-import { FamilyRoleColor } from "@/app/constant/billIcons";
+} from "@/type/model";
+import { FamilyRoleColor } from "@/constant/billIcons";
 import { HandCoins, 
     PhilippinePeso, 
     User,

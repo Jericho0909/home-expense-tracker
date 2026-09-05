@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+
+}
+
+model Expense {
+  id        Int      @id @default(autoincrement())
+  expense   Sections
+  amount    Float
+  createdAt DateTime @default(now())
+}
+
+enum Sections {
+    Dashboard
+    Utilities
+    FoodAndHousehold
+    Transportation
+    Health
+    HouseMaintenance
+    FamilyExpenses
+    OtherExpenses
+    BudgetSetting
+}

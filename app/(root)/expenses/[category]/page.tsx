@@ -1,5 +1,5 @@
-import ExpensesSection from "@/app/components/SectionExpenses"
-import type { ExpenseCategory } from "@/app/type/model"
+import ExpensesSection from "@/components/SectionExpenses"
+import type { ExpenseCategory } from "@/type/model"
 
 const Expenses = async ({params}: {params: Promise<{category: ExpenseCategory}>}) => {
     const { category } = await params

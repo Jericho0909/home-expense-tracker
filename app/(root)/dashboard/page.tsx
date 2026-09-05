@@ -1,9 +1,9 @@
 'use client'
 
 import { useContext, useEffect } from "react"
-import ExpensesSectionContext from "@/app/context/expensesSectionContext"
-import ButtonModal from "@/app/components/ButtonModal"
-import SummaryCards from "@/app/components/SummaryCard"
+import ExpensesSectionContext from "@/context/expensesSectionContext"
+import ButtonModal from "@/components/ButtonModal"
+import SummaryCards from "@/components/SummaryCard"
 import { PhilippinePeso } from "lucide-react";
 const DashboardPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!

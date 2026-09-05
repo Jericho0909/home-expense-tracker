@@ -1,11 +1,11 @@
 'use client'
 
 import { useContext } from 'react';
-import SidebarContext from '@/app/context/sidebarContext';
-import ModalContext from '../context/modalContext';
-import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
-import Modal from '../components/modal/Modal';
+import SidebarContext from '@/context/sidebarContext';
+import ModalContext from '../../context/modalContext';
+import Header from '../../components/Header';
+import Sidebar from '../../components/Sidebar';
+import Modal from '../../components/modal/Modal';
 import { AnimatePresence } from "framer-motion";
 
 

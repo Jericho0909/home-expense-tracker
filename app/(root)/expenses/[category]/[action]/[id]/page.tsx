@@ -1,4 +1,4 @@
-import FallBack from "@/app/components/FallBack";
+import FallBack from "@/components/FallBack";
 const Back = async () => {
     
     
