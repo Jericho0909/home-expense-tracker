@@ -85,7 +85,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/utilities"
+                        href="/expenses/Utilities"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "Utilities" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -106,7 +106,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/foodAndHousehold"
+                        href="/expenses/FoodAndHousehold"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "FoodAndHousehold" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -128,7 +128,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/transportation"
+                        href="/expenses/Transportation"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "Transportation" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -150,7 +150,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/health"
+                        href="/expenses/Health"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "Health" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -172,7 +172,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/houseMaintenance"
+                        href="/expenses/HouseMaintenance"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "HouseMaintenance" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -194,7 +194,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/familyExpenses"
+                        href="/expenses/FamilyExpenses"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "FamilyExpenses" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }
@@ -216,7 +216,7 @@ const Sidebar = () => {
                     className="mb-4"
                 >
                     <Link
-                        href="/expenses/otherExpenses"
+                        href="/expenses/OtherExpenses"
                         onClick={toggleSidebar}
                         className={`flex items-center text-lg px-2 transition-all duration-300
                             ${activeSection === "OtherExpenses" ? "text-[#D2B48C] border-l-4 border-[#D2B48C] pl-4 tracking-wide" : ` text-[#F8F4E9] notActiveSection` }

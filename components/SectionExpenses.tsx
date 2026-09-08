@@ -11,13 +11,13 @@ import type { ExpenseCategory } from "../type/model"
 
 const ExpensesSection = ({ category }: { category: ExpenseCategory }) => {
     const Sections: Record< ExpenseCategory, ReactNode > = {
-        utilities: <UtilitiesPage/>,
-        foodAndHousehold: <FoodAndHousePage/>,
-        transportation: <TransportationPage/>,
-        health: <HealthPage/>,
-        houseMaintenance: <HouseMaintenancePage/>,
-        familyExpenses: <FamilyExpensesPage/>,
-        otherExpenses: <OtherExpensesPage/>,
+        Utilities: <UtilitiesPage/>,
+        FoodAndHousehold: <FoodAndHousePage/>,
+        Transportation: <TransportationPage/>,
+        Health: <HealthPage/>,
+        HouseMaintenance: <HouseMaintenancePage/>,
+        FamilyExpenses: <FamilyExpensesPage/>,
+        OtherExpenses: <OtherExpensesPage/>,
     }
 
     return (

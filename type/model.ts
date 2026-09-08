@@ -235,13 +235,13 @@ export type ModalContents =
     | "AddMember"
 
 export type ExpenseCategory = 
-    | "utilities"
-    | "foodAndHousehold"
-    | "transportation"
-    | "health"
-    | "houseMaintenance"
-    | "familyExpenses"
-    | "otherExpenses"
+    | "Utilities"
+    | "FoodAndHousehold"
+    | "Transportation"
+    | "Health"
+    | "HouseMaintenance"
+    | "FamilyExpenses"
+    | "OtherExpenses"
 
 export type ActionContent = 
     | "editContribution" 

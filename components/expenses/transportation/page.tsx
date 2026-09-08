@@ -201,8 +201,8 @@ const TransportationPage = () => {
                     <Table
                         data={transportationExpenses}
                         columns={TransportationColumn}
-                        viewLink="/expenses/transportation/viewTransportation"
-                        editLink = "/expenses/transportation/editTransportation"
+                        viewLink="/expenses/Transportation/viewTransportation"
+                        editLink = "/expenses/Transportation/editTransportation"
                     />
                 </div>
             </div>
