@@ -20,23 +20,13 @@ import { getExpenses } from "@/lib/expenses";
 
 const UtilitiesPage = () => {
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
+    const [utilitiesExpenses, setUtilitiesExpenses] = useState<UtilityExpense[]>([])
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
     })
 
-    
-        const fetchExpenses = async () => {
-            const data = await getExpenses("Utilities");
-
-            console.log(data)
-        };
-
-        fetchExpenses()
-
-
-    const utilitiesExpenses = UtilitiesData.filter((item) => item.expense === "Utilities")
 
     const utilitiesColumn: TableColumn<UtilityExpense>[] = [
         {
@@ -74,6 +64,14 @@ const UtilitiesPage = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
         setActiveSection("Utilities")
+    }, [])
+
+    useEffect(() => {
+        const fetchUtilitiesExpenses = async () => {
+            const data = await getExpenses("Utilities")
+            setUtilitiesExpenses(data)
+        }
+        fetchUtilitiesExpenses()
     }, [])
 
     useEffect(() => {
@@ -185,16 +183,21 @@ const UtilitiesPage = () => {
                 </div>
             </div>
 
-            <div className="w-5xl h-auto py-1 px-2 border border-[#B38B59]  mb-8">
-                <div className="flex flex-col p-1 w-">
+            <div
+                className={`w-5xl px-2 border border-[#B38B59] mb-8 ${
+                    utilitiesExpenses.length === 0 ? "h-72" : "h-auto"
+                }`}
+            >
+                <div className="flex flex-col p-1">
                     <span
                         className="font-bold text-[#3B2416]"
-                        style={{ fontFamily: "var(--font-cinzel)"}}
+                        style={{ fontFamily: "var(--font-cinzel)" }}
                     >
-                        Utility Bills  
+                        Utility Bills
                     </span>
                 </div>
-                <div className="block w-auto min-h-48 p-1">
+
+                {utilitiesExpenses.length > 0 ? (
                     <Table
                         data={utilitiesExpenses}
                         columns={utilitiesColumn}
@@ -202,7 +205,16 @@ const UtilitiesPage = () => {
                         editLink="/expenses/Utilities/editUtilities"
                         payLink="/expenses/Utilities/payUtilities"
                     />
-                </div>
+                ) : (
+                    <div className="flex flex-1 items-center justify-center h-[80%]">
+                        <p 
+                            className="text-sm text-center text-gray-500"
+                            style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                        >
+                            No utility expenses found.
+                        </p>
+                    </div>
+                )}
             </div>
             
         </section>
