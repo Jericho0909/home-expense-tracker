@@ -208,7 +208,7 @@ const UtilitiesPage = () => {
                 ) : (
                     <div className="flex flex-1 items-center justify-center h-[80%]">
                         <p 
-                            className="text-sm text-center text-gray-500"
+                            className="text-sm text-center text-black"
                             style={{ fontFamily: "var(--font-libre-baskerville)"}}
                         >
                             No utility expenses found.

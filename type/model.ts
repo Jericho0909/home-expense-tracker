@@ -114,7 +114,7 @@ export type FamilyRole =
     | "Grandmother"
     | "Uncle"
     | "Aunt"
-    | "Other";
+    | "Other"
 
 export type StatusType =
     | "Paid"
@@ -127,7 +127,7 @@ export type PaymentMethod =
     | "GCash"
     | "Bank Transfer"
     | "Maya"
-    | "Other";
+    | "Other"
 
 export type IconType = {
     icon: React.ReactNode;

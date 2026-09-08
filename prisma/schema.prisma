@@ -4,24 +4,214 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// Utilities
+
+model UtilityExpense {
+  id            Int           @id @default(autoincrement())
+  name          String
+  category      UtilityCategory
+  amount        Float
+  status        Status
+  billingStart  DateTime
+  billingEnd    DateTime
+  dueDate       DateTime
+  paymentMethod PaymentMethod?
+  notes         String
+  createdAt     DateTime      @default(now())
+}
+
+// Food & Household
+
+model FoodHouseholdExpense {
+  id            Int           @id @default(autoincrement())
+  name          String
+  type          FoodHouseholdType
+  category      FoodHouseholdCategory
+  amount        Float
+  status        Status
+  purchaseDate  DateTime
+  paymentMethod PaymentMethod?
+  notes         String
+  createdAt     DateTime      @default(now())
+}
+
+// Transportation
+
+model TransportationExpense {
+  id            Int           @id @default(autoincrement())
+  description   String
+  category      TransportationCategory
+  amount        Float
+  date          DateTime
+  paymentMethod PaymentMethod
+  notes         String
+  createdAt     DateTime      @default(now())
+}
+
+// Health
+
+model HealthExpense {
+  id            Int           @id @default(autoincrement())
+  description   String
+  category      HealthCategory
+  amount        Float
+  date          DateTime
+  paymentMethod PaymentMethod
+  notes         String
+  createdAt     DateTime      @default(now())
+}
+
+// House Maintenanc
+
+model HouseMaintenanceExpense {
+  id            Int           @id @default(autoincrement())
+  description   String
+  category      HouseMaintenanceCategory
+  amount        Float
+  date          DateTime
+  paymentMethod PaymentMethod
+  notes         String
+  createdAt     DateTime      @default(now())
+}
+
+
+// Family Expenses
+
+model FamilyExpense {
+  id            Int           @id @default(autoincrement())
+  description   String
+  category      FamilyExpenseCategory
+  amount        Float
+  date          DateTime
+  paymentMethod PaymentMethod
+  notes         String
+  createdAt     DateTime      @default(now())
+}
+
+
+// Other Expenses
+
+model OtherExpense {
+  id            Int           @id @default(autoincrement())
+  description   String
+  category      OtherExpenseCategory
+  amount        Float
+  date          DateTime
+  paymentMethod PaymentMethod
+  notes         String
+  createdAt     DateTime      @default(now())
+}
+
+// Family Member
+
+model FamilyMember {
+  id            Int           @id @default(autoincrement())
+  name          String
+  familyRole    FamilyRole
+  money         Float
+  createdAt     DateTime      @default(now())
 
 }
 
-model Expense {
-  id        Int      @id @default(autoincrement())
-  expense   Sections
-  amount    Float
-  createdAt DateTime @default(now())
+// Enum
+
+enum UtilityCategory {
+  Electricity
+  Water
+  Internet
+  MobileLoad
+  MineralWater
 }
 
-enum Sections {
-    Dashboard
-    Utilities
-    FoodAndHousehold
-    Transportation
-    Health
-    HouseMaintenance
-    FamilyExpenses
-    OtherExpenses
-    BudgetSetting
+enum FoodHouseholdType {
+  Food
+  Household
+}
+
+enum FoodHouseholdCategory {
+  Groceries
+  Meat
+  Seafood
+  Fruits
+  Vegetables
+  Snacks
+  Beverages
+  Cleaning
+  Laundry
+  PersonalCare
+  Kitchen
+  HomeSupplies
+}
+
+enum TransportationCategory {
+  Fuel
+  PublicTransport
+  RideHailing
+  Parking
+  Toll
+  VehicleMaintenance
+}
+
+enum HealthCategory {
+  Medicine
+  Consultation
+  Dental
+  Laboratory
+  Other
+}
+
+enum HouseMaintenanceCategory {
+  Repairs
+  Maintenance
+  Cleaning
+  PestControl
+  Other
+}
+
+enum FamilyExpenseCategory {
+  Education
+  Allowance
+  Entertainment
+  Celebrations
+  Other
+}
+
+enum OtherExpenseCategory {
+  Personal
+  Donations
+  Subscriptions
+  Government
+  Miscellaneous
+  Tickets
+  Fees
+  Services
+}
+
+enum FamilyRole{
+  Father
+  Mother
+  Son
+  Daughter
+  Grandfather
+  Grandmother
+  Uncle
+  Aunt
+  Other
+}
+
+enum Status {
+  Paid
+  Pending
+  Overdue
+  Unpaid
+}
+
+enum PaymentMethod {
+  Cash
+  GCash
+  BankTransfer
+  CreditCard
+  DebitCard
 }
