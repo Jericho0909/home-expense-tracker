@@ -15,6 +15,7 @@ import {
     Circle
 } from "lucide-react";
 import { UtilityBillIcons, StatusIcons, StatusColor } from "@/constant/billIcons";
+import { getExpenses } from "@/lib/expenses";
 
 
 const UtilitiesPage = () => {
@@ -24,6 +25,16 @@ const UtilitiesPage = () => {
         month: "long",
         year: "numeric",
     })
+
+    
+        const fetchExpenses = async () => {
+            const data = await getExpenses("Utilities");
+
+            console.log(data)
+        };
+
+        fetchExpenses()
+
 
     const utilitiesExpenses = UtilitiesData.filter((item) => item.expense === "Utilities")
 
