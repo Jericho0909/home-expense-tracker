@@ -214,7 +214,7 @@ const FoodAndHousePage = () => {
                 </div>
             </div>
 
-            <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
+            <div className="w-4xl h-auto py-1 border border-[#B38B59] mb-8">
                 <div className="flex flex-col p-1 w-">
                     <span
                         className="font-bold text-[#3B2416]"
@@ -222,15 +222,16 @@ const FoodAndHousePage = () => {
                     >
                         Food and Household Bills  
                     </span>
-                </div>
-                <div className="block w-auto min-h-48 p-1">
-                    <Table
-                        data={FoodAndHouseExpenses}
-                        columns={FoodAndHouseColumn}
-                        viewLink="/expenses/FoodAndHousehold/viewFoodAndHousehold"
-                        editLink="/expenses/FoodAndHousehold/editFoodAndHousehold"
-                        payLink="/expenses/FoodAndHousehold/payFoodAndHousehold"
-                    />
+
+                    <div className="block w-auto min-h-48 p-1">
+                        <Table
+                            data={FoodAndHouseExpenses}
+                            columns={FoodAndHouseColumn}
+                            viewLink="/expenses/FoodAndHousehold/viewFoodAndHousehold"
+                            editLink="/expenses/FoodAndHousehold/editFoodAndHousehold"
+                            payLink="/expenses/FoodAndHousehold/payFoodAndHousehold"
+                        />
+                    </div>
                 </div>
             </div>
 

@@ -122,38 +122,40 @@ const UtilitiesPage = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-6 gap-2 w-full h-auto mb-8">
-                {UtilitiesData.map((item, index) => (
-                    <SummaryCards
-                        key={index}
-                        title={item.name}
-                        content={
-                            <div 
-                                className="block text-sm"
-                                style={{ fontFamily: "var(--font-libre-baskerville)"}}
-                            >
-                                <span className="flex items-center">
-                                    <PhilippinePeso
-                                        size={16}
-                                    />
-                                    {item.amount?.toLocaleString("en-US")}
-                                </span>
-                                <span 
-                                    className="flex items-center gap-1 text-sm"
+            {utilitiesExpenses.length > 0 
+            ? (
+                <div className="grid grid-cols-6 gap-2 w-full h-auto mb-8">
+                    {utilitiesExpenses.map((item, index) => (
+                        <SummaryCards
+                            key={index}
+                            title={item.name}
+                            content={
+                                <div 
+                                    className="block text-sm"
                                     style={{ fontFamily: "var(--font-libre-baskerville)"}}
                                 >
-                                    <Circle
-                                        size={10}
-                                        color={StatusColor[item.status]}
-                                        fill={StatusColor[item.status]}
-                                    />
-                                    {item.status}
-                                </span>
-                            </div>
-                        }
-                    />
-                ))}
-                <SummaryCards
+                                    <span className="flex items-center">
+                                        <PhilippinePeso
+                                            size={16}
+                                        />
+                                        {item.amount?.toLocaleString("en-US")}
+                                    </span>
+                                    <span 
+                                        className="flex items-center gap-1 text-sm"
+                                        style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                                    >
+                                        <Circle
+                                            size={10}
+                                            color={StatusColor[item.status]}
+                                            fill={StatusColor[item.status]}
+                                        />
+                                        {item.status}
+                                    </span>
+                                </div>
+                            }
+                        />
+                    ))}
+                    <SummaryCards
                         key={-1}
                         title="Total"
                         content={
@@ -170,7 +172,18 @@ const UtilitiesPage = () => {
                             </div>
                         }
                     />
-            </div>
+                </div>
+            ) 
+            : (
+                <div className="flex items-center justify-center h-72">
+                    <p 
+                        className="text-sm text-center text-black"
+                        style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                    >
+                        No expense data available yet.
+                    </p>
+                </div>
+            )}
 
             <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
                 <div className="flex-2">
@@ -184,37 +197,38 @@ const UtilitiesPage = () => {
             </div>
 
             <div
-                className={`w-5xl px-2 border border-[#B38B59] mb-8 ${
+                className={`w-5xl border border-[#B38B59] mb-8 ${
                     utilitiesExpenses.length === 0 ? "h-72" : "h-auto"
                 }`}
             >
-                <div className="flex flex-col p-1">
+                <div className="flex flex-col p-1 h-full">
                     <span
                         className="font-bold text-[#3B2416]"
                         style={{ fontFamily: "var(--font-cinzel)" }}
                     >
                         Utility Bills
                     </span>
-                </div>
+                    {utilitiesExpenses.length > 0 ? 
+                    (
+                        <Table
+                            data={utilitiesExpenses}
+                            columns={utilitiesColumn}
+                            viewLink="/expenses/Utilities/viewUtilities"
+                            editLink="/expenses/Utilities/editUtilities"
+                            payLink="/expenses/Utilities/payUtilities"
+                        />
+                    ) : (
+                        <div className="flex flex-1 items-center justify-center h-full">
+                            <p 
+                                className="text-sm text-center text-black"
+                                style={{ fontFamily: "var(--font-libre-baskerville)"}}
+                            >
+                                No records found.
+                            </p>
+                        </div>
+                    )}
 
-                {utilitiesExpenses.length > 0 ? (
-                    <Table
-                        data={utilitiesExpenses}
-                        columns={utilitiesColumn}
-                        viewLink="/expenses/Utilities/viewUtilities"
-                        editLink="/expenses/Utilities/editUtilities"
-                        payLink="/expenses/Utilities/payUtilities"
-                    />
-                ) : (
-                    <div className="flex flex-1 items-center justify-center h-[80%]">
-                        <p 
-                            className="text-sm text-center text-black"
-                            style={{ fontFamily: "var(--font-libre-baskerville)"}}
-                        >
-                            No utility expenses found.
-                        </p>
-                    </div>
-                )}
+                </div>
             </div>
             
         </section>
