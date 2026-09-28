@@ -105,7 +105,31 @@ export async function POST(
                 )
             }
 
-        return NextResponse.json(newUtilityExpense, { status: 201 })
+            return NextResponse.json(newUtilityExpense, { status: 201 })
+        
+        case "FoodAndHousehold":
+            const newFoodAndHouseholdExpense = await prisma.foodHouseholdExpense.create({
+                data: {
+                    name: body.name,
+                    expense: body.expense,
+                    amount: body.amount,
+                    type: body.type,
+                    category: body.category,
+                    status: body.status,
+                    purchaseDate: body.purchaseDate,
+                    paymentMethod: body.paymentMethod,
+                    notes: body.notes
+                }
+            })
+
+            if(!newFoodAndHouseholdExpense){
+                return NextResponse.json(
+                    { error: "Failed to create food and household expense" },
+                    { status: 500 }
+                )
+            }
+
+            return NextResponse.json(newFoodAndHouseholdExpense, { status: 201 })
 
         default:
             // invalid category

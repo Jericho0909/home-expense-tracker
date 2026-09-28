@@ -11,6 +11,7 @@ datasource db {
 model UtilityExpense {
   id            Int           @id @default(autoincrement())
   name          String
+  expense       Expenses
   category      UtilityCategory
   amount        Float
   status        Status
@@ -27,6 +28,7 @@ model UtilityExpense {
 model FoodHouseholdExpense {
   id            Int           @id @default(autoincrement())
   name          String
+  expense       Expenses
   type          FoodHouseholdType
   category      FoodHouseholdCategory
   amount        Float
@@ -42,6 +44,7 @@ model FoodHouseholdExpense {
 model TransportationExpense {
   id            Int           @id @default(autoincrement())
   description   String
+  expense       Expenses
   category      TransportationCategory
   amount        Float
   date          DateTime
@@ -55,6 +58,7 @@ model TransportationExpense {
 model HealthExpense {
   id            Int           @id @default(autoincrement())
   description   String
+  expense       Expenses
   category      HealthCategory
   amount        Float
   date          DateTime
@@ -68,6 +72,7 @@ model HealthExpense {
 model HouseMaintenanceExpense {
   id            Int           @id @default(autoincrement())
   description   String
+  expense       Expenses
   category      HouseMaintenanceCategory
   amount        Float
   date          DateTime
@@ -82,6 +87,7 @@ model HouseMaintenanceExpense {
 model FamilyExpense {
   id            Int           @id @default(autoincrement())
   description   String
+  expense       Expenses
   category      FamilyExpenseCategory
   amount        Float
   date          DateTime
@@ -96,6 +102,7 @@ model FamilyExpense {
 model OtherExpense {
   id            Int           @id @default(autoincrement())
   description   String
+  expense       Expenses
   category      OtherExpenseCategory
   amount        Float
   date          DateTime
@@ -116,6 +123,17 @@ model FamilyMember {
 }
 
 // Enum
+
+enum Expenses {
+  Utilities
+  FoodAndHousehold
+  Transportation
+  Health
+  HouseMaintenance
+  FamilyExpenses
+  OtherExpenses
+  BudgetSetting
+}
 
 enum UtilityCategory {
   Electricity
