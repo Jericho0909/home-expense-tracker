@@ -68,7 +68,7 @@ const UtilitiesPage = () => {
 
     useEffect(() => {
         const fetchUtilitiesExpenses = async () => {
-            const data = await getExpenses("Utilities")
+            const data = await getExpenses("Utilities", 1, 10)
             setUtilitiesExpenses(data)
         }
         fetchUtilitiesExpenses()

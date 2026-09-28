@@ -6,36 +6,61 @@ export async function GET(
     { params }: { params: Promise<{ category: string }> }
 ) {
     const { category } = await params
+    const url = new URL(request.url);
+    const page = Number(url.searchParams.get("page")) || 1;
+    const limit = Number(url.searchParams.get("limit")) || 10;
+    const skip = (page - 1) * limit;
 
     let expenses
 
     switch (category) {
         case "Utilities":
-            expenses = await prisma.utilityExpense.findMany()
+            expenses = await prisma.utilityExpense.findMany({
+                skip,
+                take: limit,
+            })
             break
 
         case "FoodAndHousehold":
-            expenses = await prisma.foodHouseholdExpense.findMany()
+            expenses = await prisma.foodHouseholdExpense.findMany({
+                skip,
+                take: limit,
+            })
             break
 
         case "Transportation":
-            expenses = await prisma.transportationExpense.findMany()
+            expenses = await prisma.transportationExpense.findMany({
+                skip,
+                take: limit,
+            })
             break
 
         case "Health":
-            expenses = await prisma.healthExpense.findMany()
+            expenses = await prisma.healthExpense.findMany({
+                skip,
+                take: limit,
+            })
             break
 
         case "HouseMaintenance":
-            expenses = await prisma.houseMaintenanceExpense.findMany()
+            expenses = await prisma.houseMaintenanceExpense.findMany({
+                skip,
+                take: limit,
+            })
             break
 
         case "FamilyExpenses":
-            expenses = await prisma.familyExpense.findMany()
+            expenses = await prisma.familyExpense.findMany({
+                skip,
+                take: limit,
+            })
             break
 
         case "OtherExpenses":
-            expenses = await prisma.otherExpense.findMany()
+            expenses = await prisma.otherExpense.findMany({
+                skip,
+                take: limit,
+            })
             break
 
         default:
@@ -46,4 +71,44 @@ export async function GET(
     }
 
     return NextResponse.json(expenses)
+}
+
+export async function POST(
+    request: Request,
+    { params }: { params: Promise<{ category: string }> }
+) {
+    const { category } = await params;
+
+    const body = await request.json();
+
+    switch (category) {
+        case "Utilities":
+            const newUtilityExpense = await prisma.utilityExpense.create({
+                data: {
+                    name: body.name,
+                    expense: body.expense,
+                    category: body.category,
+                    amount: body.amount,
+                    status: body.status,
+                    billingStart: body.billingStart,
+                    billingEnd: body.billingEnd,
+                    dueDate: body.dueDate,
+                    paymentMethod: body.paymentMethod,
+                    notes: body.notes,
+                }
+            })
+
+            if (!newUtilityExpense) {
+                return NextResponse.json(
+                    { error: "Failed to create utility expense" },
+                    { status: 500 }
+                )
+            }
+
+        return NextResponse.json(newUtilityExpense, { status: 201 })
+
+        default:
+            // invalid category
+            return NextResponse.json({ error: "Invalid expense category" }, { status: 400 })
+    }
 }

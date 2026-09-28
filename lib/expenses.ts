@@ -1,10 +1,13 @@
 export async function getExpenses(
     category: string,
-    page = 1,
-    limit = 10
+    page: number,
+    limit: number
 ) {
     const response = await fetch(
-        `/api/expenses/${category}?page=${page}&limit=${limit}`
+        `/api/expenses/${category}?page=${page}&limit=${limit}`,
+        {
+            method: "GET",
+        }
     );
 
     if (!response.ok) {
