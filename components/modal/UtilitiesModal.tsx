@@ -19,6 +19,7 @@ type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status" | "paymentMetho
 
 const UtilitiesModal = ({id}: {id?: string | null}) => {
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
+    const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = UtilitiesData.find((key) => key.id === id)
     
     const defaultData: UtilityExpenseForm = {
@@ -59,7 +60,8 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-            try {
+        try {
+            setIsSendingData(true)
             const response = await fetch("/api/expenses/Utilities", {
                 method: "POST",
                 body: JSON.stringify(utilityExpense),
@@ -72,9 +74,12 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
             }
 
             await response.json()
+            setUtilityExpense(defaultData)
 
         } catch (error) {
             console.error("Error creating utility expense:", error)
+        } finally {
+            setIsSendingData(false)
         }
     }
 
@@ -117,227 +122,238 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                 </span>
             </div>
             <form 
-                className="flex flex-col"
+                className="flex flex-col relative "
                 onSubmit={handleSubmit}
             >
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="utility"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Utility:
-                    </label>
-                    <select
-                        id="utility"
-                        value={utilityExpense.name}
-                        onChange={(e) =>
-                            setUtilityExpense((item) => ({
-                                ...item,
-                                name: e.target.value as UtilitiesNames
-                            }))
-                        }
-                        className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
-                        style={{
-                            fontFamily: "var(--font-libre-baskerville)"
-                        }}
-                    >
-                        <option value="" disabled>
-                            Select utility
-                        </option>
-
-                        {UtilitiesSelection.map((names) => (
-                            <option key={names} value={names}>
-                                {names}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="status"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Status:
-                    </label>
-                    <select
-                        id="status"
-                        value={utilityExpense.status}
-                        onChange={(e) => setUtilityExpense((item) => ({
-                            ...item,
-                            status: e.target.value as StatusType
-                        }))}
-                        className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
-                        style={{fontFamily: "var(--font-libre-baskerville)"}}
-                    >
-                        <option value="" disabled className="cursor-pointer">
-                            Select status
-                        </option>
-                        {UtilitiesStatus.map((status) => (
-                            <option 
-                                key={status}
-                                value={status}
-                            >
-                                {status}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="amount"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Amount:
-                    </label>
-                    <input
-                        id="amount"
-                        type="number"
-                        name="amount"
-                        min="0"
-                        step="0.01"
-                        value={utilityExpense.amount || ""}
-                        onChange={(e) => setUtilityExpense((item) => ({
-                            ...item,
-                            [e.target.name]: Number(e.target.value)
-
-                        }))}
-                        onKeyDown={(e) => {
-                            if (["e", "E", "+", "-"].includes(e.key)) {
-                                e.preventDefault();
+                <div className={isSendingData ? "blur-[1px]" : ""}>
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="utility"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Utility:
+                        </label>
+                        <select
+                            id="utility"
+                            value={utilityExpense.name}
+                            onChange={(e) =>
+                                setUtilityExpense((item) => ({
+                                    ...item,
+                                    name: e.target.value as UtilitiesNames
+                                }))
                             }
-                        }}
-                        className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        placeholder=""
-                        required
-                    />
-                </div>
+                            className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
+                            style={{
+                                fontFamily: "var(--font-libre-baskerville)"
+                            }}
+                        >
+                            <option value="" disabled>
+                                Select utility
+                            </option>
 
-                <div className="flex">
-                    <div className="flex-1">
-                        <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                            <label
-                                htmlFor="billingStart"
-                                className="text-base font-semibold"
-                                style={{
-                                    fontFamily: "var(--font-playfair-display)"
-                                }}
-                            >
-                                Billing Start:
-                            </label>
-                            <input
-                                id="billingStart"
-                                type="date"
-                                name="billingStart"
-                                value={utilityExpense.billingStart}
-                                onChange={(e) => setUtilityExpense((item) => ({
-                                    ...item,
-                                    [e.target.name]: e.target.value
+                            {UtilitiesSelection.map((names) => (
+                                <option key={names} value={names}>
+                                    {names}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
-                                }))}
-                                className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                                placeholder=""
-                                required
-                            />
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="status"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Status:
+                        </label>
+                        <select
+                            id="status"
+                            value={utilityExpense.status}
+                            onChange={(e) => setUtilityExpense((item) => ({
+                                ...item,
+                                status: e.target.value as StatusType
+                            }))}
+                            className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
+                            style={{fontFamily: "var(--font-libre-baskerville)"}}
+                        >
+                            <option value="" disabled className="cursor-pointer">
+                                Select status
+                            </option>
+                            {UtilitiesStatus.map((status) => (
+                                <option 
+                                    key={status}
+                                    value={status}
+                                >
+                                    {status}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="amount"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Amount:
+                        </label>
+                        <input
+                            id="amount"
+                            type="number"
+                            name="amount"
+                            min="0"
+                            step="0.01"
+                            value={utilityExpense.amount || ""}
+                            onChange={(e) => setUtilityExpense((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
+                            className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            placeholder=""
+                            required
+                        />
+                    </div>
+
+                    <div className="flex">
+                        <div className="flex-1">
+                            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                                <label
+                                    htmlFor="billingStart"
+                                    className="text-base font-semibold"
+                                    style={{
+                                        fontFamily: "var(--font-playfair-display)"
+                                    }}
+                                >
+                                    Billing Start:
+                                </label>
+                                <input
+                                    id="billingStart"
+                                    type="date"
+                                    name="billingStart"
+                                    value={utilityExpense.billingStart}
+                                    onChange={(e) => setUtilityExpense((item) => ({
+                                        ...item,
+                                        [e.target.name]: e.target.value
+
+                                    }))}
+                                    className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                    placeholder=""
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div className="flex-1">
+                            <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                                <label
+                                    htmlFor="billingEnd"
+                                    className="text-base font-semibold"
+                                    style={{
+                                        fontFamily: "var(--font-playfair-display)"
+                                    }}
+                                >
+                                    Billing End:
+                                </label>
+                                <input
+                                    id="billingEnd"
+                                    type="date"
+                                    name="billingEnd"
+                                    value={utilityExpense.billingEnd}
+                                    onChange={(e) => setUtilityExpense((item) => ({
+                                        ...item,
+                                        [e.target.name]: e.target.value
+
+                                    }))}
+                                    className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                    placeholder=""
+                                    required
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div className="flex-1">
-                        <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                            <label
-                                htmlFor="billingEnd"
-                                className="text-base font-semibold"
-                                style={{
-                                    fontFamily: "var(--font-playfair-display)"
-                                }}
-                            >
-                                Billing End:
-                            </label>
-                            <input
-                                id="billingEnd"
-                                type="date"
-                                name="billingEnd"
-                                value={utilityExpense.billingEnd}
-                                onChange={(e) => setUtilityExpense((item) => ({
-                                    ...item,
-                                    [e.target.name]: e.target.value
 
-                                }))}
-                                className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                                placeholder=""
-                                required
-                            />
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="dueDate"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Due Date:
+                        </label>
+                        <input
+                            id="dueDate"
+                            type="date"
+                            name="dueDate"
+                            value={utilityExpense.dueDate}
+                            onChange={(e) => setUtilityExpense((item) => ({
+                                ...item,
+                                [e.target.name]: e.target.value
+                            }))}
+                            className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            placeholder=""
+                            required
+                        />
+                    </div>
+
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="notes"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Notes:
+                        </label>
+                        <textarea
+                            name="notes"
+                            value={utilityExpense.notes}
+                            onChange={(e) => setUtilityExpense((item) => ({
+                                ...item,
+                                [e.target.name]: e.target.value
+                            }))}
+                            className="resize-none bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            placeholder="Add notes..."
+                            rows={4}
+                            spellCheck={false}
+                            required
+                        />
+                    </div>
+
+                    <ModalFormButton
+                        handleCancel={handleCancel}
+                    />
+                </div>
+                
+
+                {isSendingData && (
+                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-[#F1E3D0]/60">
+                        <div className="loader3">
+                            
                         </div>
                     </div>
-                </div>
-
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="dueDate"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Due Date:
-                    </label>
-                    <input
-                        id="dueDate"
-                        type="date"
-                        name="dueDate"
-                        value={utilityExpense.dueDate}
-                        onChange={(e) => setUtilityExpense((item) => ({
-                            ...item,
-                            [e.target.name]: e.target.value
-                        }))}
-                        className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        placeholder=""
-                        required
-                    />
-                </div>
-
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="notes"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Notes:
-                    </label>
-                    <textarea
-                        name="notes"
-                        value={utilityExpense.notes}
-                        onChange={(e) => setUtilityExpense((item) => ({
-                            ...item,
-                            [e.target.name]: e.target.value
-                        }))}
-                        className="resize-none bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        placeholder="Add notes..."
-                        rows={4}
-                        spellCheck={false}
-                        required
-                    />
-                </div>
-
-                <ModalFormButton
-                    handleCancel={handleCancel}
-                />
+                )}
             </form>
         </>
     )
