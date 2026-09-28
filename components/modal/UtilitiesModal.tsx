@@ -59,13 +59,23 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const response = await fetch("/api/expenses", {
-            method: "POST",
-            body: JSON.stringify(utilityExpense),
-        });
+            try {
+            const response = await fetch("/api/expenses/Utilities", {
+                method: "POST",
+                body: JSON.stringify(utilityExpense),
+            })
 
+            if (!response.ok) {
+                throw new Error(
+                    `Failed to create utility expense: ${response.status} ${response.statusText}`
+                )
+            }
 
-        return response
+            await response.json()
+
+        } catch (error) {
+            console.error("Error creating utility expense:", error)
+        }
     }
 
     useEffect(() => {
@@ -320,6 +330,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                         placeholder="Add notes..."
                         rows={4}
+                        spellCheck={false}
                         required
                     />
                 </div>

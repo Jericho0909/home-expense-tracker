@@ -83,16 +83,31 @@ export async function POST(
 
     switch (category) {
         case "Utilities":
+            if (
+                !body.name ||
+                !body.expense ||
+                !body.amount ||
+                !body.status ||
+                !body.billingStart ||
+                !body.billingEnd ||
+                !body.dueDate ||
+                !body.notes
+            ) {
+                return NextResponse.json(
+                    { error: "Missing required fields" },
+                    { status: 400 }
+                )
+            }
+
             const newUtilityExpense = await prisma.utilityExpense.create({
                 data: {
                     name: body.name,
                     expense: body.expense,
-                    category: body.category,
                     amount: body.amount,
                     status: body.status,
-                    billingStart: body.billingStart,
-                    billingEnd: body.billingEnd,
-                    dueDate: body.dueDate,
+                    billingStart: new Date(body.billingStart),
+                    billingEnd: new Date(body.billingEnd),
+                    dueDate: new Date(body.dueDate),
                     paymentMethod: body.paymentMethod,
                     notes: body.notes,
                 }

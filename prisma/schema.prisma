@@ -12,7 +12,6 @@ model UtilityExpense {
   id            Int           @id @default(autoincrement())
   name          String
   expense       Expenses
-  category      UtilityCategory
   amount        Float
   status        Status
   billingStart  DateTime
