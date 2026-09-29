@@ -58,20 +58,18 @@ describe("FoodAndHouseholdModal", () => {
         const foodHouseholdName = screen.getByLabelText("Name:")
         const foodHouseholdType = screen.getByLabelText("Type:")
         const foodHouseholdAmount = screen.getByLabelText("Amount:")
-        const foodHouseholdPurchaseDate = screen.getByLabelText("Purchase Date:")
+        
         const foodHouseholdNote = screen.getByPlaceholderText("Add notes...")
-
         await user.selectOptions(foodHouseholdCategory, "Groceries")
         await user.type(foodHouseholdName, "Milk")
         await user.type(foodHouseholdType, "Food")
         await user.type(foodHouseholdAmount, "5.99")
-        await user.type(foodHouseholdPurchaseDate, "2023-08-15")
         await user.type(foodHouseholdNote, "Various grocery items for the household.")
 
         await user.click(submitButton)
 
         expect(fetch).toHaveBeenCalledWith(
-            "/api/expenses",
+            "/api/expenses/FoodAndHousehold",
             expect.objectContaining({
                 method: "POST",
             })
