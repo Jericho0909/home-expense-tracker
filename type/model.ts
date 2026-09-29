@@ -125,7 +125,7 @@ export type StatusType =
 export type PaymentMethod =
     | "Cash"
     | "GCash"
-    | "Bank Transfer"
+    | "BankTransfer"
     | "Maya"
     | "Other"
 

@@ -83,7 +83,7 @@ export async function POST(
 
     switch (category) {
         case "Utilities":
-            if (
+            if(
                 !body.name ||
                 !body.expense ||
                 !body.amount ||
@@ -92,7 +92,7 @@ export async function POST(
                 !body.billingEnd ||
                 !body.dueDate ||
                 !body.notes
-            ) {
+            ){
                 return NextResponse.json(
                     { error: "Missing required fields" },
                     { status: 400 }
@@ -113,7 +113,7 @@ export async function POST(
                 }
             })
 
-            if (!newUtilityExpense) {
+            if(!newUtilityExpense){
                 return NextResponse.json(
                     { error: "Failed to create utility expense" },
                     { status: 500 }
@@ -163,6 +163,43 @@ export async function POST(
             }
 
             return NextResponse.json(newFoodAndHouseholdExpense, { status: 201 })
+
+        case "Transportation":
+            if(
+                !body.description ||
+                !body.expense ||
+                !body.category ||
+                !body.amount ||
+                !body.paymentMethod ||
+                !body.date ||
+                !body.notes
+            ){
+                return NextResponse.json(
+                    { error: "Missing required fields" },
+                    { status: 400 }
+                )
+            }    
+            
+            const newTransportationExpense = await prisma.transportationExpense.create({
+                data: {
+                    description: body.description,
+                    expense: body.expense,
+                    category: body.category,
+                    amount: body.amount,
+                    paymentMethod: body.paymentMethod,
+                    date: new Date(body.date),
+                    notes: body.notes
+                }
+            })
+
+            if(!newTransportationExpense){
+                return NextResponse.json(
+                    { error: "Failed to create utility expense" },
+                    { status: 500 }
+                )
+            }
+
+            return NextResponse.json(newTransportationExpense, { status: 201 })
 
         default:
             // invalid category

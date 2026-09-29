@@ -208,7 +208,7 @@ export const FoodHouseholdData: FoodHouseholdExpense[] = [
         status: "Paid",
         createdAt: "2026-07-01",
         purchaseDate: "2026-07-08",
-        paymentMethod: "Bank Transfer",
+        paymentMethod: "BankTransfer",
         notes: "Personal care supply.",
     },
     {
@@ -648,7 +648,7 @@ export const FamilyExpensesData: FamilyExpense[] = [
         amount: 8000,
         createdAt: "2026-08-01",
         date: "2026-07-15",
-        paymentMethod: "Bank Transfer",
+        paymentMethod: "BankTransfer",
         notes: "Christmas food and celebration expenses.",
     },
 
@@ -770,7 +770,7 @@ export const OtherExpensesData: OtherExpense[] = [
         amount: 100,
         createdAt: "2026-08-01",
         date: "2026-07-15",
-        paymentMethod: "Bank Transfer",
+        paymentMethod: "BankTransfer",
         notes: "Bank transaction processing fee.",
     },
 
