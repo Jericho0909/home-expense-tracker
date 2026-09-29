@@ -123,6 +123,22 @@ export async function POST(
             return NextResponse.json(newUtilityExpense, { status: 201 })
         
         case "FoodAndHousehold":
+            if(
+                !body.name ||
+                !body.expense ||
+                !body.amount ||
+                !body.type ||
+                !body.category ||
+                !body.status ||
+                !body.notes
+            ){
+                return NextResponse.json(
+                    { error: "Missing required fields" },
+                    { status: 400 }
+                )
+            }
+
+        
             const newFoodAndHouseholdExpense = await prisma.foodHouseholdExpense.create({
                 data: {
                     name: body.name,
@@ -131,7 +147,9 @@ export async function POST(
                     type: body.type,
                     category: body.category,
                     status: body.status,
-                    purchaseDate: body.purchaseDate,
+                    purchaseDate: body.purchaseDate
+                        ? new Date(body.purchaseDate)
+                        : null,
                     paymentMethod: body.paymentMethod,
                     notes: body.notes
                 }

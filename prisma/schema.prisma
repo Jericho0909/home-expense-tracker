@@ -32,7 +32,7 @@ model FoodHouseholdExpense {
   category      FoodHouseholdCategory
   amount        Float
   status        Status
-  purchaseDate  DateTime
+  purchaseDate  DateTime?
   paymentMethod PaymentMethod?
   notes         String
   createdAt     DateTime      @default(now())

@@ -19,6 +19,7 @@ type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category" | "status"
 type FoodHouseholdType = "" | "Food" | "Household"
 const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
+    const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = FoodHouseholdData.find((key) => key.id === id)
     const defaultData: FoodHouseholdExpenseForm = {
         id: "0",
@@ -29,7 +30,6 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
         type: "",
         category: "",
         status: "",
-        purchaseDate: "",
         notes: ""
     }
 
@@ -63,14 +63,27 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
 
     const handleSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
-        const response = await fetch("/api/expenses", {
-            method: "POST",
-            body: JSON.stringify(foodHouseholdExpenses),
-        });
+        console.log(foodHouseholdExpenses)
+        try{
+            setIsSendingData(true)
+            const response = await fetch("/api/expenses/FoodAndHousehold", {
+                method: "POST",
+                body: JSON.stringify(foodHouseholdExpenses),
+            })
 
+            if(!response.ok) {
+                throw new Error(
+                    `Failed to create food and household expense: ${response.status} ${response.statusText}`
+                )
+            }
 
-        return response
+            await response.json()
+            setFoodHouseholdExpenses(defaultData)
+        }catch (error){
+            console.error("Error creating food and household expense:", error)
+        }finally{
+            setIsSendingData(false)
+        }
     }
 
     useEffect(() => {
@@ -112,19 +125,20 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                 </span>
             </div>
             <form
-                className="flex flex-col"
+                className="flex flex-col relative"
                 onSubmit={handleSubmit}
             >
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="category"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Category:
-                    </label>
+                <div className={isSendingData ? "blur-[1px]" : ""}>
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="category"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Category:
+                        </label>
                     <select
                         id="category"
                         value={foodHouseholdExpenses.category}
@@ -149,195 +163,318 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                             </option>
                         ))}
                     </select>
-                </div>
+                    </div>
 
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="status"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Status:
-                    </label>
-                    <select
-                        id="status"
-                        value={foodHouseholdExpenses.status}
-                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
-                            ...item,
-                            status: e.target.value as StatusType
-                        }))}
-                        className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
-                        style={{fontFamily: "var(--font-libre-baskerville)"}}
-                    >
-                        <option value="" disabled className="cursor-pointer">
-                            Select status
-                        </option>
-                        {FoodHouseholdStatus.map((status) => (
-                            <option 
-                                key={status}
-                                value={status}
-                            >
-                                {status}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="name"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Name:
-                    </label>
-                    <input
-                        id="name"
-                        type="text"
-                        name="name"
-                        value={foodHouseholdExpenses.name}
-                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
-                            ...item,
-                            [e.target.name]: capitalizeFirstLetter(e.target.value)
-
-                        }))}
-                        className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        placeholder=""
-                        required
-                    />
-                </div>
-
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="type"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Type:
-                    </label>
-                    <select
-                        id="type"
-                        value={foodHouseholdExpenses.type}
-                        onChange={(e) =>
-                            setFoodHouseholdExpenses((item) => ({
-                                ...item,
-                                type: e.target.value as FoodHouseholdType
-                            }))
-                        }
-                        className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
-                        style={{
-                            fontFamily: "var(--font-libre-baskerville)"
-                        }}
-                    >
-                        <option value="" disabled>
-                            Select Type
-                        </option>
-
-                        {["Food", "Household" ].map((type) => (
-                            <option key={type} value={type}>
-                                {type}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="amount"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Amount:
-                    </label>
-                    <input
-                        id="amount"
-                        type="number"
-                        name="amount"
-                        min="0"
-                        step="0.01"
-                        value={foodHouseholdExpenses.amount || ""}
-                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
-                            ...item,
-                            [e.target.name]: Number(e.target.value)
-
-                        }))}
-                        onKeyDown={(e) => {
-                            if (["e", "E", "+", "-"].includes(e.key)) {
-                                e.preventDefault();
-                            }
-                        }}
-                        className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        placeholder=""
-                        required
-                    />
-                </div>
-
-                {foodHouseholdExpenses.status === "Paid" && (
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                         <label
-                            htmlFor="purchaseDate"
+                            htmlFor="status"
                             className="text-base font-semibold"
                             style={{
                                 fontFamily: "var(--font-playfair-display)"
                             }}
                         >
-                            Purchase Date:
+                            Status:
+                        </label>
+                        <select
+                            id="status"
+                            value={foodHouseholdExpenses.status}
+                            onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                ...item,
+                                status: e.target.value as StatusType
+                            }))}
+                            className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
+                            style={{fontFamily: "var(--font-libre-baskerville)"}}
+                        >
+                            <option value="" disabled className="cursor-pointer">
+                                Select status
+                            </option>
+                            {FoodHouseholdStatus.map((status) => (
+                                <option 
+                                    key={status}
+                                    value={status}
+                                >
+                                    {status}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="name"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Name:
                         </label>
                         <input
-                            id="purchaseDate"
-                            type="date"
-                            name="purchaseDate"
-                            value={foodHouseholdExpenses.purchaseDate}
+                            id="name"
+                            type="text"
+                            name="name"
+                            value={foodHouseholdExpenses.name}
+                            onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                ...item,
+                                [e.target.name]: capitalizeFirstLetter(e.target.value)
+
+                            }))}
+                            className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            placeholder=""
+                            required
+                        />
+                    </div>
+
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="type"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Type:
+                        </label>
+                        <select
+                            id="type"
+                            value={foodHouseholdExpenses.type}
+                            onChange={(e) =>
+                                setFoodHouseholdExpenses((item) => ({
+                                    ...item,
+                                    type: e.target.value as FoodHouseholdType
+                                }))
+                            }
+                            className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
+                            style={{
+                                fontFamily: "var(--font-libre-baskerville)"
+                            }}
+                        >
+                            <option value="" disabled>
+                                Select Type
+                            </option>
+
+                            {["Food", "Household" ].map((type) => (
+                                <option key={type} value={type}>
+                                    {type}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="amount"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Amount:
+                        </label>
+                        <input
+                            id="amount"
+                            type="number"
+                            name="amount"
+                            min="0"
+                            step="0.01"
+                            value={foodHouseholdExpenses.amount || ""}
+                            onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                ...item,
+                                [e.target.name]: Number(e.target.value)
+
+                            }))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
+                            className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            placeholder=""
+                            required
+                        />
+                    </div>
+
+                    {foodHouseholdExpenses.status === "Paid" && (
+                        <div className="flex flex-col justify-between p-1 mb-3">
+                            <label
+                                className="text-base font-semibold"
+                                style={{
+                                    fontFamily: "var(--font-playfair-display)"
+                                }}
+                            >
+                                Payment Method:
+                            </label>
+
+                            <div className="flex flex-wrap gap-4">
+                                <label className="flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="Cash"
+                                        checked={foodHouseholdExpenses.paymentMethod === "Cash"}
+                                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                            ...item,
+                                            [e.target.name]: e.target.value
+                                        }))}
+                                    />
+                                    <span
+                                        className="text-[#3B2416] text-sm"
+                                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                    >
+                                        Cash
+                                    </span>
+                                </label>
+
+                                <label className="flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="GCash"
+                                        checked={foodHouseholdExpenses.paymentMethod === "GCash"}
+                                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                            ...item,
+                                            [e.target.name]: e.target.value
+                                        }))}
+                                    />
+                                    <span
+                                        className="text-[#3B2416] text-sm"
+                                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                    > 
+                                        GCash
+                                    </span>
+                                </label>
+
+                                <label className="flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="Bank Transfer"
+                                        checked={foodHouseholdExpenses.paymentMethod === "Bank Transfer"}
+                                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                            ...item,
+                                            [e.target.name]: e.target.value
+                                        }))}
+                                    />
+                                    <span
+                                        className="text-[#3B2416] text-sm"
+                                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                    >
+                                        Bank Transfer
+                                    </span>
+                                </label>
+
+                                <label className="flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="Maya"
+                                        checked={foodHouseholdExpenses.paymentMethod === "Maya"}
+                                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                            ...item,
+                                            [e.target.name]: e.target.value
+                                        }))}
+                                        
+                                    />
+                                    <span
+                                        className="text-[#3B2416] text-sm"
+                                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                    >
+                                        Maya
+                                    </span>
+                                </label>
+
+                                <label className="flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="Other"
+                                        checked={foodHouseholdExpenses.paymentMethod === "Other"}
+                                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                            ...item,
+                                            [e.target.name]: e.target.value
+                                        }))}
+                                        
+                                    />
+                                    <span
+                                        className="text-[#3B2416] text-sm"
+                                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                    >
+                                        Other
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    )}
+
+                    {foodHouseholdExpenses.status === "Paid" && (
+                        
+                        <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                            <label
+                                htmlFor="purchaseDate"
+                                className="text-base font-semibold"
+                                style={{
+                                    fontFamily: "var(--font-playfair-display)"
+                                }}
+                            >
+                                Purchase Date:
+                            </label>
+                            <input
+                                id="purchaseDate"
+                                type="date"
+                                name="purchaseDate"
+                                value={foodHouseholdExpenses.purchaseDate ?? ""}
+                                onChange={(e) => setFoodHouseholdExpenses((item) => ({
+                                    ...item,
+                                    [e.target.name]: e.target.value
+
+                                }))}
+                                className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                placeholder=""
+                            />
+                        </div>
+                    )}
+
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="notes"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Notes:
+                        </label>
+                        <textarea
+                            name="notes"
+                            value={foodHouseholdExpenses.notes}
                             onChange={(e) => setFoodHouseholdExpenses((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value
-
                             }))}
-                            className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            className="resize-none bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                            placeholder=""
+                            placeholder="Add notes..."
+                            rows={4}
+                            spellCheck={false}
+                            required
                         />
                     </div>
-                )}
 
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="notes"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Notes:
-                    </label>
-                    <textarea
-                        name="notes"
-                        value={foodHouseholdExpenses.notes}
-                        onChange={(e) => setFoodHouseholdExpenses((item) => ({
-                            ...item,
-                            [e.target.name]: e.target.value
-                        }))}
-                        className="resize-none bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        placeholder="Add notes..."
-                        rows={4}
-                        required
+                    <ModalFormButton
+                        handleCancel={handleCancel}
                     />
-                </div>
 
-                <ModalFormButton
-                    handleCancel={handleCancel}
-                />
+                    {isSendingData && (
+                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-[#F1E3D0]/60">
+                            <div className="loader3">
+                                
+                            </div>
+                        </div>
+                    )}
+                </div>
             </form>
         </>
         

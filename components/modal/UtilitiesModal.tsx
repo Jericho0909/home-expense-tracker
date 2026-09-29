@@ -60,14 +60,14 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-        try {
+        try{
             setIsSendingData(true)
             const response = await fetch("/api/expenses/Utilities", {
                 method: "POST",
                 body: JSON.stringify(utilityExpense),
             })
 
-            if (!response.ok) {
+            if(!response.ok){
                 throw new Error(
                     `Failed to create utility expense: ${response.status} ${response.statusText}`
                 )
@@ -76,9 +76,9 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
             await response.json()
             setUtilityExpense(defaultData)
 
-        } catch (error) {
+        }catch(error) {
             console.error("Error creating utility expense:", error)
-        } finally {
+        }finally{
             setIsSendingData(false)
         }
     }
@@ -346,11 +346,10 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                     />
                 </div>
                 
-
                 {isSendingData && (
                     <div className="absolute inset-0 z-10 flex items-center justify-center bg-[#F1E3D0]/60">
                         <div className="loader3">
-                            
+
                         </div>
                     </div>
                 )}
