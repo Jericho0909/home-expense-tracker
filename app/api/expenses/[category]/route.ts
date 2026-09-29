@@ -194,12 +194,50 @@ export async function POST(
 
             if(!newTransportationExpense){
                 return NextResponse.json(
-                    { error: "Failed to create utility expense" },
+                    { error: "Failed to create transportation expense" },
                     { status: 500 }
                 )
             }
 
             return NextResponse.json(newTransportationExpense, { status: 201 })
+
+        case "Health": 
+            console.log("Health body:", body)
+            if(
+                !body.description ||
+                !body.expense ||
+                !body.category ||
+                !body.amount ||
+                !body.paymentMethod ||
+                !body.date ||
+                !body.notes
+            ){
+                return NextResponse.json(
+                    { error: "Missing required fields" },
+                    { status: 400 }
+                )
+            }    
+            
+            const newHealthExpense = await prisma.healthExpense.create({
+                data: {
+                    description: body.description,
+                    expense: body.expense,
+                    category: body.category,
+                    amount: body.amount,
+                    paymentMethod: body.paymentMethod,
+                    date: new Date(body.date),
+                    notes: body.notes
+                }
+            })
+
+            if(!newHealthExpense){
+                return NextResponse.json(
+                    { error: "Failed to create health expense" },
+                    { status: 500 }
+                )
+            }
+
+            return NextResponse.json(newHealthExpense, { status: 201 })
 
         default:
             // invalid category

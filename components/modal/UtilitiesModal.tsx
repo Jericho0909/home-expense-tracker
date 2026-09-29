@@ -78,6 +78,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
 
         }catch(error) {
             console.error("Error creating utility expense:", error)
+            
         }finally{
             setIsSendingData(false)
         }

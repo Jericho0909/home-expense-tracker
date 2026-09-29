@@ -229,6 +229,6 @@ enum PaymentMethod {
   Cash
   GCash
   BankTransfer
-  CreditCard
-  DebitCard
+  Maya
+  Other
 }
