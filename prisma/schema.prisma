@@ -9,7 +9,7 @@ datasource db {
 // Utilities
 
 model UtilityExpense {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   name          String
   expense       Expenses
   amount        Float
@@ -25,7 +25,7 @@ model UtilityExpense {
 // Food & Household
 
 model FoodHouseholdExpense {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   name          String
   expense       Expenses
   type          FoodHouseholdType
@@ -41,7 +41,7 @@ model FoodHouseholdExpense {
 // Transportation
 
 model TransportationExpense {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   description   String
   expense       Expenses
   category      TransportationCategory
@@ -55,7 +55,7 @@ model TransportationExpense {
 // Health
 
 model HealthExpense {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   description   String
   expense       Expenses
   category      HealthCategory
@@ -69,7 +69,7 @@ model HealthExpense {
 // House Maintenanc
 
 model HouseMaintenanceExpense {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   description   String
   expense       Expenses
   category      HouseMaintenanceCategory
@@ -84,7 +84,7 @@ model HouseMaintenanceExpense {
 // Family Expenses
 
 model FamilyExpense {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   description   String
   expense       Expenses
   category      FamilyExpenseCategory
@@ -99,7 +99,7 @@ model FamilyExpense {
 // Other Expenses
 
 model OtherExpense {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   description   String
   expense       Expenses
   category      OtherExpenseCategory
@@ -113,7 +113,7 @@ model OtherExpense {
 // Family Member
 
 model FamilyMember {
-  id            Int           @id @default(autoincrement())
+  id            String        @id @default(uuid())
   name          String
   familyRole    FamilyRole
   money         Float
