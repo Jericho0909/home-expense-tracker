@@ -342,13 +342,42 @@ export async function POST(
 
             if(!newOtherExpense){
                 return NextResponse.json(
-                    { error: "Failed to create other expense expense" },
+                    { error: "Failed to create other expense" },
                     { status: 500 }
                 )
             }
 
             return NextResponse.json(newOtherExpense, { status: 201 })
 
+        case "FamilyMember":
+            if (
+                !body.name ||
+                !body.familyRole ||
+                body.money === undefined ||
+                body.money === null
+            ) {
+                return NextResponse.json(
+                    { error: "Missing required fields" },
+                    { status: 400 }
+                )
+            }
+
+            const newFamilyMember = await prisma.familyMember.create({
+                data: {
+                    name: body.name,
+                    familyRole: body.familyRole,
+                    money: body.money
+                }
+            })
+
+            if(!newFamilyMember){
+                return NextResponse.json(
+                    { error: "Failed to create other expense" },
+                    { status: 500 }
+                )
+            }
+
+            return NextResponse.json(newFamilyMember, { status: 201 })
         default:
             // invalid category
             return NextResponse.json({ error: "Invalid expense category" }, { status: 400 })

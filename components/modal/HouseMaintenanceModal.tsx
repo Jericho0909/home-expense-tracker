@@ -110,7 +110,7 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
                 </span>
             </div>
             <form
-                className="flex flex-col"
+                className="flex flex-col relative"
                 onSubmit={handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
