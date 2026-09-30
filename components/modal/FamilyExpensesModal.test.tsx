@@ -71,7 +71,7 @@ describe("FamilyExpensesModal", () => {
         await user.click(submitButton)
 
         expect(fetch).toHaveBeenCalledWith(
-            "/api/expenses",
+            "/api/expenses/FamilyExpense",
             expect.objectContaining({
                 method: "POST",
             })
