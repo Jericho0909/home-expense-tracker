@@ -16,6 +16,25 @@ select:-webkit-autofill:focus {
   background-color: #F1E3D0 !important;
 }
 
+.modal-scroll::-webkit-scrollbar {
+    width: 9px;
+}
+
+.modal-scroll::-webkit-scrollbar-track {
+    background: #E5D2B8;
+    border-radius: 10px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+    background: #8B5E3C;
+    border: 2px solid #E5D2B8;
+    border-radius: 10px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+    background: #5C4033;
+}
+
 /* Hide number input arrows */
 .no-spinner::-webkit-inner-spin-button,
 .no-spinner::-webkit-outer-spin-button {
