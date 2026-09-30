@@ -121,6 +121,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                         </label>
                         <select
                             id="category"
+                            autoComplete="off"
                             value={healthExpenses.category}
                             onChange={(e) =>
                                 setHealthExpenses((item) => ({
@@ -364,6 +365,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder="Add notes..."
                             rows={4}
+                            spellCheck={false}
                             required
                         />
                     </div>
