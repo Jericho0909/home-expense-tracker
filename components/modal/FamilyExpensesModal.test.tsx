@@ -75,6 +75,6 @@ describe("FamilyExpensesModal", () => {
             expect.objectContaining({
                 method: "POST",
             })
-        );
+        )
     })
 })
