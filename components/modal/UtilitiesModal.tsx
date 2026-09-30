@@ -181,6 +181,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                             }))}
                             className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
                             style={{fontFamily: "var(--font-libre-baskerville)"}}
+                            required
                         >
                             <option value="" disabled className="cursor-pointer">
                                 Select status

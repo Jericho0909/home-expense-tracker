@@ -232,6 +232,7 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
+                                    required
                                 />
                                 <span
                                     className="text-[#3B2416] text-sm"
@@ -251,6 +252,7 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
+                                    required
                                 />
                                 <span
                                     className="text-[#3B2416] text-sm"
@@ -270,6 +272,7 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
+                                    required
                                 />
                                 <span
                                     className="text-[#3B2416] text-sm"
@@ -289,7 +292,7 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
-                                    
+                                    required
                                 />
                                 <span
                                     className="text-[#3B2416] text-sm"
@@ -309,7 +312,7 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
-                                    
+                                    required
                                 />
                                 <span
                                     className="text-[#3B2416] text-sm"
