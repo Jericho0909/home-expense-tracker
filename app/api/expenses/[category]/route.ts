@@ -202,7 +202,6 @@ export async function POST(
             return NextResponse.json(newTransportationExpense, { status: 201 })
 
         case "Health": 
-            console.log("Health body:", body)
             if(
                 !body.description ||
                 !body.expense ||
@@ -238,6 +237,43 @@ export async function POST(
             }
 
             return NextResponse.json(newHealthExpense, { status: 201 })
+        
+        case "HouseMaintenance":
+            if(
+                !body.description ||
+                !body.expense ||
+                !body.category ||
+                !body.amount ||
+                !body.paymentMethod ||
+                !body.date ||
+                !body.notes
+            ){
+                return NextResponse.json(
+                    { error: "Missing required fields" },
+                    { status: 400 }
+                )
+            }    
+
+            const newHouseMaintenancExpense = await prisma.houseMaintenanceExpense.create({
+                data: {
+                    description: body.description,
+                    expense: body.expense,
+                    category: body.category,
+                    amount: body.amount,
+                    paymentMethod: body.paymentMethod,
+                    date: new Date(body.date),
+                    notes: body.notes
+                }
+            })
+            
+            if(!newHouseMaintenancExpense){
+                return NextResponse.json(
+                    { error: "Failed to create house maintenance expense" },
+                    { status: 500 }
+                )
+            }
+
+            return NextResponse.json(newHouseMaintenancExpense, { status: 201 })
 
         default:
             // invalid category
