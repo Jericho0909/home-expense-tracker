@@ -5,72 +5,83 @@ export async function GET(
     request: Request,
     { params }: { params: Promise<{ category: string }> }
 ) {
-    const { category } = await params
-    const url = new URL(request.url);
-    const page = Number(url.searchParams.get("page")) || 1;
-    const limit = Number(url.searchParams.get("limit")) || 10;
-    const skip = (page - 1) * limit;
+    try {
+        const { category } = await params
 
-    let expenses
+        const url = new URL(request.url)
+        const page = Number(url.searchParams.get("page")) || 1
+        const limit = Number(url.searchParams.get("limit")) || 10
+        const skip = (page - 1) * limit
 
-    switch (category) {
-        case "Utilities":
-            expenses = await prisma.utilityExpense.findMany({
-                skip,
-                take: limit,
-            })
-            break
+        let expenses
 
-        case "FoodAndHousehold":
-            expenses = await prisma.foodHouseholdExpense.findMany({
-                skip,
-                take: limit,
-            })
-            break
+        switch (category) {
+            case "Utilities":
+                expenses = await prisma.utilityExpense.findMany({
+                    skip,
+                    take: limit,
+                })
+                break
 
-        case "Transportation":
-            expenses = await prisma.transportationExpense.findMany({
-                skip,
-                take: limit,
-            })
-            break
+            case "FoodAndHousehold":
+                expenses = await prisma.foodHouseholdExpense.findMany({
+                    skip,
+                    take: limit,
+                })
+                break
 
-        case "Health":
-            expenses = await prisma.healthExpense.findMany({
-                skip,
-                take: limit,
-            })
-            break
+            case "Transportation":
+                expenses = await prisma.transportationExpense.findMany({
+                    skip,
+                    take: limit,
+                })
+                break
 
-        case "HouseMaintenance":
-            expenses = await prisma.houseMaintenanceExpense.findMany({
-                skip,
-                take: limit,
-            })
-            break
+            case "Health":
+                expenses = await prisma.healthExpense.findMany({
+                    skip,
+                    take: limit,
+                })
+                break
 
-        case "FamilyExpenses":
-            expenses = await prisma.familyExpense.findMany({
-                skip,
-                take: limit,
-            })
-            break
+            case "HouseMaintenance":
+                expenses = await prisma.houseMaintenanceExpense.findMany({
+                    skip,
+                    take: limit,
+                })
+                break
 
-        case "OtherExpenses":
-            expenses = await prisma.otherExpense.findMany({
-                skip,
-                take: limit,
-            })
-            break
+            case "FamilyExpenses":
+                expenses = await prisma.familyExpense.findMany({
+                    skip,
+                    take: limit,
+                })
+                break
 
-        default:
-            return NextResponse.json(
-                { error: "Invalid expense category" },
-                { status: 400 }
-            )
+            case "OtherExpenses":
+                expenses = await prisma.otherExpense.findMany({
+                    skip,
+                    take: limit,
+                })
+                break
+
+            default:
+                return NextResponse.json(
+                    { error: "Invalid expense category" },
+                    { status: 400 }
+                )
+        }
+
+        return NextResponse.json(expenses)
+
+    } catch (error) {
+        console.error("GET expenses error:", error)
+
+        return NextResponse.json(
+            { error: "Failed to fetch expenses" },
+            { status: 500 }
+        )
     }
-
-    return NextResponse.json(expenses)
 }
 
 export async function POST(

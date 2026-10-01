@@ -42,7 +42,6 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            console.log(member)
             setIsSendingData(true)
             const response = await fetch("/api/expenses/FamilyMember", {
                 method: "POST",
