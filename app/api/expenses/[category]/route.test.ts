@@ -2,9 +2,38 @@
  * @jest-environment node
  */
 
+import { getExpenses } from "@/lib/expenses";
 import { POST } from "./route";
 
+global.fetch = jest.fn();
+
 describe("POST /api/expenses/[category]", () => {
+    test("should fetch expenses successfully", async () => {
+    const mockExpenses = [
+        {
+            id: "123",
+            name: "Electricity",
+            amount: 1000,
+        },
+    ];
+
+    (fetch as jest.Mock).mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue(mockExpenses),
+    });
+
+    const result = await getExpenses("Utilities", 1, 10);
+
+    expect(fetch).toHaveBeenCalledWith(
+        "/api/expenses/Utilities?page=1&limit=10",
+        {
+            method: "GET",
+        }
+    );
+
+    expect(result).toEqual(mockExpenses);
+});
+
     test("should create a utility expense", async () => {
         const request = new Request(
             "http://localhost/api/expenses/Utilities",

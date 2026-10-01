@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { UtilityBillIcons, StatusIcons, StatusColor } from "@/constant/billIcons";
 import { getExpenses } from "@/lib/expenses";
+import { formatDueDate } from "@/utils/formatDueDate";
 
 
 const UtilitiesPage = () => {
@@ -39,7 +40,7 @@ const UtilitiesPage = () => {
         },
         {
             label: "Due Date",
-            render: (item) => item.dueDate,
+            render: (item) => formatDueDate(item.dueDate),
         },
         {
             label: "Amount",

@@ -3,16 +3,21 @@ export async function getExpenses(
     page: number,
     limit: number
 ) {
-    const response = await fetch(
-        `/api/expenses/${category}?page=${page}&limit=${limit}`,
-        {
-            method: "GET",
+    try {
+        const response = await fetch(
+            `/api/expenses/${category}?page=${page}&limit=${limit}`,
+            {
+                method: "GET",
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch expenses");
         }
-    );
 
-    if (!response.ok) {
-        throw new Error("Failed to fetch expenses");
+        return response.json();
+    } catch (error) {
+        console.error("Failed to fetch expenses:", error);
+        throw error;
     }
-
-    return response.json()
 }
