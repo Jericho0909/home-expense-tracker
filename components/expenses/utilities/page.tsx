@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ButtonModal from "@/components/ButtonModal"
 import SummaryCards from "@/components/SummaryCard";
 import UtilitiesModal from "@/components/modal/UtilitiesModal";
@@ -15,13 +16,12 @@ import {
     Circle
 } from "lucide-react";
 import { UtilityBillIcons, StatusIcons, StatusColor } from "@/constant/billIcons";
-import { getExpenses } from "@/lib/expenses";
 import { formatDueDate } from "@/utils/formatDueDate";
 
 
 const UtilitiesPage = () => {
+    const { utilitiesExpenses, } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
-    const [utilitiesExpenses, setUtilitiesExpenses] = useState<UtilityExpense[]>([])
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
@@ -65,14 +65,6 @@ const UtilitiesPage = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
         setActiveSection("Utilities")
-    }, [])
-
-    useEffect(() => {
-        const fetchUtilitiesExpenses = async () => {
-            const data = await getExpenses("Utilities", 1, 10)
-            setUtilitiesExpenses(data)
-        }
-        fetchUtilitiesExpenses()
     }, [])
 
     useEffect(() => {

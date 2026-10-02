@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useContext, useEffect } from "react"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ModalFormButton from "../ModalFormButton";
-import { UtilitiesData } from "@/constant/expensesData";
 import type { UtilitiesNames, 
     UtilityExpense, 
     StatusType ,
@@ -13,14 +13,15 @@ import { Lightbulb } from "lucide-react";
 type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status" | "paymentMethod"> & {
     name: UtilitiesNames | "";
     status: StatusType | "";
-    paymentMethod?: PaymentMethod | ""
+    paymentMethod?: PaymentMethod | "" 
 
 }
 
 const UtilitiesModal = ({id}: {id?: string | null}) => {
+    const { utilitiesExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
-    const findExpenses = UtilitiesData.find((key) => key.id === id)
+    const findExpenses = utilitiesExpenses.find((key) => key.id === id)
     
     const defaultData: UtilityExpenseForm = {
         id: "0",
@@ -359,7 +360,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                                     id="billingStart"
                                     type="date"
                                     name="billingStart"
-                                    value={utilityExpense.billingStart}
+                                    value={utilityExpense.billingStart.split("T")[0]}
                                     onChange={(e) => setUtilityExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
@@ -387,7 +388,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                                     id="billingEnd"
                                     type="date"
                                     name="billingEnd"
-                                    value={utilityExpense.billingEnd}
+                                    value={utilityExpense.billingEnd.split("T")[0]}
                                     onChange={(e) => setUtilityExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
@@ -416,7 +417,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                             id="dueDate"
                             type="date"
                             name="dueDate"
-                            value={utilityExpense.dueDate}
+                            value={utilityExpense.dueDate.split("T")[0]}
                             onChange={(e) => setUtilityExpense((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value

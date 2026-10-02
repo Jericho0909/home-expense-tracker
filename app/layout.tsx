@@ -8,6 +8,7 @@ import "./globals.css";
 import { SidebarProvider } from "../context/sidebarContext";
 import { ExpensesSectionProvider }  from "../context/expensesSectionContext";
 import { ModalProvider } from "../context/modalContext";
+import { ExpensesDataProvider } from "../context/expensesDataContext"
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -45,7 +46,9 @@ export default function RootLayout({
         <SidebarProvider>
           <ExpensesSectionProvider>
             <ModalProvider>
-              {children}
+              <ExpensesDataProvider>
+                {children}
+              </ExpensesDataProvider>
             </ModalProvider>
           </ExpensesSectionProvider>
         </SidebarProvider>
