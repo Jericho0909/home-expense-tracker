@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { OtherExpensesData } from "@/constant/expensesData";
+import ExpensesDataContext from "@/context/expensesDataContext";
 import ModalFormButton from "../ModalFormButton";
 import type { OtherExpense, 
     OtherExpenseCategory,
@@ -16,9 +17,10 @@ type OtherExpenseForm = Omit<OtherExpense, "category" | "paymentMethod"> & {
 }
 
 const OtherExepensesModal = ({id}: {id?: string | null}) => {
+    const { otherExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
-    const findExpenses = OtherExpensesData.find((key) => key.id === id)
+    const findExpenses = otherExpenses.find((key) => key.id === id)
 
     const defaultData: OtherExpenseForm = {
         id: "0",
@@ -32,7 +34,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
         notes: ""
     }
 
-    const [ otherExpenses, setOtherExpenses ] = useState<OtherExpenseForm>(findExpenses ?? defaultData)
+    const [ otherExpense, setOtherExpense ] = useState<OtherExpenseForm>(findExpenses ?? defaultData)
 
     const OtherCategory: OtherExpenseCategory[] = [
         "Personal",
@@ -46,7 +48,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
     ]
 
     const handleCancel = () => {
-        setOtherExpenses(defaultData)
+        setOtherExpense(defaultData)
     }
 
     const handleSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
@@ -55,7 +57,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
             setIsSendingData(true)
             const response = await fetch("/api/expenses/OtherExpense", {
                 method: "POST",
-                body: JSON.stringify(otherExpenses),
+                body: JSON.stringify(otherExpense),
             })
 
             if(!response.ok){
@@ -65,7 +67,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
             }
 
             await response.json()
-            setOtherExpenses(defaultData)
+            setOtherExpense(defaultData)
         }catch(error){
             console.error("Error creating utility expense:", error)
         }finally{
@@ -128,9 +130,9 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                         </label>
                         <select
                             id="category"
-                            value={otherExpenses.category}
+                            value={otherExpense.category}
                             onChange={(e) =>
-                                setOtherExpenses((item) => ({
+                                setOtherExpense((item) => ({
                                     ...item,
                                     category: e.target.value as OtherExpenseCategory
                                 }))
@@ -166,8 +168,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                             id="description"
                             type="text"
                             name="description"
-                            value={otherExpenses.description}
-                            onChange={(e) => setOtherExpenses((item) => ({
+                            value={otherExpense.description}
+                            onChange={(e) => setOtherExpense((item) => ({
                                 ...item,
                                 [e.target.name]: capitalizeFirstLetter(e.target.value)
 
@@ -195,8 +197,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                             name="amount"
                             min="0"
                             step="0.01"
-                            value={otherExpenses.amount || ""}
-                            onChange={(e) => setOtherExpenses((item) => ({
+                            value={otherExpense.amount || ""}
+                            onChange={(e) => setOtherExpense((item) => ({
                                 ...item,
                                 [e.target.name]: Number(e.target.value)
 
@@ -229,8 +231,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Cash"
-                                    checked={otherExpenses.paymentMethod === "Cash"}
-                                    onChange={(e) => setOtherExpenses((item) => ({
+                                    checked={otherExpense.paymentMethod === "Cash"}
+                                    onChange={(e) => setOtherExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -249,8 +251,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="GCash"
-                                    checked={otherExpenses.paymentMethod === "GCash"}
-                                    onChange={(e) => setOtherExpenses((item) => ({
+                                    checked={otherExpense.paymentMethod === "GCash"}
+                                    onChange={(e) => setOtherExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -269,8 +271,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="BankTransfer"
-                                    checked={otherExpenses.paymentMethod === "BankTransfer"}
-                                    onChange={(e) => setOtherExpenses((item) => ({
+                                    checked={otherExpense.paymentMethod === "BankTransfer"}
+                                    onChange={(e) => setOtherExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -289,8 +291,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Maya"
-                                    checked={otherExpenses.paymentMethod === "Maya"}
-                                    onChange={(e) => setOtherExpenses((item) => ({
+                                    checked={otherExpense.paymentMethod === "Maya"}
+                                    onChange={(e) => setOtherExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -309,8 +311,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Other"
-                                    checked={otherExpenses.paymentMethod === "Other"}
-                                    onChange={(e) => setOtherExpenses((item) => ({
+                                    checked={otherExpense.paymentMethod === "Other"}
+                                    onChange={(e) => setOtherExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -340,8 +342,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                             id="date"
                             type="date"
                             name="date"
-                            value={otherExpenses.date}
-                            onChange={(e) => setOtherExpenses((item) => ({
+                            value={otherExpense.date.split("T")[0]}
+                            onChange={(e) => setOtherExpense((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value
 
@@ -365,8 +367,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                         </label>
                         <textarea
                             name="notes"
-                            value={otherExpenses.notes}
-                            onChange={(e) => setOtherExpenses((item) => ({
+                            value={otherExpense.notes}
+                            onChange={(e) => setOtherExpense((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value
                             }))}

@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from "react";
-import { TransportationData } from "@/constant/expensesData";
+import { useState, useContext ,useEffect } from "react";
+import ExpensesDataContext from "@/context/expensesDataContext";
 import ModalFormButton from "../ModalFormButton";
 import type { TransportationExpense, 
     TransportationCategory,
@@ -16,9 +16,10 @@ type TransportationExpenseForm = Omit<TransportationExpense, "category"| "paymen
 }
 
 const TransportationModal = ({id}: {id?: string | null}) => {
+    const { transportationExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
-    const findExpenses = TransportationData.find((key) => key.id === id)
+    const findExpenses = transportationExpenses.find((key) => key.id === id)
     const defaultData: TransportationExpenseForm = {
         id: "0",
         expense: "Transportation",
@@ -31,7 +32,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
         notes: ""
     }
 
-    const [ transportationExpenses, setTransportationExpenses ] = useState<TransportationExpenseForm>(findExpenses ?? defaultData)
+    const [ transportationExpense, setTransportationExpense ] = useState<TransportationExpenseForm>(findExpenses ?? defaultData)
 
     const TransportationCategory: TransportationCategory[] = [
         "Fuel",
@@ -43,7 +44,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
     ]
 
     const handleCancel = () => {
-        setTransportationExpenses(defaultData)
+        setTransportationExpense(defaultData)
     }
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -52,13 +53,12 @@ const TransportationModal = ({id}: {id?: string | null}) => {
             setIsSendingData(true)
             const response = await fetch("/api/expenses/Transportation", {
                 method: "POST",
-                body: JSON.stringify(transportationExpenses),
+                body: JSON.stringify(transportationExpense),
             })
 
             if(!response.ok){
                 const errorText = await response.text()
 
-                console.log("API error:", errorText)
 
                 throw new Error(
                     `Failed to create transportation expense: ${response.status} ${response.statusText}`
@@ -66,7 +66,7 @@ const TransportationModal = ({id}: {id?: string | null}) => {
             }
 
             await response.json()
-            setTransportationExpenses(defaultData)
+            setTransportationExpense(defaultData)
 
         }catch(error) {
             console.error("Error creating transpotation expense:", error)
@@ -131,9 +131,9 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                         </label>
                         <select
                             id="category"
-                            value={transportationExpenses.category}
+                            value={transportationExpense.category}
                             onChange={(e) =>
-                                setTransportationExpenses((item) => ({
+                                setTransportationExpense((item) => ({
                                     ...item,
                                     category: e.target.value as TransportationCategory
                                 }))
@@ -169,8 +169,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             id="description"
                             type="text"
                             name="description"
-                            value={transportationExpenses.description}
-                            onChange={(e) => setTransportationExpenses((item) => ({
+                            value={transportationExpense.description}
+                            onChange={(e) => setTransportationExpense((item) => ({
                                 ...item,
                                 [e.target.name]: capitalizeFirstLetter(e.target.value)
 
@@ -198,8 +198,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             name="amount"
                             min="0"
                             step="0.01"
-                            value={transportationExpenses.amount || ""}
-                            onChange={(e) => setTransportationExpenses((item) => ({
+                            value={transportationExpense.amount || ""}
+                            onChange={(e) => setTransportationExpense((item) => ({
                                 ...item,
                                 [e.target.name]: Number(e.target.value)
 
@@ -232,8 +232,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Cash"
-                                    checked={transportationExpenses.paymentMethod === "Cash"}
-                                    onChange={(e) => setTransportationExpenses((item) => ({
+                                    checked={transportationExpense.paymentMethod === "Cash"}
+                                    onChange={(e) => setTransportationExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -252,8 +252,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="GCash"
-                                    checked={transportationExpenses.paymentMethod === "GCash"}
-                                    onChange={(e) => setTransportationExpenses((item) => ({
+                                    checked={transportationExpense.paymentMethod === "GCash"}
+                                    onChange={(e) => setTransportationExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -272,8 +272,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="BankTransfer"
-                                    checked={transportationExpenses.paymentMethod === "BankTransfer"}
-                                    onChange={(e) => setTransportationExpenses((item) => ({
+                                    checked={transportationExpense.paymentMethod === "BankTransfer"}
+                                    onChange={(e) => setTransportationExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -292,8 +292,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Maya"
-                                    checked={transportationExpenses.paymentMethod === "Maya"}
-                                    onChange={(e) => setTransportationExpenses((item) => ({
+                                    checked={transportationExpense.paymentMethod === "Maya"}
+                                    onChange={(e) => setTransportationExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -312,8 +312,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Other"
-                                    checked={transportationExpenses.paymentMethod === "Other"}
-                                    onChange={(e) => setTransportationExpenses((item) => ({
+                                    checked={transportationExpense.paymentMethod === "Other"}
+                                    onChange={(e) => setTransportationExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -343,8 +343,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             id="date"
                             type="date"
                             name="date"
-                            value={transportationExpenses.date}
-                            onChange={(e) => setTransportationExpenses((item) => ({
+                            value={transportationExpense.date.split("T")[0]}
+                            onChange={(e) => setTransportationExpense((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value
 
@@ -368,8 +368,8 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                         </label>
                         <textarea
                             name="notes"
-                            value={transportationExpenses.notes}
-                            onChange={(e) => setTransportationExpenses((item) => ({
+                            value={transportationExpense.notes}
+                            onChange={(e) => setTransportationExpense((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value
                             }))}

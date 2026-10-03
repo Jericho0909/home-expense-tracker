@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ButtonModal from "@/components/ButtonModal";
 import SummaryCardContent from "@/components/SummaryCardContent"
 import HouseMaintenanceModal from "@/components/modal/HouseMaintenanceModal";
@@ -17,6 +18,7 @@ import formatPurchaseDate from "@/utils/formatPurchaseDate"
 import { HouseMaintenanceBillIcons } from "@/constant/billIcons"
 
 const HouseMaintenancePage = () => {
+    const { houseMaintenanceExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
@@ -24,13 +26,11 @@ const HouseMaintenancePage = () => {
         year: "numeric",
     })
 
-    const HouseMaintenanceExpenses = HouseMaintenanceData.filter((item) => item.expense === "HouseMaintenance")
-
-    const repairsItems = HouseMaintenanceExpenses.filter((item) => item.category === "Repairs")
-    const maintenanceItems = HouseMaintenanceExpenses.filter((item) => item.category === "Maintenance")
-    const cleaningItems = HouseMaintenanceExpenses.filter((item) => item.category === "Cleaning")
-    const pestControlItems = HouseMaintenanceExpenses.filter((item) => item.category === "PestControl")
-    const otherItems = HouseMaintenanceExpenses.filter((item) => item.category === "Other")
+    const repairsItems = houseMaintenanceExpenses.filter((item) => item.category === "Repairs")
+    const maintenanceItems = houseMaintenanceExpenses.filter((item) => item.category === "Maintenance")
+    const cleaningItems = houseMaintenanceExpenses.filter((item) => item.category === "Cleaning")
+    const pestControlItems = houseMaintenanceExpenses.filter((item) => item.category === "PestControl")
+    const otherItems = houseMaintenanceExpenses.filter((item) => item.category === "Other")
     
     const totalRepairs = repairsItems.reduce((total, item) => total + item.amount, 0)
     const totalMaintenance = maintenanceItems.reduce((total, item) => total + item.amount, 0)
@@ -225,7 +225,7 @@ const HouseMaintenancePage = () => {
                 </div>
                 <div className="block w-auto min-h-48 p-1">
                     <Table
-                        data={HouseMaintenanceExpenses}
+                        data={houseMaintenanceExpenses}
                         columns={HouseMaintenanceColumn}
                         viewLink="/expenses/HouseMaintenance/viewHouseMaintenance"
                         editLink = "/expenses/HouseMaintenance/editHouseMaintenance"

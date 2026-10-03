@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from "react"
-import { FamilyExpensesData } from "@/constant/expensesData"
+import { useState, useContext, useEffect } from "react"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ModalFormButton from "../ModalFormButton"
 import type { FamilyExpense, 
     FamilyExpensesCategory,
@@ -16,9 +16,10 @@ type FamilyExpenseForm = Omit<FamilyExpense, "category" | "paymentMethod"> & {
 }
 
 const FamilyExpensesModal = ({id}: {id?: string | null}) => {
+    const { familyExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
-    const findExpenses = FamilyExpensesData.find((key) => key.id === id)
+    const findExpenses = familyExpenses.find((key) => key.id === id)
 
     const defaultData: FamilyExpenseForm = {
         id: "0",
@@ -338,7 +339,7 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
                             id="date"
                             type="date"
                             name="date"
-                            value={familyExpensesData.date}
+                            value={familyExpensesData.date.split("T")[0]}
                             onChange={(e) => setFamilyExpensesData((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value

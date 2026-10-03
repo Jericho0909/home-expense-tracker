@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ButtonModal from "@/components/ButtonModal"
 import SummaryCardContent from "@/components/SummaryCardContent"
 import HealthModal from "@/components/modal/HealthModal"
@@ -18,6 +19,7 @@ import { HealthBillIcons } from "@/constant/billIcons"
 
 
 const HealthPage = () => {
+    const { healthExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
@@ -25,21 +27,19 @@ const HealthPage = () => {
         year: "numeric",
     })
 
-    const HealthExpenses = HealthData.filter((item) => item.expense === "Health")
-
     const consultationCategories: string[] = [
        "Consultation",
        "Dental",
        "Laboratory"
     ]
 
-    const medicineItems = HealthExpenses.filter((item) => item.category === "Medicine")
-    const consultationItems = HealthExpenses.filter((item) => consultationCategories.includes(item.category))
-    const otherItems = HealthExpenses.filter((item) => item.category === "Other")
+    const medicineItems = healthExpenses.filter((item) => item.category === "Medicine")
+    const consultationItems = healthExpenses.filter((item) => consultationCategories.includes(item.category))
+    const otherItems = healthExpenses.filter((item) => item.category === "Other")
 
-    const totalMedicine = HealthExpenses.filter((item) => item.category === "Medicine").reduce((total, item) => total + item.amount, 0)
-    const totalConsultation = HealthExpenses.filter((item) => consultationCategories.includes(item.category)).reduce((total, item) => total + item.amount, 0)
-    const totalOther = HealthExpenses.filter((item) => item.category === "Other").reduce((total, item) => total + item.amount, 0)
+    const totalMedicine = healthExpenses.filter((item) => item.category === "Medicine").reduce((total, item) => total + item.amount, 0)
+    const totalConsultation = healthExpenses.filter((item) => consultationCategories.includes(item.category)).reduce((total, item) => total + item.amount, 0)
+    const totalOther = healthExpenses.filter((item) => item.category === "Other").reduce((total, item) => total + item.amount, 0)
 
     const total = totalMedicine + totalConsultation + totalOther
     const budget = 10000
@@ -212,7 +212,7 @@ const HealthPage = () => {
                 </div>
                 <div className="block w-auto min-h-48 p-1">
                     <Table
-                        data={HealthExpenses}
+                        data={healthExpenses}
                         columns={HealthColumn}
                         viewLink="/expenses/Health/viewHealth"
                         editLink = "/expenses/Health/editHealth"

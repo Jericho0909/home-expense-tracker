@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useContext, useEffect } from "react"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import { HouseMaintenanceData } from "@/constant/expensesData"
 import ModalFormButton from "../ModalFormButton"
 import type { HouseMaintenanceExpense, 
@@ -16,9 +17,10 @@ type HouseMaintenanceExpenseForm = Omit<HouseMaintenanceExpense, "category" | "p
 }
 
 const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
+    const { houseMaintenanceExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
-    const findExpenses = HouseMaintenanceData.find((key) => key.id === id)
+    const findExpenses = houseMaintenanceExpenses.find((key) => key.id === id)
 
     const defaultData: HouseMaintenanceExpenseForm = {
         id: "0",
@@ -338,7 +340,7 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
                             id="date"
                             type="date"
                             name="date"
-                            value={houseMaintenanceExpense.date}
+                            value={houseMaintenanceExpense.date.split("T")[0]}
                             onChange={(e) => setHouseMaintenanceExpense((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value

@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ButtonModal from "@/components/ButtonModal"
 import SummaryCardContent from "@/components/SummaryCardContent"
 import FamilyExpensesModal from "@/components/modal/FamilyExpensesModal"
@@ -17,6 +18,7 @@ import { FamilyExpensesBillIcons } from "@/constant/billIcons"
 import formatPurchaseDate from "@/utils/formatPurchaseDate"
 
 const FamilyExpensesPage = () => {
+    const { familyExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
@@ -24,13 +26,11 @@ const FamilyExpensesPage = () => {
         year: "numeric",
     })
 
-    const FamilyExpenses = FamilyExpensesData.filter((item) => item.expense === "FamilyExpenses")
-
-    const allowanceItems = FamilyExpenses.filter((item) => item.category === "Allowance")
-    const educationItems = FamilyExpenses.filter((item) => item.category === "Education")
-    const entertainmentItems = FamilyExpenses.filter((item) => item.category === "Entertainment")
-    const celebrationsItems = FamilyExpenses.filter((item) => item.category === "Celebrations")
-    const otherItems = FamilyExpenses.filter((item) => item.category === "Other")
+    const allowanceItems = familyExpenses.filter((item) => item.category === "Allowance")
+    const educationItems = familyExpenses.filter((item) => item.category === "Education")
+    const entertainmentItems = familyExpenses.filter((item) => item.category === "Entertainment")
+    const celebrationsItems = familyExpenses.filter((item) => item.category === "Celebrations")
+    const otherItems = familyExpenses.filter((item) => item.category === "Other")
 
     const totalAllowance = allowanceItems.reduce((total, item) => total + item.amount, 0)
     const totalEducation = educationItems.reduce((total, item) => total + item.amount, 0)
@@ -227,7 +227,7 @@ const FamilyExpensesPage = () => {
                 </div>
                 <div className="block w-auto min-h-48 p-1">
                     <Table
-                        data={FamilyExpenses}
+                        data={familyExpenses}
                         columns={FamilyExpensesColumn}
                         viewLink="/expenses/FamilyExpenses/viewFamilyExpenses"
                         editLink = "/expenses/FamilyExpenses/editFamilyExpenses"

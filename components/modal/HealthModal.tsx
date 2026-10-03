@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+import ExpensesDataContext from "@/context/expensesDataContext";
 import { HealthData } from "@/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { HealthExpense, 
@@ -16,9 +17,10 @@ type HealthExpenseForm = Omit<HealthExpense, "category" | "paymentMethod"> & {
 }
 
 const HealthModal = ({id}: {id?: string | null}) => {
+    const { healthExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
-    const findExpenses = HealthData.find((key) => key.id === id)
+    const findExpenses = healthExpenses.find((key) => key.id === id)
 
     const defaultData: HealthExpenseForm = {
         id: "0",
@@ -32,7 +34,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
         notes: ""
     }
 
-    const [ healthExpenses, setHealthExpenses ] = useState<HealthExpenseForm>(findExpenses ?? defaultData)
+    const [ healthExpense, setHealthExpense ] = useState<HealthExpenseForm>(findExpenses ?? defaultData)
 
     const HealthCategory: HealthCategory[] = [
         "Medicine",
@@ -43,7 +45,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
     ]
 
     const handleCancel = () => {
-        setHealthExpenses(defaultData)
+        setHealthExpense(defaultData)
     }
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -52,11 +54,11 @@ const HealthModal = ({id}: {id?: string | null}) => {
             setIsSendingData(true)
             const response = await fetch("/api/expenses/Health", {
                 method: "POST",
-                body: JSON.stringify(healthExpenses),
+                body: JSON.stringify(healthExpense),
             })
 
             await response.json()
-            setHealthExpenses(defaultData)
+            setHealthExpense(defaultData)
 
         }catch(error) {
             console.error("Error creating health expense:", error)
@@ -122,9 +124,9 @@ const HealthModal = ({id}: {id?: string | null}) => {
                         <select
                             id="category"
                             autoComplete="off"
-                            value={healthExpenses.category}
+                            value={healthExpense.category}
                             onChange={(e) =>
-                                setHealthExpenses((item) => ({
+                                setHealthExpense((item) => ({
                                     ...item,
                                     category: e.target.value as HealthCategory
                                 }))
@@ -160,8 +162,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                             id="description"
                             type="text"
                             name="description"
-                            value={healthExpenses.description}
-                            onChange={(e) => setHealthExpenses((item) => ({
+                            value={healthExpense.description}
+                            onChange={(e) => setHealthExpense((item) => ({
                                 ...item,
                                 [e.target.name]: capitalizeFirstLetter(e.target.value)
 
@@ -189,8 +191,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                             name="amount"
                             min="0"
                             step="0.01"
-                            value={healthExpenses.amount || ""}
-                            onChange={(e) => setHealthExpenses((item) => ({
+                            value={healthExpense.amount || ""}
+                            onChange={(e) => setHealthExpense((item) => ({
                                 ...item,
                                 [e.target.name]: Number(e.target.value)
 
@@ -223,8 +225,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Cash"
-                                    checked={healthExpenses.paymentMethod === "Cash"}
-                                    onChange={(e) => setHealthExpenses((item) => ({
+                                    checked={healthExpense.paymentMethod === "Cash"}
+                                    onChange={(e) => setHealthExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -243,8 +245,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="GCash"
-                                    checked={healthExpenses.paymentMethod === "GCash"}
-                                    onChange={(e) => setHealthExpenses((item) => ({
+                                    checked={healthExpense.paymentMethod === "GCash"}
+                                    onChange={(e) => setHealthExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -263,8 +265,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="BankTransfer"
-                                    checked={healthExpenses.paymentMethod === "BankTransfer"}
-                                    onChange={(e) => setHealthExpenses((item) => ({
+                                    checked={healthExpense.paymentMethod === "BankTransfer"}
+                                    onChange={(e) => setHealthExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -283,8 +285,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Maya"
-                                    checked={healthExpenses.paymentMethod === "Maya"}
-                                    onChange={(e) => setHealthExpenses((item) => ({
+                                    checked={healthExpense.paymentMethod === "Maya"}
+                                    onChange={(e) => setHealthExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -303,8 +305,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Other"
-                                    checked={healthExpenses.paymentMethod === "Other"}
-                                    onChange={(e) => setHealthExpenses((item) => ({
+                                    checked={healthExpense.paymentMethod === "Other"}
+                                    onChange={(e) => setHealthExpense((item) => ({
                                         ...item,
                                         [e.target.name]: e.target.value
                                     }))}
@@ -334,8 +336,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                             id="date"
                             type="date"
                             name="date"
-                            value={healthExpenses.date}
-                            onChange={(e) => setHealthExpenses((item) => ({
+                            value={healthExpense.date.split("T")[0]}
+                            onChange={(e) => setHealthExpense((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value
 
@@ -359,8 +361,8 @@ const HealthModal = ({id}: {id?: string | null}) => {
                         </label>
                         <textarea
                             name="notes"
-                            value={healthExpenses.notes}
-                            onChange={(e) => setHealthExpenses((item) => ({
+                            value={healthExpense.notes}
+                            onChange={(e) => setHealthExpense((item) => ({
                                 ...item,
                                 [e.target.name]: e.target.value
                             }))}

@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ButtonModal from "@/components/ButtonModal"
 import SummaryCardContent from "@/components/SummaryCardContent"
 import TransportationModal from "@/components/modal/TransportationModal"
@@ -10,7 +11,6 @@ import Loading from "../../Loading"
 import { Car,
     PhilippinePeso, 
 } from 'lucide-react';
-import { TransportationData } from "@/constant/expensesData"
 import type { TableColumn, 
     TransportationExpense,
     SummaryType
@@ -19,14 +19,13 @@ import formatPurchaseDate from "@/utils/formatPurchaseDate"
 import { TransportationBillIcons } from "@/constant/billIcons"
 
 const TransportationPage = () => {
+    const { transportationExpenses, } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
     })
-
-    const transportationExpenses = TransportationData.filter((item) => item.expense === "Transportation")
 
     const transportCategories: string[] = [
         "PublicTransport",

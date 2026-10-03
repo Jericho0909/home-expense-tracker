@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ButtonModal from "@/components/ButtonModal";
 import SummaryCards from "@/components/SummaryCard";
 import OtherExepensesModal from "@/components/modal/OtherExpensesModal";
@@ -24,6 +25,7 @@ type SummaryType = {
 }
 
 const OtherExpensesPage = () => {
+    const { otherExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
@@ -31,12 +33,10 @@ const OtherExpensesPage = () => {
         year: "numeric",
     })
 
-    const OtherExpenses = OtherExpensesData.filter((item) => item.expense === "OtherExpenses")
-
-    const totalItems = OtherExpenses.length
-    const totalExpenses = OtherExpenses.reduce((total, item) => total + item.amount, 0)
-    const highestAmount = OtherExpensesData.reduce((max, item) => Math.max(max, item.amount),0)
-    const averageExpense =OtherExpensesData.reduce((total, item) => total + item.amount, 0) / OtherExpensesData.length;
+    const totalItems = otherExpenses.length
+    const totalExpenses = otherExpenses.reduce((total, item) => total + item.amount, 0)
+    const highestAmount = otherExpenses.reduce((max, item) => Math.max(max, item.amount),0)
+    const averageExpense =otherExpenses.reduce((total, item) => total + item.amount, 0) / otherExpenses.length;
 
     const SummaryDataArr: SummaryType[] = [
             {
@@ -246,7 +246,7 @@ const OtherExpensesPage = () => {
                 </div>
                 <div className="block w-auto min-h-48 p-1">
                     <Table
-                        data={OtherExpenses}
+                        data={otherExpenses}
                         columns={OtherExpensesColumn}
                         viewLink="/expenses/OtherExpenses/viewOtherExpenses"
                         editLink = "/expenses/OtherExpenses/editOtherExpenses"
