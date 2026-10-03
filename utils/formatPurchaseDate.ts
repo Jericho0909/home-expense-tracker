@@ -1,10 +1,10 @@
 const formatPurchaseDate = (date: string) => {
-    const purchasDate = new Date(date).toLocaleDateString("en-US", {
+    const purchaseDate = new Date(date).toLocaleDateString("en-US", {
         month: "short",
         day: "numeric",
     });
 
-    return `${purchasDate}`
+    return `${purchaseDate}`
 }
 
 export default formatPurchaseDate

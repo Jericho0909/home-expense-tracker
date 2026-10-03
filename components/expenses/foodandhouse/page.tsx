@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import ButtonModal from "@/components/ButtonModal"
 import SummaryCardContent from "@/components/SummaryCardContent"
 import FoodAndHouseholdModal from "../../modal/FoodAndHouseholdModal"
@@ -20,6 +21,7 @@ import { FoodAndHousholdBillIcons, StatusIcons } from "@/constant/billIcons";
 
 
 const FoodAndHousePage = () => {
+    const { foodAndHouseholdExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
@@ -75,8 +77,6 @@ const FoodAndHousePage = () => {
         },
     ]
 
-    const FoodAndHouseExpenses = FoodHouseholdData.filter((item) => item.expense === "FoodAndHousehold")
-
     const FoodAndHouseColumn: TableColumn<FoodHouseholdExpense>[] = [
         {
             label: "Name",
@@ -93,7 +93,7 @@ const FoodAndHousePage = () => {
         },
         {
             label: "Date",
-            render: (item) => formatPurchaseDate(item.purchaseDate),
+            render: (item) => formatPurchaseDate(item.purchaseDate!),
         },
         {
             label: "Amount",
@@ -225,7 +225,7 @@ const FoodAndHousePage = () => {
 
                     <div className="block w-auto min-h-48 p-1">
                         <Table
-                            data={FoodAndHouseExpenses}
+                            data={foodAndHouseholdExpenses}
                             columns={FoodAndHouseColumn}
                             viewLink="/expenses/FoodAndHousehold/viewFoodAndHousehold"
                             editLink="/expenses/FoodAndHousehold/editFoodAndHousehold"

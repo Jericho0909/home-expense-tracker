@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+import ExpensesDataContext from "@/context/expensesDataContext";
 import { FoodHouseholdData } from "@/constant/expensesData";
 import ModalFormButton from "../ModalFormButton";
 import type { FoodHouseholdExpense, 
@@ -18,9 +19,10 @@ type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category" | "status"
 
 type FoodHouseholdType = "" | "Food" | "Household"
 const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
+     const { foodAndHouseholdExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
-    const findExpenses = FoodHouseholdData.find((key) => key.id === id)
+    const findExpenses = foodAndHouseholdExpenses.find((key) => key.id === id)
     const defaultData: FoodHouseholdExpenseForm = {
         id: "0",
         expense: "FoodAndHousehold",
@@ -428,7 +430,7 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                                 id="purchaseDate"
                                 type="date"
                                 name="purchaseDate"
-                                value={foodHouseholdExpenses.purchaseDate ?? ""}
+                                value={foodHouseholdExpenses.purchaseDate ? foodHouseholdExpenses.purchaseDate.split("T")[0] : ""}
                                 onChange={(e) => setFoodHouseholdExpenses((item) => ({
                                     ...item,
                                     [e.target.name]: e.target.value

@@ -8,7 +8,6 @@ import SummaryCards from "@/components/SummaryCard";
 import UtilitiesModal from "@/components/modal/UtilitiesModal";
 import Table from "@/components/Table";
 import Loading from "../../Loading";
-import { UtilitiesData } from "@/constant/expensesData";
 import type { TableColumn, UtilityExpense } from "@/type/model";
 import { 
     Lightbulb,
