@@ -9,6 +9,7 @@ import { SidebarProvider } from "../context/sidebarContext";
 import { ExpensesSectionProvider }  from "../context/expensesSectionContext";
 import { ModalProvider } from "../context/modalContext";
 import { ExpensesDataProvider } from "../context/expensesDataContext"
+import { FamilyMemberProvider } from "../context/familyMemberContext"
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -47,7 +48,9 @@ export default function RootLayout({
           <ExpensesSectionProvider>
             <ModalProvider>
               <ExpensesDataProvider>
-                {children}
+                <FamilyMemberProvider>
+                  {children}
+                </FamilyMemberProvider>
               </ExpensesDataProvider>
             </ModalProvider>
           </ExpensesSectionProvider>

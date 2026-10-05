@@ -15,7 +15,12 @@ export async function getExpenses(
             throw new Error("Failed to fetch expenses");
         }
 
-        return response.json();
+        const data = await response.json();
+
+        return {
+            status: response.status,
+            data,
+        };
     } catch (error) {
         console.error("Failed to fetch expenses:", error);
         throw error;

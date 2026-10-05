@@ -2,12 +2,12 @@
 
 import { useContext, useEffect } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext";
+import FamilyMemberContext from "@/context/familyMemberContext";
 import ModalContext from "@/context/modalContext";
 import Card from "@/components/Card";
 import AddMemberModal from "@/components/modal/AddMemberModal";
 import Table from "@/components/Table";
 import BudgetForm from "@/components/BudgetForm";
-import { MembersData } from "@/constant/expensesData";
 import type { TableColumn, 
     Member 
 } from "@/type/model";
@@ -21,14 +21,14 @@ import { HandCoins,
 const BudgerSettingPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const { setIsOpen, setActiveModal } = useContext(ModalContext)!
+    const { familyMembers } = useContext(FamilyMemberContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
     })
 
-    
 
-    const totalBudget = MembersData.reduce((total, member) => total + member.money, 0)
+    const totalBudget = familyMembers.reduce((total, member) => total + member.money, 0)
 
     const MemberColumn: TableColumn<Member>[] = [
         {
@@ -87,7 +87,7 @@ const BudgerSettingPage = () => {
             </div>
 
             <div className="grid grid-cols-5 gap-2 w-4xl h-auto mb-8">
-                {MembersData.map((member) => (
+                {familyMembers.map((member) => (
                     <Card
                         key={member.id}
                         member={member}
@@ -134,7 +134,7 @@ const BudgerSettingPage = () => {
                 </div>
                 <div className="block w-auto min-h-48 p-1">
                     <Table
-                        data={MembersData}
+                        data={familyMembers}
                         columns={MemberColumn}
                         viewLink="/budgetSetting/viewMember"
                         editLink = "/budgetSetting/editMember"

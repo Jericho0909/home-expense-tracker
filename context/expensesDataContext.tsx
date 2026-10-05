@@ -9,7 +9,6 @@ import type { UtilityExpense,
     HouseMaintenanceExpense,
     FamilyExpense,
     OtherExpense,
-    Member
 } from "@/type/model";
 
 interface ExpensesDataContextType {
@@ -47,8 +46,8 @@ export const ExpensesDataProvider = ({ children }: { children: React.ReactNode }
     useEffect(() => {
         const fetchUtilitiesExpenses = async () => {
             try{
-                const data = await getExpenses("Utilities", currentPage, limit)
-                setUtilitiesExpenses(data)
+                const response = await getExpenses("Utilities", currentPage, limit)
+                setUtilitiesExpenses(response.data)
             }catch (error) {
                 console.error("Failed to fetch utilities expenses:", error)
             }
@@ -56,8 +55,8 @@ export const ExpensesDataProvider = ({ children }: { children: React.ReactNode }
 
         const fetchFoodAndHouseholdExpenses = async () => {
             try{
-                const data = await getExpenses("FoodAndHousehold", currentPage, limit)
-                setFoodAndHouseholdExpenses(data)
+                const response = await getExpenses("FoodAndHousehold", currentPage, limit)
+                setFoodAndHouseholdExpenses(response.data)
             }catch (error) {
                 console.error("Failed to fetch food and household expenses:", error)
             }
@@ -65,8 +64,8 @@ export const ExpensesDataProvider = ({ children }: { children: React.ReactNode }
 
         const fetchTransportationExpenses = async () => {
             try{
-                const data = await getExpenses("Transportation", currentPage, limit)
-                setTransportationExpenses(data)
+                const response = await getExpenses("Transportation", currentPage, limit)
+                setTransportationExpenses(response.data)
             }catch (error) {
                 console.error("Failed to fetch transportation expenses:", error)
             }
@@ -74,8 +73,8 @@ export const ExpensesDataProvider = ({ children }: { children: React.ReactNode }
 
         const fetchHealthExpenses = async () => {
             try{
-                const data = await getExpenses("Health", currentPage, limit)
-                setHealthExpenses(data)
+                const response = await getExpenses("Health", currentPage, limit)
+                setHealthExpenses(response.data)
             }catch (error) {
                 console.error("Failed to fetch health expenses:", error)
             }
@@ -83,8 +82,8 @@ export const ExpensesDataProvider = ({ children }: { children: React.ReactNode }
 
         const fetchHouseMaintenanceExpenses = async () => {
             try{
-                const data = await getExpenses("HouseMaintenance", currentPage, limit)
-                setHouseMaintenanceExpenses(data)
+                const response = await getExpenses("HouseMaintenance", currentPage, limit)
+                setHouseMaintenanceExpenses(response.data)
             }catch (error) {
                 console.error("Failed to fetch house maintenance expenses:", error)
             }
@@ -92,8 +91,8 @@ export const ExpensesDataProvider = ({ children }: { children: React.ReactNode }
 
         const fetchFamilyExpenses = async () => {
             try{
-                const data = await getExpenses("FamilyExpenses", currentPage, limit)
-                setFamilyExpenses(data)
+                const response = await getExpenses("FamilyExpenses", currentPage, limit)
+                setFamilyExpenses(response.data)
             }catch (error) {
                 console.error("Failed to fetch family expenses:", error)
             }
@@ -101,8 +100,8 @@ export const ExpensesDataProvider = ({ children }: { children: React.ReactNode }
 
         const fetchOtherExpenses = async () => {
             try{
-                const data = await getExpenses("OtherExpenses", currentPage, limit)
-                setOtherExpenses(data)
+                const response = await getExpenses("OtherExpenses", currentPage, limit)
+                setOtherExpenses(response.data)
             }catch (error) {
                 console.error("Failed to fetch other expenses:", error)
             }
