@@ -1,6 +1,6 @@
 export const getFamilyMembers = async () => {
     try {
-        const response = await fetch("/api/familyMember", {
+        const response = await fetch("/api/familyMembers", {
             method: "GET",
         })
 

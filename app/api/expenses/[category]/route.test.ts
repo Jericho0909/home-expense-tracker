@@ -19,6 +19,7 @@ describe("POST /api/expenses/[category]", () => {
 
     (fetch as jest.Mock).mockResolvedValue({
         ok: true,
+        status: 200,
         json: jest.fn().mockResolvedValue(mockExpenses),
     });
 
@@ -31,7 +32,10 @@ describe("POST /api/expenses/[category]", () => {
         }
     );
 
-    expect(result).toEqual(mockExpenses);
+    expect(result).toEqual({
+        status: 200,
+        data: mockExpenses,
+    });
 });
 
     test("should create a utility expense", async () => {
