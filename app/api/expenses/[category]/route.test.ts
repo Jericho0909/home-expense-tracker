@@ -228,25 +228,4 @@ describe("POST /api/expenses/[category]", () => {
        expect(response.status).toBe(201)
     })
 
-    test("should create a family member", async () => {
-        const request = new Request(
-            "http://localhost/api/expenses/FamilyMember",
-            {
-                method: "POST",
-                body: JSON.stringify({
-                    name: "Jericho Zara",
-                    familyRole: "Father",
-                    money: 25000,
-                }),
-            }
-        )
-
-        const response = await POST(request, {
-            params: Promise.resolve({
-                category: "FamilyMember",
-            }),
-        })
-
-       expect(response.status).toBe(201)
-    })
 })

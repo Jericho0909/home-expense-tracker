@@ -14,3 +14,37 @@ export async function GET(
         )
     }
 }
+
+export async function POST(
+    request: Request,
+) {
+    try{
+
+        const { name, familyRole, money } = await request.json()
+
+        if(!name ||
+            !familyRole ||
+            money === undefined ||
+            money === null){
+            return NextResponse.json(
+                { error: "Missing required fields" },
+                { status: 400 }
+            )
+        }
+
+        const newFamilyMember = await prisma.familyMember.create({
+            data: {
+                name,
+                familyRole,
+                money,
+            },
+        });
+        return NextResponse.json(newFamilyMember, { status: 201 });
+    }catch(error){
+        console.error("Failed to create family member:", error);
+        return NextResponse.json(
+            { error: "Failed to create family member" },
+            { status: 500 }
+        );
+    }
+}

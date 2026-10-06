@@ -88,309 +88,289 @@ export async function POST(
     request: Request,
     { params }: { params: Promise<{ category: string }> }
 ) {
-    const { category } = await params;
+    try{
+        const { category } = await params;
 
-    const body = await request.json();
+        const body = await request.json();
 
-    switch (category) {
-        case "Utilities":
-            if(
-                !body.name ||
-                !body.expense ||
-                !body.amount ||
-                !body.status ||
-                !body.billingStart ||
-                !body.billingEnd ||
-                !body.dueDate ||
-                !body.notes
-            ){
-                return NextResponse.json(
-                    { error: "Missing required fields" },
-                    { status: 400 }
-                )
-            }
-
-            const newUtilityExpense = await prisma.utilityExpense.create({
-                data: {
-                    name: body.name,
-                    expense: body.expense,
-                    amount: body.amount,
-                    status: body.status,
-                    billingStart: new Date(body.billingStart),
-                    billingEnd: new Date(body.billingEnd),
-                    dueDate: new Date(body.dueDate),
-                    paymentMethod: body.paymentMethod,
-                    notes: body.notes,
+        switch (category) {
+            case "Utilities":
+                if(
+                    !body.name ||
+                    !body.expense ||
+                    !body.amount ||
+                    !body.status ||
+                    !body.billingStart ||
+                    !body.billingEnd ||
+                    !body.dueDate ||
+                    !body.notes
+                ){
+                    return NextResponse.json(
+                        { error: "Missing required fields" },
+                        { status: 400 }
+                    )
                 }
-            })
 
-            if(!newUtilityExpense){
-                return NextResponse.json(
-                    { error: "Failed to create utility expense" },
-                    { status: 500 }
-                )
-            }
+                const newUtilityExpense = await prisma.utilityExpense.create({
+                    data: {
+                        name: body.name,
+                        expense: body.expense,
+                        amount: body.amount,
+                        status: body.status,
+                        billingStart: new Date(body.billingStart),
+                        billingEnd: new Date(body.billingEnd),
+                        dueDate: new Date(body.dueDate),
+                        paymentMethod: body.paymentMethod,
+                        notes: body.notes,
+                    }
+                })
 
-            return NextResponse.json(newUtilityExpense, { status: 201 })
-        
-        case "FoodAndHousehold":
-            if(
-                !body.name ||
-                !body.expense ||
-                !body.amount ||
-                !body.type ||
-                !body.category ||
-                !body.status ||
-                !body.notes
-            ){
-                return NextResponse.json(
-                    { error: "Missing required fields" },
-                    { status: 400 }
-                )
-            }
-
-        
-            const newFoodAndHouseholdExpense = await prisma.foodHouseholdExpense.create({
-                data: {
-                    name: body.name,
-                    expense: body.expense,
-                    amount: body.amount,
-                    type: body.type,
-                    category: body.category,
-                    status: body.status,
-                    purchaseDate: body.purchaseDate
-                        ? new Date(body.purchaseDate)
-                        : null,
-                    paymentMethod: body.paymentMethod,
-                    notes: body.notes
+                if(!newUtilityExpense){
+                    return NextResponse.json(
+                        { error: "Failed to create utility expense" },
+                        { status: 500 }
+                    )
                 }
-            })
 
-            if(!newFoodAndHouseholdExpense){
-                return NextResponse.json(
-                    { error: "Failed to create food and household expense" },
-                    { status: 500 }
-                )
-            }
-
-            return NextResponse.json(newFoodAndHouseholdExpense, { status: 201 })
-
-        case "Transportation":
-            if(
-                !body.description ||
-                !body.expense ||
-                !body.category ||
-                !body.amount ||
-                !body.paymentMethod ||
-                !body.date ||
-                !body.notes
-            ){
-                return NextResponse.json(
-                    { error: "Missing required fields" },
-                    { status: 400 }
-                )
-            }    
+                return NextResponse.json(newUtilityExpense, { status: 201 })
             
-            const newTransportationExpense = await prisma.transportationExpense.create({
-                data: {
-                    description: body.description,
-                    expense: body.expense,
-                    category: body.category,
-                    amount: body.amount,
-                    paymentMethod: body.paymentMethod,
-                    date: new Date(body.date),
-                    notes: body.notes
+            case "FoodAndHousehold":
+                if(
+                    !body.name ||
+                    !body.expense ||
+                    !body.amount ||
+                    !body.type ||
+                    !body.category ||
+                    !body.status ||
+                    !body.notes
+                ){
+                    return NextResponse.json(
+                        { error: "Missing required fields" },
+                        { status: 400 }
+                    )
                 }
-            })
 
-            if(!newTransportationExpense){
-                return NextResponse.json(
-                    { error: "Failed to create transportation expense" },
-                    { status: 500 }
-                )
-            }
-
-            return NextResponse.json(newTransportationExpense, { status: 201 })
-
-        case "Health": 
-            if(
-                !body.description ||
-                !body.expense ||
-                !body.category ||
-                !body.amount ||
-                !body.paymentMethod ||
-                !body.date ||
-                !body.notes
-            ){
-                return NextResponse.json(
-                    { error: "Missing required fields" },
-                    { status: 400 }
-                )
-            }    
             
-            const newHealthExpense = await prisma.healthExpense.create({
-                data: {
-                    description: body.description,
-                    expense: body.expense,
-                    category: body.category,
-                    amount: body.amount,
-                    paymentMethod: body.paymentMethod,
-                    date: new Date(body.date),
-                    notes: body.notes
+                const newFoodAndHouseholdExpense = await prisma.foodHouseholdExpense.create({
+                    data: {
+                        name: body.name,
+                        expense: body.expense,
+                        amount: body.amount,
+                        type: body.type,
+                        category: body.category,
+                        status: body.status,
+                        purchaseDate: body.purchaseDate
+                            ? new Date(body.purchaseDate)
+                            : null,
+                        paymentMethod: body.paymentMethod,
+                        notes: body.notes
+                    }
+                })
+
+                if(!newFoodAndHouseholdExpense){
+                    return NextResponse.json(
+                        { error: "Failed to create food and household expense" },
+                        { status: 500 }
+                    )
                 }
-            })
 
-            if(!newHealthExpense){
-                return NextResponse.json(
-                    { error: "Failed to create health expense" },
-                    { status: 500 }
-                )
-            }
+                return NextResponse.json(newFoodAndHouseholdExpense, { status: 201 })
 
-            return NextResponse.json(newHealthExpense, { status: 201 })
-        
-        case "HouseMaintenance":
-            if(
-                !body.description ||
-                !body.expense ||
-                !body.category ||
-                !body.amount ||
-                !body.paymentMethod ||
-                !body.date ||
-                !body.notes
-            ){
-                return NextResponse.json(
-                    { error: "Missing required fields" },
-                    { status: 400 }
-                )
-            }    
+            case "Transportation":
+                if(
+                    !body.description ||
+                    !body.expense ||
+                    !body.category ||
+                    !body.amount ||
+                    !body.paymentMethod ||
+                    !body.date ||
+                    !body.notes
+                ){
+                    return NextResponse.json(
+                        { error: "Missing required fields" },
+                        { status: 400 }
+                    )
+                }    
+                
+                const newTransportationExpense = await prisma.transportationExpense.create({
+                    data: {
+                        description: body.description,
+                        expense: body.expense,
+                        category: body.category,
+                        amount: body.amount,
+                        paymentMethod: body.paymentMethod,
+                        date: new Date(body.date),
+                        notes: body.notes
+                    }
+                })
 
-            const newHouseMaintenancExpense = await prisma.houseMaintenanceExpense.create({
-                data: {
-                    description: body.description,
-                    expense: body.expense,
-                    category: body.category,
-                    amount: body.amount,
-                    paymentMethod: body.paymentMethod,
-                    date: new Date(body.date),
-                    notes: body.notes
+                if(!newTransportationExpense){
+                    return NextResponse.json(
+                        { error: "Failed to create transportation expense" },
+                        { status: 500 }
+                    )
                 }
-            })
+
+                return NextResponse.json(newTransportationExpense, { status: 201 })
+
+            case "Health": 
+                if(
+                    !body.description ||
+                    !body.expense ||
+                    !body.category ||
+                    !body.amount ||
+                    !body.paymentMethod ||
+                    !body.date ||
+                    !body.notes
+                ){
+                    return NextResponse.json(
+                        { error: "Missing required fields" },
+                        { status: 400 }
+                    )
+                }    
+                
+                const newHealthExpense = await prisma.healthExpense.create({
+                    data: {
+                        description: body.description,
+                        expense: body.expense,
+                        category: body.category,
+                        amount: body.amount,
+                        paymentMethod: body.paymentMethod,
+                        date: new Date(body.date),
+                        notes: body.notes
+                    }
+                })
+
+                if(!newHealthExpense){
+                    return NextResponse.json(
+                        { error: "Failed to create health expense" },
+                        { status: 500 }
+                    )
+                }
+
+                return NextResponse.json(newHealthExpense, { status: 201 })
             
-            if(!newHouseMaintenancExpense){
-                return NextResponse.json(
-                    { error: "Failed to create house maintenance expense" },
-                    { status: 500 }
-                )
-            }
+            case "HouseMaintenance":
+                if(
+                    !body.description ||
+                    !body.expense ||
+                    !body.category ||
+                    !body.amount ||
+                    !body.paymentMethod ||
+                    !body.date ||
+                    !body.notes
+                ){
+                    return NextResponse.json(
+                        { error: "Missing required fields" },
+                        { status: 400 }
+                    )
+                }    
 
-            return NextResponse.json(newHouseMaintenancExpense, { status: 201 })
-
-        case "FamilyExpense":
-            if(
-                !body.description ||
-                !body.expense ||
-                !body.category ||
-                !body.amount ||
-                !body.paymentMethod ||
-                !body.date ||
-                !body.notes
-            ){
-                return NextResponse.json(
-                    { error: "Missing required fields" },
-                    { status: 400 }
-                )
-            }
-
-            const newFamilyExpense = await prisma.familyExpense.create({
-                data: {
-                    description: body.description,
-                    expense: body.expense,
-                    category: body.category,
-                    amount: body.amount,
-                    paymentMethod: body.paymentMethod,
-                    date: new Date(body.date),
-                    notes: body.notes
+                const newHouseMaintenancExpense = await prisma.houseMaintenanceExpense.create({
+                    data: {
+                        description: body.description,
+                        expense: body.expense,
+                        category: body.category,
+                        amount: body.amount,
+                        paymentMethod: body.paymentMethod,
+                        date: new Date(body.date),
+                        notes: body.notes
+                    }
+                })
+                
+                if(!newHouseMaintenancExpense){
+                    return NextResponse.json(
+                        { error: "Failed to create house maintenance expense" },
+                        { status: 500 }
+                    )
                 }
-            })
 
-            if(!newFamilyExpense){
-                return NextResponse.json(
-                    { error: "Failed to create family expense expense" },
-                    { status: 500 }
-                )
-            }
+                return NextResponse.json(newHouseMaintenancExpense, { status: 201 })
 
-            return NextResponse.json(newFamilyExpense, { status: 201 })
-
-        case "OtherExpense":
-            if(
-                !body.description ||
-                !body.expense ||
-                !body.category ||
-                !body.amount ||
-                !body.paymentMethod ||
-                !body.date ||
-                !body.notes
-            ){
-                return NextResponse.json(
-                    { error: "Missing required fields" },
-                    { status: 400 }
-                )
-            }
-
-            const newOtherExpense = await prisma.otherExpense.create({
-                data: {
-                    description: body.description,
-                    expense: body.expense,
-                    category: body.category,
-                    amount: body.amount,
-                    paymentMethod: body.paymentMethod,
-                    date: new Date(body.date),
-                    notes: body.notes
+            case "FamilyExpense":
+                if(
+                    !body.description ||
+                    !body.expense ||
+                    !body.category ||
+                    !body.amount ||
+                    !body.paymentMethod ||
+                    !body.date ||
+                    !body.notes
+                ){
+                    return NextResponse.json(
+                        { error: "Missing required fields" },
+                        { status: 400 }
+                    )
                 }
-            })
 
-            if(!newOtherExpense){
-                return NextResponse.json(
-                    { error: "Failed to create other expense" },
-                    { status: 500 }
-                )
-            }
+                const newFamilyExpense = await prisma.familyExpense.create({
+                    data: {
+                        description: body.description,
+                        expense: body.expense,
+                        category: body.category,
+                        amount: body.amount,
+                        paymentMethod: body.paymentMethod,
+                        date: new Date(body.date),
+                        notes: body.notes
+                    }
+                })
 
-            return NextResponse.json(newOtherExpense, { status: 201 })
-
-        case "FamilyMember":
-            if (
-                !body.name ||
-                !body.familyRole ||
-                body.money === undefined ||
-                body.money === null
-            ) {
-                return NextResponse.json(
-                    { error: "Missing required fields" },
-                    { status: 400 }
-                )
-            }
-
-            const newFamilyMember = await prisma.familyMember.create({
-                data: {
-                    name: body.name,
-                    familyRole: body.familyRole,
-                    money: body.money
+                if(!newFamilyExpense){
+                    return NextResponse.json(
+                        { error: "Failed to create family expense expense" },
+                        { status: 500 }
+                    )
                 }
-            })
 
-            if(!newFamilyMember){
-                return NextResponse.json(
-                    { error: "Failed to create other expense" },
-                    { status: 500 }
-                )
-            }
+                return NextResponse.json(newFamilyExpense, { status: 201 })
 
-            return NextResponse.json(newFamilyMember, { status: 201 })
-        default:
-            // invalid category
-            return NextResponse.json({ error: "Invalid expense category" }, { status: 400 })
+            case "OtherExpense":
+                if(
+                    !body.description ||
+                    !body.expense ||
+                    !body.category ||
+                    !body.amount ||
+                    !body.paymentMethod ||
+                    !body.date ||
+                    !body.notes
+                ){
+                    return NextResponse.json(
+                        { error: "Missing required fields" },
+                        { status: 400 }
+                    )
+                }
+
+                const newOtherExpense = await prisma.otherExpense.create({
+                    data: {
+                        description: body.description,
+                        expense: body.expense,
+                        category: body.category,
+                        amount: body.amount,
+                        paymentMethod: body.paymentMethod,
+                        date: new Date(body.date),
+                        notes: body.notes
+                    }
+                })
+
+                if(!newOtherExpense){
+                    return NextResponse.json(
+                        { error: "Failed to create other expense" },
+                        { status: 500 }
+                    )
+                }
+
+                return NextResponse.json(newOtherExpense, { status: 201 })
+
+            default:
+                // invalid category
+                return NextResponse.json({ error: "Invalid expense category" }, { status: 400 })
+        }
+    }catch(error){
+        console.error("Failed to create expense:", error);
+
+        return NextResponse.json(
+            { error: "Failed to create expense" },
+            { status: 500 }
+        );
     }
 }

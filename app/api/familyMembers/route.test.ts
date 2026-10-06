@@ -3,18 +3,19 @@
  */
 
 import { getFamilyMembers } from "@/lib/familyMembers";
+import { POST } from "./route";
 
 global.fetch = jest.fn();
 
 describe("GET /api/familyMembers", () => {
   test("should fetch family members", async () => {
     const mockFamilyMembers = [
-      {
-        id: "123",
-        name: "Jericho Zara",
-        familyRole: "Father",
-        money: 25000,
-      },
+        {
+            id: "123",
+            name: "Jericho Zara",
+            familyRole: "Father",
+            money: 25000,
+        }
     ];
 
     (fetch as jest.Mock).mockResolvedValue({
@@ -26,10 +27,10 @@ describe("GET /api/familyMembers", () => {
     const result = await getFamilyMembers();
 
     expect(fetch).toHaveBeenCalledWith(
-      "/api/familyMembers",
-      {
-        method: "GET",
-      }
+        "/api/familyMembers",
+        {
+            method: "GET",
+        }
     );
 
     expect(result).toEqual({
@@ -37,4 +38,22 @@ describe("GET /api/familyMembers", () => {
         data: mockFamilyMembers,
     })
   })
+
+  test("should create a family member", async () => {
+        const request = new Request(
+            "http://localhost/api/familyMembers",
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    name: "Jericho Zara",
+                    familyRole: "Father",
+                    money: 35000,
+                }),
+            }
+        )
+
+        const response = await POST(request)
+
+        expect(response.status).toBe(201)
+    })
 })
