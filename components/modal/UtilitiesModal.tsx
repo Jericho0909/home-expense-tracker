@@ -2,6 +2,7 @@
 
 import { useState, useContext, useEffect } from "react"
 import ExpensesDataContext from "@/context/expensesDataContext"
+import ModalContext from "@/context/modalContext";
 import ModalFormButton from "../ModalFormButton";
 import type { UtilitiesNames, 
     UtilityExpense, 
@@ -19,6 +20,7 @@ type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status" | "paymentMetho
 
 const UtilitiesModal = ({id}: {id?: string | null}) => {
     const { utilitiesExpenses } = useContext(ExpensesDataContext)!
+    const { closeModal, isEditing } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = utilitiesExpenses.find((key) => key.id === id)
@@ -84,6 +86,36 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
         }
     }
 
+    const handleEdit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        try{
+            setIsSendingData(true)
+            const response = await fetch(`
+                /api/expenses/Utilities/editUtilities/${id}`,
+                {
+                    method: "PUT",
+                    body: JSON.stringify(utilityExpense),
+                }
+
+            )
+
+            if(!response.ok){
+                throw new Error(
+                    `Failed to edit utility expense: ${response.status} ${response.statusText}`
+                )
+            }
+
+            await response.json()
+        }catch(error){
+            console.error("Error edit utility expense:", error)
+        }finally{
+            setIsSendingData(false)
+            closeModal()
+        }
+    }
+
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false)
@@ -113,7 +145,10 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                         <Lightbulb size={24} className="text-[#F4C430]"
                         />
                     </span>
-                    Add Utility Bill 
+                    {isEditing 
+                        ? "Edit Utility Bill" 
+                        : "Add Utility Bill"
+                    } 
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
@@ -124,7 +159,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
             </div>
             <form 
                 className="flex flex-col relative "
-                onSubmit={handleSubmit}
+                onSubmit={isEditing ? handleEdit : handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">

@@ -25,7 +25,7 @@ import FoodAndHouseholdPayModal from "./FoodAndHouseholdPayModal";
 import type { ActionContent } from "../../type/model"
  
 const ActionModal = ({action, id}: {action: ActionContent; id:string}) => { 
-    const { setActiveModal } = useContext(ModalContext)! 
+    const { setActiveModal } = useContext(ModalContext)!
  
     const ActionContents: Record<ActionContent, ReactNode> = { 
         editContribution: <ContributionBudgetModal id={id}/>,
