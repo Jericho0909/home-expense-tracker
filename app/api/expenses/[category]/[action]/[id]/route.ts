@@ -1,4 +1,4 @@
-import { prisma,  } from "@/lib/prisma";
+import { prisma  } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
 
@@ -164,25 +164,6 @@ export async function PUT(request: Request, { params }: { params: Promise<{ cate
                 },
                 { status: 200 }
             )
-
-            case "FamilyMember":
-                const updatedFamilyMember = await prisma.familyMember.update({
-                    where: {id},
-                    data: {
-                        name: body.name,
-                        familyRole: body.familyRole,
-                        money: body.money
-                    }
-                })
-
-                return Response.json(
-                {
-                    success: true,
-                    data: updatedFamilyMember
-                },
-                { status: 200 }
-            )
-
 
             default:
                 return Response.json({

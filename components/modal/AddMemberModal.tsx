@@ -43,7 +43,7 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
         e.preventDefault()
         try {
             setIsSendingData(true)
-            const response = await fetch("/api/expenses/FamilyMember", {
+            const response = await fetch("/api/familyMembers", {
                 method: "POST",
                 body: JSON.stringify(member),
             })
