@@ -2,6 +2,7 @@
 
 import { useState, useContext ,useEffect } from "react";
 import ExpensesDataContext from "@/context/expensesDataContext";
+import ModalContext from "@/context/modalContext";
 import ModalFormButton from "../ModalFormButton";
 import type { TransportationExpense, 
     TransportationCategory,
@@ -9,6 +10,7 @@ import type { TransportationExpense,
 } from "@/type/model"
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import { Car } from 'lucide-react';
+import { toast } from "sonner";
 
 type TransportationExpenseForm = Omit<TransportationExpense, "category"| "paymentMethod" > & {
     category: TransportationCategory | "";
@@ -17,6 +19,7 @@ type TransportationExpenseForm = Omit<TransportationExpense, "category"| "paymen
 
 const TransportationModal = ({id}: {id?: string | null}) => {
     const { transportationExpenses } = useContext(ExpensesDataContext)!
+    const { isEditing } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = transportationExpenses.find((key) => key.id === id)
@@ -43,10 +46,6 @@ const TransportationModal = ({id}: {id?: string | null}) => {
         "VehicleMaintenance",
     ]
 
-    const handleCancel = () => {
-        setTransportationExpense(defaultData)
-    }
-
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
@@ -67,13 +66,47 @@ const TransportationModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setTransportationExpense(defaultData)
+            toast.success("Successfully saved!")
 
         }catch(error) {
+            toast.error("Failed to save expense.")
             console.error("Error creating transpotation expense:", error)
         }finally{
             setIsSendingData(false)
         }
 
+    }
+
+    const handleEdit = async(e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+            setIsSendingData(true)
+        try {
+            const response = await fetch(`
+                /api/expenses/Transportation/editTransportation/${id}`,
+                {
+                    method: "PUT",
+                    body: JSON.stringify(transportationExpense),
+                }
+            )
+
+            if(!response.ok){
+                throw new Error(
+                    `Failed to edit transportation expense: ${response.status} ${response.statusText}`
+                )
+            }
+
+            await response.json()
+            toast.success("Trasportation bill edited successfully!")
+        }catch(error){
+            toast.error("Failed to edit transportation bill.")
+            console.error("Error edit transportation expense:", error)
+        }finally{
+            setIsSendingData(false)
+        }
+    }
+
+    const handleCancel = () => {
+        setTransportationExpense(findExpenses ?? defaultData)
     }
 
     useEffect(() => {
@@ -105,18 +138,24 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                         <Car size={24} className="text-[#CD7F32]"
                     />
                     </span>
-                    Add Transportation Expense
+                    {isEditing
+                        ? "Edit Transportation Expense"
+                        : "Add Transportation Expense"
+                    }
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Record a transportation expense 
+                    {isEditing
+                        ? "Edit the details of this transportation expense"
+                        : "Record a transportation expense "
+                    }
                 </span>
             </div>
             <form 
             className="flex flex-col relative"
-                onSubmit={handleSubmit}
+                onSubmit={isEditing ? handleEdit : handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
@@ -378,7 +417,6 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                             placeholder="Add notes..."
                             rows={4}
                             spellCheck={false}
-                            required
                         />
                     </div>
 
