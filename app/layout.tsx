@@ -10,6 +10,7 @@ import { ExpensesSectionProvider }  from "../context/expensesSectionContext";
 import { ModalProvider } from "../context/modalContext";
 import { ExpensesDataProvider } from "../context/expensesDataContext"
 import { FamilyMemberProvider } from "../context/familyMemberContext"
+import { Toaster } from "sonner";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -50,6 +51,10 @@ export default function RootLayout({
               <ExpensesDataProvider>
                 <FamilyMemberProvider>
                   {children}
+                  <Toaster
+                    position="bottom-right"
+                    richColors
+                  />
                 </FamilyMemberProvider>
               </ExpensesDataProvider>
             </ModalProvider>

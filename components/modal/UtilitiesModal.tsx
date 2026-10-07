@@ -10,6 +10,7 @@ import type { UtilitiesNames,
     PaymentMethod
 } from "@/type/model"
 import { Lightbulb } from "lucide-react";
+import { toast } from "sonner";
 
 type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status" | "paymentMethod"> & {
     name: UtilitiesNames | "";
@@ -20,7 +21,7 @@ type UtilityExpenseForm = Omit<UtilityExpense, "name" | "status" | "paymentMetho
 
 const UtilitiesModal = ({id}: {id?: string | null}) => {
     const { utilitiesExpenses } = useContext(ExpensesDataContext)!
-    const { closeModal, isEditing } = useContext(ModalContext)!
+    const { isEditing } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = utilitiesExpenses.find((key) => key.id === id)
@@ -57,14 +58,11 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
         "Unpaid"
     ]
 
-    const handleCancel = () => {
-        setUtilityExpense(defaultData)
-    }
-
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
             setIsSendingData(true)
+            
             const response = await fetch("/api/expenses/Utilities", {
                 method: "POST",
                 body: JSON.stringify(utilityExpense),
@@ -78,8 +76,10 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setUtilityExpense(defaultData)
+            toast.success("Successfully saved!")
 
         }catch(error) {
+            toast.error("Failed to save expense.")
             console.error("Error creating utility expense:", error)
         }finally{
             setIsSendingData(false)
@@ -107,12 +107,17 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
             }
 
             await response.json()
+            toast.success("Utility bill edited successfully!")
         }catch(error){
+            toast.error("Failed to edit utility bill.")
             console.error("Error edit utility expense:", error)
         }finally{
             setIsSendingData(false)
-            closeModal()
         }
+    }
+
+    const handleCancel = () => {
+        setUtilityExpense(findExpenses ?? defaultData)
     }
 
 
@@ -154,7 +159,10 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Add a new household utility bill 
+                    {isEditing 
+                        ? "Edit the details of this utility expense" 
+                        : "Record a new household utility expense"
+                    } 
                 </span>
             </div>
             <form 
