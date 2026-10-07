@@ -498,7 +498,6 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                             placeholder="Add notes..."
                             rows={4}
                             spellCheck={false}
-                            required
                         />
                     </div>
 

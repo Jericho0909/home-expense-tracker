@@ -99,8 +99,7 @@ export async function POST(
                     !body.name ||
                     !body.expense ||
                     !body.amount ||
-                    !body.status ||
-                    !body.notes
+                    !body.status
                 ){
                     return NextResponse.json(
                         { error: "Missing required fields" },
@@ -146,8 +145,7 @@ export async function POST(
                     !body.amount ||
                     !body.type ||
                     !body.category ||
-                    !body.status ||
-                    !body.notes
+                    !body.status
                 ){
                     return NextResponse.json(
                         { error: "Missing required fields" },

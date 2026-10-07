@@ -2,7 +2,7 @@
 
 import { useState, useContext, useEffect } from "react";
 import ExpensesDataContext from "@/context/expensesDataContext";
-import { FoodHouseholdData } from "@/constant/expensesData";
+import ModalContext from "@/context/modalContext";
 import ModalFormButton from "../ModalFormButton";
 import type { FoodHouseholdExpense, 
     FoodAndHouseHoldCategory,
@@ -10,6 +10,7 @@ import type { FoodHouseholdExpense,
 } from "@/type/model"
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import { CookingPot } from 'lucide-react';
+import { toast } from "sonner";
 
 
 type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category" | "status"> & {
@@ -19,7 +20,8 @@ type FoodHouseholdExpenseForm = Omit<FoodHouseholdExpense, "category" | "status"
 
 type FoodHouseholdType = "" | "Food" | "Household"
 const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
-     const { foodAndHouseholdExpenses } = useContext(ExpensesDataContext)!
+    const { foodAndHouseholdExpenses } = useContext(ExpensesDataContext)!
+    const { isEditing } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = foodAndHouseholdExpenses.find((key) => key.id === id)
@@ -59,10 +61,6 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
         "Unpaid"
     ]
 
-    const handleCancel = () => {
-        setFoodHouseholdExpenses(defaultData)
-    }
-
     const handleSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log(foodHouseholdExpenses)
@@ -81,11 +79,43 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setFoodHouseholdExpenses(defaultData)
+            toast.success("Successfully saved!")
         }catch (error){
+            toast.error("Failed to save expense.")
             console.error("Error creating food and household expense:", error)
         }finally{
             setIsSendingData(false)
         }
+    }
+
+    const handleEdit = async(e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        try {
+            setIsSendingData(true)
+            const response = await fetch(`/api/expenses/FoodAndHousehold/editFoodAndHousehold/${id}`, {
+                method: "PUT",
+                body: JSON.stringify(foodHouseholdExpenses)
+            })
+
+            if(!response.ok){
+                throw new Error(
+                    `Failed to edit food and house expense: ${response.status} ${response.statusText}`
+                )
+            }
+
+            await response.json()
+            toast.success("Food and Household bill edited successfully!")
+        }catch(error){
+            toast.error("Failed to edit food and household bill.")
+            console.error("Error edit food and household expense:", error)
+        }finally{
+            setIsSendingData(false)
+        }
+    }
+
+    const handleCancel = () => {
+        setFoodHouseholdExpenses(findExpenses ?? defaultData)
     }
 
     useEffect(() => {
@@ -117,18 +147,24 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                         <CookingPot size={24} className="text-[#B87333]"
                         />
                     </span>
-                    Food & Household Bills
+                    {isEditing
+                        ? "Edit Food & Household Bills"
+                        : "Food & Household Bills"
+                    }
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Record a food or household expense
+                    {isEditing
+                        ? "Edit the details of this food or household expense"
+                        :"Record a food or household expense"                    
+                    }
                 </span>
             </div>
             <form
                 className="flex flex-col relative"
-                onSubmit={handleSubmit}
+                onSubmit={isEditing ? handleEdit : handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
@@ -204,6 +240,43 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
 
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                         <label
+                            htmlFor="type"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Type:
+                        </label>
+                        <select
+                            id="type"
+                            value={foodHouseholdExpenses.type}
+                            onChange={(e) =>
+                                setFoodHouseholdExpenses((item) => ({
+                                    ...item,
+                                    type: e.target.value as FoodHouseholdType
+                                }))
+                            }
+                            className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
+                            style={{
+                                fontFamily: "var(--font-libre-baskerville)"
+                            }}
+                            required
+                        >
+                            <option value="" disabled>
+                                Select Type
+                            </option>
+
+                            {["Food", "Household" ].map((type) => (
+                                <option key={type} value={type}>
+                                    {type}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
                             htmlFor="name"
                             className="text-base font-semibold"
                             style={{
@@ -227,42 +300,6 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                             placeholder=""
                             required
                         />
-                    </div>
-
-                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                        <label
-                            htmlFor="type"
-                            className="text-base font-semibold"
-                            style={{
-                                fontFamily: "var(--font-playfair-display)"
-                            }}
-                        >
-                            Type:
-                        </label>
-                        <select
-                            id="type"
-                            value={foodHouseholdExpenses.type}
-                            onChange={(e) =>
-                                setFoodHouseholdExpenses((item) => ({
-                                    ...item,
-                                    type: e.target.value as FoodHouseholdType
-                                }))
-                            }
-                            className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
-                            style={{
-                                fontFamily: "var(--font-libre-baskerville)"
-                            }}
-                        >
-                            <option value="" disabled>
-                                Select Type
-                            </option>
-
-                            {["Food", "Household" ].map((type) => (
-                                <option key={type} value={type}>
-                                    {type}
-                                </option>
-                            ))}
-                        </select>
                     </div>
 
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
@@ -465,7 +502,6 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                             placeholder="Add notes..."
                             rows={4}
                             spellCheck={false}
-                            required
                         />
                     </div>
 
