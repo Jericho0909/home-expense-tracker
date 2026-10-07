@@ -156,9 +156,9 @@ export type Expense = {
 
 export type UtilityExpense = Expense & {
     name: UtilitiesNames;
-    billingStart: string;
-    billingEnd: string;
-    dueDate: string;
+    billingStart?: string;
+    billingEnd?: string;
+    dueDate?: string;
     status: StatusType;
     paymentMethod?: PaymentMethod;
     paidAt?: string;

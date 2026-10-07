@@ -14,9 +14,9 @@ model UtilityExpense {
   expense       Expenses
   amount        Float
   status        Status
-  billingStart  DateTime
-  billingEnd    DateTime
-  dueDate       DateTime
+  billingStart  DateTime?
+  billingEnd    DateTime?
+  dueDate       DateTime?
   paymentMethod PaymentMethod?
   notes         String
   createdAt     DateTime      @default(now())

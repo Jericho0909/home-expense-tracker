@@ -100,9 +100,6 @@ export async function POST(
                     !body.expense ||
                     !body.amount ||
                     !body.status ||
-                    !body.billingStart ||
-                    !body.billingEnd ||
-                    !body.dueDate ||
                     !body.notes
                 ){
                     return NextResponse.json(
@@ -117,9 +114,17 @@ export async function POST(
                         expense: body.expense,
                         amount: body.amount,
                         status: body.status,
-                        billingStart: new Date(body.billingStart),
-                        billingEnd: new Date(body.billingEnd),
-                        dueDate: new Date(body.dueDate),
+                        billingStart: body.billingStart
+                            ? new Date(body.billingStart)
+                            : null,
+
+                        billingEnd: body.billingEnd
+                            ? new Date(body.billingEnd)
+                            : null,
+
+                        dueDate: body.dueDate
+                            ? new Date(body.dueDate)
+                            : null,
                         paymentMethod: body.paymentMethod,
                         notes: body.notes,
                     }

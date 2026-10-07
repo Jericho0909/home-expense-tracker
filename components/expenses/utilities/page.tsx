@@ -39,7 +39,7 @@ const UtilitiesPage = () => {
         },
         {
             label: "Due Date",
-            render: (item) => formatDueDate(item.dueDate),
+            render: (item) => item.dueDate ? formatDueDate(item.dueDate) : "-",
         },
         {
             label: "Amount",
