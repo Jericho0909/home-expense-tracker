@@ -2,7 +2,7 @@
 
 import { useState, useContext, useEffect } from "react"
 import ExpensesDataContext from "@/context/expensesDataContext"
-import { HouseMaintenanceData } from "@/constant/expensesData"
+import ModalContext from "@/context/modalContext"
 import ModalFormButton from "../ModalFormButton"
 import type { HouseMaintenanceExpense, 
     HouseMaintenanceCategory,
@@ -10,6 +10,7 @@ import type { HouseMaintenanceExpense,
 } from "@/type/model"
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter"
 import { Hammer } from 'lucide-react';
+import { toast } from "sonner";
 
 type HouseMaintenanceExpenseForm = Omit<HouseMaintenanceExpense, "category" | "paymentMethod"> & {
     category: HouseMaintenanceCategory | "";
@@ -18,6 +19,7 @@ type HouseMaintenanceExpenseForm = Omit<HouseMaintenanceExpense, "category" | "p
 
 const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
     const { houseMaintenanceExpenses } = useContext(ExpensesDataContext)!
+    const { isEditing } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = houseMaintenanceExpenses.find((key) => key.id === id)
@@ -44,10 +46,6 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
         "Other",
     ]
 
-    const handleCancel = () => {
-        setHouseMaintenanceExpense(defaultData)
-    }
-
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
@@ -65,12 +63,45 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setHouseMaintenanceExpense(defaultData)
+            toast.success("Successfully saved!")
 
         }catch(error){
+            toast.error("Failed to save expense.")
             console.error("Error creating house maintenance expense:", error)
         }finally{
             setIsSendingData(false)
         }        
+    }
+
+    const handleEdit = async(e: React.SubmitEvent<HTMLFormElement>)=> {
+        e.preventDefault()
+        try{
+            setIsSendingData(true)
+            const response = await fetch(`/api/expenses/HouseMaintenance/editHouseMaintenance/${id}`,
+                {
+                    method: "PUT",
+                    body: JSON.stringify(houseMaintenanceExpense),
+                }
+            )
+
+            if(!response.ok){
+                throw new Error(
+                    `Failed to edit house maintenance expense: ${response.status} ${response.statusText}`
+                )
+            }
+
+            await response.json()
+            toast.success("Utility bill edited successfully!")
+        }catch(error){
+            toast.error("Failed to edit utility bill.")
+            console.error("Error edit utility expense:", error)
+        }finally{
+            setIsSendingData(false)
+        }
+    }
+
+    const handleCancel = () => {
+        setHouseMaintenanceExpense(findExpenses ?? defaultData)
     }
 
     useEffect(() => {
@@ -102,18 +133,24 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
                         <Hammer size={24} className="text-[#B8B0A5]"
                         />
                     </span>
-                    Add Maintenance Expense
+                    {isEditing
+                        ? "Edit House Maintenance Expense"
+                        : "Add House Maintenance Expense"                    
+                    }
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Record a house maintenance expense
+                    {isEditing
+                        ? "Edit the details of this house maintenance expense"
+                        : "Record a house maintenance expense"
+                    }
                 </span>
             </div>
             <form
                 className="flex flex-col relative"
-                onSubmit={handleSubmit}
+                onSubmit={isEditing ? handleEdit : handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
@@ -374,7 +411,6 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder="Add notes..."
                             rows={4}
-                            required
                         />
                     </div>
                             

@@ -61,7 +61,6 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
         e.preventDefault()
         try{
             setIsSendingData(true)
-            
             const response = await fetch("/api/expenses/Utilities", {
                 method: "POST",
                 body: JSON.stringify(utilityExpense),

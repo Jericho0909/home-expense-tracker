@@ -8,7 +8,6 @@ import SummaryCardContent from "@/components/SummaryCardContent"
 import HouseMaintenanceModal from "@/components/modal/HouseMaintenanceModal";
 import Table from "@/components/Table";
 import Loading from "../../Loading";
-import { HouseMaintenanceData } from "@/constant/expensesData"
 import { Hammer, PhilippinePeso  } from 'lucide-react';
 import type { TableColumn, 
     HouseMaintenanceExpense,
