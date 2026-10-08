@@ -2,6 +2,7 @@
 
 import { useState, useContext, useEffect } from "react"
 import ExpensesDataContext from "@/context/expensesDataContext"
+import ModalContext from "@/context/modalContext"
 import ModalFormButton from "../ModalFormButton"
 import type { FamilyExpense, 
     FamilyExpensesCategory,
@@ -9,6 +10,7 @@ import type { FamilyExpense,
 } from "@/type/model"
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter"
 import { HouseHeart } from 'lucide-react';
+import { toast } from "sonner"
 
 type FamilyExpenseForm = Omit<FamilyExpense, "category" | "paymentMethod"> & {
     category: FamilyExpensesCategory | "";
@@ -17,6 +19,7 @@ type FamilyExpenseForm = Omit<FamilyExpense, "category" | "paymentMethod"> & {
 
 const FamilyExpensesModal = ({id}: {id?: string | null}) => {
     const { familyExpenses } = useContext(ExpensesDataContext)!
+    const { isEditing } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = familyExpenses.find((key) => key.id === id)
@@ -43,10 +46,6 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
         "Other",
     ]
 
-    const handleCancel = () => {
-        setFamilyExpensesData(defaultData)
-    }
-
     const handleSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
@@ -64,12 +63,46 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setFamilyExpensesData(defaultData)
+            toast.success("Successfully saved!")
 
         }catch(error){
+            toast.error("Failed to save expense.")
             console.error("Error creating family expense:", error)
         }finally{
             setIsSendingData(false)
         }
+    }
+
+    const handleEdit = async(e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try{
+            setIsSendingData(true)
+            const response = await fetch(`/api/expenses/FamilyExpenses/editFamilyExpenses/${id}`,
+                {
+                    method: "PUT",
+                    body: JSON.stringify(familyExpensesData)
+                }
+            )
+
+            if(!response.ok){
+                throw new Error(
+                    `Failed to edit family expense: ${response.status} ${response.statusText}`
+                )
+            }
+
+            await response.json()
+            toast.success("Family expense bill edited successfully!")
+
+        }catch(error){
+            toast.error("Failed to edit family expenses bill.")
+            console.error("Error edit family expenses:", error)
+        }finally{
+            setIsSendingData(false)
+        }
+    }
+
+    const handleCancel = () => {
+        setFamilyExpensesData(findExpenses ?? defaultData)
     }
 
     useEffect(() => {
@@ -101,18 +134,24 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
                         <HouseHeart size={24} className="text-[#E3B778]"
                         />
                     </span>
-                    Family Expenses
+                    {isEditing
+                        ? "Edit Family Expense"
+                        : "Add Family Expense"
+                    }
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Record a family-related expense
+                    {isEditing
+                        ? "Edit the details of this family-related expense"
+                        : "Record a family-related expense"
+                    }
                 </span>
             </div>
              <form
                 className="flex flex-col relative"
-                onSubmit={handleSubmit}
+                onSubmit={isEditing ? handleEdit : handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
@@ -373,7 +412,6 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder="Add notes..."
                             rows={4}
-                            required
                         />
                     </div>
 

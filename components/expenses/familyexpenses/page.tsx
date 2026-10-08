@@ -8,7 +8,6 @@ import SummaryCardContent from "@/components/SummaryCardContent"
 import FamilyExpensesModal from "@/components/modal/FamilyExpensesModal"
 import Table from "@/components/Table"
 import Loading from "../../Loading"
-import { FamilyExpensesData } from "@/constant/expensesData"
 import { HouseHeart, PhilippinePeso } from 'lucide-react';
 import type { SummaryType, 
     TableColumn, 

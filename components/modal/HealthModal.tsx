@@ -90,7 +90,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
             toast.success("Health bill edited successfully!")
         }catch(error){
             toast.error("Failed to edit health bill.")
-            console.error("Error edit utility expense:", error)
+            console.error("Error edit health expense:", error)
         }finally{
             setIsSendingData(false)
         }
