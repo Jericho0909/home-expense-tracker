@@ -2,7 +2,7 @@
 
 import { useState, useContext, useEffect } from "react";
 import ExpensesDataContext from "@/context/expensesDataContext";
-import { HealthData } from "@/constant/expensesData";
+import ModalContext from "@/context/modalContext";
 import ModalFormButton from "../ModalFormButton";
 import type { HealthExpense, 
     HealthCategory,
@@ -10,6 +10,8 @@ import type { HealthExpense,
 } from "@/type/model"
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import { Heart } from 'lucide-react';
+import { toast } from "sonner";
+import { stringify } from "querystring";
 
 type HealthExpenseForm = Omit<HealthExpense, "category" | "paymentMethod"> & {
     category: HealthCategory | "";
@@ -18,6 +20,7 @@ type HealthExpenseForm = Omit<HealthExpense, "category" | "paymentMethod"> & {
 
 const HealthModal = ({id}: {id?: string | null}) => {
     const { healthExpenses } = useContext(ExpensesDataContext)!
+    const { isEditing } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = healthExpenses.find((key) => key.id === id)
@@ -44,10 +47,6 @@ const HealthModal = ({id}: {id?: string | null}) => {
         "Other",
     ]
 
-    const handleCancel = () => {
-        setHealthExpense(defaultData)
-    }
-
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
@@ -59,13 +58,46 @@ const HealthModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setHealthExpense(defaultData)
+            toast.success("Successfully saved!")
 
-        }catch(error) {
+        }catch(error){
+            toast.error("Failed to save expense.")
             console.error("Error creating health expense:", error)
 
         }finally{
             setIsSendingData(false)
         }
+    }
+
+    const handleEdit = async(e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try{
+            setIsSendingData(true)
+            const response = await fetch(`/api/expenses/Health/editHealth/${id}`,
+                {
+                    method: "PUT",
+                    body: JSON.stringify(healthExpense),
+                }
+            )
+
+            if(!response.ok){
+                throw new Error(
+                    `Failed to edit health expense: ${response.status} ${response.statusText}`
+                )
+            }
+            
+            await response.json()
+            toast.success("Health bill edited successfully!")
+        }catch(error){
+            toast.error("Failed to edit health bill.")
+            console.error("Error edit utility expense:", error)
+        }finally{
+            setIsSendingData(false)
+        }
+    }
+
+    const handleCancel = () => {
+        setHealthExpense(findExpenses ?? defaultData)
     }
 
     useEffect(() => {
@@ -97,18 +129,24 @@ const HealthModal = ({id}: {id?: string | null}) => {
                         <Heart size={24} className="text-[#D8A7A7]"
                         />
                     </span>
-                    Add Health Expense  
+                    {isEditing
+                        ? "Edit Health Expense"
+                        : "Add Health Expense"
+                    }  
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Record a healthcare expense
+                    {isEditing
+                        ? "Edit the details of this healthcare expense"
+                        : "Record a healthcare expense"
+                    }
                 </span>
             </div>
             <form
                 className="flex flex-col relative"
-                onSubmit={handleSubmit}
+                onSubmit={isEditing ? handleEdit : handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
@@ -370,8 +408,7 @@ const HealthModal = ({id}: {id?: string | null}) => {
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder="Add notes..."
                             rows={4}
-                            spellCheck={false}
-                            required
+                            spellCheck={false}  
                         />
                     </div>
 
