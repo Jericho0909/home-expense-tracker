@@ -106,6 +106,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             toast.success("Utility bill edited successfully!")
+            
         }catch(error){
             toast.error("Failed to edit utility bill.")
             console.error("Error edit utility expense:", error)
@@ -492,7 +493,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                                 ...item,
                                 [e.target.name]: e.target.value
                             }))}
-                            className="resize-none bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            className="resize-none bg-[#F1E3D0] border border-[#160f05] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder="Add notes..."
                             rows={4}

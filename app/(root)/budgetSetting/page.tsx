@@ -137,7 +137,7 @@ const BudgerSettingPage = () => {
                         data={familyMembers}
                         columns={MemberColumn}
                         viewLink="/budgetSetting/viewMember"
-                        editLink = "/budgetSetting/editMember"
+                        editLink ="/budgetSetting/editMember"
                     />
                 </div>
             </div>
