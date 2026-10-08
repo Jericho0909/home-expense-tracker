@@ -8,7 +8,6 @@ import SummaryCards from "@/components/SummaryCard";
 import OtherExepensesModal from "@/components/modal/OtherExpensesModal";
 import Table from "@/components/Table";
 import Loading from "../../Loading";
-import { OtherExpensesData } from "@/constant/expensesData"
 import { ReceiptText, PhilippinePeso } from 'lucide-react';
 import type { TableColumn, OtherExpense} from "@/type/model"
 import formatPurchaseDate from "@/utils/formatPurchaseDate";

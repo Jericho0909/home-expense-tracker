@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useContext, useEffect } from "react";
-import { OtherExpensesData } from "@/constant/expensesData";
 import ExpensesDataContext from "@/context/expensesDataContext";
+import ModalContext from "@/context/modalContext";
 import ModalFormButton from "../ModalFormButton";
 import type { OtherExpense, 
     OtherExpenseCategory,
@@ -10,6 +10,7 @@ import type { OtherExpense,
 } from "@/type/model";
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import { ReceiptText } from 'lucide-react';
+import { toast } from "sonner";
 
 type OtherExpenseForm = Omit<OtherExpense, "category" | "paymentMethod"> & {
     category: OtherExpenseCategory | "";
@@ -18,6 +19,7 @@ type OtherExpenseForm = Omit<OtherExpense, "category" | "paymentMethod"> & {
 
 const OtherExepensesModal = ({id}: {id?: string | null}) => {
     const { otherExpenses } = useContext(ExpensesDataContext)!
+    const { isEditing } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = otherExpenses.find((key) => key.id === id)
@@ -47,10 +49,6 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
         "Services",
     ]
 
-    const handleCancel = () => {
-        setOtherExpense(defaultData)
-    }
-
     const handleSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
@@ -68,11 +66,45 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setOtherExpense(defaultData)
+            toast.success("Successfully saved!")
         }catch(error){
+            toast.error("Failed to save expense.")
             console.error("Error creating utility expense:", error)
         }finally{
             setIsSendingData(false)
         }
+    }
+
+    const handleEdit = async(e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try{
+            setIsSendingData(true)
+            const response = await fetch(`/api/expenses/OtherExpenses/editOtherExpenses/${id}`,
+                {
+                    method: "PUT",
+                    body: JSON.stringify(otherExpense)
+                }
+            )
+
+            if(!response.ok){
+                throw new Error(
+                    `Failed to edit miscellaneous expense: ${response.status} ${response.statusText}`
+                )
+            }
+
+            await response.json()
+            toast.success("Miscellaneous bill edited successfully!")
+
+        }catch(error){
+            toast.error("Failed to edit miscellaneous bill.")
+            console.error("Error edit miscellaneous expense:", error)
+        }finally{
+            setIsSendingData(false)
+        }
+    }
+
+    const handleCancel = () => {
+        setOtherExpense(findExpenses ?? defaultData)
     }
 
     useEffect(() => {
@@ -104,18 +136,24 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                         <ReceiptText size={24} className="text-[#A89F91]"
                         />
                     </span>
-                    Add Other Expense
+                    {isEditing
+                        ? "Edit Other Expense"
+                        : "Add Other Expense"
+                    }
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
-                    Record a miscellaneous expense  
+                    {isEditing
+                        ? "Edit the details of this miscellaneous expense"
+                        : "Record a miscellaneous expense"
+                    }  
                 </span>
             </div>
             <form
                 className="flex flex-col relative"
-                onSubmit={handleSubmit}
+                onSubmit={isEditing ? handleEdit : handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
@@ -376,7 +414,6 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                             placeholder="Add notes..."
                             rows={4}
-                            required
                         />
                     </div>
                     
