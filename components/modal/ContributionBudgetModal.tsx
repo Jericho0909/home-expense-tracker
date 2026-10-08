@@ -1,28 +1,48 @@
 'use client'
 
-import { useState, useEffect } from "react";
-import { MembersData } from "@/constant/expensesData"
+import { useState, useEffect, useContext } from "react";
+import FamilyMemberContext from "@/context/familyMemberContext";
 import { FamilyRoleColor } from "@/constant/billIcons";
 import type { Member } from "@/type/model";
 import { User, PhilippinePeso } from 'lucide-react';
+import { toast } from "sonner";
 
 const ContributionBudgetModal = ({id}: {id?: number | string | null}) => {
+    const { familyMembers } = useContext(FamilyMemberContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
-    const findMember = MembersData.find((key) => key.id === id)
+    const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
+    const [ addMoney, setAddMoney ] = useState<number>(0)
+    const findMember = familyMembers.find((key) => key.id === id)
     if(!findMember) return
 
-    const [ member,  ] = useState<Member>(findMember)
-    const [ addMoney, setAddMoney ] = useState<number>(0)
+    const [ member, ] = useState<Member>(findMember)
+    const [ currentlyMoney,  ] = useState<number>(member.money)
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
-        const response = await fetch(`/api/members/${id}`, {
-            method: "PUT",
-            body: JSON.stringify(member),
-        })
+        const updatedMember = {
+            ...member,
+            money: member.money + addMoney
+        }
 
-        return response
+        try{
+            setIsSendingData(true)
+            const response = await fetch(`/api/familyMembers/editFamilyMember/${id}`, 
+                {
+                    method: "PUT",
+                    body: JSON.stringify(updatedMember),
+                }
+            )
+
+            await response.json()
+            toast.success("Successfully add contribution!")
+            setAddMoney(0)
+        }catch(error){
+            toast.error("Failed to add contribution.")
+            console.error("Error add contribution:", error)
+        }finally{
+            setIsSendingData(false)
+        }
     }
 
     useEffect(() => {
@@ -79,49 +99,51 @@ const ContributionBudgetModal = ({id}: {id?: number | string | null}) => {
                     }}
                 >
                     <PhilippinePeso size={18}/>
-                    {member.money.toLocaleString("en-US")}
+                    {currentlyMoney.toLocaleString("en-US")}
                 </span>
             </div>
             <form 
-                className="flex flex-col"
+                className="flex flex-col relative"
                 onSubmit={handleSubmit}
             >
-                <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                    <label
-                        htmlFor="money"
-                        className="text-base font-semibold"
-                        style={{
-                            fontFamily: "var(--font-playfair-display)"
-                        }}
-                    >
-                        Add Money:
-                    </label>
-                    <input
-                        id="money"
-                        type="number"
-                        name="money"
-                        min="0"
-                        step="0.01"
-                        value={addMoney || ""}
-                        onChange={(e) => setAddMoney(Number(e.target.value))}
-                        onKeyDown={(e) => {
-                            if (["e", "E", "+", "-"].includes(e.key)) {
-                                e.preventDefault();
-                            }
-                        }}
-                        className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                        style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        placeholder="1000"
-                        required
-                    />
-                </div>
+                <div className={isSendingData ? "blur-[1px]" : ""}>
+                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                        <label
+                            htmlFor="money"
+                            className="text-base font-semibold"
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            Add Money:
+                        </label>
+                        <input
+                            id="money"
+                            type="number"
+                            name="money"
+                            min="0"
+                            step="0.01"
+                            value={addMoney || ""}
+                            onChange={(e) => setAddMoney(Number(e.target.value))}
+                            onKeyDown={(e) => {
+                                if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                }
+                            }}
+                            className="no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                            placeholder="1000"
+                            required
+                        />
+                    </div>
 
-                <button
-                    type="submit"
-                    className="add-money-btn rounded-md bg-[#6B4632] px-4 py-2 text-sm font-semibold text-[#F5F5DC] cursor-pointer transition-all duration-150 ease-in-out"
-                >
-                    Add Money
-                </button>
+                    <button
+                        type="submit"
+                        className="add-money-btn rounded-md bg-[#6B4632] px-4 py-2 text-sm font-semibold text-[#F5F5DC] cursor-pointer transition-all duration-150 ease-in-out"
+                    >
+                        Add Money
+                    </button>
+                </div>
             </form>
         </div>
     )

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import type { Member, FamilyRole } from "@/type/model"
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter"
 import { User } from 'lucide-react';
+import { toast } from "sonner";
 
 type MemberForm = Omit<Member, "familyRole" > & {
     familyRole: FamilyRole | ""
@@ -56,8 +57,11 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setMember(defaultData)
+            toast.success("Successfully add family Member!")
+
         }catch(error){
-            console.error("Error creating utility expense:", error)
+            toast.error("Failed to create family member.")
+            console.error("Error creating family member:", error)
         }finally{
             setIsSendingData(false)
         }
