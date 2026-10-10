@@ -169,7 +169,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ cate
                 return Response.json({
                     success: false,
                     error: "Invalid category"
-                }, { status: 400 })
+            }, { status: 400 })
         }
     }catch(error){
         if(
@@ -193,4 +193,125 @@ export async function PUT(request: Request, { params }: { params: Promise<{ cate
         )
     }
 
+}
+
+export async function DELETE(request: Request, { params }: { params: Promise<{ category: string, id: string }> }){
+    const { category, id } = await params;
+
+    try{
+        switch (category) {
+            case "Utilities":
+                const deleteUtility = await prisma.utilityExpense.delete({
+                    where: {
+                        id
+                    }
+                })
+
+                return Response.json(
+                {
+                    success: true,
+                    data: deleteUtility,
+                },
+                { status: 200 }
+            )
+
+            case "FoodAndHousehold":
+                const deleteFoodAndHousehold = await prisma.foodHouseholdExpense.delete({
+                    where: {
+                        id
+                    }
+                })
+
+                return Response.json(
+                {
+                    success: true,
+                    data: deleteFoodAndHousehold,
+                },
+                { status: 200 }
+            )
+
+            case "Transportation":
+                const deleteTransportation = await prisma.transportationExpense.delete({
+                    where: {
+                        id
+                    }
+                })
+
+                return Response.json(
+                {
+                    success: true,
+                    data: deleteTransportation,
+                },
+                { status: 200 }
+            )
+
+            case "Health":
+                const deleteHealth = await prisma.healthExpense.delete({
+                    where: {
+                        id
+                    }
+                })
+
+                return Response.json(
+                {
+                    success: true,
+                    data: deleteHealth,
+                },
+                { status: 200 }
+            )
+
+            case "HouseMaintenance":
+                const deleteHouseMaintenance = await prisma.houseMaintenanceExpense.delete({
+                    where: {
+                        id
+                    }
+                })
+
+                return Response.json(
+                {
+                    success: true,
+                    data: deleteHouseMaintenance,
+                },
+                { status: 200 }
+            )
+
+            case "FamilyExpenses":
+                const deleteFamilyExpense = await prisma.familyExpense.delete({
+                    where: {
+                        id
+                    }
+                })
+
+                return Response.json(
+                {
+                    success: true,
+                    data: deleteFamilyExpense,
+                },
+                { status: 200 }
+            )
+
+            case "OtherExpenses":
+                const deleteOtherExpense = await prisma.otherExpense.delete({
+                    where: {
+                        id
+                    }
+                })
+
+                return Response.json(
+                {
+                    success: true,
+                    data: deleteOtherExpense,
+                },
+                { status: 200 }
+            )
+
+            default:
+                return Response.json({
+                    success: false,
+                    error: "Invalid category"
+            }, { status: 400 })
+        }
+    }catch (error) {
+        
+    }
 }
