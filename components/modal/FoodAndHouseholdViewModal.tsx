@@ -1,15 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react';
-import { FoodHouseholdData } from '@/constant/expensesData';
+import { useState, useEffect, useContext } from 'react';
+import ExpensesDataContext from '@/context/expensesDataContext';
 import type { FoodHouseholdExpense } from '@/type/model';
 import { StatusIcons } from "@/constant/billIcons";
 import formattedDate from '@/utils/formattedDate';
 import { CookingPot, PhilippinePeso } from 'lucide-react';
 
 const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
+    const { foodAndHouseholdExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
-    const findExpenses = FoodHouseholdData.find((key) => key.id === id)
+    const findExpenses = foodAndHouseholdExpenses.find((key) => key.id === id)
     if(!findExpenses) return
 
     const [ expenses, ] = useState<FoodHouseholdExpense>(findExpenses)

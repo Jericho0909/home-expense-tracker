@@ -1,15 +1,16 @@
 'use client'
 
-import { useState } from 'react';
-import { MembersData } from '@/constant/expensesData';
+import { useState, useContext } from 'react';
+import FamilyMemberContext from '@/context/familyMemberContext';
 import type { Member } from '@/type/model';
 import { User, PhilippinePeso } from 'lucide-react';
 
 const ViewMemberModal = ({id}: {id?: string | null}) => {
-    const findMember = MembersData.find((key) => key.id === id)
-        if(!findMember) return
+    const { familyMembers } = useContext(FamilyMemberContext)!
+    const findMember = familyMembers.find((key) => key.id === id)
+    if(!findMember) return
     
-        const [ member, ] = useState<Member>(findMember)
+    const [ member, ] = useState<Member>(findMember)
     return(
         <div className="flex flex-col">
             <div className="flex flex-col border-b-2 border-black mb-3">

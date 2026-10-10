@@ -1,15 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react';
-import { HealthData } from '@/constant/expensesData';
+import { useState, useEffect, useContext } from 'react';
+import ExpensesDataContext from '@/context/expensesDataContext';
 import type { HealthExpense } from '@/type/model';
 import { HealthBillIcons } from '@/constant/billIcons';
 import formattedDate from '@/utils/formattedDate';
 import { PhilippinePeso } from 'lucide-react';
 
 const ViewHealthModal = ({id}: {id: string}) => {
+    const { healthExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
-    const findExpenses = HealthData.find((key) => key.id === id)
+    const findExpenses = healthExpenses.find((key) => key.id === id)
     if(!findExpenses) return
 
     const [ expenses, ] = useState<HealthExpense>(findExpenses)

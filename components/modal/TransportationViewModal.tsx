@@ -1,15 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react';
-import { TransportationData } from '@/constant/expensesData';
+import { useState, useEffect, useContext } from 'react';
+import ExpensesDataContext from '@/context/expensesDataContext';
 import { TransportationBillIcons } from '@/constant/billIcons';
 import type { TransportationExpense } from '@/type/model';
 import formattedDate from '@/utils/formattedDate';
 import { PhilippinePeso } from 'lucide-react';
 
 const ViewTransportationModal = ({id}: {id: string}) => {
+    const { transportationExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
-    const findExpenses = TransportationData.find((key) => key.id === id)
+    const findExpenses = transportationExpenses.find((key) => key.id === id)
     if(!findExpenses) return
 
     const [ expenses, ] = useState<TransportationExpense>(findExpenses)

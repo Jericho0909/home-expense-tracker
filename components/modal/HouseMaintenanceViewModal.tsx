@@ -1,15 +1,16 @@
 'use client'
 
-import { useState, useEffect } from "react"
-import { HouseMaintenanceData } from "@/constant/expensesData"
+import { useState, useEffect, useContext } from "react"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import type { HouseMaintenanceExpense } from "@/type/model"
 import { HouseMaintenanceBillIcons } from "@/constant/billIcons"
 import formattedDate from "@/utils/formattedDate"
 import { PhilippinePeso } from 'lucide-react';
 
 const ViewHouseMaintenanceModal = ({id}: {id: string}) => {
+    const { houseMaintenanceExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
-    const findExpenses = HouseMaintenanceData.find((key) => key.id === id)
+    const findExpenses = houseMaintenanceExpenses.find((key) => key.id === id)
     if(!findExpenses) return
     const [ expenses, ] = useState<HouseMaintenanceExpense>(findExpenses)
 

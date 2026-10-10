@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from "react";
-import { UtilitiesData } from "@/constant/expensesData";
+import { useState, useEffect, useContext } from "react";
+import ExpensesDataContext from "@/context/expensesDataContext";
 import type { UtilityExpense, PaymentMethod } from "@/type/model";
 import { StatusIcons } from "@/constant/billIcons";
 import formatBillingPeriod from "@/utils/formatBillingPeriod";
@@ -14,8 +14,9 @@ type UtilityExpenseItems = Omit<UtilityExpense, "paymentMethod"> & {
 }
 
 const ViewUtilitiesModal = ({id}: {id: string}) => {
+    const { utilitiesExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
-    const findExpenses = UtilitiesData.find((key) => key.id === id)
+    const findExpenses = utilitiesExpenses.find((key) => key.id === id)
     if(!findExpenses) return
 
     const [ expenses, ] = useState<UtilityExpenseItems>(findExpenses)
