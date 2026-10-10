@@ -47,11 +47,11 @@ const EditMemberModal = ({id}: {id?: string | null}) => {
             }
 
             await response.json()
-            toast.success("Member edited successfully!")
+            toast.success("Family member edited successfully!")
 
         }catch(error) {
-            toast.error("Failed to edit utility bill.")
-            console.error("Error edit utility expense:", error)
+            toast.error("Failed to edit family member.")
+            console.error("Error edit family member:", error)
         }finally{
             setIsSendingData(false)
         }

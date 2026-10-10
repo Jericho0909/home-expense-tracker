@@ -1,4 +1,5 @@
-const formatBillingPeriod = (startDate: string, endDate: string) => {
+const formatBillingPeriod = (startDate?: string, endDate?: string) => {
+    if (!startDate || !endDate) return "-"
     const start = new Date(startDate)
     const end = new Date(endDate)
 
