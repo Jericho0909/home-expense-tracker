@@ -11,6 +11,7 @@ interface TableProps<T extends { id: number | string }> {
     viewLink: string;
     editLink: string;
     payLink?: string;
+    delLink: string
 }
 
 const Table = <T extends { id: number | string }>({
@@ -19,6 +20,7 @@ const Table = <T extends { id: number | string }>({
     viewLink,
     editLink,
     payLink,
+    delLink
 }: TableProps<T>) => {
     const router = useRouter()
     const { setIsOpen, setIsEditing, setActiveModal } = useContext(ModalContext)!
@@ -61,7 +63,6 @@ const Table = <T extends { id: number | string }>({
                                     if(action === "view"){
                                         setActiveModal(null)
                                         setIsOpen(true)
-                                        setIsEditing(true)
                                         router.push(`${viewLink}/${idString}`)
                                     }
 
@@ -80,7 +81,7 @@ const Table = <T extends { id: number | string }>({
                                     )}
 
                                     if (action === "delete"){
-                                        // Delete action
+                                        
                                     }
 
                                     e.target.value = ""

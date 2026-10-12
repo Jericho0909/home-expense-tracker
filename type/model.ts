@@ -263,5 +263,6 @@ export type ActionContent =
     | "editOtherExpenses"
     | "payUtilities"
     | "payFoodAndHousehold"
+    | "deleteExpense"
 
 

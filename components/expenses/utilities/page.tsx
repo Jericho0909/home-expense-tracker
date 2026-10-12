@@ -208,6 +208,7 @@ const UtilitiesPage = () => {
                             viewLink="/expenses/Utilities/viewUtilities"
                             editLink="/expenses/Utilities/editUtilities"
                             payLink="/expenses/Utilities/payUtilities"
+                            delLink="/expenses/Utilities/deleteExpense"
                         />
                     ) : (
                         <div className="flex flex-1 items-center justify-center h-full">

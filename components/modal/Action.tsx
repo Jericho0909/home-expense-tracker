@@ -22,9 +22,10 @@ import FamilyExpensesModal from "./FamilyExpensesModal";
 import OtherExepensesModal from "./OtherExpensesModal";
 import UtilitiesPayModal from "./UtilitiesPayModal";
 import FoodAndHouseholdPayModal from "./FoodAndHouseholdPayModal";
-import type { ActionContent } from "../../type/model"
+import DeleteExpense from "./DeleteExpense";
+import type { ActionContent, ExpenseCategory } from "../../type/model"
  
-const ActionModal = ({action, id}: {action: ActionContent; id:string}) => { 
+const ActionModal = ({category, action, id}: {category: ExpenseCategory; action: ActionContent; id:string}) => { 
     const { setActiveModal } = useContext(ModalContext)!
  
     const ActionContents: Record<ActionContent, ReactNode> = { 
@@ -46,7 +47,8 @@ const ActionModal = ({action, id}: {action: ActionContent; id:string}) => {
         editFamilyExpenses: <FamilyExpensesModal id={id}/>,
         editOtherExpenses: <OtherExepensesModal id={id}/>,
         payUtilities: <UtilitiesPayModal id={id}/>,
-        payFoodAndHousehold: <FoodAndHouseholdPayModal id={id}/>
+        payFoodAndHousehold: <FoodAndHouseholdPayModal id={id}/>,
+        deleteExpense: <DeleteExpense category={category}/>
     } 
 
     useEffect(() => {
