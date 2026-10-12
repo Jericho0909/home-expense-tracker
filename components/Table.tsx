@@ -63,6 +63,7 @@ const Table = <T extends { id: number | string }>({
                                     if(action === "view"){
                                         setActiveModal(null)
                                         setIsOpen(true)
+                                        setIsEditing(true)
                                         router.push(`${viewLink}/${idString}`)
                                     }
 
@@ -73,16 +74,19 @@ const Table = <T extends { id: number | string }>({
                                         router.push(`${editLink}/${idString}`)
                                     }
 
+                                    if (action === "delete"){
+                                        setActiveModal(null)
+                                        setIsOpen(true)
+                                        setIsEditing(true)
+                                        router.push(`${delLink}/${idString}`)
+                                    }
+
                                     {payLink && action === "pay" && (
                                         setActiveModal(null),
                                         setIsOpen(true),
                                         setIsEditing(true),
                                         router.push(`${payLink}/${idString}`)
                                     )}
-
-                                    if (action === "delete"){
-                                        
-                                    }
 
                                     e.target.value = ""
                                 }}
