@@ -133,12 +133,24 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
                 >
                     Payment Method:
                 </span>
-                <span
-                    className="flex items-center gap-1 text-[#3B2416] text-sm"
-                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                >
-                    {expenses.paymentMethod}
-                </span>
+                {expenses.status === "Pending"
+                    ? (
+                        <span
+                            className="flex items-center gap-1 text-[#3B2416] text-sm"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            -
+                        </span>
+                    )
+                    : (
+                        <span
+                            className="flex items-center gap-1 text-[#3B2416] text-sm"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            {expenses.paymentMethod}
+                        </span>
+                    )
+                }
             </div>
 
             <div className="flex items-center gap-1">
@@ -154,7 +166,10 @@ const ViewFoodAndHouseholdModal = ({id}: {id: string}) => {
                     className="flex items-center gap-1 text-[#3B2416] text-sm"
                     style={{ fontFamily: "var(--font-libre-baskerville)" }}
                 >
-                    {formattedDate(expenses.purchaseDate)}
+                    {expenses.purchaseDate !== null
+                        ? formattedDate(expenses.purchaseDate)
+                        : "-"
+                    }   
                 </span>
             </div>
             

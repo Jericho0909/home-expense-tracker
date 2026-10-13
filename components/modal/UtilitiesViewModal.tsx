@@ -198,9 +198,9 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expenses.paymentMethod !== null
-                            ? expenses.paymentMethod
-                            : "-"
+                        {["Pending", "Overdue", "Unpaid"].includes(expenses.status)
+                            ? "-"
+                            : expenses.paymentMethod
                         }
                     </span>
                 </div>

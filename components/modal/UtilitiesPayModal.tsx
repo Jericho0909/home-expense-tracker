@@ -145,26 +145,8 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                 className="flex flex-col"
                 onSubmit={handleSubmit}
             >
-                {expense.paymentMethod !== null
+                {["Pending", "Overdue", "Unpaid"].includes(expense.status)
                 ? (
-                   <div className="flex items-center gap-2">
-                        <span
-                            className="text-base font-semibold "
-                            style={{
-                                fontFamily: "var(--font-playfair-display)"
-                            }}
-                        >
-                            PaymentMethod:
-                        </span>
-                        <span
-                            className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
-                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                        >
-                            {expense.paymentMethod}
-                        </span>
-                    </div>
-                )
-                : (
                     <div className="flex flex-col justify-between p-1 mb-3">
                         <label
                             className="text-base font-semibold"
@@ -260,9 +242,27 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                             </label>
                         </div>
                     </div>
+                )
+                : (
+                   <div className="flex items-center gap-2">
+                        <span
+                            className="text-base font-semibold "
+                            style={{
+                                fontFamily: "var(--font-playfair-display)"
+                            }}
+                        >
+                            PaymentMethod:
+                        </span>
+                        <span
+                            className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
+                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                        >
+                            {expense.paymentMethod}
+                        </span>
+                    </div>
                 )}
 
-                {expense.paymentMethod !== null
+                {expense.status === "Paid"
                 && (
                     <div className="flex items-center gap-2">
                         <span
@@ -282,7 +282,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                     </div>
                 )}
 
-                {expense.paymentMethod === null && (
+                {["Pending", "Overdue", "Unpaid"].includes(expense.status)&& (
                     <button
                         type="submit"
                         className="paid-btn rounded-md bg-[#6B4632] px-4 py-2 text-sm font-semibold text-[#F5F5DC] cursor-pointer transition-all duration-150 ease-in-out"
