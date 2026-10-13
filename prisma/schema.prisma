@@ -18,6 +18,7 @@ model UtilityExpense {
   billingEnd    DateTime?
   dueDate       DateTime?
   paymentMethod PaymentMethod?
+  paidAt        DateTime?
   notes         String
   createdAt     DateTime      @default(now())
 }

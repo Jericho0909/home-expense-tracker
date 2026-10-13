@@ -194,7 +194,7 @@ const FoodAndHouseholdPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Bank Transfer"
-                                    checked={paymentMethod === "Bank Transfer"}
+                                    checked={paymentMethod === "BankTransfer"}
                                     onChange={(e) => setPaymentMethod(e.target.value as FoodHouseholdExpense["paymentMethod"])}
                                 />
                                 <span

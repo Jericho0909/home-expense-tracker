@@ -1,26 +1,41 @@
 'use client'
 
-import { useState, useEffect } from "react"
-import { UtilitiesData } from "@/constant/expensesData"
+import { useState, useEffect, useContext } from "react"
+import ExpensesDataContext from "@/context/expensesDataContext"
 import type { UtilityExpense } from "@/type/model"
 import { PhilippinePeso } from "lucide-react"
+import formattedDate from "@/utils/formattedDate"
 
 
 const UtilitiesPayModal = ({id}: {id: string}) => {
+    const { utilitiesExpenses } = useContext(ExpensesDataContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
-    const findExpenses = UtilitiesData.find((key) => key.id === id)
+    const findExpenses = utilitiesExpenses.find((key) => key.id === id)
     if(!findExpenses) return
 
-    const [ expense, setExpense ] = useState<UtilityExpense>(findExpenses)
+    const currentDate = new Date().toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    })
+
+    const [ expense, ] = useState<UtilityExpense>(findExpenses)
     const [paymentMethod, setPaymentMethod] =
     useState<UtilityExpense["paymentMethod"]>(undefined)
+
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
 
+        const updatedExpense = {
+            ...expense,
+            paymentMethod: paymentMethod,
+            paidAt: currentDate
+        }
+
         const response = await fetch(`/api/utilities/${id}`, {
             method: "PUT",
-            body: JSON.stringify(expense),
+            body: JSON.stringify(updatedExpense),
         })
 
         return response
@@ -83,7 +98,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expense.billingStart} - {expense.billingEnd}
+                        {formattedDate(expense.billingStart)} - {formattedDate(expense.billingEnd)}
                     </span>
 
                 </div>
@@ -101,7 +116,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expense.dueDate}
+                        {formattedDate(expense.dueDate)}
                     </span>
 
                 </div>
@@ -130,7 +145,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                 className="flex flex-col"
                 onSubmit={handleSubmit}
             >
-                {expense.paymentMethod !== undefined
+                {expense.paymentMethod !== null
                 ? (
                    <div className="flex items-center gap-2">
                         <span
@@ -199,7 +214,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                                     type="radio"
                                     name="paymentMethod"
                                     value="Bank Transfer"
-                                    checked={paymentMethod === "Bank Transfer"}
+                                    checked={paymentMethod === "BankTransfer"}
                                     onChange={(e) => setPaymentMethod(e.target.value as UtilityExpense["paymentMethod"])}
                                 />
                                 <span
@@ -247,7 +262,7 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                     </div>
                 )}
 
-                {expense.paymentMethod !== undefined
+                {expense.paymentMethod !== null
                 && (
                     <div className="flex items-center gap-2">
                         <span
@@ -262,12 +277,12 @@ const UtilitiesPayModal = ({id}: {id: string}) => {
                             className="flex items-center gap-1 text-[#3B2416] text-sm mt-1"
                             style={{ fontFamily: "var(--font-libre-baskerville)" }}
                         >
-                            {expense.paidAt}
+                            {formattedDate(expense.paidAt)}
                         </span>
                     </div>
                 )}
 
-                {expense.paymentMethod === undefined && (
+                {expense.paymentMethod === null && (
                     <button
                         type="submit"
                         className="paid-btn rounded-md bg-[#6B4632] px-4 py-2 text-sm font-semibold text-[#F5F5DC] cursor-pointer transition-all duration-150 ease-in-out"

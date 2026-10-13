@@ -50,7 +50,7 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                         <Lightbulb size={24} className="text-[#F4C430]"
                         />
                     </span>
-                    Add Utility Bill 
+                    View Utility Bill 
                 </h4>
                 <span
                     className="text-base italic text-[#8B5E3C]"
@@ -198,9 +198,9 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expenses.paymentMethod !== "" 
+                        {expenses.paymentMethod !== null
                             ? expenses.paymentMethod
-                            : "Pending"
+                            : "-"
                         }
                     </span>
                 </div>
@@ -223,9 +223,9 @@ const ViewUtilitiesModal = ({id}: {id: string}) => {
                         className="flex items-center gap-1 text-[#3B2416] text-sm"
                         style={{ fontFamily: "var(--font-libre-baskerville)" }}
                     >
-                        {expenses.paidAt !== "" 
-                            ? expenses.paymentMethod
-                            : "Pending"
+                        {expenses.paidAt !== null 
+                            ? formattedDate(expenses.paidAt)
+                            : "-"
                         }
                     </span>
                 </div>

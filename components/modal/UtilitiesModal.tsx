@@ -25,6 +25,11 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = utilitiesExpenses.find((key) => key.id === id)
+    const currentDate = new Date().toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    })
     
     const defaultData: UtilityExpenseForm = {
         id: "0",
@@ -293,7 +298,8 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                                         checked={utilityExpense.paymentMethod === "Cash"}
                                         onChange={(e) => setUtilityExpense((item) => ({
                                             ...item,
-                                            [e.target.name]: e.target.value
+                                            [e.target.name]: e.target.value,
+                                            paidAt: currentDate
                                         }))}
                                     />
                                     <span
@@ -312,7 +318,8 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                                         checked={utilityExpense.paymentMethod === "GCash"}
                                         onChange={(e) => setUtilityExpense((item) => ({
                                             ...item,
-                                            [e.target.name]: e.target.value
+                                            [e.target.name]: e.target.value,
+                                            paidAt: currentDate
                                         }))}
                                     />
                                     <span
@@ -331,7 +338,8 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                                         checked={utilityExpense.paymentMethod === "BankTransfer"}
                                         onChange={(e) => setUtilityExpense((item) => ({
                                             ...item,
-                                            [e.target.name]: e.target.value
+                                            [e.target.name]: e.target.value,
+                                            paidAt: currentDate
                                         }))}
                                     />
                                     <span
@@ -350,7 +358,8 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                                         checked={utilityExpense.paymentMethod === "Maya"}
                                         onChange={(e) => setUtilityExpense((item) => ({
                                             ...item,
-                                            [e.target.name]: e.target.value
+                                            [e.target.name]: e.target.value,
+                                            paidAt: currentDate
                                         }))}
                                         
                                     />
@@ -370,7 +379,8 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                                         checked={utilityExpense.paymentMethod === "Other"}
                                         onChange={(e) => setUtilityExpense((item) => ({
                                             ...item,
-                                            [e.target.name]: e.target.value
+                                            [e.target.name]: e.target.value,
+                                            paidAt: currentDate
                                         }))}
                                         
                                     />

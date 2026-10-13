@@ -125,6 +125,9 @@ export async function POST(
                             ? new Date(body.dueDate)
                             : null,
                         paymentMethod: body.paymentMethod,
+                        paidAt: body.paidAt
+                            ? new Date(body.paidAt)
+                            : null,
                         notes: body.notes,
                     }
                 })
