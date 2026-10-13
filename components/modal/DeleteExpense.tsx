@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import ModalContext from "@/context/modalContext";
 import type { ExpenseCategory } from "@/type/model"
 import { Trash } from 'lucide-react';
 import { toast } from "sonner";
@@ -9,6 +10,7 @@ type DeleteExpenseProps = {
 }
 
 const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
+    const { closeModal } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     
     const handleDelete = async(e: React.MouseEvent<HTMLButtonElement>, id: string) => {
@@ -28,8 +30,13 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
                         )
                     }
                     
+                    await response.json()
                     toast.success("Expense deleted successfully!")
-                    return await response.json()
+                    setTimeout(() => {
+                        closeModal()
+                    }, 100)
+
+                    return
                 }
 
                 case "FoodAndHousehold": {
@@ -45,8 +52,13 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
                         )
                     }
 
+                    await response.json()
                     toast.success("Expense deleted successfully!")
-                    return await response.json()
+                    setTimeout(() => {
+                        closeModal()
+                    }, 100)
+
+                    return
                 }
 
                 case "Transportation": {
@@ -62,8 +74,13 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
                         )
                     }
 
+                    await response.json()
                     toast.success("Expense deleted successfully!")
-                    return await response.json()
+                    setTimeout(() => {
+                        closeModal()
+                    }, 100)
+
+                    return
                 }
 
                 case "Health": {
@@ -96,8 +113,13 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
                         )
                     }
 
+                    await response.json()
                     toast.success("Expense deleted successfully!")
-                    return await response.json()
+                    setTimeout(() => {
+                        closeModal()
+                    }, 100)
+
+                    return
                 }
 
                 case "FamilyExpenses": {
@@ -113,8 +135,13 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
                         )
                     }
 
+                    await response.json()
                     toast.success("Expense deleted successfully!")
-                    return await response.json()
+                    setTimeout(() => {
+                        closeModal()
+                    }, 100)
+
+                    return
                 }
 
                 case "OtherExpenses": {
@@ -130,8 +157,13 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
                         )
                     }
 
+                    await response.json()
                     toast.success("Expense deleted successfully!")
-                    return await response.json()
+                    setTimeout(() => {
+                        closeModal()
+                    }, 100)
+
+                    return
                 }
 
                 default:
@@ -149,10 +181,6 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
                     : "Something went wrong while deleting the expense."
             )
         }
-    }
-
-    const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
     }
 
     useEffect(() => {
@@ -191,29 +219,19 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
             </p>
 
             <p 
-                className="text-md italic text-[#8B5E3C] mb-2"
+                className="text-md italic text-[#8B5E3C] mb-3"
                 style={{ fontFamily: "--font-playfair-display"}}
             >
                 This Action cannot be undone.
             </p>
 
-            <div className="flex items-center justify-evenly pt-4 w-full">
-                <button
-                    type="button"
-                    onClick={handleCancel}
-                    className="cancel-btn rounded-lg border border-[#B38B59] bg-[#F1E3D0] px-5 py-2.5 text-sm font-semibold text-[#6B4632] shadow-sm transition-all duration-200 ease-in-out cursor-pointer"
-                >
-                    Cancel
-                </button>
-
-                <button
-                    type="button"
-                    onClick={(e) => handleDelete(e, id)}
-                    className="del-btn rounded-lg bg-[#8B3A3A] px-5 py-2.5 text-sm font-semibold text-[#FFF8E7] shadow-sm transition-all duration-200 ease-in-out cursor-pointer"
-                >
-                    Delete Expense
-                </button>
-            </div>
+            <button
+                type="button"
+                onClick={(e) => handleDelete(e, id)}
+                className="del-btn rounded-lg bg-[#8B3A3A] px-5 py-2.5 text-sm font-semibold text-[#FFF8E7] shadow-sm transition-all duration-200 ease-in-out cursor-pointer"
+            >
+                Delete Expense
+            </button>
         </div>
     )
 }
