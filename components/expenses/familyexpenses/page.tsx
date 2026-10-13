@@ -230,6 +230,7 @@ const FamilyExpensesPage = () => {
                         columns={FamilyExpensesColumn}
                         viewLink="/expenses/FamilyExpenses/viewFamilyExpenses"
                         editLink = "/expenses/FamilyExpenses/editFamilyExpenses"
+                        delLink="/expenses/FamilyExpenses/deleteExpense"
                     />
                 </div>
             </div>

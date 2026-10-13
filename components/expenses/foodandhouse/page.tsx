@@ -230,6 +230,7 @@ const FoodAndHousePage = () => {
                             viewLink="/expenses/FoodAndHousehold/viewFoodAndHousehold"
                             editLink="/expenses/FoodAndHousehold/editFoodAndHousehold"
                             payLink="/expenses/FoodAndHousehold/payFoodAndHousehold"
+                            delLink="/expenses/FoodAndHousehold/deleteExpense"
                         />
                     </div>
                 </div>

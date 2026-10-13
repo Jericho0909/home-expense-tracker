@@ -249,6 +249,7 @@ const OtherExpensesPage = () => {
                         columns={OtherExpensesColumn}
                         viewLink="/expenses/OtherExpenses/viewOtherExpenses"
                         editLink = "/expenses/OtherExpenses/editOtherExpenses"
+                        delLink="/expenses/OtherExpenses/deleteExpense"
                     />
                 </div>
             </div>

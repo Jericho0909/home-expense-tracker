@@ -216,6 +216,7 @@ const HealthPage = () => {
                         columns={HealthColumn}
                         viewLink="/expenses/Health/viewHealth"
                         editLink = "/expenses/Health/editHealth"
+                        delLink="/expenses/Health/deleteExpense"
                     />
             </div>
             </div>
