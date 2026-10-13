@@ -218,4 +218,22 @@ select:-webkit-autofill:focus {
   .paid-btn:active {
     transform: translateY(1);
   }
+
+  .cancel-btn:hover{
+    background-color: #E5D0B5;
+    @apply shadow-md;
+  }
+
+  .cancel-btn:active{
+    transform: scale(0.95);
+  }
+
+  .del-btn:hover {
+    background-color: #702D2D;
+    @apply shadow-md;
+  }
+
+  .del-btn:active {
+    transform: scale(0.95);
+  }
 }

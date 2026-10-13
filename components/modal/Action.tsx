@@ -48,7 +48,7 @@ const ActionModal = ({category, action, id}: {category: ExpenseCategory; action:
         editOtherExpenses: <OtherExepensesModal id={id}/>,
         payUtilities: <UtilitiesPayModal id={id}/>,
         payFoodAndHousehold: <FoodAndHouseholdPayModal id={id}/>,
-        deleteExpense: <DeleteExpense category={category}/>
+        deleteExpense: <DeleteExpense category={category} id={id}/>
     } 
 
     useEffect(() => {

@@ -74,7 +74,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
 
             await response.json()
             setUtilityExpense(defaultData)
-
+            toast.success("Successfully saved!")
         }catch(error) {
             toast.error("Failed to save expense.")
             console.error("Error creating utility expense:", error)

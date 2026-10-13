@@ -12,16 +12,16 @@ export async function PUT(request: Request, { params }: { params: Promise<{ cate
                 const updatedUtilityExpense = await prisma.utilityExpense.update({
                     where: {id},
                     data: {
-                    name: body.name,
-                    expense: body.expense,
-                    amount: body.amount,
-                    status: body.status,
-                    billingStart: new Date(body.billingStart),
-                    billingEnd: new Date(body.billingEnd),
-                    dueDate: new Date(body.dueDate),
-                    paymentMethod: body.paymentMethod,
-                    notes: body.notes,
-                }
+                        name: body.name,
+                        expense: body.expense,
+                        amount: body.amount,
+                        status: body.status,
+                        billingStart: new Date(body.billingStart),
+                        billingEnd: new Date(body.billingEnd),
+                        dueDate: new Date(body.dueDate),
+                        paymentMethod: body.paymentMethod,
+                        notes: body.notes,
+                    }
                 })
 
                 return Response.json(
