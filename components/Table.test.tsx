@@ -26,7 +26,7 @@ beforeEach(() => {
 
 const dummyDataArr:DummyDataColumnType[] = [
     {
-        id: "1",
+        id: "776b6ebb-f535-4bb3-81ce-244e06622f3d",
         test: "Dummy Column Value"
     }
 ]
@@ -51,24 +51,26 @@ describe("Table", () => {
                 <Table
                     data={dummyDataArr}
                     columns={DummyDataColumn}
-                    viewLink="/expenses/utilities/viewUtilities"
-                    editLink="/expenses/utilities/editUtilities"
-                    payLink="/expenses/utilities/payUtilities"
+                    viewLink="/expenses/Utilities/viewUtilities"
+                    editLink="/expenses/Utilities/editUtilities"
+                    paidLink="/expenses/Utilities/paidUtilities"
+                    delLink="/expenses/Utilities/deleteExpense"
                 />
             </ModalProvider>
         )
         expect(screen.getByText("Dummy Column Value")).toBeInTheDocument()
     })
 
-    test("Should navigate to view page", () => {
+    test("Should navigate to view modal", () => {
         render(
             <ModalProvider>
                 <Table
                     data={dummyDataArr}
                     columns={DummyDataColumn}
-                    viewLink="/expenses/utilities/viewUtilities"
-                    editLink="/expenses/utilities/editUtilities"
-                    payLink="/expenses/utilities/payUtilities"
+                    viewLink="/expenses/Utilities/viewUtilities"
+                    editLink="/expenses/Utilities/editUtilities"
+                    paidLink="/expenses/Utilities/paidUtilities"
+                    delLink="/expenses/Utilities/deleteExpense"
                 />
             </ModalProvider>
         );
@@ -80,19 +82,20 @@ describe("Table", () => {
         });
 
         expect(mockPush).toHaveBeenCalledWith(
-            "/expenses/utilities/viewUtilities/1"
+            "/expenses/Utilities/viewUtilities/776b6ebb-f535-4bb3-81ce-244e06622f3d"
         )
     })
 
-    test("Should navigate to edit page", () => {
+    test("Should navigate to edit modal", () => {
         render(
             <ModalProvider>
                 <Table
                     data={dummyDataArr}
                     columns={DummyDataColumn}
-                    viewLink="/expenses/utilities/viewUtilities"
-                    editLink="/expenses/utilities/editUtilities"
-                    payLink="/expenses/utilities/payUtilities"
+                    viewLink="/expenses/Utilities/viewUtilities"
+                    editLink="/expenses/Utilities/editUtilities"
+                    paidLink="/expenses/Utilities/paidUtilities"
+                    delLink="/expenses/Utilities/deleteExpense"
                 />
             </ModalProvider>
         )
@@ -104,19 +107,20 @@ describe("Table", () => {
         });
 
         expect(mockPush).toHaveBeenCalledWith(
-            "/expenses/utilities/editUtilities/1"
+            "/expenses/Utilities/editUtilities/776b6ebb-f535-4bb3-81ce-244e06622f3d"
         )
     })
 
-    test("Should navigate to pay page", () => {
+    test("Should navigate to paid modal", () => {
         render(
             <ModalProvider>
                 <Table
                     data={dummyDataArr}
                     columns={DummyDataColumn}
-                    viewLink="/expenses/utilities/viewUtilities"
-                    editLink="/expenses/utilities/editUtilities"
-                    payLink="/expenses/utilities/payUtilities"
+                    viewLink="/expenses/Utilities/viewUtilities"
+                    editLink="/expenses/Utilities/editUtilities"
+                    paidLink="/expenses/Utilities/paidUtilities"
+                    delLink="/expenses/Utilities/deleteExpense"
                 />
             </ModalProvider>
         )
@@ -124,11 +128,36 @@ describe("Table", () => {
         const actionSelect = screen.getByRole("combobox");
 
         fireEvent.change(actionSelect, {
-            target: { value: "pay" },
+            target: { value: "setpaid" },
         });
 
         expect(mockPush).toHaveBeenCalledWith(
-            "/expenses/utilities/payUtilities/1"
+            "/expenses/Utilities/paidUtilities/776b6ebb-f535-4bb3-81ce-244e06622f3d"
+        )
+    })
+
+    test("Should navigate to delete modal", () => {
+        render(
+            <ModalProvider>
+                <Table
+                    data={dummyDataArr}
+                    columns={DummyDataColumn}
+                    viewLink="/expenses/Utilities/viewUtilities"
+                    editLink="/expenses/Utilities/editUtilities"
+                    paidLink="/expenses/Utilities/paidUtilities"
+                    delLink="/expenses/Utilities/deleteExpense"
+                />
+            </ModalProvider>
+        )
+
+        const actionSelect = screen.getByRole("combobox");
+
+        fireEvent.change(actionSelect, {
+            target: { value: "delete" },
+        });
+
+        expect(mockPush).toHaveBeenCalledWith(
+            "/expenses/Utilities/deleteExpense/776b6ebb-f535-4bb3-81ce-244e06622f3d"
         )
     })
 
@@ -138,8 +167,9 @@ describe("Table", () => {
                 <Table
                     data={dummyDataArr}
                     columns={DummyDataColumn}
-                    viewLink="/expenses/utilities/viewUtilities"
-                    editLink="/expenses/utilities/editUtilities"
+                    viewLink="/expenses/Utilities/viewUtilities"
+                    editLink="/expenses/Utilities/editUtilities"
+                    delLink="/expenses/Utilities/deleteExpense"
                 />
             </ModalProvider>
         );

@@ -10,7 +10,7 @@ interface TableProps<T extends { id: number | string }> {
     columns: TableColumn<T>[];
     viewLink: string;
     editLink: string;
-    payLink?: string;
+    paidLink?: string;
     delLink: string
 }
 
@@ -19,7 +19,7 @@ const Table = <T extends { id: number | string }>({
     columns,
     viewLink,
     editLink,
-    payLink,
+    paidLink,
     delLink
 }: TableProps<T>) => {
     const router = useRouter()
@@ -81,11 +81,11 @@ const Table = <T extends { id: number | string }>({
                                         router.push(`${delLink}/${idString}`)
                                     }
 
-                                    {payLink && action === "pay" && (
+                                    {paidLink && action === "setpaid" && (
                                         setActiveModal(null),
                                         setIsOpen(true),
                                         setIsEditing(true),
-                                        router.push(`${payLink}/${idString}`)
+                                        router.push(`${paidLink}/${idString}`)
                                     )}
 
                                     e.target.value = ""
@@ -97,8 +97,8 @@ const Table = <T extends { id: number | string }>({
                                 </option>
                                 <option value="view">View</option>
                                 <option value="edit">Edit</option>
-                                {payLink && (
-                                    <option value="pay">Set Paid</option>
+                                {paidLink && (
+                                    <option value="setpaid">Set Paid</option>
                                 )}
                                 <option value="delete">Delete</option>
                             </select>
