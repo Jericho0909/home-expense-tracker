@@ -34,6 +34,7 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
         type: "",
         category: "",
         status: "",
+        purchaseDate: "",
         notes: ""
     }
 
