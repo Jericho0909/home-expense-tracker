@@ -222,10 +222,20 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                         <select
                             id="status"
                             value={utilityExpense.status}
-                            onChange={(e) => setUtilityExpense((item) => ({
-                                ...item,
-                                status: e.target.value as StatusType
-                            }))}
+                            onChange={(e) => {
+                                const status = e.target.value as StatusType;
+                                setUtilityExpense((item) => {
+                                    const updatedItem = {
+                                        ...item,
+                                        status,
+                                    }
+                                    if (status !== "Paid") {
+                                        delete (updatedItem as Partial<typeof updatedItem>).paymentMethod
+                                        delete (updatedItem as Partial<typeof updatedItem>).paidAt
+                                    }
+                                    return updatedItem;
+                                })
+                            }}
                             className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
                             style={{fontFamily: "var(--font-libre-baskerville)"}}
                             required

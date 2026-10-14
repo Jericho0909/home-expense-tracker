@@ -166,7 +166,9 @@ export async function POST(
                         category: body.category,
                         status: body.status,
                         purchaseDate:new Date(body.purchaseDate),
-                        paymentMethod: body.paymentMethod,
+                        paymentMethod: body.status === "Paid"
+                        ? body.paymentMethod
+                        : null,
                         notes: body.notes
                     }
                 })

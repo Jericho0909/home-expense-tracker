@@ -25,6 +25,12 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = foodAndHouseholdExpenses.find((key) => key.id === id)
+    const currentDate = new Date().toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    })
+
     const defaultData: FoodHouseholdExpenseForm = {
         id: "0",
         expense: "FoodAndHousehold",
@@ -34,7 +40,7 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
         type: "",
         category: "",
         status: "",
-        purchaseDate: "",
+        purchaseDate: currentDate,
         notes: ""
     }
 
@@ -64,7 +70,6 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
 
     const handleSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(foodHouseholdExpenses)
         try{
             setIsSendingData(true)
             const response = await fetch("/api/expenses/FoodAndHousehold", {
@@ -217,10 +222,19 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                         <select
                             id="status"
                             value={foodHouseholdExpenses.status}
-                            onChange={(e) => setFoodHouseholdExpenses((item) => ({
-                                ...item,
-                                status: e.target.value as StatusType
-                            }))}
+                            onChange={(e) => {
+                                const status = e.target.value as StatusType;
+                                setFoodHouseholdExpenses((item) => {
+                                    const updatedItem = {
+                                        ...item,
+                                        status,
+                                    }
+                                    if (status !== "Paid") {
+                                        delete (updatedItem as Partial<typeof updatedItem>).paymentMethod;
+                                    }
+                                    return updatedItem;
+                                })
+                            }}
                             className="cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
                             style={{fontFamily: "var(--font-libre-baskerville)"}}
                             required
@@ -452,8 +466,7 @@ const FoodAndHouseholdModal = ({id}: {id?: string | null}) => {
                         </div>
                     )}
 
-                    {foodHouseholdExpenses.status === "Paid" && (
-                        
+                    {isEditing && (
                         <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                             <label
                                 htmlFor="purchaseDate"
