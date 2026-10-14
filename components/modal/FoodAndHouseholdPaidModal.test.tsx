@@ -1,7 +1,7 @@
 import { render, screen, act } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 import userEvent from "@testing-library/user-event";
-import FoodAndHouseholdPayModal from "./FoodAndHouseholdPayModal";
+import FoodAndHouseholdPayModal from "./FoodAndHouseholdPaidModal";
 import { ModalProvider } from "@/context/modalContext";
 
 jest.mock("next/navigation", () => ({

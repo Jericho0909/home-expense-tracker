@@ -261,8 +261,8 @@ export type ActionContent =
     | "editHouseMaintenance"
     | "editFamilyExpenses"
     | "editOtherExpenses"
-    | "payUtilities"
-    | "payFoodAndHousehold"
+    | "paidUtilities"
+    | "paidFoodAndHousehold"
     | "deleteExpense"
 
 

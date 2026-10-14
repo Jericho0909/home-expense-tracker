@@ -98,7 +98,7 @@ const Table = <T extends { id: number | string }>({
                                 <option value="view">View</option>
                                 <option value="edit">Edit</option>
                                 {payLink && (
-                                    <option value="pay">Pay</option>
+                                    <option value="pay">Set Paid</option>
                                 )}
                                 <option value="delete">Delete</option>
                             </select>

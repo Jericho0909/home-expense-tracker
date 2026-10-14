@@ -207,7 +207,7 @@ const UtilitiesPage = () => {
                             columns={utilitiesColumn}
                             viewLink="/expenses/Utilities/viewUtilities"
                             editLink="/expenses/Utilities/editUtilities"
-                            payLink="/expenses/Utilities/payUtilities"
+                            payLink="/expenses/Utilities/paidUtilities"
                             delLink="/expenses/Utilities/deleteExpense"
                         />
                     ) : (

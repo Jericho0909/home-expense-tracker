@@ -21,6 +21,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ cate
                         dueDate: new Date(body.dueDate),
                         paymentMethod: body.paymentMethod,
                         notes: body.notes,
+                        paidAt: new Date(body.paidAt)
                     }
                 })
 
@@ -42,9 +43,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ cate
                         type: body.type,
                         category: body.category,
                         status: body.status,
-                        purchaseDate: body.purchaseDate
-                            ? new Date(body.purchaseDate)
-                            : null,
+                        purchaseDate: new Date(body.purchaseDate),
                         paymentMethod: body.paymentMethod,
                         notes: body.notes
                     }

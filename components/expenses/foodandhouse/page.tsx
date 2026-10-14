@@ -229,7 +229,7 @@ const FoodAndHousePage = () => {
                             columns={FoodAndHouseColumn}
                             viewLink="/expenses/FoodAndHousehold/viewFoodAndHousehold"
                             editLink="/expenses/FoodAndHousehold/editFoodAndHousehold"
-                            payLink="/expenses/FoodAndHousehold/payFoodAndHousehold"
+                            payLink="/expenses/FoodAndHousehold/paidFoodAndHousehold"
                             delLink="/expenses/FoodAndHousehold/deleteExpense"
                         />
                     </div>

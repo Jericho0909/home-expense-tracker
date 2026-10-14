@@ -20,8 +20,8 @@ import HealthModal from "./HealthModal";
 import HouseMaintenanceModal from "./HouseMaintenanceModal";
 import FamilyExpensesModal from "./FamilyExpensesModal";
 import OtherExepensesModal from "./OtherExpensesModal";
-import UtilitiesPayModal from "./UtilitiesPayModal";
-import FoodAndHouseholdPayModal from "./FoodAndHouseholdPayModal";
+import UtilitiesPaidModal from "./UtilitiesPaidModal";
+import FoodAndHouseholdPaidModal from "./FoodAndHouseholdPaidModal";
 import DeleteExpense from "./DeleteExpense";
 import type { ActionContent, ExpenseCategory } from "../../type/model"
  
@@ -46,8 +46,8 @@ const ActionModal = ({category, action, id}: {category: ExpenseCategory; action:
         editHouseMaintenance: <HouseMaintenanceModal id={id}/>,
         editFamilyExpenses: <FamilyExpensesModal id={id}/>,
         editOtherExpenses: <OtherExepensesModal id={id}/>,
-        payUtilities: <UtilitiesPayModal id={id}/>,
-        payFoodAndHousehold: <FoodAndHouseholdPayModal id={id}/>,
+        paidUtilities: <UtilitiesPaidModal id={id}/>,
+        paidFoodAndHousehold: <FoodAndHouseholdPaidModal id={id}/>,
         deleteExpense: <DeleteExpense category={category} id={id}/>
     } 
 
