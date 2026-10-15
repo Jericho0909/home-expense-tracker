@@ -23,6 +23,11 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = houseMaintenanceExpenses.find((key) => key.id === id)
+    const currentDate = new Date().toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    })
 
     const defaultData: HouseMaintenanceExpenseForm = {
         id: "0",
@@ -31,7 +36,7 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
         createdAt: "",
         description: "",
         category: "",
-        date: "",
+        date: currentDate,
         paymentMethod: "",
         notes: ""
     }
@@ -363,32 +368,34 @@ const HouseMaintenanceModal = ({id}: {id?: string | null}) => {
                         </div>
                     </div>
 
-                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
-                        <label
-                            htmlFor="date"
-                            className="text-base font-semibold"
-                            style={{
-                                fontFamily: "var(--font-playfair-display)"
-                            }}
-                        >
-                            Date:
-                        </label>
-                        <input
-                            id="date"
-                            type="date"
-                            name="date"
-                            value={houseMaintenanceExpense.date.split("T")[0]}
-                            onChange={(e) => setHouseMaintenanceExpense((item) => ({
-                                ...item,
-                                [e.target.name]: e.target.value
+                    {isEditing && (
+                        <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                            <label
+                                htmlFor="date"
+                                className="text-base font-semibold"
+                                style={{
+                                    fontFamily: "var(--font-playfair-display)"
+                                }}
+                            >
+                                Date:
+                            </label>
+                            <input
+                                id="date"
+                                type="date"
+                                name="date"
+                                value={houseMaintenanceExpense.date.split("T")[0]}
+                                onChange={(e) => setHouseMaintenanceExpense((item) => ({
+                                    ...item,
+                                    [e.target.name]: e.target.value
 
-                            }))}
-                            className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
-                            style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                            placeholder=""
-                            required
-                        />
-                    </div>
+                                }))}
+                                className="bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                placeholder=""
+                                required
+                            />
+                        </div>
+                    )}
 
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                         <label

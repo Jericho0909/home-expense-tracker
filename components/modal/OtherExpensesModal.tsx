@@ -23,6 +23,11 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ isSendingData, setIsSendingData ] = useState<boolean>(false)
     const findExpenses = otherExpenses.find((key) => key.id === id)
+    const currentDate = new Date().toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    })
 
     const defaultData: OtherExpenseForm = {
         id: "0",
@@ -31,7 +36,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
         createdAt: "",
         description: "",
         category: "",
-        date: "",
+        date: currentDate,
         paymentMethod: "",
         notes: ""
     }
@@ -366,7 +371,8 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                         </div>
                     </div>
 
-                    <div className="flex justify-center flex-col gap-2 mb-2 p-1">
+                    {isEditing && (
+                        <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                         <label
                             htmlFor="date"
                             className="text-base font-semibold"
@@ -392,6 +398,7 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
                             required
                         />
                     </div>
+                    )}
 
                     <div className="flex justify-center flex-col gap-2 mb-2 p-1">
                         <label
