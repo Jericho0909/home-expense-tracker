@@ -8,7 +8,6 @@ import SummaryCardContent from "@/components/SummaryCardContent"
 import FoodAndHouseholdModal from "../../modal/FoodAndHouseholdModal"
 import Table from "@/components/Table"
 import Loading from "../../Loading"
-import { FoodHouseholdData } from "@/constant/expensesData"
 import type { TableColumn, 
     FoodHouseholdExpense,
     SummaryType
@@ -29,22 +28,24 @@ const FoodAndHousePage = () => {
         year: "numeric",
     })
 
-    const foodItems = FoodHouseholdData.filter(
+    const foodItems = foodAndHouseholdExpenses.filter(
         (item) => item.type === "Food"
     )
-    const householdItems = FoodHouseholdData.filter(
+    const householdItems = foodAndHouseholdExpenses.filter(
         (item) => item.type === "Household"
     )
-    const totalFood = FoodHouseholdData
+    const totalFood = foodAndHouseholdExpenses
         .filter((item) => item.type === "Food")
         .reduce((total, item) => total + item.amount, 0)
-    const totalHousehold = FoodHouseholdData
+    const totalHousehold = foodAndHouseholdExpenses
         .filter((item) => item.type === "Household")
         .reduce((total, item) => total + item.amount, 0)
     
     const total = totalFood + totalHousehold    
     const budget = 15000
     const budgetLeft = budget - total
+
+    console.log(total)
 
     const SummaryDataArr:SummaryType[] = [
         {
@@ -229,7 +230,7 @@ const FoodAndHousePage = () => {
                             columns={FoodAndHouseColumn}
                             viewLink="/expenses/FoodAndHousehold/viewFoodAndHousehold"
                             editLink="/expenses/FoodAndHousehold/editFoodAndHousehold"
-                            payLink="/expenses/FoodAndHousehold/paidFoodAndHousehold"
+                            paidLink="/expenses/FoodAndHousehold/paidFoodAndHousehold"
                             delLink="/expenses/FoodAndHousehold/deleteExpense"
                         />
                     </div>

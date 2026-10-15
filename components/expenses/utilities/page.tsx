@@ -27,6 +27,11 @@ const UtilitiesPage = () => {
         year: "numeric",
     })
 
+    const expensesTotal = utilitiesExpenses.reduce(
+        (total, expense) => total + expense.amount,
+        0
+    )
+
 
     const utilitiesColumn: TableColumn<UtilityExpense>[] = [
         {
@@ -48,7 +53,7 @@ const UtilitiesPage = () => {
                     <PhilippinePeso
                         size={16}
                     />
-                    {item.amount}
+                    {item.amount.toLocaleString("en-PH")}
                 </span>,
         },
         {
@@ -156,7 +161,7 @@ const UtilitiesPage = () => {
                                     <PhilippinePeso
                                         size={16}
                                     />
-                                    10,000
+                                    {expensesTotal.toLocaleString("en-PH")}
                                 </span>
                                 <span className="flex items-center gap-1">
                                     {currentDate}

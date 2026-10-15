@@ -39,15 +39,18 @@ const SummaryCardContent = ({ summaryDataArr, budgetLeft, budget }: SummaryCardC
                             </div>
                         )}
                         {item.total !== undefined && (
-                            <p className="flex items-center flex-wrap">
-                                
-                                <PhilippinePeso
-                                    size={16}
-                                />
-                                {item.total?.toLocaleString("en-US")}
-                                {" "}
-                                {currentDate}
-                            </p>
+                            <div className="flex justify-center flex-col">
+                                <span className="flex items-center flex-wrap">
+                                    <PhilippinePeso
+                                        size={16}
+                                    />
+                                    {item.total?.toLocaleString("en-US")}
+                                    {" "}
+                                </span>
+                                <span>
+                                    {currentDate}
+                                </span>
+                            </div>
                         )}
                         {item.budget !== undefined && (
                             <p 
