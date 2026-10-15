@@ -311,6 +311,28 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ c
             }, { status: 400 })
         }
     }catch (error) {
-        
+        if (
+            error instanceof Prisma.PrismaClientKnownRequestError &&
+            error.code === "P2025"
+        ) {
+            return Response.json(
+                {
+                    success: false,
+                    error: "Expense not found",
+                },
+                { status: 404 }
+            );
+        }
+
+        console.error("Failed to delete family member:", error);
+
+        return Response.json(
+            {
+                success: false,
+                error: "Failed to delete expense",
+            },
+            { status: 500 }
+        );
     }
+    
 }

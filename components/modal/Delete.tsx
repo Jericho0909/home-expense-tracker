@@ -1,15 +1,16 @@
 import { useState, useEffect, useContext } from "react"
 import ModalContext from "@/context/modalContext";
-import type { ExpenseCategory } from "@/type/model"
+import type { Category, ActionContent } from "@/type/model"
 import { Trash } from 'lucide-react';
 import { toast } from "sonner";
 
 type DeleteExpenseProps = {
-    category: ExpenseCategory
+    category?: Category
+    action?: ActionContent
     id: string
 }
 
-const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
+const Delete = ({category, action, id}: DeleteExpenseProps) => {
     const { closeModal } = useContext(ModalContext)!
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     
@@ -174,11 +175,42 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
             }
         }catch(error){
             console.error("Failed to delete expense:", error);
-
             toast.error(
                 error instanceof Error
-                    ? error.message
-                    : "Something went wrong while deleting the expense."
+                ? error.message
+                : "Something went wrong while deleting the expense."
+            )
+        }
+    }
+
+    const handleDelMember = async(e: React.MouseEvent<HTMLButtonElement>, id: string) => {
+        e.preventDefault()
+        try{
+            const response = await fetch(`/api/familyMembers/deleteFamilyMember/${id}`, 
+                {
+                    method: "DELETE"
+                }
+            )
+            if(!response.ok){
+                throw new Error(
+                    `Failed to delete family member: ${response.status} ${response.statusText}`
+                )
+            }
+                
+            await response.json()
+            toast.success("Member deleted successfully!")
+            setTimeout(() => {
+                closeModal()
+            }, 100)
+
+            return
+
+        }catch(error){
+            console.error("Failed to delete family member:", error);
+            toast.error(
+                error instanceof Error
+                ? error.message
+                : "Something went wrong while deleting the family member."
             )
         }
     }
@@ -215,7 +247,10 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
                 className="text-lg italic text-[#8B5E3C]"
                 style={{ fontFamily: "--font-playfair-display"}}
             >
-                Are you sure you want to delete this expense?
+                {action === "deleteFamilyMember"
+                    ? "Are you sure you want to delete this family member?"
+                    : "Are you sure you want to delete this expense?"
+                }
             </p>
 
             <p 
@@ -227,13 +262,16 @@ const DeleteExpense = ({category, id}: DeleteExpenseProps) => {
 
             <button
                 type="button"
-                onClick={(e) => handleDelete(e, id)}
+                onClick={action !== "deleteFamilyMember" ? (e) => handleDelete(e, id) : (e) => handleDelMember(e, id)}
                 className="del-btn rounded-lg bg-[#8B3A3A] px-5 py-2.5 text-sm font-semibold text-[#FFF8E7] shadow-sm transition-all duration-200 ease-in-out cursor-pointer"
             >
-                Delete Expense
+                {action === "deleteFamilyMember"
+                    ? "Delete Family Member"
+                    : "Delete Expense"
+                }
             </button>
         </div>
     )
 }
 
-export default DeleteExpense
+export default Delete

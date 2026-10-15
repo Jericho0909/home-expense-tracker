@@ -44,3 +44,47 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
         )
     }
 }
+
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
+
+    try{
+        const deleteMember = await prisma.familyMember.delete({
+            where: {
+                id
+            }
+        })
+
+        return Response.json(
+            {
+                success: true,
+                data: deleteMember,
+            },
+            { status: 200 }
+        )
+    }catch(error){
+        if(
+            error instanceof Prisma.PrismaClientKnownRequestError &&
+            error.code === "P2025"
+        ){
+            return Response.json(
+                {
+                    success: false,
+                    error: "Family member not found",
+                },
+                { status: 404 }
+            )
+        }
+
+        console.error("Failed to delete family member:", error)
+
+        return Response.json(
+            {
+                success: false,
+                error: "Failed to delete family member",
+            },
+            { status: 500 }
+        )
+    }
+    
+}

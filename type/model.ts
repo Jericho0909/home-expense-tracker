@@ -243,6 +243,8 @@ export type ExpenseCategory =
     | "FamilyExpenses"
     | "OtherExpenses"
 
+export type Category = ExpenseCategory | "FamilyMember"
+
 export type ActionContent = 
     | "editContribution" 
     | "editMember"
@@ -264,5 +266,6 @@ export type ActionContent =
     | "paidUtilities"
     | "paidFoodAndHousehold"
     | "deleteExpense"
+    | "deleteFamilyMember"
 
 

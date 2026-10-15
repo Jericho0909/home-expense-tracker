@@ -1,7 +1,7 @@
 import ActionModal from "@/components/modal/Action";
-import type { ActionContent, ExpenseCategory } from "@/type/model";
+import type { ActionContent, Category } from "@/type/model";
 const Action = async ({params}: {params: Promise<{ 
-    category: ExpenseCategory; action: ActionContent; id: string }>}) => {
+    category: Category; action: ActionContent; id: string }>}) => {
     const { category, action, id } = await params
     
     return (
