@@ -145,7 +145,12 @@ export type SummaryType = {
 export type TableColumn<T> = {
     label: string;
     render: (item: T) => ReactNode;
-};
+}
+
+export type ExpensesBudgetSummaryType = {
+    title: string
+    amount: number
+}
 
 export type Expense = {
     id: string;
@@ -214,6 +219,16 @@ export type OtherExpense = Expense & {
     date: string;
     paymentMethod: PaymentMethod;
     notes: string;
+}
+
+export type ExpenseBudgetFormData = {
+  budgetUtilities: number
+  budgetFoodAndHousehold: number
+  budgetTransportation: number
+  budgetHealth: number
+  budgetHouseMaintenance: number
+  budgetFamilyExpenses: number
+  budgetOtherExpenses: number
 }
 
 export type ExpenseData =

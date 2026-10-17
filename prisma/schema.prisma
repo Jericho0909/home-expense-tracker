@@ -122,6 +122,25 @@ model FamilyMember {
 
 }
 
+model ExpenseBudget {
+  id                     String   @id @default(uuid())
+  year                   Int
+  month                  Int
+
+  budgetUtilities        Decimal  @default(0) @db.Decimal(10, 2)
+  budgetFoodAndHousehold Decimal  @default(0) @db.Decimal(10, 2)
+  budgetTransportation   Decimal  @default(0) @db.Decimal(10, 2)
+  budgetHealth            Decimal  @default(0) @db.Decimal(10, 2)
+  budgetHouseMaintenance Decimal  @default(0) @db.Decimal(10, 2)
+  budgetFamilyExpenses   Decimal  @default(0) @db.Decimal(10, 2)
+  budgetOtherExpenses    Decimal  @default(0) @db.Decimal(10, 2)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([year, month])
+}
+
 // Enum
 
 enum Expenses {
