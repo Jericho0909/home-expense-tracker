@@ -23,7 +23,7 @@ export default function RootLayout({ children, modal }: Readonly<{
                 </Modal>
             )}
             <Header/>
-            <div className="mt-20 p-4 min-h-screen w-full bg-[#F1E3D0]">
+            <div className="mt-20 p-4 min-h-screen w-full bg-white">
                 <AnimatePresence>
                     {isSidebarOpen && <Sidebar />}
                 </AnimatePresence>

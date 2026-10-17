@@ -236,4 +236,12 @@ select:-webkit-autofill:focus {
   .del-btn:active {
     transform: scale(0.95);
   }
+
+  .save-btn:hover {
+    background-color: #5C4033;
+  }
+
+  .save-btn:active {
+    transform: translateY(1);
+  }
 }

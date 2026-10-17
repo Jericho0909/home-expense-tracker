@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext";
 import FamilyMemberContext from "@/context/familyMemberContext";
 import ModalContext from "@/context/modalContext";
@@ -17,7 +17,26 @@ import { HandCoins,
     PhilippinePeso, 
     User,
     Plus,
+    Wallet
 } from 'lucide-react';
+
+type CategoryExpense = 
+    | "Utilities"
+    | "FoodAndHousehold"
+    | "Transportation"
+    | "Health"
+    | "HouseMaintenance"
+    | "FamilyExpenses"
+    | "OtherExpenses"
+
+type ExpenseTypes = {
+    id: string
+    category: CategoryExpense | "";
+    amount: number;
+    createdAt: string
+    updatedAt: string
+}
+
 
 const BudgerSettingPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
@@ -27,6 +46,16 @@ const BudgerSettingPage = () => {
         month: "long",
         year: "numeric",
     })
+
+    const defaultExpense: ExpenseTypes = {
+        id: "",
+        category: "",
+        amount: 0,
+        createdAt: "",
+        updatedAt: "",
+    }
+
+    const [ expenseBudget, setExpenseBudget ] = useState<ExpenseTypes> (defaultExpense)
 
 
     const totalBudget = familyMembers.reduce((total, member) => total + member.money, 0)
@@ -49,7 +78,7 @@ const BudgerSettingPage = () => {
         }
     ]
 
-    const ExpensesBudgetSummary: ExpensesBudgetSummaryType[] =[
+    const ExpensesBudgetSummary: ExpensesBudgetSummaryType[] = [
         {
             title: "Utilities",
             amount: 1000
@@ -78,6 +107,16 @@ const BudgerSettingPage = () => {
             title: "Other Expenses",
             amount: 1000
         }
+    ]
+
+    const Category: CategoryExpense[] = [
+        "Utilities",
+        "FoodAndHousehold",
+        "Transportation",
+        "Health",
+        "HouseMaintenance",
+        "FamilyExpenses",
+        "OtherExpenses"
     ]
 
     const OpenModal = () => {
@@ -177,7 +216,7 @@ const BudgerSettingPage = () => {
                 </div>
             </div>
 
-            <div className="block w-4xl h-auto p-2 border border-[#B38B59]">
+            <div className="block w-4xl h-auto p-2 border border-[#B38B59] mb-8">
                 <div className="block mb-2">
                     <p 
                         className=" text-lg font-bold mb-1 text-[#3B2416]"
@@ -196,7 +235,9 @@ const BudgerSettingPage = () => {
 
                 <div className="flex flex-col p-2 border-y-2 border-black">
                     {ExpensesBudgetSummary.map((item) => (
-                        <div className="flex items-center justify-around w-full p-2">
+                        <div 
+                            key={item.title}
+                            className="flex items-center justify-around w-full p-2">
                             <span className="flex-1">
                                 {item.title}
                             </span>
@@ -239,7 +280,121 @@ const BudgerSettingPage = () => {
 
             </div>
 
-            <BudgetForm />
+            <div className="flex flex-col items-center justify-center w-full">
+                <div className="flex flex-col w-md p-4 bg-[#F5F0E6] rounded-lg">
+                    <div className="flex items-center gap-1">
+                        <div className="p-2 rounded-md bg-[#F1E3D0]">
+                            <Wallet
+                                size={32}
+                                color="brown"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <span
+                                className="text-base"
+                                style={{ fontFamily: "var(--font-cinzel)"}}
+                            >
+                                Set Monthly Budget
+                            </span>
+
+                            <span
+                                className="text-sm italic text-[#8B5E3C]"
+                                style={{ fontFamily: "var(--font-cinzel)"}}
+                            >
+                                Manage your household spending limits
+                            </span>
+                        </div>
+                    </div>
+                    <div className="flex border-b-2 border-black w-full mt-3">
+
+                    </div>
+                    <form
+                        className="flex flex-col relative mt-3"
+                    >
+                        <div className="flex items-center justify-center gap-2 mb-2 p-1 w-full">
+                            <label
+                                htmlFor="expenses"
+                                className="text-base font-semibold"
+                                style={{
+                                    fontFamily: "var(--font-playfair-display)"
+                                }}
+                            >
+                                Expenses:
+                            </label>
+
+                            <select
+                                id="expenses"
+                                name="category"
+                                value={expenseBudget.category}
+                                onChange={(e) => setExpenseBudget((item) => ({
+                                    ...item,
+                                    [e.target.name]: e.target.value as CategoryExpense
+                                }))}
+                                className="flex-1 cursor-pointer rounded-md border border-[#6B4632] bg-[#F1E3D0] px-3 py-2 text-sm text-[#5C4033] outline-none"
+                                style={{fontFamily: "var(--font-libre-baskerville)"}}
+                                required
+                            >
+                                <option 
+                                    value=""
+                                    className="cursor-pointer" 
+                                    disabled
+                                >
+                                    Select expenses
+                                </option>
+                                {Category.map((expense) => (
+                                    <option 
+                                        key={expense}
+                                        value={expense}
+                                    >
+                                        {expense}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="flex items-center justify-center gap-2 mb-2 p-1">
+                            <label
+                                htmlFor="amount"
+                                className="text-base font-semibold"
+                                style={{
+                                    fontFamily: "var(--font-playfair-display)"
+                                }}
+                            >
+                                Amount:
+                            </label>
+                            <input
+                                id="amount"
+                                type="number"
+                                name="amount"
+                                min="0"
+                                step="0.01"
+                                value={expenseBudget.amount || ""}
+                                onChange={(e) => setExpenseBudget((item) => ({
+                                    ...item,
+                                    [e.target.name]: Number(e.target.value)
+
+                                }))}
+                                onKeyDown={(e) => {
+                                    if (["e", "E", "+", "-"].includes(e.key)) {
+                                        e.preventDefault();
+                                    }
+                                }}
+                                className="flex-1 no-spinner bg-[#F1E3D0] border border-[#B38B59] text-[#3B2416] text-sm rounded-lg p-2 focus:ring-[#B38B59] focus:border-[#B38B59]"
+                                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                                placeholder=""
+                                required
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="save-btn w-full rounded-md bg-[#6B4632] px-4 py-2 text-sm font-semibold text-[#F5F5DC] cursor-pointer transition-all duration-150 ease-in-out"
+                        >
+                            Save
+                        </button>
+                    </form>
+                </div>
+            </div>
         </section>
     )
 }

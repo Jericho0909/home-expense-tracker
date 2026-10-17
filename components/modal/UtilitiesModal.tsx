@@ -169,7 +169,7 @@ const UtilitiesModal = ({id}: {id?: string | null}) => {
                 </span>
             </div>
             <form 
-                className="flex flex-col relative "
+                className="flex flex-col relative"
                 onSubmit={isEditing ? handleEdit : handleSubmit}
             >
                 <div className={isSendingData ? "blur-[1px]" : ""}>
