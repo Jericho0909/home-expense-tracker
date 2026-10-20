@@ -221,6 +221,24 @@ export type OtherExpense = Expense & {
     notes: string;
 }
 
+export type Member = {
+    id: string;
+    name: string;
+    familyRole: FamilyRole;
+    money: number;
+    createdAt: string;
+}
+
+export type ExpenseBudget = {
+    id: string;
+    category: ExpenseCategory;
+    month: Number;
+    year: Number;
+    amount: Number;
+    createdAt: string;
+    updatedAt: string;
+}
+
 export type ExpenseBudgetFormData = {
   budgetUtilities: number
   budgetFoodAndHousehold: number
@@ -231,19 +249,13 @@ export type ExpenseBudgetFormData = {
   budgetOtherExpenses: number
 }
 
+
 export type ExpenseData =
     | UtilityExpense
     | FoodHouseholdExpense
     | TransportationExpense
     | HealthExpense;
 
-export type Member = {
-    id: string;
-    name: string;
-    familyRole: FamilyRole;
-    money: number;
-    createdAt: string;
-}
 
 export type ModalContents =
     | ExpenseSection
