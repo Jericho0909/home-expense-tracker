@@ -25,7 +25,7 @@ const Card = ({ member }: CardProps) => {
         setIsEditing(true)
     }
     return (
-        <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full ">
+        <div className="flex justify-start flex-col p-1 bg-[#F5F0E6] border border-[#B38B59] rounded-lg w-full ">
             <span
                 className="font-bold text-[#3B2416] text-base"
                 style={{ fontFamily: "var(--font-cinzel)"}}

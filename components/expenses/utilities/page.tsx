@@ -182,7 +182,7 @@ const UtilitiesPage = () => {
                 </div>
             )}
 
-            <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
+            <div className="flex w-full h-72  py-1 px-2 bg-[#F5F0E6] border border-[#B38B59] rounded-lg mb-8">
                 <div className="flex-2">
                     <span
                         className="font-bold text-[#3B2416]"
@@ -190,21 +190,29 @@ const UtilitiesPage = () => {
                     >
                         Monthly Utility Expenses
                     </span>
+
+                    <div className="flex border-b-2 border-black w-full mt-3">
+
+                </div>
                 </div>
             </div>
 
             <div
-                className={`w-5xl border border-[#B38B59] mb-8 ${
+                className={`w-full  py-1 px-2 bg-[#F5F0E6] border border-[#B38B59] rounded-lg  mb-8 ${
                     utilitiesExpenses.length === 0 ? "h-72" : "h-auto"
                 }`}
             >
-                <div className="flex flex-col p-1 h-full">
+                <div className="flex flex-col h-full">
                     <span
                         className="font-bold text-[#3B2416]"
                         style={{ fontFamily: "var(--font-cinzel)" }}
                     >
                         Utility Bills
                     </span>
+
+                    <div className="flex border-b-2 border-black w-full mt-3">
+
+                    </div>
                     {utilitiesExpenses.length > 0 ? 
                     (
                         <Table

@@ -5,7 +5,7 @@ interface SummaryCardsProps {
 
 const SummaryCards = ({ title, content }: SummaryCardsProps) => {
     return (
-        <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full h-24">
+        <div className="flex justify-start flex-col p-1 bg-[#F5F0E6] border border-[#B38B59] rounded-lg w-full h-24">
             <span
                 className="font-bold text-[#3B2416] text-base"
                 style={{ fontFamily: "var(--font-cinzel)"}}

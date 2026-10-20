@@ -163,7 +163,7 @@ const BudgerSettingPage = () => {
                         member={member}
                     />
                 ))}
-                <div className="flex justify-start flex-col p-1 border border-[#B38B59] w-full ">
+                <div className="flex justify-start flex-col p-1 bg-[#F5F0E6] border border-[#B38B59] rounded-lg w-full ">
                     <span
                         className="font-bold text-[#3B2416] text-base"
                         style={{ fontFamily: "var(--font-cinzel)"}}
@@ -181,7 +181,7 @@ const BudgerSettingPage = () => {
                 <button
                     type="button"
                     onClick={OpenModal}
-                    className="add-member-btn flex flex-col items-center justify-center font-bold text-[#3B2416] text-base border cursor-pointer transition-all ease-in-out duration-75"
+                    className="add-member-btn flex flex-col items-center justify-center font-bold text-[#3B2416] text-base bg-[#F5F0E6] border border-[#B38B59] rounded-lg  cursor-pointer transition-all ease-in-out duration-75"
                     style={{ fontFamily: "var(--font-cinzel)"}}
                 >
                     <Plus
@@ -193,7 +193,7 @@ const BudgerSettingPage = () => {
                 </button>
             </div>
 
-            <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
+            <div className="w-full h-auto py-1 px-2 bg-[#F5F0E6] border border-[#B38B59] rounded-lg mb-8">
                 <span
                     className="font-bold text-[#3B2416]"
                     style={{ fontFamily: "var(--font-cinzel)"}}
@@ -216,72 +216,8 @@ const BudgerSettingPage = () => {
                 </div>
             </div>
 
-            <div className="block w-4xl h-auto p-2 border border-[#B38B59] mb-8">
-                <div className="block mb-2">
-                    <p 
-                        className=" text-lg font-bold mb-1 text-[#3B2416]"
-                        style={{ fontFamily: "var(--font-cinzel)"}}
-                    >
-                        Monthly Budget Settings
-                    </p>
-
-                    <span
-                        className="text-base italic text-[#8B5E3C]"
-                        style={{ fontFamily: "var(--font-cinzel)"}}
-                    >
-                        Budget period: {currentDate}
-                    </span>
-                </div>
-
-                <div className="flex flex-col p-2 border-y-2 border-black">
-                    {ExpensesBudgetSummary.map((item) => (
-                        <div 
-                            key={item.title}
-                            className="flex items-center justify-around w-full p-2">
-                            <span className="flex-1">
-                                {item.title}
-                            </span>
-                            <span className="flex items-center flex-1">
-                                <PhilippinePeso
-                                    size={16}
-                                />
-                                {item.amount?.toLocaleString("en-US")}
-                                {" "}
-                            </span>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="flex items-center p-2 w-full">
-                    <div className="flex flex-col flex-1 py-2">
-                        <span
-                            className="text-base"
-                            style={{ fontFamily: "var(--font-cinzel)"}}
-                        >
-                            Total Monthly Budget
-                        </span>
-
-                        <span
-                            className="text-[12px] italic text-[#8B5E3C]"
-                            style={{ fontFamily: "var(--font-cinzel)"}}
-                        >
-                            Illustrative example only
-                        </span>
-                    </div>
-                    <div className="flex justify-center flex-1">
-                        <span className="text-2xl flex items-center">
-                            <PhilippinePeso
-                                size={24}
-                            />
-                            10000
-                        </span>
-                    </div>
-                </div>
-
-            </div>
-
-            <div className="flex flex-col items-center justify-center w-full">
-                <div className="flex flex-col w-md p-4 bg-[#F5F0E6] rounded-lg">
+            <div className="flex flex-col justify-center w-full mb-8">
+                <div className="flex flex-col w-lg p-4 bg-[#F5F0E6] border border-[#B38B59] rounded-lg">
                     <div className="flex items-center gap-1">
                         <div className="p-2 rounded-md bg-[#F1E3D0]">
                             <Wallet
@@ -394,7 +330,72 @@ const BudgerSettingPage = () => {
                         </button>
                     </form>
                 </div>
+            </div>  
+
+            <div className="block w-full h-auto p-2 bg-[#F5F0E6] border border-[#B38B59] rounded-lg">
+                <div className="block mb-2">
+                    <p 
+                        className=" text-lg font-bold mb-1 text-[#3B2416]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Monthly Budget Settings
+                    </p>
+
+                    <span
+                        className="text-base italic text-[#8B5E3C]"
+                        style={{ fontFamily: "var(--font-cinzel)"}}
+                    >
+                        Budget period: {currentDate}
+                    </span>
+                </div>
+
+                <div className="flex flex-col p-2 border-y-2 border-black">
+                    {ExpensesBudgetSummary.map((item) => (
+                        <div 
+                            key={item.title}
+                            className="flex items-center justify-around w-full p-2">
+                            <span className="flex-1">
+                                {item.title}
+                            </span>
+                            <span className="flex items-center justify-center flex-1">
+                                <PhilippinePeso
+                                    size={16}
+                                />
+                                {item.amount?.toLocaleString("en-US")}
+                                {" "}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="flex items-center p-2 w-full">
+                    <div className="flex flex-col flex-1 py-2">
+                        <span
+                            className="text-base"
+                            style={{ fontFamily: "var(--font-cinzel)"}}
+                        >
+                            Total Monthly Budget
+                        </span>
+
+                        <span
+                            className="text-[12px] italic text-[#8B5E3C]"
+                            style={{ fontFamily: "var(--font-cinzel)"}}
+                        >
+                            Illustrative example only
+                        </span>
+                    </div>
+                    <div className="flex justify-center flex-1">
+                        <span className="text-2xl flex items-center">
+                            <PhilippinePeso
+                                size={24}
+                            />
+                            10000
+                        </span>
+                    </div>
+                </div>
+
             </div>
+
         </section>
     )
 }

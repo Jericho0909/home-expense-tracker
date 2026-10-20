@@ -25,7 +25,7 @@ const Table = <T extends { id: number | string }>({
     const router = useRouter()
     const { setIsOpen, setIsEditing, setActiveModal } = useContext(ModalContext)!
     return (
-        <table className="w-full border-separate border-spacing-y-2">
+        <table className="w-full border-separate border-spacing-y-2 p-4">
             <thead>
                 <tr
                     className="text-left text-base font-bold text-[#3B2416]"
