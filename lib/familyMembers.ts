@@ -5,7 +5,7 @@ export const getFamilyMembers = async () => {
         })
 
         if(!response.ok){
-            throw new Error("Failed to fetch family members");
+            throw new Error("Failed to fetch family members")
         }
 
         const data = await response.json();
@@ -13,7 +13,7 @@ export const getFamilyMembers = async () => {
         return {
             status: response.status,
             data,
-        };
+        }
     } catch (error) {
         console.error("Failed to fetch family members:", error);
         throw error;

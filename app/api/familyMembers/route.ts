@@ -8,6 +8,7 @@ export async function GET(
         const familyMembers = await prisma.familyMember.findMany();
         return NextResponse.json(familyMembers);
     }catch(error){
+        console.error("Failed to fetch family members:", error)
         return NextResponse.json(
             { error: "Failed to fetch family members" },
             { status: 500 }
