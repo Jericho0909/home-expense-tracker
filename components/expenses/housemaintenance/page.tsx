@@ -187,14 +187,21 @@ const HouseMaintenancePage = () => {
                 />
             </div>
 
-            <div className="flex w-full h-72 p-1 border border-[#B38B59] mb-8">
+            <div className="flex w-full h-72 py-1 px-2 bg-[#F5F0E6] border border-[#B38B59] rounded-lg mb-8">
                 <div className="flex flex-col flex-2">
-                    <span
-                        className="font-bold text-[#3B2416]"
-                        style={{ fontFamily: "var(--font-cinzel)"}}
-                    >
-                        Maintenance Spending 
-                    </span>
+                    <div className="w-full">
+                        <span
+                            className="font-bold text-[#3B2416]"
+                            style={{ fontFamily: "var(--font-cinzel)"}}
+                        >
+                            Maintenance Spending 
+                        </span>
+
+                        <div className="flex border-b-2 border-black w-full mt-3">
+
+                        </div>
+                    </div>
+
                     <span 
                         className="w-full h-full"
                         style={{ fontFamily: "var(--font-cinzel)"}}
@@ -203,17 +210,23 @@ const HouseMaintenancePage = () => {
                     </span>
                 </div>
                 <div className="flex flex-col flex-3 ">
-                    <span
-                        className="font-bold text-[#3B2416]"
-                        style={{ fontFamily: "var(--font-cinzel)"}}
-                    >
-                        Maintenance Breakdown
-                    </span>
+                    <div className="w-full">
+                        <span
+                            className="font-bold text-[#3B2416]"
+                            style={{ fontFamily: "var(--font-cinzel)"}}
+                        >
+                            Maintenance Breakdown
+                        </span>
+
+                        <div className="flex border-b-2 border-black w-full mt-3">
+
+                        </div>
+                    </div>
 
                 </div>
             </div>
 
-            <div className="w-4xl h-auto py-1 px-2 border border-[#B38B59] mb-8">
+            <div className="w-full py-1 px-2 bg-[#F5F0E6] border border-[#B38B59] rounded-lg mb-8">
                 <div className="flex flex-col p-1 w-">
                     <span
                         className="font-bold text-[#3B2416]"
@@ -221,6 +234,10 @@ const HouseMaintenancePage = () => {
                     >
                         House Maintenance Bills  
                     </span>
+
+                    <div className="flex border-b-2 border-black w-full mt-3">
+
+                    </div>
                 </div>
                 <div className="block w-auto min-h-48 p-1">
                     <Table
