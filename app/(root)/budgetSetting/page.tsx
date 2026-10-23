@@ -3,7 +3,7 @@
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext";
 import FamilyMemberContext from "@/context/familyMemberContext";
-import BudgetContext from "@/context/budget";
+import BudgetContext from "@/context/budgetContext";
 import ModalContext from "@/context/modalContext";
 import Card from "@/components/Card";
 import AddMemberModal from "@/components/modal/AddMemberModal";
@@ -11,7 +11,8 @@ import Table from "@/components/Table";
 import type { TableColumn, 
     Member,
     ExpensesBudgetSummaryType,
-    ExpenseBudget
+    ExpenseBudget,
+    ExpenseCategory
 } from "@/type/model";
 import { FamilyRoleColor } from "@/constant/billIcons";
 import { HandCoins, 
@@ -20,6 +21,11 @@ import { HandCoins,
     Plus,
     Wallet
 } from 'lucide-react';
+import { toast } from "sonner";
+
+type ExpenseBudgetForm = Omit<ExpenseBudget, "category"> & {
+    category: ExpenseCategory | ""
+}
 
 type CategoryExpense = 
     | "Utilities"
@@ -29,14 +35,6 @@ type CategoryExpense =
     | "HouseMaintenance"
     | "FamilyExpenses"
     | "OtherExpenses"
-
-type ExpenseTypes = {
-    id: string
-    category: CategoryExpense | "";
-    amount: number;
-    createdAt: string
-    updatedAt: string
-}
 
 
 const BudgerSettingPage = () => {
@@ -49,19 +47,18 @@ const BudgerSettingPage = () => {
         year: "numeric",
     })
 
-    const defaultExpense: ExpenseTypes = {
+    const defaultExpense: ExpenseBudgetForm = {
         id: "",
         category: "",
+        month: 0,
+        year: 0,
         amount: 0,
         createdAt: "",
         updatedAt: "",
     }
 
-    const [ expenseBudget, setExpenseBudget ] = useState<ExpenseTypes> (defaultExpense)
+    const [ expenseBudget, setExpenseBudget ] = useState<ExpenseBudgetForm> (defaultExpense)
 
-
-    const totalBudget = familyMembers.reduce((total, member) => total + member.money, 0)
-    console.log(budget)
 
     const MemberColumn: TableColumn<Member>[] = [
         {
@@ -96,6 +93,11 @@ const BudgerSettingPage = () => {
         )
     }))
 
+    const totalBudget = ExpensesBudgetSummary.reduce(
+        (total, item) => total + item.amount,
+        0
+    )
+
     const Category: CategoryExpense[] = [
         "Utilities",
         "FoodAndHousehold",
@@ -105,6 +107,51 @@ const BudgerSettingPage = () => {
         "FamilyExpenses",
         "OtherExpenses"
     ]
+
+    const handleSubmit = async(id: string) => {
+        const existingBudgetExpense = budget.find((key) => key.category === expenseBudget.category)
+
+        try{
+            if(existingBudgetExpense){
+                const response = await fetch(`/api/budget/${id}`,
+                    {
+                        method: "PUT",
+                        body: JSON.stringify(expenseBudget)
+                    }
+                )
+
+                if(!response.ok){
+                    throw new Error(
+                        `Failed to update expense budget: ${response.status} ${response.statusText}`
+                    )
+                }
+
+                await response.json()
+                toast.success("Successfully update budget!")
+            }
+            else{
+                const response = await fetch("/api/budget", 
+                    {
+                        method: "POST",
+                        body: JSON.stringify(expenseBudget)
+                    }
+                )
+
+                if(!response.ok){
+                    throw new Error(
+                        `Failed to create expense budget: ${response.status} ${response.statusText}`
+                    )
+                }
+
+                await response.json()
+                toast.success("Successfully add budget!")
+            }
+            setExpenseBudget(defaultExpense)
+            
+        }catch(error){
+            
+        }
+    }
 
     const OpenModal = () => {
         setIsOpen(true)
@@ -150,21 +197,6 @@ const BudgerSettingPage = () => {
                         member={member}
                     />
                 ))}
-                <div className="flex justify-start flex-col p-1 bg-[#F5F0E6] border border-[#B38B59] rounded-lg w-full ">
-                    <span
-                        className="font-bold text-[#3B2416] text-base"
-                        style={{ fontFamily: "var(--font-cinzel)"}}
-                    >
-                        TOTAL FAMILY BUDGET
-                    </span>
-                    <span
-                        className="flex items-center gap-1 text-[#8B5E3C] text-sm"
-                        style={{ fontFamily: "var(--font-libre-baskerville)"}}
-                    >
-                        <PhilippinePeso size={16}/>
-                        {totalBudget.toLocaleString("en-US")}
-                    </span>
-                </div>
                 <button
                     type="button"
                     onClick={OpenModal}
@@ -349,7 +381,7 @@ const BudgerSettingPage = () => {
                                     size={16}
                                 />
                                 {item.amount?.toLocaleString("en-US")}
-                                {" "}
+                            
                             </span>
                         </div>
                     ))}
@@ -376,7 +408,7 @@ const BudgerSettingPage = () => {
                             <PhilippinePeso
                                 size={24}
                             />
-                            10000
+                            {totalBudget.toLocaleString("en-US")}
                         </span>
                     </div>
                 </div>

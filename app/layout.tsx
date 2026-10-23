@@ -10,7 +10,7 @@ import { ExpensesSectionProvider }  from "../context/expensesSectionContext";
 import { ModalProvider } from "../context/modalContext";
 import { ExpensesDataProvider } from "../context/expensesDataContext"
 import { FamilyMemberProvider } from "../context/familyMemberContext"
-import { BudgetProvider } from "@/context/budget";
+import { BudgetProvider } from "@/context/budgetContext";
 import { Toaster } from "sonner";
 
 const cinzel = Cinzel({

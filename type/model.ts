@@ -232,9 +232,9 @@ export type Member = {
 export type ExpenseBudget = {
     id: string;
     category: ExpenseCategory;
-    month: Number;
-    year: Number;
-    amount: Number;
+    month: number;
+    year: number;
+    amount: number;
     createdAt: string;
     updatedAt: string;
 }

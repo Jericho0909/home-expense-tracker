@@ -3,8 +3,8 @@ import { Prisma } from "@prisma/client";
 
 
 export async function PUT(request: Request, { params }: { params: Promise<{ category: string, id: string }> }) {
-    const { category, id } = await params;
-    const body = await request.json();
+    const { category, id } = await params
+    const body = await request.json()
 
     try{
         switch (category) {
