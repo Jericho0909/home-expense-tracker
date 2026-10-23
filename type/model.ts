@@ -148,7 +148,7 @@ export type TableColumn<T> = {
 }
 
 export type ExpensesBudgetSummaryType = {
-    title: string
+    category: string
     amount: number
 }
 

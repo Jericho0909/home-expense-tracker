@@ -11,7 +11,7 @@ interface BudgetType {
 
 const BudgetContext = createContext<BudgetType | null>(null)
 
-export const BudgetContextProvider = ({ children }: { children: React.ReactNode }) => {
+export const BudgetProvider = ({ children }: { children: React.ReactNode }) => {
     const [ budget, setBudget ] = useState<ExpenseBudget[]>([])
 
     useEffect(() => {

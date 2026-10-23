@@ -3,14 +3,15 @@
 import { useContext, useEffect, useState } from "react"
 import ExpensesSectionContext from "@/context/expensesSectionContext";
 import FamilyMemberContext from "@/context/familyMemberContext";
+import BudgetContext from "@/context/budget";
 import ModalContext from "@/context/modalContext";
 import Card from "@/components/Card";
 import AddMemberModal from "@/components/modal/AddMemberModal";
 import Table from "@/components/Table";
-import BudgetForm from "@/components/BudgetForm";
 import type { TableColumn, 
     Member,
-    ExpensesBudgetSummaryType
+    ExpensesBudgetSummaryType,
+    ExpenseBudget
 } from "@/type/model";
 import { FamilyRoleColor } from "@/constant/billIcons";
 import { HandCoins, 
@@ -42,6 +43,7 @@ const BudgerSettingPage = () => {
     const { setActiveSection } = useContext(ExpensesSectionContext)!
     const { setIsOpen, setActiveModal } = useContext(ModalContext)!
     const { familyMembers } = useContext(FamilyMemberContext)!
+    const { budget } = useContext(BudgetContext)!
     const currentDate = new Date().toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
@@ -59,6 +61,7 @@ const BudgerSettingPage = () => {
 
 
     const totalBudget = familyMembers.reduce((total, member) => total + member.money, 0)
+    console.log(budget)
 
     const MemberColumn: TableColumn<Member>[] = [
         {
@@ -79,35 +82,19 @@ const BudgerSettingPage = () => {
     ]
 
     const ExpensesBudgetSummary: ExpensesBudgetSummaryType[] = [
-        {
-            title: "Utilities",
-            amount: 1000
-        },
-        {
-            title: "Food and Household",
-            amount: 1000
-        },
-        {
-            title: "Transportation",
-            amount: 1000
-        },
-        {
-            title: "Health",
-            amount: 1000
-        },
-        {
-            title: "House Maintenance",
-            amount: 1000
-        },
-        {
-            title: "Family Expenses",
-            amount: 1000
-        },
-        {
-            title: "Other Expenses",
-            amount: 1000
-        }
-    ]
+        { category: "Utilities", amount: 0 },
+        { category: "FoodAndHousehold", amount: 0 },
+        { category: "Transportation", amount: 0 },
+        { category: "Health", amount: 0 },
+        { category: "HouseMaintenance", amount: 0 },
+        { category: "FamilyExpenses", amount: 0 },
+        { category: "OtherExpenses", amount: 0 }
+    ].map((item) => ({
+        ...item,
+        amount: Number(
+            budget.find((b) => b.category === item.category)?.amount ?? 0
+        )
+    }))
 
     const Category: CategoryExpense[] = [
         "Utilities",
@@ -352,10 +339,10 @@ const BudgerSettingPage = () => {
                 <div className="flex flex-col p-2 border-y-2 border-black">
                     {ExpensesBudgetSummary.map((item) => (
                         <div 
-                            key={item.title}
+                            key={item.category}
                             className="flex items-center justify-around w-full p-2">
                             <span className="flex-1">
-                                {item.title}
+                                {item.category}
                             </span>
                             <span className="flex items-center justify-center flex-1">
                                 <PhilippinePeso
