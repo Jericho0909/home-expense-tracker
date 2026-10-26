@@ -30,24 +30,24 @@ export async function PUT(request: Request, { params }: { params: Promise<{
                 { status: 200 }
             )
         }catch(error){
-             if(
-                error instanceof Prisma.PrismaClientKnownRequestError &&
-                error.code === "P2025"
-            ){
-                return Response.json(
-                    {
-                        success: false,
-                        error: "Expense id not found",
-                    },
-                    { status: 404 }
-                )
-            }
+            if(
+            error instanceof Prisma.PrismaClientKnownRequestError &&
+            error.code === "P2025"
+        ){
             return Response.json(
                 {
                     success: false,
-                    error: "Failed to update budget ",
+                    error: "Expense id not found",
                 },
-                { status: 500 }
+                { status: 404 }
             )
         }
+        return Response.json(
+            {
+                success: false,
+                error: "Failed to update budget ",
+            },
+            { status: 500 }
+        )
     }
+}

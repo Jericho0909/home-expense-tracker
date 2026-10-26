@@ -4,7 +4,6 @@
 
 import { getAllExpensesBudget } from "@/lib/budget";
 import { POST } from "./route";
-import { param } from "framer-motion/client";
 
 global.fetch = jest.fn()
 
