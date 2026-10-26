@@ -5,38 +5,38 @@
 import { getExpenses } from "@/lib/expenses";
 import { POST } from "./route";
 
-global.fetch = jest.fn();
+global.fetch = jest.fn()
 
 describe("POST /api/expenses/[category]", () => {
     test("should fetch expenses successfully", async () => {
-    const mockExpenses = [
-        {
-            id: "123",
-            name: "Electricity",
-            amount: 1000,
-        },
-    ];
+        const mockExpenses = [
+            {
+                id: "123",
+                name: "Electricity",
+                amount: 1000,
+            },
+        ];
 
-    (fetch as jest.Mock).mockResolvedValue({
-        ok: true,
-        status: 200,
-        json: jest.fn().mockResolvedValue(mockExpenses),
-    });
+        (fetch as jest.Mock).mockResolvedValue({
+            ok: true,
+            status: 200,
+            json: jest.fn().mockResolvedValue(mockExpenses),
+        })
 
-    const result = await getExpenses("Utilities", 1, 10);
+        const result = await getExpenses("Utilities", 1, 10);
 
-    expect(fetch).toHaveBeenCalledWith(
-        "/api/expenses/Utilities?page=1&limit=10",
-        {
-            method: "GET",
-        }
-    );
+        expect(fetch).toHaveBeenCalledWith(
+            "/api/expenses/Utilities?page=1&limit=10",
+            {
+                method: "GET",
+            }
+        )
 
-    expect(result).toEqual({
-        status: 200,
-        data: mockExpenses,
-    });
-});
+        expect(result).toEqual({
+            status: 200,
+            data: mockExpenses,
+        })
+    })
 
     test("should create a utility expense", async () => {
         const request = new Request(

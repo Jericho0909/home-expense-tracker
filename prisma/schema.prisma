@@ -156,6 +156,8 @@ enum ExpenseCategory {
   HouseMaintenance
   FamilyExpenses
   OtherExpenses
+
+  @@map("ExpenseBudgetCategory")
 }
 
 enum UtilityCategory {
