@@ -132,7 +132,7 @@ model ExpenseBudget {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([year, month])
+  @@unique([category, year, month])
 }
 
 // Enum

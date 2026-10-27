@@ -6,6 +6,7 @@ import FamilyMemberContext from "@/context/familyMemberContext";
 import BudgetContext from "@/context/budgetContext";
 import ModalContext from "@/context/modalContext";
 import Card from "@/components/Card";
+import ButtonModal from "@/components/ButtonModal";
 import AddMemberModal from "@/components/modal/AddMemberModal";
 import Table from "@/components/Table";
 import type { TableColumn, 

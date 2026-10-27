@@ -18,9 +18,10 @@ const ButtonModal = ({ modalContent }: ButtonModalProps) => {
         <button
             type="button"
             onClick={openModal}
-            className="bg-[#8B5E3C] text-[#F8F4E9] px-5 py-2 rounded-md hover:bg-[#70482F] cursor-pointer"
+            className="text-sm font-semibold bg-[#8B5E3C] text-[#F8F4E9] px-5 py-4 rounded-lg hover:bg-[#70482F] cursor-pointer"
+            style={{ fontFamily: "var(--font-cinzel)"}}
         >
-            + Add Expense
+            + ADD EXPENSE
         </button>
     )
 }
