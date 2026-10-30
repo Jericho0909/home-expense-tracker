@@ -46,6 +46,9 @@ const AddMemberModal = ({id}: {id?: string | null}) => {
             setIsSendingData(true)
             const response = await fetch("/api/familyMembers", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(member),
             })
 

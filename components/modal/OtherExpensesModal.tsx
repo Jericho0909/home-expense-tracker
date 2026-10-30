@@ -60,6 +60,9 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
             setIsSendingData(true)
             const response = await fetch("/api/expenses/OtherExpense", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(otherExpense),
             })
 
@@ -87,6 +90,9 @@ const OtherExepensesModal = ({id}: {id?: string | null}) => {
             const response = await fetch(`/api/expenses/OtherExpenses/editOtherExpenses/${id}`,
                 {
                     method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                     body: JSON.stringify(otherExpense)
                 }
             )

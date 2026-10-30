@@ -58,13 +58,13 @@ const TransportationModal = ({id}: {id?: string | null}) => {
             setIsSendingData(true)
             const response = await fetch("/api/expenses/Transportation", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(transportationExpense),
             })
 
             if(!response.ok){
-                const errorText = await response.text()
-
-
                 throw new Error(
                     `Failed to create transportation expense: ${response.status} ${response.statusText}`
                 )
@@ -91,6 +91,9 @@ const TransportationModal = ({id}: {id?: string | null}) => {
                 /api/expenses/Transportation/editTransportation/${id}`,
                 {
                     method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                     body: JSON.stringify(transportationExpense),
                 }
             )

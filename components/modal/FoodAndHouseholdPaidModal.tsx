@@ -37,6 +37,9 @@ const FoodAndHouseholdPaidModal = ({id}: {id: string}) => {
             setIsSendingData(true)
             const response = await fetch(`/api/expenses/FoodAndHousehold/paidFoodAndHousehold/${id}`, {
                 method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(updatedExpense),
             })
 

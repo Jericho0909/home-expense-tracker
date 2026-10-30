@@ -36,6 +36,9 @@ const EditMemberModal = ({id}: {id?: string | null}) => {
             const response = await fetch(`/api/familyMembers/editFamilyMember/${id}`, 
                 {
                 method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(member),
                 }
             )

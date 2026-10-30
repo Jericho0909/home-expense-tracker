@@ -58,6 +58,9 @@ const HealthModal = ({id}: {id?: string | null}) => {
             setIsSendingData(true)
             const response = await fetch("/api/expenses/Health", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(healthExpense),
             })
 
@@ -81,6 +84,9 @@ const HealthModal = ({id}: {id?: string | null}) => {
             const response = await fetch(`/api/expenses/Health/editHealth/${id}`,
                 {
                     method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                     body: JSON.stringify(healthExpense),
                 }
             )

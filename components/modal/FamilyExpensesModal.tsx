@@ -57,6 +57,9 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
             setIsSendingData(true)
             const response = await fetch("/api/expenses/FamilyExpense", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(familyExpensesData),
             })
 
@@ -85,6 +88,9 @@ const FamilyExpensesModal = ({id}: {id?: string | null}) => {
             const response = await fetch(`/api/expenses/FamilyExpenses/editFamilyExpenses/${id}`,
                 {
                     method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                     body: JSON.stringify(familyExpensesData)
                 }
             )

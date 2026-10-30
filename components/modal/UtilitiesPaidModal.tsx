@@ -40,6 +40,9 @@ const UtilitiesPaidModal = ({id}: {id: string}) => {
             setIsSendingData(true)
             const response = await fetch(`/api/expenses/Utilities/paidUtilities/${id}`, {
                 method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(updatedExpense),
             })
 

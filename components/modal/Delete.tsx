@@ -188,7 +188,10 @@ const Delete = ({category, action, id}: DeleteExpenseProps) => {
         try{
             const response = await fetch(`/api/familyMembers/deleteFamilyMember/${id}`, 
                 {
-                    method: "DELETE"
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                 }
             )
             if(!response.ok){
